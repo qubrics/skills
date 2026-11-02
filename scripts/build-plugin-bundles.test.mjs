@@ -32,7 +32,7 @@ function makeRepo() {
     path.join(repoRoot, "openclaw.skills.json"),
     `${JSON.stringify(
       {
-        homepage: "https://github.com/Sendmux/skills",
+        homepage: "https://github.com/qubrics/skills",
         version: "1.2.3",
         skills: {
           "sendmux-test": {
@@ -116,7 +116,7 @@ test("builds marketplace plugin bundles from canonical skills", () => {
         "Official Sendmux Agent Skills for email, mailbox, MCP, CLI, and SDK workflows.",
       author: { name: "Sendmux" },
       homepage: "https://docs.sendmux.ai/guides/agent-skills",
-      repository: "https://github.com/Sendmux/skills",
+      repository: "https://github.com/qubrics/skills",
       license: "Apache-2.0",
       logo: "assets/sendmux-mark.svg",
       keywords: ["sendmux", "email", "agent-skills", "mcp", "cli"],

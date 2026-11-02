@@ -61,10 +61,10 @@ jobs:
           appendFileSync(process.env.GITHUB_OUTPUT, `sdk_revision=${inputs.sdkRevision}\napp_openapi=${inputs.app.openapi}\nsending_openapi=${inputs.sending.openapi}\n`);
           JS
 
-      - name: Check out sendmux-sdk (public)
+      - name: Check out qubrics-sdk (public)
         uses: actions/checkout@v4
         with:
-          repository: Sendmux/sendmux-sdk
+          repository: qubrics/qubrics-sdk
           ref: ${{ steps.source.outputs.sdk_revision }}
           path: _sdk
           fetch-depth: 0

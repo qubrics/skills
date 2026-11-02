@@ -7,7 +7,7 @@
     "url": "https://sendmux.ai"
   },
   "homepage": "https://docs.sendmux.ai/guides/agent-skills",
-  "repository": "https://github.com/Sendmux/skills",
+  "repository": "https://github.com/qubrics/skills",
   "license": "Apache-2.0",
   "keywords": [
     "sendmux",

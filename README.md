@@ -18,12 +18,12 @@ Claude app, Claude Desktop, and Cowork:
 2. Go to **Plugins**.
 3. In **Personal plugins**, click **+** and choose **Add marketplace**.
 4. Choose **Add from a repository**.
-5. Enter `Sendmux/skills`, then install the **Sendmux** plugin.
+5. Enter `qubrics/skills`, then install the **Sendmux** plugin.
 
 Claude Code:
 
 ```text
-/plugin marketplace add Sendmux/skills
+/plugin marketplace add qubrics/skills
 /plugin install sendmux@sendmux
 /reload-plugins
 ```
@@ -31,7 +31,7 @@ Claude Code:
 Codex app and Codex CLI:
 
 ```bash
-codex plugin marketplace add Sendmux/skills
+codex plugin marketplace add qubrics/skills
 ```
 
 Then open **Plugins** in the Codex app or `/plugins` in Codex CLI and install **Sendmux** from the Sendmux marketplace.
@@ -41,13 +41,13 @@ Then open **Plugins** in the Codex app or `/plugins` in Codex CLI and install **
 Use `skills add` when your agent supports raw Agent Skills rather than plugin marketplaces.
 
 ```bash
-npx skills add Sendmux/skills
+npx skills add qubrics/skills
 ```
 
 Install one skill from the pack:
 
 ```bash
-npx skills add Sendmux/skills --skill sendmux-send-email
+npx skills add qubrics/skills --skill sendmux-send-email
 ```
 
 Update an installed pack:
@@ -88,11 +88,11 @@ The catalogue is built item by item from the local API, SDK, CLI, and MCP source
 | Target | Recommended install |
 | --- | --- |
 | Cursor | After official marketplace publication, run `/add-plugin sendmux`. |
-| Claude app, Claude Desktop, Cowork | Add marketplace from repository `Sendmux/skills`, then install **Sendmux**. |
-| Claude Code | `/plugin marketplace add Sendmux/skills`, then `/plugin install sendmux@sendmux`. |
-| Codex app and Codex CLI | `codex plugin marketplace add Sendmux/skills`, then install **Sendmux** from **Plugins** or `/plugins`. |
-| Agent Skills clients | `npx skills add Sendmux/skills`. |
-| Single-skill installs | `npx skills add Sendmux/skills --skill <skill-name>`. |
+| Claude app, Claude Desktop, Cowork | Add marketplace from repository `qubrics/skills`, then install **Sendmux**. |
+| Claude Code | `/plugin marketplace add qubrics/skills`, then `/plugin install sendmux@sendmux`. |
+| Codex app and Codex CLI | `codex plugin marketplace add qubrics/skills`, then install **Sendmux** from **Plugins** or `/plugins`. |
+| Agent Skills clients | `npx skills add qubrics/skills`. |
+| Single-skill installs | `npx skills add qubrics/skills --skill <skill-name>`. |
 
 Marketplace plugins and raw Agent Skills only teach workflows. They do not grant Sendmux access. Authorise hosted MCP or scoped REST OAuth, create API keys, or use agent access before asking an agent to act on Sendmux data.
 
