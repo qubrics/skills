@@ -1,0 +1,68 @@
+{
+  "before": {
+    "app": "87ce115810ebcfa91655295603c27af52fcff96f",
+    "sending": "2f4226655efc05f109b5feda50ed2ca1570aea91",
+    "sdk": "1812300f1f30102ed0e624bc92cd92224cdf867d"
+  },
+  "after": {
+    "app": "404f52ee1eb02858a0d3e9e082ab2afd64586948",
+    "sending": "2f4226655efc05f109b5feda50ed2ca1570aea91",
+    "sdk": "1812300f1f30102ed0e624bc92cd92224cdf867d"
+  },
+  "changed": [
+    {
+      "name": "agent-email-inbox",
+      "before": "bf44522e0386e93673e83e3d688ac2924357905a0a7c49cac6493347117079de",
+      "after": "2340d4ea27464cd766ddd9a35e05b5d1c1d9a95b8b2bb549f677993fb24f97f9",
+      "skillUnchanged": true
+    },
+    {
+      "name": "sendmux-attachments",
+      "before": "4c4861a5571d27478b76d822beb755eba3f15d48b6ea0ebbda5685016eaff83b",
+      "after": "cabe8715f6ef8825396dbf05477d428b9ab33cf908bf7d05d8d326e18a96b70f",
+      "skillUnchanged": true
+    },
+    {
+      "name": "sendmux-cli",
+      "before": "f0820fe1f50e51b798d49be639f5ba82fe4245c59f8cb1f223320746c01c174c",
+      "after": "8a0915ee3eedafa44a9e497b9379e2d96a7f92de578383f8ad84d645d3519c43",
+      "skillUnchanged": true
+    },
+    {
+      "name": "sendmux-email-for-agents",
+      "before": "c578a623bbfdf7f66657ffeda80222b7593cdc360b2dfa5b8ab40735da1ba261",
+      "after": "45d8c1c6c9f353e3e85f3da34b21c70d79894682de25b303739c4d1ed28a92bb",
+      "skillUnchanged": true
+    },
+    {
+      "name": "sendmux-getting-started",
+      "before": "e53273dec31efc3e86dae203305a9a568f695dea35737b21bbd10ea146fa9d5b",
+      "after": "b972f440507a681e9466daf160539c5e79afd92bcd20eb370da0c9e79c8cfa09",
+      "skillUnchanged": true
+    },
+    {
+      "name": "sendmux-mailbox-agent",
+      "before": "f2dde124856e22a0a5aa90c87c38a6d71f4fb3b1e990114d7dac2fbdeebf0af5",
+      "after": "19b94ea0d8d137cdeb39db4fe6c4ecda8c5372cd6b523ad60c4a7f1824016bef",
+      "skillUnchanged": true
+    },
+    {
+      "name": "sendmux-management",
+      "before": "0d2055677bc5f8f45e595822a291aa47202f3efb4fbf9256f5eda71f9b109e53",
+      "after": "9eaed72398dc82ebdcbfa32a887a70255c38b7887c37585e56f3e9aea62aff7b",
+      "skillUnchanged": true
+    },
+    {
+      "name": "sendmux-mcp-setup",
+      "before": "5e9b31c3f6dafee755c72880c3c00487cf56dee8178652880366d639fd992e9d",
+      "after": "5ceaf8fb34e8109e1adf386a880a212a313421216bc5e1e182fc9c2d0932d85a",
+      "skillUnchanged": true
+    },
+    {
+      "name": "sendmux-token-efficient-usage",
+      "before": "8d3a9b0c1e10bbdc8855bc879ba7ac1f229ef2ed166e25f5f01cd319743eab7c",
+      "after": "a1b0b26899a13af7d21a866ae80f5190707456f99c5e77e1961849ddfad51565",
+      "skillUnchanged": true
+    }
+  ]
+}
