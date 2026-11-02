@@ -18,3 +18,9 @@ Local checks passed:
 Local logs: control-plane MAIN `.claude/artifacts/rebrand-qubrics-897/skills-{red,green-seam,generate,check}.log`.
 
 GitHub CI is required on the PR. ClawHub workflow is disabled at preparation time; its existing guarded publication logic was left unchanged and unexecuted. No release/version bump is part of this PR. Independent review is coordinated across the batch; no review-settled claim is made here.
+
+CI exposed the expected changed-skill digest guard: `proposed/sendmux-email-for-agents requires a compatibility review or workflow evidence`. Both changed bodies differ from their previous Calendar replacements only by `Sendmux/skills` becoming `qubrics/skills`; contract digests and source revisions are identical. The previous published bodies remain incompatible and cannot receive blanket compatibility approval.
+
+Fresh native tasks answered the two existing case-3 owner-approval prompts using only the current skill bodies. An independent grader preserved all assertions and scored the router 9/9 and getting-started 11/11. Separate source review confirmed that email-send/message-update restrictions do not incorrectly deny calendar access. New workflow records bind exact body/prompt/output/grade hashes and the same published predecessor digests, preserving the checker's strict supersession rule. Historical records and checker code are unchanged. Committed evidence lives under `evidence/skill-compatibility/{evaluations,reviews}/rebrand-qubrics-897/`.
+
+Evaluation limits: source-only planning responses; no installation, registration, invitation, token exchange, send or live runtime compatibility proved. Model identity, timing, tokens and tool-call counts were unavailable and are not invented. Independent Standards/Spec review found no functional source defect across this batch; full candidate acceptance and PR CI remain separate gates.

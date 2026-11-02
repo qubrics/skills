@@ -1767,6 +1767,20 @@
   },
   "reviews": [
     {
+      "skill": "sendmux-email-for-agents",
+      "skillDigest": "d6114bc5ad522d699bdc8fa5996b3a0458c073233bab3587f7c065c14b967cf2",
+      "contractDigest": "c578a623bbfdf7f66657ffeda80222b7593cdc360b2dfa5b8ab40735da1ba261",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-897/sendmux-email-for-agents.json",
+      "sha256": "81cb38a7e373a143e0eff6a0e209245783178a9ed1ad4dfa9abba76761ce3417"
+    },
+    {
+      "skill": "sendmux-getting-started",
+      "skillDigest": "9773f834d55a806804fc25acec0a32f09cf6699238d05ed31fc1bbdfd587d625",
+      "contractDigest": "e53273dec31efc3e86dae203305a9a568f695dea35737b21bbd10ea146fa9d5b",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-897/sendmux-getting-started.json",
+      "sha256": "2310928819fba36941b6cef539f7f4a2a0ef2359535eee4d800164ef477ab8db"
+    },
+    {
       "skill": "email-for-ai-agents",
       "skillDigest": "eb668c43d4c594ea0e70a59e0c6fb8dc75bed7c3244d0ad706afd2ec770f3060",
       "contractDigest": "9ca326ae2fce8623b8882771d68bb3f7c39bfaa6e0b235e2e95502c1ad067171",
