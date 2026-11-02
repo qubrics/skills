@@ -34,3 +34,13 @@ Do not publish a new release, register/update skills.sh metadata, or publish doc
 Skill content changes merged to `main` are not complete until a new public GitHub release is created and verified. Bump `openclaw.skills.json` to the next SemVer version, tag/release that exact version, verify `gh release view`, and verify the relevant publishing/sync workflows before reporting the skill work complete.
 
 For multiline GitHub release notes, use `gh release ... --notes-file -` or a real notes file; never pass escaped `\n` strings. Verify the saved body has real Markdown line breaks before reporting success.
+
+## Agent skills
+
+### Issue tracker
+
+Issues live in this repo's GitHub Issues via the `gh` CLI. See `docs/agents/issue-tracker.md`.
+
+### Domain docs
+
+Single-context: `GLOSSARY.md` and `docs/adr/` at the repo root. See `docs/agents/domain.md`.
