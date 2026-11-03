@@ -2227,6 +2227,27 @@
       "contractDigest": "321ab22736f5e977ceb61a6bc6b9a943f30fa5b0953525ea10ba87b1c0903caa",
       "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-897-management.json",
       "sha256": "c920ffb7b0973a8624108d710b48ebd474d4a9d9200ee3c2413597b2751aa200"
+    },
+    {
+      "skill": "sendmux-cli",
+      "skillDigest": "cfc14976eadcc9400db576073b29805de04cc8cf14af31e95399a84ddcd19b46",
+      "contractDigest": "16c749378304a289b72a3b8646262364fe92c4e6c45c4fc6a4f31eeb60b52793",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-904/sendmux-cli.json",
+      "sha256": "c21c2edcdaf98c891dad635893da2e34ac09917cbc322bf56a5715d4e735756d"
+    },
+    {
+      "skill": "sendmux-management",
+      "skillDigest": "497f5468ad5a842c9d26e2580851df58e25a24a4465f08a0ddac1b4b3cc6c30f",
+      "contractDigest": "aafeeb2bf4a15f17b8fb8d0892b52ae6192c3928f1737b4f451456b923b36ede",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-904/sendmux-management.json",
+      "sha256": "90fdb3aa4fed0070f2a39088e8610ed5500e5984870776670c37ebc99cd8e69b"
+    },
+    {
+      "skill": "sendmux-mcp-setup",
+      "skillDigest": "2864870cf48ad126fcab5153eb029cb2c5811ac03ccefddef75b32fee982ef1e",
+      "contractDigest": "275e07b02ca053a091826c40e3ba1e1152513e1a303034718d0dc8726c02c8ff",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-904/sendmux-mcp-setup.json",
+      "sha256": "2dd74ebf134224cd157f76994be0f7c36758d330143cedba18e88f943f0ad06e"
     }
   ],
   "releaseInputs": {
