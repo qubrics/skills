@@ -2220,6 +2220,13 @@
       "contractDigest": "a1b0b26899a13af7d21a866ae80f5190707456f99c5e77e1961849ddfad51565",
       "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-896/sendmux-token-efficient-usage.json",
       "sha256": "0d7cdddb85326228d465f88444bbdd6b3733f9da7dce1d7dc15fb25b83b95838"
+    },
+    {
+      "skill": "sendmux-management",
+      "skillDigest": "497f5468ad5a842c9d26e2580851df58e25a24a4465f08a0ddac1b4b3cc6c30f",
+      "contractDigest": "321ab22736f5e977ceb61a6bc6b9a943f30fa5b0953525ea10ba87b1c0903caa",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-897-management.json",
+      "sha256": "c920ffb7b0973a8624108d710b48ebd474d4a9d9200ee3c2413597b2751aa200"
     }
   ],
   "releaseInputs": {
