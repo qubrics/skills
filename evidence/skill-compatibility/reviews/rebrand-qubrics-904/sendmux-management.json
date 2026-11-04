@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "kind": "compatibility",
+  "skill": "sendmux-management",
+  "skillDigest": "497f5468ad5a842c9d26e2580851df58e25a24a4465f08a0ddac1b4b3cc6c30f",
+  "contractDigest": "aafeeb2bf4a15f17b8fb8d0892b52ae6192c3928f1737b4f451456b923b36ede",
+  "sourceRevisions": {
+    "app": "597957b2d0f5f01c3dfd1204a17950473b60aff9",
+    "sending": "2f4226655efc05f109b5feda50ed2ca1570aea91",
+    "sdk": "1812300f1f30102ed0e624bc92cd92224cdf867d"
+  },
+  "reviewer": "Independent compatibility source reviewer; Codex coordinating reviewer for rebrand-qubrics-904 evidence adoption",
+  "rationale": "The complete unchanged management body and workflow references remain compatible. Webhook create and rotation secret descriptions retain exact-body and timestamp-prefixed signing plus one-time secret disclosure. Delivery payloads add an optional nullable correlation alias alongside the retained field; test delivery retains sendmux.test and idempotency. Inputs, scopes, security and selected runtime policy remain unchanged. Prior review limitations remain.",
+  "evidence": [
+    {
+      "path": "skills/sendmux-management/SKILL.md",
+      "sha256": "04719fe232f6f06a2bea78bac953f4b3fb1738776e1928e5142065e9d430a080"
+    },
+    {
+      "path": "evidence/skill-compatibility/reviews/rebrand-qubrics-897-management.json",
+      "sha256": "c920ffb7b0973a8624108d710b48ebd474d4a9d9200ee3c2413597b2751aa200"
+    },
+    {
+      "path": "evidence/rebrand-qubrics-904-skill-compat-20261103.md",
+      "sha256": "daf876e7a8b1defe79df7cd65d287544c7851258ca506a5df128e96a7db0c390"
+    }
+  ]
+}
