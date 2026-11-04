@@ -1,0 +1,84 @@
+{
+  "schemaVersion": 1,
+  "kind": "compatibility",
+  "skill": "sendmux-attachments",
+  "skillDigest": "1683e3417d4184809ecf349175a16271bb8a8c942b7ada148b8831a1e2872af6",
+  "contractDigest": "10459338e8fe84ad96f88d1babbdb144642cb87485e17c89f17c5ed5b6592674",
+  "sourceRevisions": {
+    "app": "a7b11f3d980720f973b7ee615e7662f03e2a3ad7",
+    "sending": "2f4226655efc05f109b5feda50ed2ca1570aea91",
+    "sdk": "1812300f1f30102ed0e624bc92cd92224cdf867d"
+  },
+  "reviewer": "Independent App329 source-policy and complete-body reviewers; Codex coordinating reviewer adopting both reviews",
+  "rationale": "Complete unchanged body remains compatible on documented existing/default-host workflows after review of all nine OpenAPI leaves and eight changed policy declarations, including initiating-host metadata. Legacy aliases preserve existing flows; explicit Qubrics issuer migration with SDK1812300f is excluded. Retain prior limitations and historical evidence, not fresh App329 evaluations. See the attached source review.",
+  "evidence": [
+    {
+      "path": "skills/sendmux-attachments/SKILL.md",
+      "sha256": "bf4b381efd3e89afef46464c0b68b948bfd3bc8eb69a6d3993fad8ae3dca77e2"
+    },
+    {
+      "path": "evidence/skill-compatibility/reviews/row07-actualtuple-20261012/sendmux-attachments.json",
+      "sha256": "60715a46378527ba569e5d6ad4e9ff256c866811599c4478467a891bb303e7d5"
+    },
+    {
+      "path": "evidence/skill-compatibility/calendar-source-review-20261030.md",
+      "sha256": "9da8b579dbe6e1db065dfac97e71c3cfda096678071e254030bbd20a2c978df3"
+    },
+    {
+      "path": "evidence/skill-compatibility/contracts/calendar-20261030/app-export.json",
+      "sha256": "29cde33eda5fb6777c9544e722a3165edeb2c689da8ac2c9f3953f85c3872d0b"
+    },
+    {
+      "path": "evidence/skill-compatibility/contracts/calendar-20261030/app-openapi.json",
+      "sha256": "4e4fbc8024eaad195169a18cc096856d1653a3c01fb4f66d0313e67cb0b2e705"
+    },
+    {
+      "path": "evidence/skill-compatibility/contracts/calendar-20261030/app-policy.json",
+      "sha256": "d4159fc4ad2a7b1927c294303fbc11533f8dab9f5a9b3cc73b2139c7354e71bf"
+    },
+    {
+      "path": "evidence/skill-compatibility/reviews/calendar-20261030/sendmux-attachments.json",
+      "sha256": "f105a3f163a32303e978dc786913475dd166b321eef9fcdcb103944a484585b2"
+    },
+    {
+      "path": "evidence/skill-compatibility/rebrand-qubrics-896-source-review.md",
+      "sha256": "0b666cfc9f73a951742e96ffdd7135c89cb772136718c11eb5665569baa5aef5"
+    },
+    {
+      "path": "evidence/skill-compatibility/contracts/rebrand-qubrics-896/app-export.json",
+      "sha256": "d9a2914d94c24463fed9e0825bec12508b0e539182df8f39502fff240fdaaf2b"
+    },
+    {
+      "path": "evidence/skill-compatibility/contracts/rebrand-qubrics-896/app-openapi.json",
+      "sha256": "912ba441e940c7c043d02d69223a0fa478451fd6ac334299b468f0edf11214da"
+    },
+    {
+      "path": "evidence/skill-compatibility/contracts/rebrand-qubrics-896/app-policy.json",
+      "sha256": "1554a76a4273e34420c75f51a5052f67cd5e4032ec99a8a15f82bc8083c7d64b"
+    },
+    {
+      "path": "evidence/skill-compatibility/evaluations/rebrand-qubrics-896/release-skill-openapi-leaf-proof.json",
+      "sha256": "b59131612853a385c5270feacc25ae8694ef15c1ae3ed439a1488d8994cf506f"
+    },
+    {
+      "path": "evidence/skill-compatibility/evaluations/rebrand-qubrics-896/release-skill-policy-diff.json",
+      "sha256": "17c9c1848bc56a51ace5de94ace872e8623bb898d7a2549251574ddcc5c50e95"
+    },
+    {
+      "path": "evidence/skill-compatibility/evaluations/rebrand-qubrics-896/release-skill-contract-diff.json",
+      "sha256": "5beadc97a0ac505c7966423fb773293cd2b92a605a408a07d66e314bd9995e9e"
+    },
+    {
+      "path": "evidence/skill-compatibility/evaluations/rebrand-qubrics-896/release-skills-missing-reviews.json",
+      "sha256": "c4a73e24f9a40764625e833c016b66a40bfe832150c23265486f58abd64fa5e8"
+    },
+    {
+      "path": "evidence/skill-compatibility/reviews/rebrand-qubrics-896/sendmux-attachments.json",
+      "sha256": "e5037ed2f8ffd8eb75801b72c942cde1eb0b443f98cb5d25cf63addba5fa514b"
+    },
+    {
+      "path": "evidence/rebrand-qubrics-900-app329-compat-20261104.md",
+      "sha256": "72acb2730a31ba265494ded3dbc313b3ac3a5879aecf7881bc1e4113f5eee554"
+    }
+  ]
+}
