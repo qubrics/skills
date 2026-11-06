@@ -47,7 +47,7 @@ When recommending mailbox calls, name the usable credential (`smx_mbx_` key, sco
 | Delete many messages               | `mailbox_batch_delete_messages`, CLI `mailbox:batch-delete-messages`, SDK `mailboxBatchDeleteMessages`.       |
 | Send a new message from this mailbox | `mailbox_send_message`, CLI `mailbox:send-message`, SDK `mailboxSendMessage`.                               |
 | Save, edit, send or schedule a reviewed draft | Mailbox draft operations below; verify installed-client support before using candidate operations. |
-| Extract inbound attachment text | `mailbox_request_attachment_text`, then `mailbox_get_attachment_text`; check status and outcome. |
+| Extract inbound attachment text | Candidate `mailbox_request_attachment_text`, then `mailbox_get_attachment_text`; verify installed-client support first, then check status and outcome. |
 | Upload/read attachments            | `mailbox_upload_attachment`, `mailbox_get_attachment`, and `sendmux-attachments` for zero-context files.       |
 | Threads                            | `mailbox_list_threads`, `mailbox_get_thread`, `mailbox_list_thread_messages`.                                 |
 | Folders                            | `mailbox_list_folders`; inspect folders before filing or moving messages.                                     |

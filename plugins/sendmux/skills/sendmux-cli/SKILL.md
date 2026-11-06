@@ -89,18 +89,18 @@ Revoking sending does not itself change the current inbox storage allocation.
 Create separate profiles for root and mailbox keys.
 
 ```bash
-QUBRICS_API_KEY="$SENDMUX_ROOT_KEY" sendmux profiles:set default --default --json
-QUBRICS_API_KEY="$SENDMUX_MBX_KEY" sendmux profiles:set mailbox --json
-QUBRICS_API_KEY="$SENDMUX_MBX_KEY" sendmux profiles:set sending --json
+SENDMUX_API_KEY="$SENDMUX_ROOT_KEY" sendmux profiles:set default --default --json
+SENDMUX_API_KEY="$SENDMUX_MBX_KEY" sendmux profiles:set mailbox --json
+SENDMUX_API_KEY="$SENDMUX_MBX_KEY" sendmux profiles:set sending --json
 sendmux profiles:list --json
 sendmux profiles:show default --json
 ```
 
-`profiles:set` reads `QUBRICS_API_KEY`, then `SENDMUX_API_KEY`; populate the source variables through the user's secret store. The direct `--api-key` flag remains supported and takes precedence over both environment variables, but do not expand a secret into that flag because the resulting value is visible in process arguments.
+Released CLI 1.7.2 reads `SENDMUX_API_KEY` for `profiles:set`; use it in the isolated child examples above, after populating the source variables through the user's secret store. Candidate SDK `73bedb8` adds `QUBRICS_API_KEY` before that fallback. The direct `--api-key` flag takes precedence in both, but do not expand a secret into that flag because the resulting value is visible in process arguments.
 
 Profile reads mask stored API keys and never reveal agent credentials. `profiles:set` reports `key_kind` as `root` or `mailbox`; `agent:register` creates a discriminated agent profile.
 
-Authentication resolution reads `QUBRICS_ACCESS_TOKEN`, then `SENDMUX_ACCESS_TOKEN`, and rejects a simultaneous API key from `--api-key`, `QUBRICS_API_KEY` or `SENDMUX_API_KEY`. Otherwise:
+Released CLI 1.7.2 uses `SENDMUX_ACCESS_TOKEN`, `SENDMUX_API_KEY`, `SENDMUX_PROFILE` and `SENDMUX_BASE_URL`; it does not read their `QUBRICS_` equivalents. Explicit flags take precedence, and a token plus an API key is an error. The following QUBRICS-first resolution describes candidate SDK `73bedb8` only: it reads `QUBRICS_ACCESS_TOKEN`, then `SENDMUX_ACCESS_TOKEN`, and rejects a simultaneous API key from `--api-key`, `QUBRICS_API_KEY` or `SENDMUX_API_KEY`. Otherwise:
 
 1. `--api-key`, then `QUBRICS_API_KEY`, then `SENDMUX_API_KEY`.
 2. If no direct key is present, `--profile` / `-p`, then `QUBRICS_PROFILE`, then `SENDMUX_PROFILE`, then the configured default profile.

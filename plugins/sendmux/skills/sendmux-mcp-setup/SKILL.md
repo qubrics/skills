@@ -13,7 +13,7 @@ Use this skill to connect an agent client to Sendmux through MCP.
 
 ## Boundaries
 
-Start local MCP examples and clients in an isolated child process. Clear inherited API keys, per-surface keys, HTTP bearer tokens, API base-URL, transport and surface-selection overrides under both `QUBRICS_` and `SENDMUX_` before loading only the intended values from the user's secret store. QUBRICS environment values take precedence over their SENDMUX fallbacks; an inherited per-surface key can also override a generic key. Use the authorised endpoint before transmitting credentials; keep credentials out of arguments and output.
+Start local MCP examples and clients in an isolated child process. Clear inherited API keys, per-surface keys, HTTP bearer tokens, API base-URL, transport and surface-selection overrides under both `QUBRICS_` and `SENDMUX_` before loading only the intended values from the user's secret store. Released `sendmux-mcp` 2.2.0 reads `SENDMUX_` environment values only; candidate SDK `73bedb8` adds QUBRICS values before those fallbacks. In both, an inherited per-surface key can override a generic key. Use the authorised endpoint before transmitting credentials; keep credentials out of arguments and output.
 
 Before task tools access content or mutate account state, validate the selected connection and verify its returned identity and any authorised mailbox selection against the intended account and credential. A permission grant alone does not establish the intended identity. If identity differs or cannot be verified, stop and resolve it with the user.
 
@@ -38,11 +38,11 @@ The unpublished candidate declares `https://mcp.qubrics.com/mcp` as its canonica
 pip install sendmux-mcp
 ```
 
-This guide targets the released `sendmux-mcp` 2.1.3 package as a historical catalogue reference. The package speaks MCP protocol revisions `2025-11-25` and `2026-07-28` over stdio or Streamable HTTP. The released catalogue contains 54 tools: 26 Mailbox, 22 Management, and 6 Sending. The unpublished candidate source declares package version 2.2.0 and its catalogue contains 150 tool names: 92 Mailbox, 46 Management, and 12 Sending. These comprise 75 unprefixed tools (46 Mailbox, 23 Management, 6 Sending), each with a `qubrics_` alias; those counts do not prove a new package has been published. Selected surfaces and OAuth grants determine which subset a credential can see.
+This guide targets the released `sendmux-mcp` 2.2.0 package. Its PyPI wheel speaks MCP protocol revisions `2025-11-25` and `2026-07-28` over stdio or Streamable HTTP. The released catalogue contains 54 tools: 26 Mailbox, 22 Management, and 6 Sending, with no `qubrics_` aliases. Candidate SDK `73bedb8` also declares package version 2.2.0, but its different source catalogue contains 150 tool names: 92 Mailbox, 46 Management, and 12 Sending. These comprise 75 unprefixed tools (46 Mailbox, 23 Management, 6 Sending), each with a `qubrics_` alias. The matching version number does not mean those candidate features are published. Selected surfaces and OAuth grants determine which subset a credential can see.
 
 Console scripts:
 
-- `sendmux-mcp` — combined local server; select with `--surfaces`, then `--surface`, or `QUBRICS_MCP_SURFACES` before its `SENDMUX_MCP_SURFACES` fallback.
+- `sendmux-mcp` — combined local server; released 2.2.0 selects with `--surfaces`, then `--surface`, or `SENDMUX_MCP_SURFACES`. Candidate SDK `73bedb8` adds `QUBRICS_MCP_SURFACES` before that environment fallback.
 - `sendmux-mcp-mailbox` — mailbox-only local server.
 - `sendmux-mcp-management` — management-only local server.
 - `sendmux-mcp-sending` — sending-only local server.
@@ -70,7 +70,7 @@ Standard dynamic client registration can omit `resource`; that produces a valid 
 | Management | `smx_root_`                                                             |         46 | `management_create_domain`, `management_create_mailbox`, `management_create_mailbox_key`, `management_get_spend_summary`, `management_create_webhook` |
 | Sending    | Send-capable `smx_mbx_` or owner-approved Sending-resource `smx_agent_` |         12 | `sending_send_email`, `sending_send_email_batch`, `sending_upload_attachment`, `sending_create_attachment_upload`, `sending_get_attachment`            |
 
-Compatibility notes must distinguish the unpublished candidate source catalogue of 150 tool names (92 Mailbox, 46 Management, 12 Sending), including 75 `qubrics_` aliases, from the released 2.1.3 catalogue above. Do not describe a credential-visible subset as the catalogue.
+Compatibility notes must distinguish the candidate SDK `73bedb8` catalogue of 150 tool names (92 Mailbox, 46 Management, 12 Sending), including 75 `qubrics_` aliases, from the released 2.2.0 wheel's catalogue above. Do not describe a credential-visible subset as the catalogue.
 
 Hosted tool visibility depends on the approved grant. For multi-mailbox grants, call `mailbox_list_granted_mailboxes` first and pass the returned `mailbox_id` to mailbox tools when targeting a mailbox. Client examples in this guide are documented configurations, not claims that the client is certified compatible; verify the chosen client separately.
 
