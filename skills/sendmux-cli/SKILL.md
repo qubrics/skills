@@ -15,7 +15,7 @@ Use this skill when the terminal is the right Sendmux surface.
 
 Before CLI setup, connection validation or account commands, start an isolated child process with inherited `QUBRICS_API_KEY`, `SENDMUX_API_KEY`, `QUBRICS_ACCESS_TOKEN`, `SENDMUX_ACCESS_TOKEN`, `QUBRICS_PROFILE`, `SENDMUX_PROFILE`, `QUBRICS_BASE_URL` and `SENDMUX_BASE_URL` cleared. Load only the intended credential from the user's secret store; for profile-based calls, leave direct credentials unset and select the intended `--profile`. Use the authorised endpoint and keep credentials out of arguments and output.
 
-Before content reads or mutations, validate the selected surface's connection and verify its returned identity and any authorised mailbox selection against the intended account and credential. A permission grant alone does not establish the intended identity. If identity differs or cannot be verified, stop and resolve it with the user.
+For the documented keyless self-registration flow, complete `agent:register` first, then verify the newly saved profile before content reads, sending or other mutations. For existing credentials or profiles, before content reads or mutations, validate the selected surface's connection and verify its returned identity and any authorised mailbox selection against the intended account and credential. A permission grant alone does not establish the intended identity. If identity differs or cannot be verified, stop and resolve it with the user.
 
 - Do not ask the user to paste API keys.
 - For API-key profiles, use `smx_root_` for `management:*` and `smx_mbx_` or scoped `smx_agent_` for `mailbox:*`.

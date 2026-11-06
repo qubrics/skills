@@ -13,7 +13,7 @@ Use this skill when the user describes the agent-email problem: an AI agent need
 
 Before any CLI setup, connection validation or task command, start an isolated child process with inherited `QUBRICS_API_KEY`, `SENDMUX_API_KEY`, `QUBRICS_ACCESS_TOKEN`, `SENDMUX_ACCESS_TOKEN`, `QUBRICS_PROFILE`, `SENDMUX_PROFILE`, `QUBRICS_BASE_URL` and `SENDMUX_BASE_URL` cleared. Load only the intended credential from the user's secret store; for an existing profile, leave direct credentials unset and select the intended `--profile`. Use the authorised endpoint and keep credentials out of arguments and output. This also applies when an authenticated profile is already configured and login/setup is skipped.
 
-Verify the returned connection identity and authorised mailbox selection against the intended account and credential before task work. A permission grant alone does not establish the intended identity. If identity differs or cannot be verified, stop and resolve it with the user before handing off or accessing content.
+For the documented keyless self-registration flow, first hand off to `sendmux-getting-started`; after registration, verify the newly saved profile before mailbox access, sending or any subsequent task handoff. For existing credentials or profiles, verify the returned connection identity and authorised mailbox selection against the intended account and credential before task work. A permission grant alone does not establish the intended identity. If identity differs or cannot be verified, stop and resolve it with the user before handing off or accessing content.
 
 ## First route
 
