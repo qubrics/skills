@@ -27,7 +27,7 @@ skills/
 
 ## Publish Boundary
 
-Canonical GitHub repo: `Sendmux/skills`, with `main` as the default branch. Keep public examples on `npx skills add Sendmux/skills`.
+Canonical GitHub repo: `qubrics/skills`, with `main` as the default branch. Keep public examples on `npx skills add qubrics/skills`.
 
 Do not publish a new release, register/update skills.sh metadata, or publish docs without explicit approval.
 

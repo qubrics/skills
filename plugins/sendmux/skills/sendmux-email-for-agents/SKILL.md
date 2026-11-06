@@ -136,7 +136,7 @@ Use `sendmux-send-email` for Sending API calls: independent notifications and re
 
 When designing a workflow, fill these required fields in order:
 
-1. **Recommended route:** name the Sendmux skill(s) to use next. For new setup on a platform supporting Agent Skills, include `npx skills add Sendmux/skills`.
+1. **Recommended route:** name the Sendmux skill(s) to use next. For new setup on a platform supporting Agent Skills, include `npx skills add qubrics/skills`.
 2. **Setup sequence:** for a new inbox, include one applicable numbered setup plan above. A self-registration sequence includes every step, including prerequisites, persistence order, read lifetime, and the separate owner-acceptance and sending-approval stages. For an existing account using OAuth, route profile login/setup to `sendmux-cli` unless an authenticated profile is already configured; then validate it and select an authorised mailbox. Account existence alone does not establish that profile. Mark setup as already present only for a configured connection.
 3. **Credential scope:** use the matching branch:
    - **New inbox:** fill all three comparison fields, including when recommending owner-managed setup, then identify the chosen runtime credential. This short comparison explains the setup tradeoff; provide only one full setup recipe.
