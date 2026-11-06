@@ -1,0 +1,57 @@
+{
+  "metadata": {
+    "skill_name": "sendmux-cli",
+    "evals_run": [
+      0
+    ],
+    "runs_per_configuration": 1,
+    "executor_model": null,
+    "analyzer": "Coordinating reviewer",
+    "limit": "One native read-only explanation, no timing/token metrics or live qualification."
+  },
+  "runs": [
+    {
+      "eval_id": 0,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "passed": 6,
+        "failed": 0,
+        "total": 6,
+        "pass_rate": 1
+      },
+      "expectations": [
+        {
+          "text": "States QUBRICS-before-SENDMUX environment precedence and explicit flag precedence for keys, profiles and base URLs.",
+          "passed": true,
+          "evidence": "`--api-key` → `QUBRICS_API_KEY` → `SENDMUX_API_KEY`; profile and base URL chains also place QUBRICS before SENDMUX."
+        },
+        {
+          "text": "Preserves API-key/access-token conflict rejection and explains ambient credential interference with profile selection.",
+          "passed": true,
+          "evidence": "A token conflicts with any API key ... the CLI rejects that combination. `--profile` alone cannot isolate a command from ambient direct credentials."
+        },
+        {
+          "text": "Describes isolated root, mailbox and sending profile preparation with credentials kept out of arguments and output.",
+          "passed": true,
+          "evidence": "Start a clean child process or subshell with tracing disabled; secret store injects QUBRICS_API_KEY; do not supply --api-key or print the environment."
+        },
+        {
+          "text": "Distinguishes three command surfaces from the root and mailbox API-key kinds.",
+          "passed": true,
+          "evidence": "The CLI's API-key kinds are root and mailbox; Management, Mailbox and Sending are three command surfaces."
+        },
+        {
+          "text": "States candidate operation counts of 57 Management, 63 Mailbox and 8 Sending without claiming publication.",
+          "passed": true,
+          "evidence": "57 Management, 63 Mailbox and 8 Sending operations ... these are candidate-source counts."
+        },
+        {
+          "text": "Does not execute commands, access credentials, send messages or claim live verification.",
+          "passed": true,
+          "evidence": "Task was instructed to perform reads only; returned guide-only steps and stated no skill commands, credentials, live state or publication were checked."
+        }
+      ]
+    }
+  ]
+}

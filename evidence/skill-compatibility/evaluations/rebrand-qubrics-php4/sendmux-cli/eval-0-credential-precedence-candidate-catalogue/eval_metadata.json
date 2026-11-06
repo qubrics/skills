@@ -1,0 +1,13 @@
+{
+  "eval_id": 0,
+  "eval_name": "credential-precedence-candidate-catalogue",
+  "prompt": "Using only this skill, explain credential and base-URL selection when both QUBRICS_* and SENDMUX_* variables are set differently, for profiles:set and ordinary commands. Explain explicit flag precedence and API-key/access-token conflicts. Give secret-safe isolated steps to prepare separate root, mailbox and sending profiles without putting credentials in arguments or displaying them, and distinguish credential kinds from surfaces. State unpublished candidate operation counts and their publication limit. Do not execute commands or access credentials.",
+  "assertions": [
+    "States QUBRICS-before-SENDMUX environment precedence and explicit flag precedence for keys, profiles and base URLs.",
+    "Preserves API-key/access-token conflict rejection and explains ambient credential interference with profile selection.",
+    "Describes isolated root, mailbox and sending profile preparation with credentials kept out of arguments and output.",
+    "Distinguishes three command surfaces from the root and mailbox API-key kinds.",
+    "States candidate operation counts of 57 Management, 63 Mailbox and 8 Sending without claiming publication.",
+    "Does not execute commands, access credentials, send messages or claim live verification."
+  ]
+}

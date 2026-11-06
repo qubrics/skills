@@ -1,0 +1,14 @@
+{
+  "eval_id": 1,
+  "eval_name": "isolated-profile-identity",
+  "prompt": "Using only this complete skill, explain credential and base-URL selection when both QUBRICS_* and SENDMUX_* variables are set differently, for profiles:set and ordinary commands. Explain explicit flag precedence and API-key/access-token conflicts. Give secret-safe isolated steps to prepare separate root, mailbox and sending profiles without putting credentials in arguments or displaying them, and distinguish credential kinds from surfaces. State unpublished candidate operation counts and their publication limit. Synthetic fixture: intended mailbox mbx_support uses existing authorised profile mailbox, but the parent has QUBRICS_API_KEY for mbx_sales, a competing SENDMUX_ACCESS_TOKEN and an unapproved QUBRICS_BASE_URL. An unisolated connection reports read permission but identity mbx_sales. What preconditions and returned-identity gate apply before search or batch-content reads, and when must you stop? Prepare only: execute no commands, access no credentials and make no real calls.",
+  "assertions": [
+    "States QUBRICS-before-SENDMUX environment precedence and explicit flag precedence for keys, profiles and base URLs.",
+    "Preserves API-key/access-token conflict rejection and explains ambient credential interference with profile selection.",
+    "Describes isolated root, mailbox and sending profile preparation with credentials kept out of arguments and output.",
+    "Distinguishes three command surfaces from the root and mailbox API-key kinds.",
+    "States candidate operation counts of 57 Management, 63 Mailbox and 8 Sending without claiming publication.",
+    "Does not execute commands, access credentials, send messages or claim live verification.",
+    "Rejects the mbx_sales identity despite read permission, clears both credential/profile/base-URL families in a child, selects the intended profile with direct credentials unset, and stops before content when identity or endpoint cannot be verified."
+  ]
+}

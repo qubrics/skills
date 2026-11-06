@@ -1,0 +1,73 @@
+{
+  "schemaVersion": 1,
+  "kind": "workflow",
+  "skill": "sendmux-send-email",
+  "previousSkillDigest": "60fcef4c782addf56f3e67cc770e74a5e980aca007ab25b0bb3cab679776b6f7",
+  "skillDigest": "853bac285313fe319a7bf94bf67636793a818e7d616a8938bb81b33ef460ccb3",
+  "contractDigest": "ee4d5f414cd74bf4d7c5f92ea8f601abad6ab73008e7657deb3734a9c8c15523",
+  "sourceRevisions": {
+    "app": "87ce115810ebcfa91655295603c27af52fcff96f",
+    "sending": "2f4226655efc05f109b5feda50ed2ca1570aea91",
+    "sdk": "73bedb8b0005e96e580e39cca4aac6bd030753a5"
+  },
+  "reviewer": "Fresh independent skills_fresh_review_mailbox / skills_fresh_review_cli_mcp whole-body reviewers; independent skills_final_batch_grading; coordinating reviewer adopts source verdict and exact hash binding",
+  "rationale": "Fresh independent whole-body review finds current instructions compatible with the selected source tuple. Genuine guide-only evaluation of these exact body bytes passes every retained assertion; credential isolation, endpoint selection, returned identity and existing approval gates were checked. Source and explanation compatibility only, under supplied historical runtime policy; no live behaviour, client certification, publication or release-guard qualification is claimed.",
+  "evidence": [
+    {
+      "path": "skills/sendmux-send-email/SKILL.md",
+      "sha256": "4f6fd2badf1166cbe029b0cf3687c4ae50b183b140f9b985dc8e09ebd4412e72"
+    },
+    {
+      "path": "evidence/skill-compatibility/rebrand-qubrics-php4-source-review.md",
+      "sha256": "f527f2b72f332be9e3c71dcc528e3c951bb9c845422cbe58eb1bd0ef1d5a4303"
+    },
+    {
+      "path": "evidence/skill-compatibility/reviews/rebrand-qubrics-php4/fresh-body-review-inventory.md",
+      "sha256": "ddee66e7432e60adf506f293004c4e76f155ab34d7db6608e43af76974305f96"
+    },
+    {
+      "path": "evidence/skill-compatibility/evaluations/rebrand-qubrics-php4/final-batch/sendmux-send-email/eval-0-settled-credential-selection/eval_metadata.json",
+      "sha256": "f1fd884b4950b1c4f02c56bc29a9d8c836bd2773b03ee55c68cf542bc084bd17"
+    },
+    {
+      "path": "evidence/skill-compatibility/evaluations/rebrand-qubrics-php4/final-batch/sendmux-send-email/eval-0-settled-credential-selection/with_skill/run-1/receipt.json",
+      "sha256": "b1eb59273f167aa5e06068c8e74e17f58ee6b1fe8228022fb200e557a35a76a4"
+    },
+    {
+      "path": "evidence/skill-compatibility/evaluations/rebrand-qubrics-php4/final-batch/sendmux-send-email/eval-0-settled-credential-selection/with_skill/run-1/outputs/response.md",
+      "sha256": "e884173542705aa15c2e676a25aa4f02df7ff979f840aea4d348b1a98ae25823"
+    },
+    {
+      "path": "evidence/skill-compatibility/evaluations/rebrand-qubrics-php4/final-batch/sendmux-send-email/eval-0-settled-credential-selection/with_skill/run-1/grading.json",
+      "sha256": "990cd35b25af5f33b4324d77bb860438967a81df8c8c7be76cd7b9c93cabfe85"
+    },
+    {
+      "path": "evidence/skill-compatibility/evaluations/rebrand-qubrics-php4/final-batch/sendmux-send-email/benchmark.json",
+      "sha256": "e112bd607bfde33ab48e3ff9bd6d0253f24cd956e38d20921786adf777b2850b"
+    },
+    {
+      "path": "evidence/skill-compatibility/contracts/calendar-20261030/app-openapi.json",
+      "sha256": "4e4fbc8024eaad195169a18cc096856d1653a3c01fb4f66d0313e67cb0b2e705"
+    },
+    {
+      "path": "evidence/skill-compatibility/contracts/calendar-20261030/app-policy.json",
+      "sha256": "d4159fc4ad2a7b1927c294303fbc11533f8dab9f5a9b3cc73b2139c7354e71bf"
+    },
+    {
+      "path": "evidence/skill-compatibility/contracts/calendar-20261030/app-export.json",
+      "sha256": "29cde33eda5fb6777c9544e722a3165edeb2c689da8ac2c9f3953f85c3872d0b"
+    },
+    {
+      "path": "evidence/skill-compatibility/contracts/row07-actualtuple-20261012/sending-openapi.json",
+      "sha256": "eb69dc0ca27e5f42cd9da70e90e2b1a386dfe588b743e47a8d91f3b7928a75e5"
+    },
+    {
+      "path": "evidence/skill-compatibility/contracts/row07-actualtuple-20261012/sending-policy.json",
+      "sha256": "64b2ab07617f084045921f7078100372c3175712cecc117a799109a2c2546fd3"
+    },
+    {
+      "path": "evidence/skill-compatibility/contracts/row07-actualtuple-20261012/sending-export.json",
+      "sha256": "e1e2eef9923f7154363efa55d4508f8b32a3c07229116b05c08bfba1b6674b8f"
+    }
+  ]
+}

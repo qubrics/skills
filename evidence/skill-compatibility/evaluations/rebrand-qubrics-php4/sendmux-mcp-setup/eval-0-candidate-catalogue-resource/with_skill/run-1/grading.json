@@ -1,0 +1,36 @@
+{
+  "expectations": [
+    {
+      "text": "Distinguishes MCP protocol revisions from released package 2.1.3 and unpublished candidate 2.2.0.",
+      "passed": true,
+      "evidence": "Protocol revisions 2025-11-25 and 2026-07-28, released sendmux-mcp2.1.3 historical catalogue, unpublished candidate2.2.0."
+    },
+    {
+      "text": "States released 54 tools (26/22/6) and candidate 150 names (92/46/12), comprising 75 tools (46/23/6) and their aliases.",
+      "passed": true,
+      "evidence": "Table gives 54 (26/22/6),150 (92/46/12),75 (46/23/6); each unprefixed tool has a qubrics_ alias."
+    },
+    {
+      "text": "Distinguishes the catalogue from credential-visible subsets and avoids client compatibility certification.",
+      "passed": true,
+      "evidence": "Selected server surfaces and OAuth grants determine the subset; configurations are documented examples, not client certification."
+    },
+    {
+      "text": "Keeps the legacy hosted URL primary, names the candidate canonical resource, and preserves exact resource/audience isolation.",
+      "passed": true,
+      "evidence": "The guide keeps https://mcp.sendmux.ai/mcp primary; https://mcp.qubrics.com/mcp is candidate canonical. Request, grant and token audience must bind exactly."
+    },
+    {
+      "text": "Does not execute commands, inspect live state, access credentials, send messages or certify publication.",
+      "passed": true,
+      "evidence": "No skill commands executed, credentials accessed, live state checked or publication certified."
+    }
+  ],
+  "summary": {
+    "passed": 5,
+    "failed": 0,
+    "total": 5,
+    "pass_rate": 1
+  },
+  "evaluation_method": "Coordinating reviewer compared the actual response with each assertion and the pinned SDK source. One explanation per changed skill. No live sends, API writes, publication, client certification or statistical claim."
+}
