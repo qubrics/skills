@@ -2331,84 +2331,84 @@
       "skillDigest": "956a19a3f81906299d19f35afa0a8dba4a5bd1f1275a45d02ba1d407579f0347",
       "contractDigest": "ae3d8cdb5d2b9d4733e722442c1f2e2dd015fb6e565778f28a8fd3c261c24e53",
       "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-php4/agent-email-inbox.json",
-      "sha256": "48edacea8a8bd76cd2755ef8970d70b914a54c81943fc583ba6ee8fe5eee8da8"
+      "sha256": "a8fa5b36e8b7e3c9fe4b82be324c7dec393104d4aefe3bbe343cc615dff0e0a3"
     },
     {
       "skill": "email-for-ai-agents",
       "skillDigest": "6f2c0908457404bb6aacc4cdcf18ce49b9054cbd873939b7b3e417224fd4d1d9",
       "contractDigest": "3f3c4768f2009b9d15ce9dcde3605ad805e8b3ea0480d07fa5adb2f9facbe127",
       "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-php4/email-for-ai-agents.json",
-      "sha256": "db97bebe1a4837aa1185056309d0547b86befe54c3392abeb22cc0a00a159288"
+      "sha256": "3da9ccccc68ad3116f2ca97a56cc25e1a885d418a36f1ba480d85b0400b379b0"
     },
     {
       "skill": "sendmux-attachments",
       "skillDigest": "f06e0579bf0f3ee52dcffcc23393b323c5fe9050b939e2694b28731d30ca9a5e",
       "contractDigest": "bff323d30dfed3f8c834487602f06688178ec7c12b49306490fc69a37c7532a1",
       "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-php4/sendmux-attachments.json",
-      "sha256": "349616fb4af4e36e58dbf929d732eab8175634231b50187b2c1c05cd1dcf74f4"
+      "sha256": "547f64355ee6b105ab1005e451228668e4ebd27df129d7915016bd632eb9fdee"
     },
     {
       "skill": "sendmux-cli",
-      "skillDigest": "420988ba90f46abe6469e269ee13dcdd4cd5d33b68a8f5c6dd6dffcac5112bb8",
+      "skillDigest": "bfd142f7dc731b44e35bef96fee4b6350a4dc7de47be7314345612e529c02ea6",
       "contractDigest": "08dd58738d11bceffa87be97b644b5630d7e3af5d0827f7446ec374a7f5e17b9",
       "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-php4/sendmux-cli.json",
-      "sha256": "78f44e7d3133bed77f7af53e9a1376223dc37ea9550d13dc149318ab6dfc9263"
+      "sha256": "0237559f248b42300c48764a6847776bd392d324d9b9cbd8bc51e3f2b9507582"
     },
     {
       "skill": "sendmux-email-for-agents",
-      "skillDigest": "912ebf9b80d76ceae66e859db465b1529c334e0c39f1eb3e13633b62555203ef",
+      "skillDigest": "411f7cc5d798a8e0abc7f48dd3561adc64bf5a71435c8c9283d0943f269a6cec",
       "contractDigest": "475b9081066eaedabb492b2a4a6a1c04c9e42c8033b01636684bfe8089d95d2c",
       "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-php4/sendmux-email-for-agents.json",
-      "sha256": "0c0cc4d49db6b3537bb4bc2722145a5b542e573178e8290745f415e3b2b2384d"
+      "sha256": "7c0f0ea4a625e1b4f1339a5be1e41df5457dd56b907369c297e80c22ac7d3669"
     },
     {
       "skill": "sendmux-getting-started",
-      "skillDigest": "e61b2cf2cab91c6c7cb90aa46a5350ca7daff51ab60c211fefe91cbb813b2eda",
+      "skillDigest": "ab0147dbd61ba3296dcb6a47ddd9a8b98aaf1ce04298fa08b5be3c0f455f14a3",
       "contractDigest": "ddf90191f6203daab79c7188810c3adcf0731b77a4016515872246ea64fec600",
       "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-php4/sendmux-getting-started.json",
-      "sha256": "3f795001f184475f934b65a30ba3fdd6c4971eb7bd85482786799c06519edb75"
+      "sha256": "78135889bd83d1b1e968b41945603a7a09f718d4adafab2937eb7c6607ab2f60"
     },
     {
       "skill": "sendmux-mailbox-agent",
       "skillDigest": "eac24137415cb111290eb9754aa7d5be81c35d5cc293ba605b3b51f739a32a32",
       "contractDigest": "c0837bb63c94a94a0965887ef18b114bd3c97dd2491d7941e809991bc15782e8",
       "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-php4/sendmux-mailbox-agent.json",
-      "sha256": "a9ca861e7a8cae43d697ab227499fa5e46ca501398a08070fab7f1769178e81d"
+      "sha256": "fc6c63129a666b7cdfe2027f145c8fccb4ea61180456481885d8a9d13c927045"
     },
     {
       "skill": "sendmux-management",
-      "skillDigest": "4708439dec54d62353445fdadd94d64213ad52f9ba96edc5c29fe1b555b0c0a4",
+      "skillDigest": "a82945bdb1521932eef71cfe05264e006ebffd52fde7859c0cc4cfedef72abea",
       "contractDigest": "0ff3e0c0457a51a4ffbd5d87a194efcc4f9e507228fd2ca9913078656333aea3",
       "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-php4/sendmux-management.json",
-      "sha256": "934a1e959377695049b9798650ae03f2fed906a2a1f785558b8dd5475938bd50"
+      "sha256": "e064df586a8569952573e2f64d928d2c7f9e59ebc4bb659cb98eac9d92613cce"
     },
     {
       "skill": "sendmux-mcp-setup",
       "skillDigest": "8c966dc8ee3ccc6c27f27f9378d1d224335a4c0c355638d9659314f26a36df79",
       "contractDigest": "327728b6bb4e30b1fa536e19092d15267058539eacef5cd16bf8a0660521f3ca",
       "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-php4/sendmux-mcp-setup.json",
-      "sha256": "413f7b16277a03901cbe4feff48db9d7065fc70182ee879ebcf4f01059a09e56"
+      "sha256": "f905462dff261ad758e28d600bd0f6814515c93a18c8f43d70c4e24856c9f19c"
     },
     {
       "skill": "sendmux-send-email",
       "skillDigest": "853bac285313fe319a7bf94bf67636793a818e7d616a8938bb81b33ef460ccb3",
       "contractDigest": "ee4d5f414cd74bf4d7c5f92ea8f601abad6ab73008e7657deb3734a9c8c15523",
       "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-php4/sendmux-send-email.json",
-      "sha256": "a7bda80997dc2a85453cc119be0d246f284db0a7921649e8f00e0db753a5e29f"
+      "sha256": "339948fbb965ee5d0279fb52a3c89ea8c43bbc7d21bfdf8fa31fc11f03515562"
     },
     {
       "skill": "sendmux-token-efficient-usage",
-      "skillDigest": "dec62325adb7a2b2601e8acf7ce49ca29a2aff640bfedd2b4af12200ad0665e1",
+      "skillDigest": "ece1d30c9a91b3b24376c0ab41d991741b60f9314064da63b0f74da35104a3cb",
       "contractDigest": "e6ba1ed5f6a4b97e6ff90729c1d0f19fd5a80e2b624ba12b2e4a48a1b21738ec",
       "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-php4/sendmux-token-efficient-usage.json",
-      "sha256": "08cb16d33b02c1544c27f448f075a8b53b86bd32e5e2c80690cb42d587422419"
+      "sha256": "6b56f7ec1ef6e7798a729fac0a8ed2af65a475e90b7019ec4ebe7c1d7ce1e660"
     },
     {
       "skill": "agent-email-inbox",
       "skillDigest": "956a19a3f81906299d19f35afa0a8dba4a5bd1f1275a45d02ba1d407579f0347",
       "contractDigest": "a1888741fffcf3c8a3ff751f756f63ca950c5e81d3b58799b701e677f013e13f",
       "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-php4/agent-email-inbox-app1485.json",
-      "sha256": "bbd4b9861d42e4e197417a183bb0e9893517a63763a1b92c8d4cbbf0e2a6575c"
+      "sha256": "2d84a057de1662c8d21a3bc9b6bb0fa4a47eb4088b30b14b33630c3be03b7677"
     }
   ],
   "releaseInputs": {

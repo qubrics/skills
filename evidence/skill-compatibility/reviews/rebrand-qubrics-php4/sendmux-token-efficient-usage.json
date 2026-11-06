@@ -3,47 +3,27 @@
   "kind": "workflow",
   "skill": "sendmux-token-efficient-usage",
   "previousSkillDigest": "e074ad0de774f6c45c5ee9248ebc3443291b137224cf5f0a34a0133b860e32c3",
-  "skillDigest": "dec62325adb7a2b2601e8acf7ce49ca29a2aff640bfedd2b4af12200ad0665e1",
+  "skillDigest": "ece1d30c9a91b3b24376c0ab41d991741b60f9314064da63b0f74da35104a3cb",
   "contractDigest": "e6ba1ed5f6a4b97e6ff90729c1d0f19fd5a80e2b624ba12b2e4a48a1b21738ec",
   "sourceRevisions": {
     "app": "87ce115810ebcfa91655295603c27af52fcff96f",
     "sending": "2f4226655efc05f109b5feda50ed2ca1570aea91",
     "sdk": "73bedb8b0005e96e580e39cca4aac6bd030753a5"
   },
-  "reviewer": "Fresh independent skills_fresh_review_mailbox / skills_fresh_review_cli_mcp whole-body reviewers; independent skills_final_batch_grading; coordinating reviewer adopts source verdict and exact hash binding",
-  "rationale": "Fresh independent whole-body review finds current instructions compatible with the selected source tuple. Genuine guide-only evaluation of these exact body bytes passes every retained assertion; credential isolation, endpoint selection, returned identity and existing approval gates were checked. Source and explanation compatibility only, under supplied historical runtime policy; no live behaviour, client certification, publication or release-guard qualification is claimed.",
+  "reviewer": "Fresh independent /root/skills_bootstrap_whole_review whole-body verdict; independent /root/skills_bootstrap_grade; coordinating reviewer binds exact hashes",
+  "rationale": "Fresh independent whole-body review finds these exact instructions compatible with App87ce/Sending2f42/SDK73bed. One genuine guide-only explanation tests competing existing credentials and the documented keyless bootstrap before a profile exists, followed by identity verification before task access. All retained assertions plus the new ordering assertion pass. Static source and explanation compatibility only under historical runtime policy; no live certification, publication or guard qualification.",
   "evidence": [
     {
       "path": "skills/sendmux-token-efficient-usage/SKILL.md",
-      "sha256": "e8658caa68cb0c9338bb23665e62a2e5e7a47e561cae13f77f3bc1336e368dc1"
+      "sha256": "96e7760080559f8ce8ffd33aef85293400af1f70dbf00a6d2befb4a996b8cab2"
     },
     {
       "path": "evidence/skill-compatibility/rebrand-qubrics-php4-source-review.md",
-      "sha256": "f527f2b72f332be9e3c71dcc528e3c951bb9c845422cbe58eb1bd0ef1d5a4303"
+      "sha256": "e4e17c28115605fa53cb03122c4540ad9d144148e2c8663e694ce25ef8310093"
     },
     {
       "path": "evidence/skill-compatibility/reviews/rebrand-qubrics-php4/fresh-body-review-inventory.md",
       "sha256": "ddee66e7432e60adf506f293004c4e76f155ab34d7db6608e43af76974305f96"
-    },
-    {
-      "path": "evidence/skill-compatibility/evaluations/rebrand-qubrics-php4/final-batch/sendmux-token-efficient-usage/eval-0-settled-credential-selection/eval_metadata.json",
-      "sha256": "1dd87c7ffa733b67b549f90482f154a46513a74f3a98c364a980051ee2fb99c1"
-    },
-    {
-      "path": "evidence/skill-compatibility/evaluations/rebrand-qubrics-php4/final-batch/sendmux-token-efficient-usage/eval-0-settled-credential-selection/with_skill/run-1/receipt.json",
-      "sha256": "e32499a59b154fc191bff7c587986dfeb535c4b2afad54d76f78a92dea254de4"
-    },
-    {
-      "path": "evidence/skill-compatibility/evaluations/rebrand-qubrics-php4/final-batch/sendmux-token-efficient-usage/eval-0-settled-credential-selection/with_skill/run-1/outputs/response.md",
-      "sha256": "6785b0599a532a56d44d77eafc22d3fb2d8140c3da455bc759c3a040fdf2db9b"
-    },
-    {
-      "path": "evidence/skill-compatibility/evaluations/rebrand-qubrics-php4/final-batch/sendmux-token-efficient-usage/eval-0-settled-credential-selection/with_skill/run-1/grading.json",
-      "sha256": "51fe5f0d7b05aafdf399e6881de02491475211b279f77347f7b9df5b441be079"
-    },
-    {
-      "path": "evidence/skill-compatibility/evaluations/rebrand-qubrics-php4/final-batch/sendmux-token-efficient-usage/benchmark.json",
-      "sha256": "3ff7f36db72ad56208b52bc8dd772598d5dfa6896e5cc6b4751c818e4f45ea0a"
     },
     {
       "path": "evidence/skill-compatibility/contracts/calendar-20261030/app-openapi.json",
@@ -68,6 +48,30 @@
     {
       "path": "evidence/skill-compatibility/contracts/row07-actualtuple-20261012/sending-export.json",
       "sha256": "e1e2eef9923f7154363efa55d4508f8b32a3c07229116b05c08bfba1b6674b8f"
+    },
+    {
+      "path": "evidence/skill-compatibility/reviews/rebrand-qubrics-php4/bootstrap-order-fresh-review.md",
+      "sha256": "5f8fca8510f0cf55e988a7724588b86b9f358f9c3ed7e8ef18a074ba259afcb9"
+    },
+    {
+      "path": "evidence/skill-compatibility/evaluations/rebrand-qubrics-php4/bootstrap-order/sendmux-token-efficient-usage/eval-0-bootstrap-order/eval_metadata.json",
+      "sha256": "60849f7759f00830c7ae923cc0630b4a4016e209c5c9a615d2717bafad4127c2"
+    },
+    {
+      "path": "evidence/skill-compatibility/evaluations/rebrand-qubrics-php4/bootstrap-order/sendmux-token-efficient-usage/eval-0-bootstrap-order/with_skill/run-1/receipt.json",
+      "sha256": "1551de35dec04426d87965a96bcd6e4f80e798e6ea9b693eb481a3c8b2c2e857"
+    },
+    {
+      "path": "evidence/skill-compatibility/evaluations/rebrand-qubrics-php4/bootstrap-order/sendmux-token-efficient-usage/eval-0-bootstrap-order/with_skill/run-1/outputs/response.md",
+      "sha256": "613301864c1fdfc83765f67fe6f4b1221f6501cb0aa95570e97bc310e644f720"
+    },
+    {
+      "path": "evidence/skill-compatibility/evaluations/rebrand-qubrics-php4/bootstrap-order/sendmux-token-efficient-usage/eval-0-bootstrap-order/with_skill/run-1/grading.json",
+      "sha256": "7d2959a73d71574c0b9dc542faf500bf8c7989a20b686417a997928b66b7d1b4"
+    },
+    {
+      "path": "evidence/skill-compatibility/evaluations/rebrand-qubrics-php4/bootstrap-order/sendmux-token-efficient-usage/benchmark.json",
+      "sha256": "2c2d6d4bc830f78857e6c5de19736703bb63db95d607359e9dddd8d68c5eb90d"
     }
   ]
 }
