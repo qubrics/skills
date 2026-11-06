@@ -13,6 +13,10 @@ Use this skill for team administration with an `smx_root_` key or a REST OAuth g
 
 ## Boundaries
 
+Run CLI and SDK examples in an isolated child process. Clear inherited `QUBRICS_API_KEY`, `SENDMUX_API_KEY`, `QUBRICS_ACCESS_TOKEN`, `SENDMUX_ACCESS_TOKEN`, `QUBRICS_PROFILE`, `SENDMUX_PROFILE`, `QUBRICS_BASE_URL` and `SENDMUX_BASE_URL` there before loading only the intended key from the user's secret store. For profile-based calls, leave direct credentials unset and select the intended `--profile`. Use the authorised endpoint before transmitting credentials; keep credentials out of arguments and output.
+
+For a user who only needs a keyless agent inbox, first route to `sendmux-getting-started` without requiring a Management connection; after registration, verify the newly saved profile before mailbox access, sending or any subsequent task handoff. Before Management task work, validate the selected connection and verify its returned identity against the intended account and credential. A permission grant alone does not establish the intended identity. If identity differs or cannot be verified, stop and resolve it with the user.
+
 - Do not ask the user to paste an API key or one-time secret.
 - Use a root API-key profile or OAuth profile with Management access and the operation's required scopes. OAuth remains limited by the authorising user's current team permissions.
 - Agent self-registration does not require Management or a root key. Route a user who only wants an agent inbox to `sendmux-getting-started` and `sendmux agent:register`.

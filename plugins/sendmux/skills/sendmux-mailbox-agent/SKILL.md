@@ -13,6 +13,10 @@ Use this skill for mailbox-scoped workflows with an `smx_mbx_` key, scoped `smx_
 
 ## Boundaries
 
+Run CLI and SDK examples in an isolated child process. Clear inherited `QUBRICS_API_KEY`, `SENDMUX_API_KEY`, `QUBRICS_ACCESS_TOKEN`, `SENDMUX_ACCESS_TOKEN`, `QUBRICS_PROFILE`, `SENDMUX_PROFILE`, `QUBRICS_BASE_URL` and `SENDMUX_BASE_URL` there before loading only the intended key from the user's secret store. For profile-based calls, leave direct credentials unset and select the intended `--profile`. Use the authorised endpoint before transmitting credentials; keep credentials out of arguments and output.
+
+Before content access or mutations on any surface, validate the selected connection and verify its returned identity and authorised mailbox selection against the intended account and credential. A permission grant alone does not establish the intended identity. If identity differs or cannot be verified, stop and resolve it with the user.
+
 - Do not ask the user to paste an API key.
 - Do not use a root key for mailbox work.
 - Do not create mailboxes or mailbox keys here; route those tasks to `sendmux-management`.
@@ -43,7 +47,7 @@ When recommending mailbox calls, name the usable credential (`smx_mbx_` key, sco
 | Delete many messages               | `mailbox_batch_delete_messages`, CLI `mailbox:batch-delete-messages`, SDK `mailboxBatchDeleteMessages`.       |
 | Send a new message from this mailbox | `mailbox_send_message`, CLI `mailbox:send-message`, SDK `mailboxSendMessage`.                               |
 | Save, edit, send or schedule a reviewed draft | Mailbox draft operations below; verify installed-client support before using candidate operations. |
-| Extract inbound attachment text | `mailbox_request_attachment_text`, then `mailbox_get_attachment_text`; check status and outcome. |
+| Extract inbound attachment text | Candidate `mailbox_request_attachment_text`, then `mailbox_get_attachment_text`; verify installed-client support first, then check status and outcome. |
 | Upload/read attachments            | `mailbox_upload_attachment`, `mailbox_get_attachment`, and `sendmux-attachments` for zero-context files.       |
 | Threads                            | `mailbox_list_threads`, `mailbox_get_thread`, `mailbox_list_thread_messages`.                                 |
 | Folders                            | `mailbox_list_folders`; inspect folders before filing or moving messages.                                     |
@@ -190,7 +194,7 @@ SENDMUX_API_KEY="$SENDMUX_MBX_KEY" sendmux mailbox:send-message \
   --json
 ```
 
-Mailbox send uses `to` as an array. `subject` and `to` are required. `from` is optional when sending from the authenticated mailbox identity.
+Mailbox send uses `to` as an array. `subject` is optional and defaults to empty; supply 1 to 50 recipients in total across To, Cc and Bcc. `from` is optional when sending from the authenticated mailbox identity.
 
 For a local file through connected MCP:
 

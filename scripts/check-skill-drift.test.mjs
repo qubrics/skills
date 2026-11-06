@@ -227,6 +227,55 @@ const argvDirectUpload = [
   "  --data-binary @./report.pdf",
 ].join("\n");
 
+test("accepts the documented generic SENDMUX_API_KEY alongside surface keys", (t) => {
+  const fixture = makeContractFixture(t);
+  const file = path.join(fixture.skillsRoot, "skills/sendmux-mcp-setup/SKILL.md");
+  writeFileSync(file, `${readFileSync(file, "utf8")}\nSENDMUX_API_KEY\n`);
+  const result = runFixtureChecker(fixture);
+  assert.equal(result.status, 0, result.stderr);
+});
+
+test("rejects a bogus surface API key even when SDK prose mentions it", (t) => {
+  const fixture = makeContractFixture(t);
+  for (const relativePath of [
+    "skills/sendmux-mcp-setup/SKILL.md",
+    "sdk/packages/python/mcp/README.md",
+  ]) {
+    const file = path.join(fixture.skillsRoot, relativePath);
+    writeFileSync(file, `${readFileSync(file, "utf8")}\nSENDMUX_BOGUS_API_KEY\n`);
+  }
+  const result = runFixtureChecker(fixture);
+  assert.equal(result.status, 1);
+  assert.match(result.stderr, /undocumented env var SENDMUX_BOGUS_API_KEY/);
+  t.diagnostic("SENDMUX_BOGUS_API_KEY rejected with exit 1");
+});
+
+test("rejects a surface API key after its surface is removed from SDK SURFACES", (t) => {
+  const fixture = makeContractFixture(t);
+  replaceFixtureText(
+    path.join(fixture.sdkRoot, "packages/python/mcp/sendmux_mcp/config.py"),
+    'SURFACES: tuple[Surface, ...] = ("mailbox", "management", "sending")',
+    'SURFACES: tuple[Surface, ...] = ("management", "sending")',
+  );
+  const readme = path.join(fixture.sdkRoot, "packages/python/mcp/README.md");
+  writeFileSync(readme, `${readFileSync(readme, "utf8")}\nSENDMUX_MAILBOX_API_KEY\n`);
+  const result = runFixtureChecker(fixture);
+  assert.equal(result.status, 1);
+  assert.match(result.stderr, /undocumented env var SENDMUX_MAILBOX_API_KEY/);
+  t.diagnostic("Removed mailbox surface key rejected with exit 1");
+});
+
+test("rejects a stale PHP Composer name on the renamed SDK candidate", (t) => {
+  const fixture = makeContractFixture(t);
+  mutateJson(path.join(fixture.sdkRoot, "packages/php/sending/composer.json"), (manifest) => {
+    manifest.name = "sendmux/sending";
+  });
+  const result = runFixtureChecker(fixture);
+  assert.equal(result.status, 1);
+  assert.match(result.stderr, /expected name qubrics\/sending, found sendmux\/sending/);
+  t.diagnostic("Stale sendmux/sending Composer name rejected with exit 1");
+});
+
 test("distinguishes negative proof-of-work guidance from obsolete instructions", (t) => {
   const fixtureRoot = makeSkillsFixture(t);
   replaceDirectUploadCode(fixtureRoot, argvDirectUpload);

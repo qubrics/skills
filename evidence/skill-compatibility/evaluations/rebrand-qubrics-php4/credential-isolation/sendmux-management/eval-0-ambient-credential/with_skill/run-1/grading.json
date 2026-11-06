@@ -1,0 +1,31 @@
+{
+  "expectations": [
+    {
+      "text": "Uses an isolated child process and clears inherited credential, profile and base-URL overrides from both QUBRICS and SENDMUX families.",
+      "passed": true,
+      "evidence": "“Plan an isolated child that clears QUBRICS_API_KEY, SENDMUX_API_KEY, QUBRICS_ACCESS_TOKEN, SENDMUX_ACCESS_TOKEN, QUBRICS_PROFILE, SENDMUX_PROFILE, QUBRICS_BASE_URL and SENDMUX_BASE_URL before loading only the intended Management credential.”"
+    },
+    {
+      "text": "Uses only the intended secret-store credential or authorised selected profile; profile-based calls leave direct credentials unset.",
+      "passed": true,
+      "evidence": "“For that example, resolve SENDMUX_ROOT_KEY from the user's intended secret store into the child's SENDMUX_API_KEY at eventual execution.” “Alternatively, select an authorised Management API-key or OAuth profile with --profile <profile>, while leaving direct keys and access tokens unset under both prefixes.”"
+    },
+    {
+      "text": "Explains precedence without expanding secrets into arguments, printing credentials or modifying the parent environment.",
+      "passed": true,
+      "evidence": "“QUBRICS values outrank SENDMUX fallbacks; the guide's SENDMUX_API_KEY=\"$SENDMUX_ROOT_KEY\" assignment alone cannot override a competing QUBRICS_API_KEY.” “Keep secrets out of arguments, output, tracing and repo files; any later one-time secret belongs only in the chosen secret store or secure output path.” All proposed environment changes target the isolated child."
+    },
+    {
+      "text": "Prepares only; performs no real commands, credential access, reads of live data, writes or sends.",
+      "passed": true,
+      "evidence": "“Preparation only: no profile change, credential retrieval, connection call or administrative mutation.”"
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 0,
+    "total": 4,
+    "pass_rate": 1
+  },
+  "evaluation_method": "Reviewer compared each unchanged assertion with the retained verbatim response. Explanation quality only: no live credentials, API calls, sends, publication or client certification. The historical guide hash does not qualify subsequent edits."
+}

@@ -119,10 +119,10 @@ const tsPackages = {
 };
 
 const phpPackages = {
-  "packages/php/sdk/composer.json": "sendmux/sdk",
-  "packages/php/sending/composer.json": "sendmux/sending",
-  "packages/php/mailbox/composer.json": "sendmux/mailbox",
-  "packages/php/management/composer.json": "sendmux/management",
+  "packages/php/sdk/composer.json": "qubrics/sdk",
+  "packages/php/sending/composer.json": "qubrics/sending",
+  "packages/php/mailbox/composer.json": "qubrics/mailbox",
+  "packages/php/management/composer.json": "qubrics/management",
 };
 
 const pythonPackages = {
@@ -1389,8 +1389,17 @@ function assertClaimedMcpToolsExist() {
 }
 
 function assertOfficialSendmuxEnvOnly() {
+  const configText = readText(fullPath(sdkRoot, "packages/python/mcp/sendmux_mcp/config.py"));
+  const surfacesDeclaration = configText.match(/^SURFACES:[^\n=]*=\s*\(([^)]*)\)/m)?.[1];
+  const surfaces = [...(surfacesDeclaration || "").matchAll(/["']([^"']+)["']/g)].map((match) => match[1]);
+  const keyTemplate = configText.match(/env_value\(f["']([^"']*\{surface\.upper\(\)\}[^"']*)["']\)/)?.[1];
+  const keyParts = keyTemplate?.split("{surface.upper()}") || [];
+  if (surfaces.length === 0 || keyParts.length !== 2) {
+    fail("SDK MCP per-surface environment declaration is missing or unusable");
+  }
+  const surfaceKeys = new Set(surfaces.map((surface) => keyTemplate?.replace("{surface.upper()}", surface.toUpperCase())));
   const sourceText = [
-    readText(fullPath(sdkRoot, "packages/python/mcp/sendmux_mcp/config.py")),
+    configText,
     readText(fullPath(sdkRoot, "packages/python/mcp/sendmux_mcp/hosted.py")),
     readText(fullPath(sdkRoot, "packages/python/mcp/README.md")),
     readText(fullPath(sdkRoot, "packages/ts/cli/src/base-command.ts")),
@@ -1404,7 +1413,9 @@ function assertOfficialSendmuxEnvOnly() {
     for (const match of text.matchAll(/\bSENDMUX_[A-Z0-9_]+\b/g)) {
       const envName = match[0];
       if (allowedSkillOnlyEnv.has(envName)) continue;
-      if (!sourceText.includes(envName)) {
+      const isSurfaceKey = keyParts.length === 2 && envName.length > keyParts[0].length + keyParts[1].length && envName.startsWith(keyParts[0]) && envName.endsWith(keyParts[1]);
+      const documented = isSurfaceKey ? surfaceKeys.has(envName) : sourceText.includes(envName);
+      if (!documented) {
         fail(`${path.relative(skillsRoot, filePath)} uses undocumented env var ${envName}`);
       }
     }

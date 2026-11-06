@@ -15,7 +15,11 @@ Read an authorised Sendmux mailbox, classify the relevant messages, and return r
 
 Use an existing connected MCP server at `https://mcp.sendmux.ai/mcp` or an existing Sendmux CLI profile. If neither is configured, use the [connection guide](https://sendmux.ai/docs/ai-integrations/mcp); do not request credentials in chat or provision another mailbox.
 
+For CLI calls, start an isolated child process with inherited `QUBRICS_API_KEY`, `SENDMUX_API_KEY`, `QUBRICS_ACCESS_TOKEN`, `SENDMUX_ACCESS_TOKEN`, `QUBRICS_PROFILE`, `SENDMUX_PROFILE`, `QUBRICS_BASE_URL` and `SENDMUX_BASE_URL` cleared. Select only the authorised existing profile with `--profile`; leave direct credentials unset. Keep credentials out of arguments and output.
+
 Call `mailbox_get_connection` without a mailbox selector. For CLI, use `sendmux mailbox:get-connection --profile <profile> --json`. Check the returned permissions for `mailbox.read`. A valid connection does not prove mailbox storage is ready.
+
+Verify the returned credential, team and mailbox identity against the intended authorised connection before any message-content read. A `mailbox.read` grant alone does not establish the intended identity. If identity differs or cannot be verified, stop and resolve it with the user rather than reading another inbox.
 
 If several mailboxes are authorised, choose the user's requested mailbox from the returned IDs; use `mailbox_list_granted_mailboxes` when you need to search the granted set. Ask which mailbox only when the choice remains unclear. Pass its `mailbox_id` on subsequent scoped calls. Omit the selector for a single-mailbox credential. MCP uses a top-level argument; CLI uses `--query mailbox_id=<id>`.
 

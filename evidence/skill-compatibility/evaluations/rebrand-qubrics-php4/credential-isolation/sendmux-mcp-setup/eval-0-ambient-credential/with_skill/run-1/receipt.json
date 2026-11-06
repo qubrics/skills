@@ -1,0 +1,17 @@
+{
+  "arm": "with_skill",
+  "skill_sha256": "d6d5ca4eba5bc8060590f8eeadcd48a4c563212f8f905980744941ff1f6a547a",
+  "prompt_sha256": "b899c7d4b4fef0f432157acf68fb3d0fc4eb6e07be641168b83d42d2c2e18de6",
+  "response_sha256": "6f04203159f75a4ed73d22a31eb5b53cb7303901eda06614326d39233a34e4a3",
+  "response_sha256_scope": "UTF-8 response body excluding the Markdown file's final newline, matching the source receipt's hash boundary.",
+  "native_task": "/root/php4_credential_workflows",
+  "execution": "Completed native guide-only task covering seven fixtures in one batch; retained verbatim answer, no retry or re-evaluation.",
+  "source_response_artifact": "/Users/rj/Desktop/GIT-REPOS/sendmux/.claude/artifacts/rebrand-qubrics-php4-sync/skills-compat/credential-isolation-native-responses.md",
+  "source_response_section": "sendmux-mcp-setup",
+  "skill_binding_limit": "Historical hash identifies the exact guide read by this completed native task; this result does not qualify subsequent guide edits.",
+  "model_usage": null,
+  "timing": null,
+  "metadata_limit": "Exact model identity, timing and token metrics were unavailable; none inferred or invented.",
+  "external_actions": false,
+  "commands_from_skill_executed": false
+}

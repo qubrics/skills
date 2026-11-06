@@ -1,0 +1,29 @@
+{
+  "arm": "with_skill",
+  "skill": "sendmux-mailbox-agent",
+  "skill_sha256": "e8a5d45241529db762701b6a42e37a99d637933e5361d6a0efe9b858aea5d8af",
+  "prompt_sha256": "1eb82c143497c7292623b17842d2ad3c84333a189e981ffe81128a454c799f9f",
+  "prompt_sha256_definition": "SHA256 of decoded metadata.prompt encoded as UTF-8, with no added newline",
+  "response_sha256": "00ff497bf8a5b5944b5fb0d63c10291e54e110727160325a761adfe24b777e59",
+  "response_bytes": 3242,
+  "native_task": "/root/skills_settled_final_batch",
+  "execution": "one_batch",
+  "batch_cases": 11,
+  "answer_attempt": 1,
+  "agent_id": null,
+  "model": null,
+  "tokens": null,
+  "timing": null,
+  "external_actions": false,
+  "commands_from_skill_executed": false,
+  "assertions_read": false,
+  "prior_answers_grades_or_reviews_read": false,
+  "sdk_source_read": false,
+  "self_graded": false,
+  "limits": [
+    "Hidden agent ID, model identity, token usage and timing were not exposed and remain null.",
+    "Eleven guide-only explanations were produced sequentially in one shared native-task context, one answer per guide with no output refinement.",
+    "Local prompt extraction, guide reads, hashing and apply_patch evidence writes only; no credential retrieval, API/MCP/network, mailbox reads, live writes, sends, publication, tests or CI.",
+    "Explanation evidence is not live compatibility or publication certification."
+  ]
+}

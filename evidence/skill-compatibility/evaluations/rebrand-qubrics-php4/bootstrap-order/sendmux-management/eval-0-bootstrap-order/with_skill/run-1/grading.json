@@ -1,0 +1,41 @@
+{
+  "expectations": [
+    {
+      "text": "Clears inherited credentials, profile and endpoint overrides in an isolated child before loading only the intended source; profile calls leave direct credentials unset.",
+      "passed": true,
+      "evidence": "\"Before CLI or SDK examples, start an isolated child process and clear inherited `QUBRICS_API_KEY`, `SENDMUX_API_KEY`, `QUBRICS_ACCESS_TOKEN`, `SENDMUX_ACCESS_TOKEN`, `QUBRICS_PROFILE`, `SENDMUX_PROFILE`, `QUBRICS_BASE_URL` and `SENDMUX_BASE_URL`.\" \"Then load only account A's intended credential from the user's secret store.\" \"For profile-based calls, leave direct credentials unset and explicitly select `--profile work`.\""
+    },
+    {
+      "text": "Establishes the authorised endpoint before transmitting credentials, and covers SDK ambient overrides when this guide teaches SDK examples.",
+      "passed": true,
+      "evidence": "\"Use the authorised endpoint before transmitting credentials\" \"An explicit `apiKey` is not proof that an inherited base URL is authorised: clear both base-URL variables and establish the authorised endpoint before transmitting it.\" \"Do not invent either, infer SDK environment precedence, or run its domain-mutation examples as validation.\""
+    },
+    {
+      "text": "Verifies returned identity against intended account and credential before task work, rejecting the account-B permission grant and stopping on mismatch or unverifiable identity.",
+      "passed": true,
+      "evidence": "\"`data.credential.type` identifies `api_key`, `oauth` or `agent_token`; inspect the returned credential identity against the intended credential.\" \"The returned `data.team` identifies the team; match its identity against intended account A.\" \"If an unisolated connection grants Management permission but identifies B, stop before administration, mailbox content, sending or other task work.\" \"The same stop applies if identity cannot be verified.\""
+    },
+    {
+      "text": "Remains guide-only preparation with no commands, real credentials, live calls, mailbox content, writes, sends or publication.",
+      "passed": true,
+      "evidence": "\"This preparation explains validation only. No administration, commands, credentials, API calls or mailbox reads are performed.\" \"No commands, administration, reads, mutations, sends or actual handoffs occurred; this is not live certification.\""
+    },
+    {
+      "text": "Uses intended Management authority, matches account/credential and checks operation-specific scope without administrative mutation.",
+      "passed": true,
+      "evidence": "\"the required API-key kind is `smx_root_`. Load account A's intended root key secret-safely and use the Management connection-validation operation, `management:get-connection`.\" \"A root key provides Management administration authentication; a mailbox key is for separately approved mailbox runtime access.\" \"Match a later requested operation to the scope mapping explicitly documented by the guide, or to that operation's public Management OpenAPI `security` entry. Do not infer a scope from its operation name.\" \"Those mappings do not authorise performing the operations in this validation-only task.\""
+    },
+    {
+      "text": "Allows only the documented keyless registration or its routing before a connection exists, then verifies the newly saved profile before content access, sending, other task work or subsequent task handoff; existing-credential identity protection remains.",
+      "passed": true,
+      "evidence": "\"a user with no account, key or profile who only needs an agent inbox routes first to `sendmux-getting-started` and its documented `sendmux agent:register` path.\" \"This bootstrap handoff may occur before a connection identity check because the new agent profile does not exist yet.\" \"After registration, verify the newly saved profile's returned identity and authorised mailbox selection against the intended account and credential before mailbox access, sending, further task work or any subsequent task handoff.\" \"Stop and resolve a mismatched or unverifiable identity.\" \"For existing credentials, hand OAuth login/token lifecycle to `sendmux-cli` and mailbox read/search/sync/triage/replies to `sendmux-mailbox-agent` only after the intended connection identity is established.\""
+    }
+  ],
+  "summary": {
+    "passed": 6,
+    "failed": 0,
+    "total": 6,
+    "pass_rate": 1
+  },
+  "evaluation_method": "Independent grader reviewed the saved attempt-1 answer against each unchanged metadata assertion; evidence consists of verbatim answer quotes. Canonical SKILL.md SHA-256, decoded UTF-8 prompt SHA-256 without an added newline, response SHA-256 and response byte count were recomputed and match the receipt. Receipt provenance is consistent with one shared five-case native task, answer_attempt 1, no assertions or prior answers/grades/reviews read, no self-grading and no external actions. Historical execution flags are receipt claims, not independently observable historical proof; hidden agent/model/tokens/timing remain null. Guide-only assessment; no live certification."
+}

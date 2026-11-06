@@ -13,6 +13,10 @@ Use this skill to choose the lowest-cost Sendmux route that still answers the ta
 
 ## Boundaries
 
+Before any CLI or SDK connection check or task command, start an isolated child process with inherited `QUBRICS_API_KEY`, `SENDMUX_API_KEY`, `QUBRICS_ACCESS_TOKEN`, `SENDMUX_ACCESS_TOKEN`, `QUBRICS_PROFILE`, `SENDMUX_PROFILE`, `QUBRICS_BASE_URL` and `SENDMUX_BASE_URL` cleared. Load only the intended credential from the user's secret store; for profile-based calls, leave direct credentials unset and select the intended `--profile`. Use the authorised endpoint before transmitting credentials and keep credentials out of arguments and output. Apply this precondition when reusing a durable profile too.
+
+For the documented keyless self-registration flow, complete registration first, then verify the newly saved profile before content reads, sending or other task work. For existing credentials or profiles, verify the returned connection identity and any authorised mailbox selection against the intended account and credential before task work. A permission grant alone does not establish the intended identity. If identity differs or cannot be verified, stop and resolve it with the user rather than reading or mutating another account.
+
 - Do not ask the user to paste an API key.
 - For API-key authentication, use `smx_mbx_*` keys for normal Mailbox calls.
 - For a self-registered agent, reuse one durable CLI profile. Mailbox reads become available after provisioning, before owner approval; Sending stays blocked until owner approval.

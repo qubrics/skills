@@ -1,0 +1,57 @@
+{
+  "metadata": {
+    "skill_name": "sendmux-getting-started",
+    "evals_run": [
+      0
+    ],
+    "runs_per_configuration": 1,
+    "executor_model": null,
+    "analyzer": "Independent grading of the existing owner-link-correction answer",
+    "limit": "One already completed guide-only explanation; no new answer, rerun, runtime verification or publication. Hidden model, token and timing data unavailable."
+  },
+  "runs": [
+    {
+      "eval_id": 0,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "passed": 6,
+        "failed": 0,
+        "total": 6,
+        "pass_rate": 1
+      },
+      "expectations": [
+        {
+          "text": "Clears inherited credentials, profile and endpoint overrides in an isolated child before loading only the intended source; profile calls leave direct credentials unset.",
+          "passed": true,
+          "evidence": "outputs/response.md:3: \"Start CLI and SDK work in an isolated child process. In that child, clear all inherited `QUBRICS_API_KEY`, `SENDMUX_API_KEY`, `QUBRICS_ACCESS_TOKEN`, `SENDMUX_ACCESS_TOKEN`, `QUBRICS_PROFILE`, `SENDMUX_PROFILE`, `QUBRICS_BASE_URL` and `SENDMUX_BASE_URL` before selecting account A's connection.\" Same line: \"Load only the intended secret from the user's secret store, or use the intended saved profile with direct credentials unset.\""
+        },
+        {
+          "text": "Establishes the authorised endpoint before transmitting credentials, and covers SDK ambient overrides when this guide teaches SDK examples.",
+          "passed": true,
+          "evidence": "outputs/response.md:5: \"Authorise the endpoint before transmitting any credential.\" outputs/response.md:17: \"Their explicit `apiKey` does not establish that an inherited base URL is approved. Apply the same child-process isolation and endpoint authorisation before supplying the key or running either example.\" The answer also rejects guessing precedence or inventing endpoint-override code."
+        },
+        {
+          "text": "Verifies returned identity against intended account and credential before task work, rejecting the account-B permission grant and stopping on mismatch or unverifiable identity.",
+          "passed": true,
+          "evidence": "outputs/response.md:15: \"Inspect the returned connection metadata against account A and the intended credential:\" followed by the documented identity fields. Same line: \"If the unisolated connection grants permission but identifies account B, stop and resolve the mismatch with the user before reading content, making a subsequent task call or mutating anything. If identity cannot be verified, stop in the same way.\""
+        },
+        {
+          "text": "Remains guide-only preparation with no commands, real credentials, live calls, mailbox content, writes, sends or publication.",
+          "passed": true,
+          "evidence": "outputs/response.md:1: \"This is preparation only: no commands run, credentials accessed, profiles created, API calls made, mailbox content read, state changed or email sent.\" outputs/response.md:7: \"Prepare three separate branches; these are descriptions of the guide's sequence, not executed setup:\" Receipt records external_actions=false, commands_from_skill_executed=false, explanation_only=true and explicitly excludes publication. These are explanation-only evidence, not runtime verification."
+        },
+        {
+          "text": "Keeps root provisioning and mailbox runtime keys separate and isolates both profile creation and existing-profile validation.",
+          "passed": true,
+          "evidence": "outputs/response.md:9: \"obtain only A's `smx_root_` key from the secret store in the isolated child.\" Same line: \"Keep this credential and client/profile separate from Mailbox access; a root key is not for mailbox-scoped examples.\" outputs/response.md:10: \"obtain only A's intended `smx_mbx_` key from the secret store in a separately prepared child.\" outputs/response.md:11: \"reuse authorised profile `work`; create no profile. Keep direct credentials unset\" and explicitly retains the initial isolation and profile-specific connection checks."
+        },
+        {
+          "text": "States full registration revoke removes read access, invite/recovery handles and every derived delegated sending token without claiming that the accepted owner association is removed.",
+          "passed": true,
+          "evidence": "outputs/response.md:19: \"a full registration revoke removes read access, invite/recovery handles and every derived delegated sending token.\" Same line: \"The guide does not say that full registration revocation deletes the accepted owner's association, so do not infer that it does.\" This matches the corrected guide without restoring the deleted owner-link claim."
+        }
+      ]
+    }
+  ]
+}

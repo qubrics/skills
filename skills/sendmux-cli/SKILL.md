@@ -13,6 +13,10 @@ Use this skill when the terminal is the right Sendmux surface.
 
 ## Boundaries
 
+Before CLI setup, connection validation or account commands, start an isolated child process with inherited `QUBRICS_API_KEY`, `SENDMUX_API_KEY`, `QUBRICS_ACCESS_TOKEN`, `SENDMUX_ACCESS_TOKEN`, `QUBRICS_PROFILE`, `SENDMUX_PROFILE`, `QUBRICS_BASE_URL` and `SENDMUX_BASE_URL` cleared. Load only the intended credential from the user's secret store; for profile-based calls, leave direct credentials unset and select the intended `--profile`. Use the authorised endpoint and keep credentials out of arguments and output.
+
+For the documented keyless self-registration flow, complete `agent:register` first, then verify the newly saved profile before content reads, sending or other mutations. For existing credentials or profiles, before content reads or mutations, validate the selected surface's connection and verify its returned identity and any authorised mailbox selection against the intended account and credential. A permission grant alone does not establish the intended identity. If identity differs or cannot be verified, stop and resolve it with the user.
+
 - Do not ask the user to paste API keys.
 - For API-key profiles, use `smx_root_` for `management:*` and `smx_mbx_` or scoped `smx_agent_` for `mailbox:*`.
 - OAuth profiles require the operation's approved surface, scopes and mailbox access. REST OAuth tokens authenticate HTTP, not SMTP or IMAP.
@@ -92,15 +96,15 @@ sendmux profiles:list --json
 sendmux profiles:show default --json
 ```
 
-`profiles:set` reads the key from `SENDMUX_API_KEY`; populate the source variables through the user's secret store. The direct `--api-key` flag remains supported and takes precedence over `SENDMUX_API_KEY`, but do not expand a secret into that flag because the resulting value is visible in process arguments.
+Released CLI 1.7.2 reads `SENDMUX_API_KEY` for `profiles:set`; use it in the isolated child examples above, after populating the source variables through the user's secret store. Candidate SDK `73bedb8` adds `QUBRICS_API_KEY` before that fallback. The direct `--api-key` flag takes precedence in both, but do not expand a secret into that flag because the resulting value is visible in process arguments.
 
 Profile reads mask stored API keys and never reveal agent credentials. `profiles:set` reports `key_kind` as `root` or `mailbox`; `agent:register` creates a discriminated agent profile.
 
-Authentication resolution: `SENDMUX_ACCESS_TOKEN` takes precedence and rejects a simultaneous API key. Otherwise:
+Released CLI 1.7.2 uses `SENDMUX_ACCESS_TOKEN`, `SENDMUX_API_KEY`, `SENDMUX_PROFILE` and `SENDMUX_BASE_URL`; it does not read their `QUBRICS_` equivalents. Explicit flags take precedence, and a token plus an API key is an error. The following QUBRICS-first resolution describes candidate SDK `73bedb8` only: it reads `QUBRICS_ACCESS_TOKEN`, then `SENDMUX_ACCESS_TOKEN`, and rejects a simultaneous API key from `--api-key`, `QUBRICS_API_KEY` or `SENDMUX_API_KEY`. Otherwise:
 
-1. `--api-key`, then `SENDMUX_API_KEY`.
-2. If no direct key is present, `--profile` / `-p`, then `SENDMUX_PROFILE`, then the configured default profile.
-3. Base URL comes from `--base-url`, then `SENDMUX_BASE_URL`, then the selected profile.
+1. `--api-key`, then `QUBRICS_API_KEY`, then `SENDMUX_API_KEY`.
+2. If no direct key is present, `--profile` / `-p`, then `QUBRICS_PROFILE`, then `SENDMUX_PROFILE`, then the configured default profile.
+3. Base URL comes from `--base-url`, then `QUBRICS_BASE_URL`, then `SENDMUX_BASE_URL`, then the selected profile.
 
 ## Preflight
 
@@ -118,7 +122,7 @@ Wrong-key examples fail before network:
 
 ```text
 Command requires a root API key, but --api-key contains a mailbox API key.
-Command requires a send-capable `smx_mbx_` key or owner-approved Sending-resource `smx_agent_` token, but --api-key contains a root API key.
+Command requires a sending API key, but --api-key contains a root API key.
 ```
 
 ## Command catalogue
@@ -128,7 +132,7 @@ The unpublished candidate CLI source exposes these generated operation commands.
 | Surface    | Count | Examples                                                                                                                                                   |
 | ---------- | ----: | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Management |    57 | `management:domains:list`, `management:create-domain`, `management:create-mailbox`, `management:get-spend-summary`, `management:create-webhook`            |
-| Mailbox    |    53 | `mailbox:search-message-snippets`, `mailbox:batch-get-messages`, `mailbox:query-message-changes`, `mailbox:send-message`, `mailbox:list-granted-mailboxes` |
+| Mailbox    |    63 | `mailbox:search-message-snippets`, `mailbox:batch-get-messages`, `mailbox:query-message-changes`, `mailbox:send-message`, `mailbox:list-granted-mailboxes` |
 | Sending    |     8 | `sending:get-open-api-spec`, `sending:send`, `sending:send:batch`, `sending:upload-attachment`, `sending:create-attachment-upload`, `sending:complete-attachment-upload`, `sending:get-attachment` |
 | OAuth      |     2 | `auth:login`, `auth:logout` |
 | Profiles   |     3 | `profiles:list`, `profiles:set`, `profiles:show`                                                                                                           |

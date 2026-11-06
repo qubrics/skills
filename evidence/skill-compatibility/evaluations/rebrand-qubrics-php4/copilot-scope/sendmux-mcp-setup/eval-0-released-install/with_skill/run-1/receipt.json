@@ -1,0 +1,21 @@
+{
+  "skill": "sendmux-mcp-setup",
+  "skill_sha256": "195ff3637906a8192475cafe73b91b78a700b13147970c6ee388c73ef11af78b",
+  "prompt_sha256": "a47b6e2afe5ed65c4e5947de10ab30f0d0c040da2baa43834980bfb7a867181d",
+  "response_sha256": "27c3beddf1184f6e8fbe1e811e3c1b8718e2ff58cca2e97884deaeaa6d072e28",
+  "response_bytes": 12515,
+  "native_task": "/root/mcp_scope_explanation",
+  "arm": "with_skill",
+  "execution": "one_explanation",
+  "answer_attempt": 1,
+  "model": null,
+  "timing": null,
+  "tokens": null,
+  "agent_id": null,
+  "external_actions": false,
+  "commands_from_skill_executed": false,
+  "assertions_read": false,
+  "prior_answers_grades_or_reviews_read": false,
+  "sdk_source_read": false,
+  "self_graded": false
+}

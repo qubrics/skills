@@ -1,0 +1,77 @@
+{
+  "schemaVersion": 1,
+  "kind": "workflow",
+  "skill": "sendmux-getting-started",
+  "previousSkillDigest": "5029bf05c88abc8c25680cbd4a1cb7e311668752478c295f984f491a4781d556",
+  "skillDigest": "aec42bf3c8c21038749fbef5d3753bd689bf74edfcabd79c56b500ea6bf2e21b",
+  "contractDigest": "ddf90191f6203daab79c7188810c3adcf0731b77a4016515872246ea64fec600",
+  "sourceRevisions": {
+    "app": "87ce115810ebcfa91655295603c27af52fcff96f",
+    "sending": "2f4226655efc05f109b5feda50ed2ca1570aea91",
+    "sdk": "73bedb8b0005e96e580e39cca4aac6bd030753a5"
+  },
+  "reviewer": "Independent released-install-fresh-review.md whole-body source verdict and independent released-install grading; coordinating hash binder",
+  "rationale": "Independent whole-body review confirms these corrected instructions against retained published clients and selected candidate source. Genuine current-byte guide-only explanation passes every retained assertion, including the released-install regression. Credential isolation, endpoint selection and returned identity remain required. Source/historical-policy compatibility only; no live certification, publication or guard qualification.",
+  "evidence": [
+    {
+      "path": "skills/sendmux-getting-started/SKILL.md",
+      "sha256": "d407453b70a792838608009e21f8bb08b2ced99f8bdc0def544215da6a7596fb"
+    },
+    {
+      "path": "evidence/skill-compatibility/rebrand-qubrics-php4-source-review.md",
+      "sha256": "c75f2d402c49ca9af1ee0d7747e33be5412bf6abe5992e4d62731260bfaecdb2"
+    },
+    {
+      "path": "evidence/skill-compatibility/contracts/calendar-20261030/app-openapi.json",
+      "sha256": "4e4fbc8024eaad195169a18cc096856d1653a3c01fb4f66d0313e67cb0b2e705"
+    },
+    {
+      "path": "evidence/skill-compatibility/contracts/calendar-20261030/app-policy.json",
+      "sha256": "d4159fc4ad2a7b1927c294303fbc11533f8dab9f5a9b3cc73b2139c7354e71bf"
+    },
+    {
+      "path": "evidence/skill-compatibility/contracts/calendar-20261030/app-export.json",
+      "sha256": "29cde33eda5fb6777c9544e722a3165edeb2c689da8ac2c9f3953f85c3872d0b"
+    },
+    {
+      "path": "evidence/skill-compatibility/contracts/row07-actualtuple-20261012/sending-openapi.json",
+      "sha256": "eb69dc0ca27e5f42cd9da70e90e2b1a386dfe588b743e47a8d91f3b7928a75e5"
+    },
+    {
+      "path": "evidence/skill-compatibility/contracts/row07-actualtuple-20261012/sending-policy.json",
+      "sha256": "64b2ab07617f084045921f7078100372c3175712cecc117a799109a2c2546fd3"
+    },
+    {
+      "path": "evidence/skill-compatibility/contracts/row07-actualtuple-20261012/sending-export.json",
+      "sha256": "e1e2eef9923f7154363efa55d4508f8b32a3c07229116b05c08bfba1b6674b8f"
+    },
+    {
+      "path": "evidence/skill-compatibility/reviews/rebrand-qubrics-php4/released-install-sweep.md",
+      "sha256": "0f427da4aa475b823cdfffc085d106a569fdc6dfb75fb3dcac7fc56fa1daa4cd"
+    },
+    {
+      "path": "evidence/skill-compatibility/reviews/rebrand-qubrics-php4/released-install-fresh-review.md",
+      "sha256": "15efc18db995b428d5509632696ddfe5fef46efa3bcb6e37b95afccf61572809"
+    },
+    {
+      "path": "evidence/skill-compatibility/evaluations/rebrand-qubrics-php4/released-install/sendmux-getting-started/eval-0-released-install/eval_metadata.json",
+      "sha256": "54f1585ac46cbeeee536ace095ee1f2baafc587b0485ccdfadb643397af65a44"
+    },
+    {
+      "path": "evidence/skill-compatibility/evaluations/rebrand-qubrics-php4/released-install/sendmux-getting-started/eval-0-released-install/with_skill/run-1/receipt.json",
+      "sha256": "2148ca4a2abd3956120e6e55a875d7b9b498940396a47cb8581a8345265dc7dd"
+    },
+    {
+      "path": "evidence/skill-compatibility/evaluations/rebrand-qubrics-php4/released-install/sendmux-getting-started/eval-0-released-install/with_skill/run-1/outputs/response.md",
+      "sha256": "736dc7d66eb7af262a465473391c6725b3862e6c437632286147662e836dedd3"
+    },
+    {
+      "path": "evidence/skill-compatibility/evaluations/rebrand-qubrics-php4/released-install/sendmux-getting-started/eval-0-released-install/with_skill/run-1/grading.json",
+      "sha256": "0cc7341a969cdddcd7be84640cafa67844042016240c49e1101e347137c70ae8"
+    },
+    {
+      "path": "evidence/skill-compatibility/evaluations/rebrand-qubrics-php4/released-install/sendmux-getting-started/benchmark.json",
+      "sha256": "8fbceec75419d9ab6573e2b153c1ca1badc254cc48f69a83f5506fcdba031f84"
+    }
+  ]
+}

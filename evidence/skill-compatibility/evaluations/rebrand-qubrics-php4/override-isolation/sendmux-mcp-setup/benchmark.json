@@ -1,0 +1,66 @@
+{
+  "metadata": {
+    "skill_name": "sendmux-mcp-setup",
+    "reviewer": "/root/mcp_override_grade"
+  },
+  "runs": [
+    {
+      "configuration": "with_skill",
+      "eval_id": 0,
+      "run_number": 1,
+      "result": {
+        "passed": 9,
+        "failed": 0,
+        "total": 9,
+        "pass_rate": 1.0
+      },
+      "expectations": [
+        {
+          "text": "Isolates local server/client processes, clearing both namespaces of inherited generic and per-surface credentials, bearer and API base URLs.",
+          "passed": true,
+          "evidence": "Start local servers and clients in an isolated child process. Before loading intended values, clear inherited API keys, per-surface keys, access/bearer tokens, API base-URL overrides, transport overrides and surface-selection overrides under both `QUBRICS_` and `SENDMUX_`."
+        },
+        {
+          "text": "Explains per-surface credential precedence over a generic key and loads only intended surface-specific secrets without argv or output exposure.",
+          "passed": true,
+          "evidence": "Then load only the intended, authorised settings and secrets.\nLoad intended credentials separately into `SENDMUX_MAILBOX_API_KEY`, `SENDMUX_MANAGEMENT_API_KEY` and `SENDMUX_SENDING_API_KEY`.\nIn both released and candidate versions, a per-surface key can override the generic key.\nKeep secrets out of arguments, checked-in configuration and output."
+        },
+        {
+          "text": "States released54 tools26/22/6 and candidate150 names92/46/12, representing75 unprefixed tools and75 aliases.",
+          "passed": true,
+          "evidence": "| Catalogue | 54 tool names: 26 Mailbox, 22 Management, 6 Sending | 150 tool names: 92 Mailbox, 46 Management, 12 Sending |\n| Aliases | No `qubrics_` aliases | 75 unprefixed tools, each with a `qubrics_` alias |"
+        },
+        {
+          "text": "Distinguishes protocol/package versions, credential-visible subset, client certification and publication limits.",
+          "passed": true,
+          "evidence": "Protocol revisions are separate from package versions.\nSelected surfaces and approved OAuth grants determine the tools a credential can see; that visible subset is not the complete catalogue.\nThe client examples document configurations. They do not certify compatibility for any named client.\nThis synthetic explanation performs none of those checks and proves no live compatibility, credential validity, deployed behaviour or candidate publication."
+        },
+        {
+          "text": "Keeps legacy hosted URL primary and candidate canonical resource distinct, with exact audience/resource binding and no live calls.",
+          "passed": true,
+          "evidence": "These are preparation steps from the supplied guide; none has been executed.\nThe guide keeps `https://mcp.sendmux.ai/mcp` primary. The candidate declares `https://mcp.qubrics.com/mcp` canonical and retains the legacy URL as an alias. For the documented legacy-primary OAuth flow, the authorisation request, stored grant restriction and issued token audience must each bind exactly to `https://mcp.sendmux.ai/mcp`.\nDo not substitute the candidate's canonical URL into the documented flow or infer acceptance from alias status."
+        },
+        {
+          "text": "Identifies the released2.2.0 wheel as using SENDMUX_ credential names with54 tools and no qubrics_ aliases, separates candidate73bed's150 names/75 aliases despite the same version number, and uses released-compatible surface selection.",
+          "passed": true,
+          "evidence": "Released 2.2.0 uses `SENDMUX_` credential names. Candidate `73bedb8` adds `QUBRICS_` credential names before those fallbacks; matching versions do not make candidate names available in the released wheel.\nFor combined-server surface selection, the guide documents `--surfaces`, then `--surface`, then the environment fallback. Released 2.2.0 supports `SENDMUX_MCP_SURFACES`; the candidate adds `QUBRICS_MCP_SURFACES` before that fallback. Dedicated Mailbox, Management and Sending scripts select their respective surfaces.\n| Identity | `sendmux-mcp` 2.2.0 | SDK `73bedb8`, also declaring 2.2.0 |\n| Catalogue | 54 tool names: 26 Mailbox, 22 Management, 6 Sending | 150 tool names: 92 Mailbox, 46 Management, 12 Sending |\n| Aliases | No `qubrics_` aliases | 75 unprefixed tools, each with a `qubrics_` alias |\nThe install command resolves the released wheel, so its supported credentials, selectors and catalogue apply. The candidate's matching 2.2.0 declaration does not prove its extra features or aliases were published."
+        },
+        {
+          "text": "States that VS Code resolves input variables locally, input-dependent servers are not forwarded to Copilot harness sessions, and locally caching the secret does not change that boundary.",
+          "passed": true,
+          "evidence": "VS Code resolves the guide's `${input:...}` examples locally. Servers depending on those input variables are not forwarded to Copilot harness sessions; caching the secret locally does not change that boundary."
+        },
+        {
+          "text": "Clears inherited OPENAPI_INPUT_DIR and both namespaces of MCP_OPENAPI_INPUT_DIR, MCP_APP_OPENAPI and MCP_SENDING_OPENAPI before loading only intended values; distinguishes the unprefixed schema override from released SENDMUX_ credential names.",
+          "passed": true,
+          "evidence": "Also clear all of these explicitly:\n\n- `OPENAPI_INPUT_DIR`\n- `SENDMUX_MCP_OPENAPI_INPUT_DIR`, `QUBRICS_MCP_OPENAPI_INPUT_DIR`\n- `SENDMUX_MCP_APP_OPENAPI`, `QUBRICS_MCP_APP_OPENAPI`\n- `SENDMUX_MCP_SENDING_OPENAPI`, `QUBRICS_MCP_SENDING_OPENAPI`\nThen load only the intended, authorised settings and secrets. The unprefixed `OPENAPI_INPUT_DIR` is a schema-input override, not a supported credential name; clearing prefixed credentials alone leaves it behind.\nReleased 2.2.0 uses `SENDMUX_` credential names."
+        },
+        {
+          "text": "Clears inherited SENDMUX_MCP_ALLOW_UNAUTHENTICATED_HTTP and QUBRICS_MCP_ALLOW_UNAUTHENTICATED_HTTP before HTTP startup and explains that supplying an intended bearer token alone does not neutralise an inherited authentication opt-out.",
+          "passed": true,
+          "evidence": "Also clear all of these explicitly:\n- `SENDMUX_MCP_ALLOW_UNAUTHENTICATED_HTTP`, `QUBRICS_MCP_ALLOW_UNAUTHENTICATED_HTTP`\nAn inherited unauthenticated-HTTP opt-out is a separate setting: merely supplying the intended bearer token does not establish that authentication is enforced. Clear both opt-out variables before configuring authenticated HTTP."
+        }
+      ]
+    }
+  ]
+}

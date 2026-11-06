@@ -1,0 +1,67 @@
+{
+  "metadata": {
+    "skill_name": "sendmux-getting-started",
+    "evals_run": [
+      0
+    ],
+    "runs_per_configuration": 1,
+    "executor_model": null,
+    "analyzer": "Independent native grader /root/skills_released_grade",
+    "limit": "One unchanged attempt-1 explanation per case in a shared four-case native batch, not independent executor runs. Every input assertion graded against the whole response. Guide/prompt/response hashes and response bytes verified. Receipt-declared attempt provenance; model, timing and tokens remain unknown/null. Guide-only synthetic preparation, not live identity, installed-client compatibility, publication or delivery certification."
+  },
+  "runs": [
+    {
+      "eval_id": 0,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "passed": 8,
+        "failed": 0,
+        "total": 8,
+        "pass_rate": 1
+      },
+      "expectations": [
+        {
+          "text": "Clears inherited credentials, profile and endpoint overrides in an isolated child before loading only the intended source; profile calls leave direct credentials unset.",
+          "passed": true,
+          "evidence": "\"after inherited overrides have been cleared in an isolated child process.\" \"Then deliberately select A's profile or load only A's intended secret.\" \"After profile creation, leave direct credentials unset before subsequent `--profile root` or `--profile mailbox` operations.\" \"Profile calls must not also carry `SENDMUX_API_KEY`, `SENDMUX_ACCESS_TOKEN` or `--api-key`, which take precedence over the profile; the initial clearing also removes their QUBRICS counterparts.\""
+        },
+        {
+          "text": "Establishes the authorised endpoint before transmitting credentials, and covers SDK ambient overrides when this guide teaches SDK examples.",
+          "passed": true,
+          "evidence": "\"Use the authorised endpoint before any credential is transmitted.\" \"That explicit key is not proof that an inherited endpoint is authorised.\" \"Apply the same isolated-process clearing first, load the intended key, ensure the authorised endpoint and validate the same credential/surface identity before the SDK's later task call.\" \"The guide does not give an SDK base-URL option or exact SDK connection-check implementation, so neither is invented here.\""
+        },
+        {
+          "text": "Verifies returned identity against intended account and credential before task work, rejecting the account-B permission grant and stopping on mismatch or unverifiable identity.",
+          "passed": true,
+          "evidence": "\"Validate the selected surface before task work\" \"Match identity and any authorised mailbox selection to A and the intended credential.\" \"A check granting permission but identifying B is a stop before mailbox content, sending, mutations or other task work.\" \"Resolve the mismatch with the user, then validate the intended selection.\" \"Do not pass a wrong-account success forward as verified setup or hand it off as an authorised A connection.\""
+        },
+        {
+          "text": "Remains guide-only preparation with no commands, real credentials, live calls, mailbox content, writes, sends or publication.",
+          "passed": true,
+          "evidence": "\"Neither the existing-account branch nor the keyless-registration branch has been executed.\" \"No setup command, credential access, connection check, SDK call, mailbox read, mutation, send or publication occurred.\""
+        },
+        {
+          "text": "Keeps root provisioning and mailbox runtime keys separate and isolates both profile creation and existing-profile validation.",
+          "passed": true,
+          "evidence": "\"For a raw Management key, the guide prepares a separate root profile with secret-backed `SENDMUX_API_KEY=\"$SENDMUX_ROOT_KEY\"` input\" \"For a raw Mailbox key, it similarly uses `SENDMUX_API_KEY=\"$SENDMUX_MBX_KEY\"`\" \"Use `smx_root_` only for Management; use `smx_mbx_` or a scoped `smx_agent_` credential for Mailbox.\" \"Keep keys and clients/profiles separate.\" \"For an already authenticated API-key or OAuth profile `work`, create no profile: select that actual profile for both its connection check and the following call.\""
+        },
+        {
+          "text": "States full registration revoke removes read access, invite/recovery handles and every derived delegated sending token without claiming that the accepted owner association is removed.",
+          "passed": true,
+          "evidence": "\"The guide's full-registration-revocation guarantee is exactly that it removes read access, invite/recovery handles and every derived delegated sending token.\" \"It does not say that revocation deletes the accepted owner's association; that must not be inferred.\""
+        },
+        {
+          "text": "Allows only the documented keyless registration or its routing before a connection exists, then verifies the newly saved profile before content access, sending, other task work or subsequent task handoff; existing-credential identity protection remains.",
+          "passed": true,
+          "evidence": "\"In this branch, registration necessarily happens before the new profile can be identity-checked.\" \"This creates a new agent inbox; it does not authenticate account A.\" \"Next validate the saved profile with `mailbox:get-connection --profile my-agent --json`, verify its returned identity and authorised mailbox\" \"No content access, sending, other task work or identity-verified handoff should precede successful validation.\" \"If another worker receives a setup handoff, it must retain this pending verification gate rather than treat registration alone as permission to continue.\""
+        },
+        {
+          "text": "Prefers the intended profile or secret-store credential loaded after inherited overrides are cleared, without treating existing ambient variables as a verified credential source.",
+          "passed": true,
+          "evidence": "\"It prefers the intended permission-restricted CLI profile, or the intended credential from the user's secret store, after inherited overrides have been cleared in an isolated child process.\" \"Expected authorised profile/secret-store storage is not a leak; accidental inheritance is not authorisation.\""
+        }
+      ]
+    }
+  ]
+}
