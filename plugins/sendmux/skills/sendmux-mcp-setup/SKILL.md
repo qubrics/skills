@@ -291,6 +291,8 @@ bearer_token_env_var = "SENDMUX_MCP_HTTP_BEARER_TOKEN"
 
 VS Code stores MCP config in `.vscode/mcp.json` or user profile `mcp.json` under `servers`.
 
+VS Code resolves the `${input:...}` examples below locally. Servers using input variables are not forwarded to Copilot harness sessions, even after the secret is cached locally.
+
 Local stdio:
 
 ```json
