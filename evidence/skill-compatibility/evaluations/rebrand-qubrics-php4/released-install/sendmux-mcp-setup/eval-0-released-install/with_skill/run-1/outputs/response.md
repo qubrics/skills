@@ -1,0 +1,39 @@
+# Guide-only preparation: Sendmux MCP setup
+
+This explains `skills/sendmux-mcp-setup/SKILL.md` without installing, launching, configuring or calling anything. No live credential, client, server, tool catalogue or mailbox has been inspected.
+
+## Isolate credential, endpoint and server selection
+
+Start any later local server and client examples in an isolated child process. Clear inherited API keys, per-surface keys, HTTP bearer tokens, API base-URL overrides, transport overrides and surface-selection overrides under both `QUBRICS_` and `SENDMUX_`, then load only intended secret-store values. Keep secrets out of arguments, retained output and checked-in config. The guide gives categories rather than an exhaustive spelling of every transport environment variable; this explanation does not invent additional variable names.
+
+For intended account A and `mbx_support`, load the intended `SENDMUX_API_KEY` only after clearing ambient values, including the different `QUBRICS_MAILBOX_API_KEY`. Released `sendmux-mcp` 2.2.0 reads only `SENDMUX_` environment values, whereas candidate SDK `73bedb8` adds QUBRICS values before the legacy fallbacks. In both, a per-surface key can override a generic key. Therefore a generic intended credential is not a sufficient defence against inherited per-surface credentials; clear them, then explicitly supply only intended ones. The released server ignores the QUBRICS mailbox key, but the candidate can select it, and inherited SENDMUX per-surface keys are hazardous on either.
+
+Use an authorised API endpoint before transmitting any upstream credential. Clearing both unapproved base-URL families is independent of selecting the correct key. This guide does not teach SDK constructors or CLI profile-precedence rules, so it supplies no basis for inventing an SDK `apiKey`/base-URL implementation. A CLI `work` profile is not documented as a direct MCP credential source. Prefer its durable CLI workflow for terminal work or hosted OAuth when the user chooses MCP; do not extract an agent profile credential to force a local server configuration.
+
+## Mailbox-only, combined and HTTP preparation
+
+Mailbox-only local stdio uses `sendmux-mcp-mailbox` and an intended `smx_mbx_` key or appropriately scoped `smx_agent_` token through secret-backed server environment values. A root key cannot substitute for a mailbox credential. Combined stdio uses `sendmux-mcp` with the intended surfaces, for example the documented `mailbox,management,sending` selection. Supply separate intended `SENDMUX_MAILBOX_API_KEY`, `SENDMUX_MANAGEMENT_API_KEY` and `SENDMUX_SENDING_API_KEY`: Mailbox requires the mailbox/scoped-agent credential; Management requires `smx_root_`; Sending requires a send-capable `smx_mbx_` key or owner-approved Sending-resource `smx_agent_` token. A generic key must not accidentally furnish unrelated surfaces.
+
+The released combined server accepts `--surfaces`, then `--surface`, then `SENDMUX_MCP_SURFACES`. The candidate adds `QUBRICS_MCP_SURFACES` before that environment fallback. Explicit selectors outrank environment selection; clear both families so neither a surface nor a transport is inherited accidentally. The mailbox-, management- and sending-only console scripts select their named surface. The hosted runtime script is not normal local setup.
+
+For local/private HTTP, the upstream Sendmux key belongs in the server environment. A separate `SENDMUX_MCP_HTTP_BEARER_TOKEN` protects the MCP endpoint; the client supplies it as its `Authorization: Bearer ...` value. That bearer is not the upstream API key and does not replace it. Load the bearer and upstream key from the secret store into the isolated launch environment, clear unwanted transport and endpoint overrides, and use only the authorised local/private endpoint. The guide's documented HTTP server example explicitly selects `--transport http`, host `127.0.0.1`, port `8765` and path `/mcp`. Hosted remote OAuth uses `https://mcp.sendmux.ai/mcp` without API keys and must not reuse a REST OAuth token as its MCP bearer.
+
+No client was named here. The guide requires prose about the endpoint and OAuth steps rather than a generic configuration object in that case. A later named client must use its own documented format and secret interpolation/inheritance rules; configuration shapes and authentication commands are not interchangeable across clients.
+
+## Connection and identity gate
+
+After later setup, restart or refresh the selected client's servers and confirm visible tools match the selected surfaces. Mailbox-only must not expose Management or Sending tools. Tool discovery alone does not validate an upstream credential. Use the chosen harmless check: `mailbox_get_connection`, `management_get_connection` or `sending_get_connection`. These need no mailbox selector; Sending's check sends no email.
+
+Before task tools read content or mutate state, compare the returned identity and authorised mailbox selection with A, the intended credential and `mbx_support`. A permission grant that identifies B or `mbx_sales` is a stop, not successful setup for this task. Resolve the mismatch with the user and validate the intended selection before continuing; do not search, read or mutate with the wrong connection. For a hosted multi-mailbox grant, the guide calls for `mailbox_list_granted_mailboxes` first and selection of a returned `mailbox_id` for later mailbox tools, after the connection identity gate. Do not invent or force a mailbox outside the authorised grant.
+
+## Released package versus unpublished candidate
+
+The guide targets the released `sendmux-mcp` 2.2.0 wheel, which is the install result in this scenario. Its supported MCP protocol revisions are `2025-11-25` and `2026-07-28` over stdio or Streamable HTTP. Protocol revision identifiers are distinct from package version 2.2.0 and candidate source identity `73bedb8`.
+
+The released catalogue contains 54 tools: 26 Mailbox, 22 Management and 6 Sending, with no `qubrics_` aliases. The unpublished candidate also declares package version 2.2.0 but has 150 tool names: 92 Mailbox, 46 Management and 12 Sending. Those are 75 unprefixed tools—46 Mailbox, 23 Management and 6 Sending—each paired with a `qubrics_` alias, yielding 75 aliases. A matching package version does not establish that the candidate catalogue, QUBRICS environment support or other candidate features were published. A credential's visible tools are a subset determined by surfaces and approved OAuth grants, not a replacement catalogue count.
+
+The guide keeps `https://mcp.sendmux.ai/mcp` primary. The unpublished candidate declares `https://mcp.qubrics.com/mcp` canonical and retains the legacy URL as an alias. For the guide's hosted OAuth flow, the authorisation request must target exactly `https://mcp.sendmux.ai/mcp`, the Sendmux authorisation server must store that exact grant resource restriction, and the token audience must match it. REST OAuth has a separate resource. Resource-neutral dynamic registration without `resource` is valid and does not by itself justify re-registration. If request bindings are correct but `invalid_target` persists, inspect authorisation-server grant state rather than assuming the client controls it. No live resource or audience was checked here.
+
+## Certification limits
+
+The client examples are documented configurations, not certification that those clients are compatible. Chosen-client verification remains separate: actual connection, selected surface discovery, installed catalogue support, harmless upstream connection validation and returned identity must be established in that client before task tools run. This explanation performs none of them. It does not prove live compatibility, actual released publication of candidate changes, current endpoint availability, credential correctness or successful mail delivery. No command, API or MCP call, mailbox read, mutation, send, test or publication was performed.

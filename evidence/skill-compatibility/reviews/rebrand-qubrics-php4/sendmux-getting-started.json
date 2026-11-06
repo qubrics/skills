@@ -3,31 +3,23 @@
   "kind": "workflow",
   "skill": "sendmux-getting-started",
   "previousSkillDigest": "5029bf05c88abc8c25680cbd4a1cb7e311668752478c295f984f491a4781d556",
-  "skillDigest": "ab0147dbd61ba3296dcb6a47ddd9a8b98aaf1ce04298fa08b5be3c0f455f14a3",
+  "skillDigest": "aec42bf3c8c21038749fbef5d3753bd689bf74edfcabd79c56b500ea6bf2e21b",
   "contractDigest": "ddf90191f6203daab79c7188810c3adcf0731b77a4016515872246ea64fec600",
   "sourceRevisions": {
     "app": "87ce115810ebcfa91655295603c27af52fcff96f",
     "sending": "2f4226655efc05f109b5feda50ed2ca1570aea91",
     "sdk": "73bedb8b0005e96e580e39cca4aac6bd030753a5"
   },
-  "reviewer": "Fresh independent /root/skills_bootstrap_whole_review whole-body verdict; independent /root/skills_bootstrap_grade; coordinating reviewer binds exact hashes",
-  "rationale": "Fresh independent whole-body review finds these exact instructions compatible with App87ce/Sending2f42/SDK73bed. One genuine guide-only explanation tests competing existing credentials and the documented keyless bootstrap before a profile exists, followed by identity verification before task access. All retained assertions plus the new ordering assertion pass. Static source and explanation compatibility only under historical runtime policy; no live certification, publication or guard qualification.",
+  "reviewer": "Independent released-install-fresh-review.md whole-body source verdict and independent released-install grading; coordinating hash binder",
+  "rationale": "Independent whole-body review confirms these corrected instructions against retained published clients and selected candidate source. Genuine current-byte guide-only explanation passes every retained assertion, including the released-install regression. Credential isolation, endpoint selection and returned identity remain required. Source/historical-policy compatibility only; no live certification, publication or guard qualification.",
   "evidence": [
     {
       "path": "skills/sendmux-getting-started/SKILL.md",
-      "sha256": "2801551638c668c510d97accafdb4e32a1b22a07cb2c89164bb8217e9bc3fd19"
+      "sha256": "d407453b70a792838608009e21f8bb08b2ced99f8bdc0def544215da6a7596fb"
     },
     {
       "path": "evidence/skill-compatibility/rebrand-qubrics-php4-source-review.md",
-      "sha256": "e4e17c28115605fa53cb03122c4540ad9d144148e2c8663e694ce25ef8310093"
-    },
-    {
-      "path": "evidence/skill-compatibility/reviews/rebrand-qubrics-php4/fresh-body-review-inventory.md",
-      "sha256": "ddee66e7432e60adf506f293004c4e76f155ab34d7db6608e43af76974305f96"
-    },
-    {
-      "path": "evidence/skill-compatibility/reviews/rebrand-qubrics-php4/owner-correction-fresh-review.md",
-      "sha256": "b77c0e8547a2dd4fc4e71f267e364ab611f6652aa58e96eed6647fefdcb3ca11"
+      "sha256": "e6ab55940e1070ea98702e45b680f4d32849cd7f2bed8867cf8c5e07fd277ed8"
     },
     {
       "path": "evidence/skill-compatibility/contracts/calendar-20261030/app-openapi.json",
@@ -54,28 +46,32 @@
       "sha256": "e1e2eef9923f7154363efa55d4508f8b32a3c07229116b05c08bfba1b6674b8f"
     },
     {
-      "path": "evidence/skill-compatibility/reviews/rebrand-qubrics-php4/bootstrap-order-fresh-review.md",
-      "sha256": "5f8fca8510f0cf55e988a7724588b86b9f358f9c3ed7e8ef18a074ba259afcb9"
+      "path": "evidence/skill-compatibility/reviews/rebrand-qubrics-php4/released-install-sweep.md",
+      "sha256": "0f427da4aa475b823cdfffc085d106a569fdc6dfb75fb3dcac7fc56fa1daa4cd"
     },
     {
-      "path": "evidence/skill-compatibility/evaluations/rebrand-qubrics-php4/bootstrap-order/sendmux-getting-started/eval-0-bootstrap-order/eval_metadata.json",
-      "sha256": "7c664103c62ae8df41ce5b06a2ecff24e36b8bacfe8b9344ffa72dee390f532a"
+      "path": "evidence/skill-compatibility/reviews/rebrand-qubrics-php4/released-install-fresh-review.md",
+      "sha256": "15efc18db995b428d5509632696ddfe5fef46efa3bcb6e37b95afccf61572809"
     },
     {
-      "path": "evidence/skill-compatibility/evaluations/rebrand-qubrics-php4/bootstrap-order/sendmux-getting-started/eval-0-bootstrap-order/with_skill/run-1/receipt.json",
-      "sha256": "af1aec58f6e7e1608b76957aa31c08411c0ea81b0cf77596f7e698f87dd6f392"
+      "path": "evidence/skill-compatibility/evaluations/rebrand-qubrics-php4/released-install/sendmux-getting-started/eval-0-released-install/eval_metadata.json",
+      "sha256": "54f1585ac46cbeeee536ace095ee1f2baafc587b0485ccdfadb643397af65a44"
     },
     {
-      "path": "evidence/skill-compatibility/evaluations/rebrand-qubrics-php4/bootstrap-order/sendmux-getting-started/eval-0-bootstrap-order/with_skill/run-1/outputs/response.md",
-      "sha256": "1c648c55655c5355784cb9bf280cb5d3a18d480295e2886b1f94f8f072a25462"
+      "path": "evidence/skill-compatibility/evaluations/rebrand-qubrics-php4/released-install/sendmux-getting-started/eval-0-released-install/with_skill/run-1/receipt.json",
+      "sha256": "2148ca4a2abd3956120e6e55a875d7b9b498940396a47cb8581a8345265dc7dd"
     },
     {
-      "path": "evidence/skill-compatibility/evaluations/rebrand-qubrics-php4/bootstrap-order/sendmux-getting-started/eval-0-bootstrap-order/with_skill/run-1/grading.json",
-      "sha256": "93640525ebbc1760314572817f2df620eb8b74b9056dee0e83b80ef9a63ad2d7"
+      "path": "evidence/skill-compatibility/evaluations/rebrand-qubrics-php4/released-install/sendmux-getting-started/eval-0-released-install/with_skill/run-1/outputs/response.md",
+      "sha256": "736dc7d66eb7af262a465473391c6725b3862e6c437632286147662e836dedd3"
     },
     {
-      "path": "evidence/skill-compatibility/evaluations/rebrand-qubrics-php4/bootstrap-order/sendmux-getting-started/benchmark.json",
-      "sha256": "cf1d7d55c0eed88a4bdd3887c1c4726da00650bd54c81cc7eb71e8b388a0c029"
+      "path": "evidence/skill-compatibility/evaluations/rebrand-qubrics-php4/released-install/sendmux-getting-started/eval-0-released-install/with_skill/run-1/grading.json",
+      "sha256": "0cc7341a969cdddcd7be84640cafa67844042016240c49e1101e347137c70ae8"
+    },
+    {
+      "path": "evidence/skill-compatibility/evaluations/rebrand-qubrics-php4/released-install/sendmux-getting-started/benchmark.json",
+      "sha256": "8fbceec75419d9ab6573e2b153c1ca1badc254cc48f69a83f5506fcdba031f84"
     }
   ]
 }

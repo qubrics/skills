@@ -1,0 +1,56 @@
+{
+  "expectations": [
+    {
+      "text": "Clears inherited credentials, profile and endpoint overrides in an isolated child before loading only the intended source; profile calls leave direct credentials unset.",
+      "passed": true,
+      "evidence": "\"start an isolated child process and clear inherited\" \"Load only A's intended credential from the user's secret store, or use A's authorised existing `work` profile with direct credentials unset.\" \"For `work`, select `--profile work` explicitly and keep direct API keys and access tokens unset.\""
+    },
+    {
+      "text": "Establishes the authorised endpoint before transmitting credentials, and covers SDK ambient overrides when this guide teaches SDK examples.",
+      "passed": true,
+      "evidence": "\"Use the authorised endpoint before transmitting credentials.\" \"This guide has no SDK-construction example, so it does not establish an SDK implementation or base-URL option; no such code is invented here.\""
+    },
+    {
+      "text": "Verifies returned identity against intended account and credential before task work, rejecting the account-B permission grant and stopping on mismatch or unverifiable identity.",
+      "passed": true,
+      "evidence": "\"Compare returned `data.label` and stable `data.team.id`, plus any authorised mailbox selection, with A and the intended credential.\" \"Permission alone is insufficient.\" \"If an unisolated check grants permission but identifies B, stop before snippet searches, batch-content reads, sending or other mutations; resolve the identity and endpoint selection with the user, then validate the intended selection.\" \"Do not carry the successful permission result forward as an A validation.\""
+    },
+    {
+      "text": "Remains guide-only preparation with no commands, real credentials, live calls, mailbox content, writes, sends or publication.",
+      "passed": true,
+      "evidence": "\"No commands from the guide were run.\" \"No credential, connection, account, mailbox content or installed package has been inspected.\" \"this preparation proves neither live identity nor installed-client compatibility, publication or successful delivery.\""
+    },
+    {
+      "text": "States QUBRICS-first fallback, explicit-flag precedence and token/key conflict, plus root/mailbox key kinds versus three command surfaces.",
+      "passed": true,
+      "evidence": "\"Access token: `QUBRICS_ACCESS_TOKEN`, then `SENDMUX_ACCESS_TOKEN`; reject a simultaneous API key supplied by `--api-key`, `QUBRICS_API_KEY` or `SENDMUX_API_KEY`.\" \"Otherwise direct key: `--api-key`, then `QUBRICS_API_KEY`, then `SENDMUX_API_KEY`.\" \"With no direct key, profile: `--profile` / `-p`, then `QUBRICS_PROFILE`, then `SENDMUX_PROFILE`, then the configured default.\" \"Base URL: `--base-url`, then `QUBRICS_BASE_URL`, then `SENDMUX_BASE_URL`, then the selected profile.\" \"These are three command surfaces, potentially three profiles, but the CLI's API-key kinds are only `root` and `mailbox`.\""
+    },
+    {
+      "text": "States candidate counts 57 Management, 63 Mailbox and 8 Sending without publication claims.",
+      "passed": true,
+      "evidence": "\"The explicitly unpublished candidate catalogue lists 57 Management, 63 Mailbox and 8 Sending operation commands, plus 2 OAuth, 3 Profiles and 2 Agent commands.\" \"Those counts are not claims about the released CLI.\""
+    },
+    {
+      "text": "Quotes exactly: Command requires a sending API key, but --api-key contains a root API key.",
+      "passed": true,
+      "evidence": "\"Command requires a sending API key, but --api-key contains a root API key.\""
+    },
+    {
+      "text": "Allows only the documented keyless registration or its routing before a connection exists, then verifies the newly saved profile before content access, sending, other task work or subsequent task handoff; existing-credential identity protection remains.",
+      "passed": true,
+      "evidence": "\"complete `agent:register` first, then verify the newly saved profile before content access, sending or other task work.\" \"This is creation of a new agent inbox, not authentication to existing account A, and must remain separate from the existing-credential branch.\" \"After registration, validate the saved profile's connection and verify returned identity and mailbox selection; do not present later task work or a handoff as identity-verified until that gate succeeds.\""
+    },
+    {
+      "text": "Uses SENDMUX_API_KEY for profile setup on released CLI1.7.2 and the candidate; clearly separates release-only SENDMUX environment behaviour from candidate QUBRICS-first precedence.",
+      "passed": true,
+      "evidence": "\"For released profile creation, the secret-store-loaded input is `SENDMUX_API_KEY`.\" \"Do not rely on `QUBRICS_API_KEY` for released `profiles:set`.\" \"Candidate SDK `73bedb8` adds `QUBRICS_API_KEY` before the legacy fallback for `profiles:set`; consequently the legacy example also works on the candidate only after competing QUBRICS values have been cleared.\" \"That release reads `SENDMUX_ACCESS_TOKEN`, `SENDMUX_API_KEY`, `SENDMUX_PROFILE` and `SENDMUX_BASE_URL`; it does not read their `QUBRICS_` equivalents.\" \"These QUBRICS-first rules describe the unpublished candidate, not released 1.7.2.\""
+    }
+  ],
+  "summary": {
+    "passed": 9,
+    "failed": 0,
+    "total": 9,
+    "pass_rate": 1
+  },
+  "evaluation_method": "Independent assertion-by-assertion review of the complete unchanged attempt-1 response against every unchanged metadata assertion; no contradictory passage found. Guide SHA-256, decoded UTF-8 prompt SHA-256 without a trailing newline, response SHA-256 and response byte count match receipt.json. Receipt provenance records one shared four-case native batch (/root/skills_released_eval_batch), answer_attempt 1, with only run-1 present; this is receipt-declared provenance, not an independently available execution trace. Executor model, timing and tokens remain null/unknown. Guide-only synthetic preparation; no explanation refinement, rerun, live calls, compatibility certification or publication verification."
+}

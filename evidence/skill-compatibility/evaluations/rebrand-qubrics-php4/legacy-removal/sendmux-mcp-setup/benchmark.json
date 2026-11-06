@@ -1,0 +1,56 @@
+{
+  "metadata": {
+    "skill_name": "sendmux-mcp-setup",
+    "reviewer": "/root/mcp_legacy_removal_grading"
+  },
+  "runs": [
+    {
+      "configuration": "with_skill",
+      "eval_id": 0,
+      "run_number": 1,
+      "result": {
+        "passed": 7,
+        "failed": 0,
+        "total": 7,
+        "pass_rate": 1
+      },
+      "expectations": [
+        {
+          "text": "Isolates local server/client processes, clearing both namespaces of inherited generic and per-surface credentials, bearer and API base URLs.",
+          "passed": true,
+          "evidence": "Before loading intended values, remove inherited credential and connection overrides under both `QUBRICS_` and `SENDMUX_`: generic API keys/access tokens, per-surface keys, MCP HTTP bearer tokens, API base URLs, transport overrides and surface selectors. This includes the parent account-B `QUBRICS_API_KEY`, competing `SENDMUX_ACCESS_TOKEN`, both unapproved base URLs and the different `QUBRICS_MAILBOX_API_KEY`. Then load only the values authorised for this connection. Do this for the client and its server child as applicable, not merely in an interactive shell that the actual process does not inherit."
+        },
+        {
+          "text": "Explains per-surface credential precedence over a generic key and loads only intended surface-specific secrets without argv or output exposure.",
+          "passed": true,
+          "evidence": "Keep secrets out of command arguments, retained output and checked-in configuration; never ask for pasted credentials.\n\nFor the released package, the mailbox-only local entry point is `sendmux-mcp-mailbox`. The intended mailbox secret can be supplied as `SENDMUX_API_KEY` from the authorised secret source. First remove inherited per-surface keys: a per-surface credential can override the generic credential in both release and candidate. In this scenario the candidate could select the different inherited `QUBRICS_MAILBOX_API_KEY` instead of the intended generic key; the released package ignores `QUBRICS_` values, but its own inherited `SENDMUX_` per-surface key can cause the same wrong-account selection. Clear both namespaces rather than relying on that release-specific difference.\n\nFor an authorised combined server, `sendmux-mcp` selects the intended surfaces and receives separate intended credentials through `SENDMUX_MAILBOX_API_KEY`, `SENDMUX_MANAGEMENT_API_KEY` and `SENDMUX_SENDING_API_KEY`. Enable only the approved surfaces, and load each surface's appropriate credential."
+        },
+        {
+          "text": "States released54 tools26/22/6 and candidate150 names92/46/12, representing75 unprefixed tools and75 aliases.",
+          "passed": true,
+          "evidence": "The released catalogue is 54 tools: 26 Mailbox, 22 Management and 6 Sending, with no `qubrics_` aliases. Its supported environment values are `SENDMUX_` values only. The unpublished candidate SDK `73bedb8` also declares package version 2.2.0, but adds `QUBRICS_` values ahead of legacy fallbacks and has a different catalogue: 150 names, comprising 92 Mailbox, 46 Management and 12 Sending names. Those are 75 unprefixed tools—46 Mailbox, 23 Management and 6 Sending—each with a `qubrics_` alias, for 75 additional names."
+        },
+        {
+          "text": "Distinguishes protocol/package versions, credential-visible subset, client certification and publication limits.",
+          "passed": true,
+          "evidence": "The guide's install command resolves the released `sendmux-mcp` 2.2.0 wheel. That wheel supports MCP protocol revisions `2025-11-25` and `2026-07-28` over stdio or Streamable HTTP. Protocol revisions are separate from the package version. The guide does not independently certify the candidate's protocol behaviour.\n\nSelected surfaces and approved OAuth grants determine a credential-visible subset; that subset is not the complete catalogue.\n\nThe guide supplies documented configurations for named clients. They certify no tested client compatibility by themselves. A chosen-client check remains separate: verify its configuration shape, secret interpolation or environment forwarding, startup, transport and OAuth behaviour, discovered surfaces and returned upstream identity before task tools. No such verification occurred here.\n\nThis explanation establishes only what the frozen guide says and the preparation it requires. It proves no successful installation, live client connection, account identity, mailbox selection, endpoint availability, candidate publication or end-to-end compatibility. No commands from the guide were executed and no configuration was applied."
+        },
+        {
+          "text": "Keeps legacy hosted URL primary and candidate canonical resource distinct, with exact audience/resource binding and no live calls.",
+          "passed": true,
+          "evidence": "This guide keeps `https://mcp.sendmux.ai/mcp` primary for hosted OAuth. The unpublished candidate declares `https://mcp.qubrics.com/mcp` canonical and retains the legacy URL as an alias. That declaration does not prove candidate publication or live endpoint compatibility. Follow the guide's legacy-primary setup rather than silently substituting the candidate URL. For that setup, the client authorisation request, the restriction stored in the Sendmux authorisation-server grant and the issued token audience must each bind exactly to `https://mcp.sendmux.ai/mcp`. Hosted MCP OAuth and REST OAuth are separate resources; a REST bearer is not a hosted MCP bearer. The candidate's alias declaration does not establish that resource or audience values can be mixed.\n\nThis is an explanation of the supplied guide, not an applied configuration or a compatibility test. No installation, credentials, product calls, mailbox content or sends are needed for this preparation.\n\nNo commands from the guide were executed and no configuration was applied."
+        },
+        {
+          "text": "Identifies the released2.2.0 wheel as SENDMUX-only with54 tools and no qubrics_ aliases, separates candidate73bed's150 names/75 aliases despite the same version number, and uses released-compatible surface selection.",
+          "passed": true,
+          "evidence": "The guide's install command resolves the released `sendmux-mcp` 2.2.0 wheel.\n\nThe released catalogue is 54 tools: 26 Mailbox, 22 Management and 6 Sending, with no `qubrics_` aliases. Its supported environment values are `SENDMUX_` values only. The unpublished candidate SDK `73bedb8` also declares package version 2.2.0, but adds `QUBRICS_` values ahead of legacy fallbacks and has a different catalogue: 150 names, comprising 92 Mailbox, 46 Management and 12 Sending names. Those are 75 unprefixed tools—46 Mailbox, 23 Management and 6 Sending—each with a `qubrics_` alias, for 75 additional names. Matching package versions do not establish that candidate environment support, tools or aliases were published in the wheel.\n\nReleased 2.2.0 accepts the explicit surface selectors `--surfaces` and `--surface`, in that precedence order, followed by the `SENDMUX_MCP_SURFACES` environment fallback. Candidate SDK `73bedb8` adds `QUBRICS_MCP_SURFACES` ahead of that environment fallback. Clear inherited selectors and set the chosen selector deliberately."
+        },
+        {
+          "text": "States that VS Code resolves input variables locally, input-dependent servers are not forwarded to Copilot harness sessions, and locally caching the secret does not change that boundary.",
+          "passed": true,
+          "evidence": "In VS Code, `.vscode/mcp.json` or the user profile's `mcp.json` uses `servers`, and VS Code resolves the `${input:...}` examples locally. Servers depending on those input variables are not forwarded to Copilot harness sessions. A secret cached locally does not change that boundary. The separately documented Copilot CLI configuration is not evidence that a VS Code input-dependent server reaches a harness session."
+        }
+      ]
+    }
+  ]
+}

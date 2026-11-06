@@ -4,7 +4,7 @@ Goal: unblock the source compatibility prerequisite for the PHP rename. This PR 
 
 ## Immutable inputs and scope
 
-Original source-body commits: `b4fab3ac920f038e0c9f0846ab1032cba8a349c2` and getting-started's revocation clarification `e522c125b082394abf7c9941faee88f1bee09243`. Approved bootstrap-gate correction is frozen at `d7fa7bf02d12dfa91b8624f63d350106574f73c3`: five canonical paragraphs plus their five generated copies, no other source path. Base `941e08b16488ba202b994f751bbccc774a3be6d3`. Later evidence/index commits do not change those bytes.
+Original source-body commits: `b4fab3ac920f038e0c9f0846ab1032cba8a349c2` and getting-started's revocation clarification `e522c125b082394abf7c9941faee88f1bee09243`. Bootstrap-gate correction is frozen at `d7fa7bf02d12dfa91b8624f63d350106574f73c3`. Released-install correction is frozen at `36720e03e6179f0c3241479831d9aa82367432e5`: four canonical bodies and generated copies plus MCP case7 release-version expectations, nine paths. Base `941e08b16488ba202b994f751bbccc774a3be6d3`. Later evidence/index commits do not change those bytes.
 
 Current reviewed tuple: App `87ce115810ebcfa91655295603c27af52fcff96f`, Sending `2f4226655efc05f109b5feda50ed2ca1570aea91`, SDK `73bedb8b0005e96e580e39cca4aac6bd030753a5`. Retain App87ce because it is current Skills main's calendar-scope source; do not replace it with historical App1485 or chase later SDK main.
 
@@ -21,12 +21,12 @@ All bodies require intended credential/endpoint selection before execution and r
 | agent-email-inbox | Existing-profile branch explicitly isolated; intended credential/team/mailbox verified before content. |
 | email-for-ai-agents | Apply condition before validation or send; message approval and Sending authority retained. |
 | sendmux-attachments | Condition precedes every surface, including SDK examples and transfer capability creation. |
-| sendmux-cli | Correct QUBRICS-before-SENDMUX credential/profile/base-URL precedence; root/mailbox credential kinds distinguished from three surfaces; candidate Mailbox count53→63; exact wrong-key error restored. |
+| sendmux-cli | Use released-compatible SENDMUX profile examples; separate candidate QUBRICS-first precedence; distinguish root/mailbox credential kinds from three surfaces; candidate Mailbox count53→63; exact wrong-key error restored. |
 | sendmux-email-for-agents | Existing configured OAuth profile cannot skip selection/identity protection when login is skipped. |
-| sendmux-getting-started | Raw-key profile creation and existing-profile validation isolated; SDK endpoint established before transmitting credentials. Delete only the ambiguous `the owner link, ` from the revocation guarantee. |
-| sendmux-mailbox-agent | Same condition on all credential paths; correct optional subject/default and total-recipient requirement. |
+| sendmux-getting-started | Raw-key profile creation and existing-profile validation isolated; prefer intended profile or secret-store values after clearing overrides; SDK endpoint established before transmitting credentials. Delete only the ambiguous `the owner link, ` from the revocation guarantee. |
+| sendmux-mailbox-agent | Same condition on all credential paths; correct optional subject/default and total-recipient requirement; qualify the preferred attachment-text calls as candidate methods requiring installed-client support. |
 | sendmux-management | Raw-key, OAuth and SDK account identity verified before administrative work. |
-| sendmux-mcp-setup | Preserve released facts; candidate catalogue150 names92/46/12 =75 tools+75 aliases. Add candidate canonical resource sentence with legacy primary retained. Isolate server/client credentials, endpoints, transport and surface selection. Correct accepted surface-selection alternatives/precedence. |
+| sendmux-mcp-setup | Identify released2.2.0 wheel54 tools with noQUBRICS/qubrics aliases; distinguish same-version candidate catalogue150 names92/46/12 =75 tools+75 aliases. Add candidate canonical resource sentence with legacy primary retained. Isolate server/client credentials, endpoints, transport and surface selection. Separate released selection from candidate precedence. |
 | sendmux-send-email | Condition before upload/send on every surface; message approval, Sending authority and idempotency retained. |
 | sendmux-token-efficient-usage | Protect reused durable profiles and SDK endpoint selection; bounded-read and cheapest-call rules retained. |
 
@@ -45,13 +45,13 @@ Generated copies use only `node scripts/build-plugin-bundles.mjs`; all 11 match 
 
 ## Validator and assertion changes
 
-PHP expected names are `qubrics/sdk`, `qubrics/sending`, `qubrics/mailbox`, `qubrics/management`, read from SDK73bed Composer manifests. The SDK pin and PHP expectation map change in the same source commit.
+PHP expected names are `qubrics/sdk`, `qubrics/sending`, `qubrics/mailbox`, `qubrics/management`, read from SDK73bed Composer manifests. The SDK pin and PHP expectation map change in the same source commit. Across the full PR, the SDK pin moves from main's `1812300f1f30102ed0e624bc92cd92224cdf867d` to `73bedb8b0005e96e580e39cca4aac6bd030753a5`; it is unchanged only relative to the later859bb4a candidate, not relative to main.
 
 Per-surface environment names come from SDK73bed MCP `config.py:13` SURFACES and :197's finite template. Prefix/suffix must not overlap and must enclose a non-empty surface segment. Existing literal-source validation, allowlist and guard enforcement remain. No wildcard API-key exception, blanket QUBRICS twin rule, skip or guard relaxation was added. The existing QUBRICS corpus-scan gap is explicitly outside this PR.
 
 Four additive tests in `scripts/check-skill-drift.test.mjs`: generic `SENDMUX_API_KEY` accepted; bogus key rejected even if SDK prose mentions it; removed surface rejected despite remaining prose; stale Composer name rejected. No old assertion changed. Three required rejection tests were seen red before the implementation and now pass with their strict target-error assertions. Local checker test receipt: 19/19, zero skipped; script logic unchanged since that receipt. Static claims and plugin-byte checks passed again at the settled body commit; full current-head tests belong to the single PR CI.
 
-The only existing eval assertion changes are MCP case7's expected catalogue count and third expectation, updated from the obsolete candidate count to150 names/75 tools+75 aliases. Other case7 assertions and prompt remain unchanged. New final-batch MCP assertions are identical to the retained credential-case assertions, including certification limits.
+Existing MCP case7 first changed its candidate catalogue count/third expectation to150 names/75 tools+75 aliases. The released-install correction additionally updates expected output and expectations2–3 from release2.1.3 to the verified PyPI2.2.0 wheel, preserving54 released tools and the distinct150-name candidate. Case7's prompt,protocol assertion and client-certification assertion remain unchanged. This intentional assertion update follows the actual published artifact, not an attempt to green a failed answer. Historical answers/grades remain unchanged. New current guide-only batches retain their prior assertions and add bounded regression cases, including certification limits.
 
 ## Historical failure remains failed
 
@@ -77,12 +77,30 @@ Current compatibility evidence uses 11 workflow-tested replacements against App8
 
 Runtime policy qualification remains the supplied historical snapshot, not a fresh live read. The fresh getting-started reviewer read the existing September30 snapshot with durable registration enabled on its four recorded ready pods; its raw envelope is not claimed to match the later export's snapshot hash. Selected policy binding and source behaviour are distinct from current deployed configuration.
 
+## Installed-release correction
+
+Ops rejected27b3f25 because its profile examples used candidate-only QUBRICS variables after installing released CLI1.7.2. Earlier static checks and whole-body reviews selected SDK73bed source; they did not verify the package actually installed by an unpinned command. Candidate-source compatibility did not establish released-client compatibility.
+
+Independent `reviews/rebrand-qubrics-php4/released-install-sweep.md` audits all11 complete bodies against actual published CLI/MCP,TypeScript and relevant Python SDK artifacts:7PASS,4FINDING,0UNKNOWN. Its immutable URLs,hashes and source anchors show ordinary SDK examples are supported; explicitly guarded candidate tables remain guarded. All four findings are corrected: CLI profiles use SENDMUX_API_KEY on release and candidate,with released-versus-candidate precedence separated; MCP identifies actual released2.2.0 with54tools/0QUBRICS/0qubrics aliases despite candidate73bed also declaring2.2.0 with150names; getting-started prefers intended profiles or secret-store values loaded after clearing overrides; mailbox-agent's earlier preferred attachment-text row now requires installed-client support before candidate methods.
+
+The small actual CLI behaviour check is retained in `evaluations/rebrand-qubrics-php4/released-cli-behaviour.json`: QUBRICS-only synthetic profile input fails with shell1 and JSONerror.oclif.exit2, while SENDMUX-only input succeeds with shell0 and a root profile. Published `dist/commands/profiles/set.js:27-29` explains the missing variable; Oclif4.11.4 `lib/command.js:201-205` explains JSON-mode exit-code wrapping. Inherited overrides were cleared and `SENDMUX_CONFIG_DIR` isolated both fixtures. No real key,product call,mailbox access or send occurred. No extra test harness was added; npm cache18MiB and tiny synthetic configs are retained under the task artifacts,not deleted.
+
 ## Publication and remaining authority
 
-Read-only preflight: ClawHub workflow306493143 remains `disabled_manually`; SITE notification307503190 remains active. A later approved merge can dispatch SITE sync; the existing SITE workflow reads the approved Skills release/acceptance and opens a PR, not source-main publication. Re-read settings before merge. No setting changed.
+Read-only preflight: main is unprotected (`branches/main.protected=false`),so green CI is a convention,not enforced branch protection. ClawHub workflow306493143 remains `disabled_manually`,but its source explicitly publishes on push if enabled; it is not a tag-only publisher. SITE notification307503190 remains active and merge fires `skills-updated` dispatch. Re-read settings before merge. No setting changed.
+
+Merge is effective publication to repository-based installations: `.claude-plugin/marketplace.json:12` serves `./plugins/sendmux`,and README marketplace/direct install instructions at26/44 select the repository without a tag. `npx skills add Sendmux/skills` and marketplace installs may consume merged bytes before a GitHub release. A separate release is still required by repository policy and the SDK release qualification path. No merge/tag/publish is authorised by this source preparation.
 
 A later pin past PR350 alone needs no different resource text: the inspected MCP contract diff changes provenance hashes only. Broader future changes are unknown. This PR plus a future approved Skills release addresses the reviewed source/evidence prerequisite; no full SDK guard-green claim without its separate qualification authority.
 
 Merge, new Skills release, guard qualification/rerun, tags, Packagist and deletion remain held. PHP SDK#9 stays OPEN/cause-unconfirmed. The held3.53 GiB download is untouched. Management3.0 removals remain `MailboxAppPasswordResultCredential` → `MailboxCredential` and `ProviderCreateBodyQuotasPerDayAnyOf` → `ProviderQuotaRange`; this PR does not alter them. The previously accepted PHP docstring warning remains unchanged.
 
 Skills PR40 also reports a non-blocking docstring warning0.00% versus80.00%, distinct from the PHP warning. No docstring, threshold or configuration change is included. Its absolute-workstation-path nit is parked. The bootstrap review finding is addressed at the guide precondition, with operations and existing approval gates otherwise unchanged.
+
+## Copilot scope and approved legacy-claim removal
+
+The approved paragraph states VS Code resolves input variables locally and does not forward input-dependent servers to Copilot harness sessions, including cached secrets. Immutable Microsoft vscode-docs062330f5d25b5562103c6322a17b255b645e1e67 `docs/agents/reference/mcp-configuration.md:28,278-286` substantiates that boundary. The legacy Windsurf/Cascade bullet formerly at202 could not be substantiated: the official URL redirected and both the initial and explicitly consented reference searches were refused. No alternate route, cache, mirror or retry followed either refusal. Operator1A then approved removing only that bullet and regenerating its plugin copy; local64d4bf097fe9821f06393c5fe75ffe556640ae2a contains exactly that deletion relative to8da2b65. This does not establish that the historical claim was false. Prior UNKNOWN and refusal reports remain intact.
+
+The final463-line MCP body SHA256 is `ed0e7e9cb20a1d4aa6a8e232baec5373fa78a1f89935ded70e8525e68b59ef70`, identical to its generated copy. One new guide-only explanation of these bytes was independently graded7/7 using exactly the same prompt and seven assertions as the pre-removal evaluation; no earlier answer was rebound to changed bytes. Fresh complete-body reviewer `/root/mcp_legacy_removal_verdict` returned COMPATIBLE, rechecking local source and explicitly adopting intact prior independent measurements of unchanged client examples without further retrieval. See `reviews/rebrand-qubrics-php4/legacy-removal-fresh-review.md`. This is complete-body source/historical-contract compatibility, not live client certification.
+
+The other three released-install bodies retain their compatible whole-body verdicts and23/23 assertions. Seven unchanged bodies still match their earlier evaluated hashes and retain38 assertions. Thus current exact-byte workflow evidence comprises68/68 assertions across11 bodies; every selected body has been reviewed. The historical credential29/30 and MCP certification-limits omission remain failed and unchanged. Twelve workflow records bind11 current App87ce/Sending2f42/SDK73bed replacements plus the historical App1485 inbox replacement. Read-only e3d inspection is separate from a guard run or SDK release qualification; no new acceptance receipt, release, guard rerun, tag, Packagist write or deletion is performed locally. Merge still requires an exact-head decision acknowledging repository-install publication and SITE dispatch.
