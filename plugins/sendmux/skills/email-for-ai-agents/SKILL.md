@@ -19,7 +19,11 @@ Send one user-approved message through the Sendmux Sending surface and report it
 
 For a self-registered CLI profile, owner acceptance and separate owner sending approval must both have happened. After approval, `sending:*` commands exchange and cache the delegated token automatically. The durable read credential is not a Mailbox send credential and must not be passed directly to the Sending API. Do not substitute a root key.
 
+Before any CLI validation or send, start an isolated child process with inherited `QUBRICS_API_KEY`, `SENDMUX_API_KEY`, `QUBRICS_ACCESS_TOKEN`, `SENDMUX_ACCESS_TOKEN`, `QUBRICS_PROFILE`, `SENDMUX_PROFILE`, `QUBRICS_BASE_URL` and `SENDMUX_BASE_URL` cleared. Select only the intended authorised profile with `--profile`; leave direct credentials unset and use the authorised endpoint. Keep credentials out of arguments and output.
+
 Validate the selected Sending connection with `sending_get_connection`, or `sendmux sending:get-connection --profile <profile> --json`. This requires `email.send` but checks neither credits nor provider readiness. Hosted MCP authorisation is separate from REST OAuth.
+
+Verify the returned connection identity against the intended authorised account and credential before sending. A permission grant alone does not establish the intended identity. If identity differs or cannot be verified, stop and resolve it with the user.
 
 **Ready:** the exact message is approved and the chosen Sending connection is authorised.
 

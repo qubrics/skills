@@ -2329,7 +2329,7 @@
   ],
   "releaseInputs": {
     "publishedRevision": "fc7c11647c3bb9f6ba80e0aa6679ad6895d94ce1",
-    "sdkRevision": "1812300f1f30102ed0e624bc92cd92224cdf867d",
+    "sdkRevision": "73bedb8b0005e96e580e39cca4aac6bd030753a5",
     "app": {
       "revision": "87ce115810ebcfa91655295603c27af52fcff96f",
       "openapi": "evidence/skill-compatibility/contracts/calendar-20261030/app-openapi.json",

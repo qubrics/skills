@@ -13,6 +13,10 @@ Use this skill when the user is ready to send outbound email through Sendmux or 
 
 ## Safety first
 
+Run CLI and SDK examples in an isolated child process. Clear inherited `QUBRICS_API_KEY`, `SENDMUX_API_KEY`, `QUBRICS_ACCESS_TOKEN`, `SENDMUX_ACCESS_TOKEN`, `QUBRICS_PROFILE`, `SENDMUX_PROFILE`, `QUBRICS_BASE_URL` and `SENDMUX_BASE_URL` there before loading only the intended key from the user's secret store. For profile-based calls, leave direct credentials unset and select the intended `--profile`. Use the authorised endpoint before transmitting credentials; keep credentials out of arguments and output.
+
+Before uploads or sends on any surface, validate the selected connection and verify its returned identity and any authorised mailbox selection against the intended account and credential. A permission grant alone does not establish the intended identity. If identity differs or cannot be verified, stop and resolve it with the user.
+
 - Do not ask the user to paste an API key.
 - Do not invent recipients, sender addresses, subject lines, or body content.
 - Send only after the user supplies or confirms every recipient and message.
