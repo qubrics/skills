@@ -167,7 +167,7 @@ When explaining registration, include this access-lifetime comparison so the rea
 | Saved agent profile | For email, read and receive mail without an expiry date while the registration remains active. The durable credential does not authorise sending or message changes. |
 | Delegated Sending token | Unavailable until the owner accepts the invitation and approves sending. After approval, `sending:*` CLI commands automatically exchange the durable credential for a one-hour `email.send` token and cache it until near expiry. |
 
-A full registration revoke removes read access, the owner link, invite/recovery handles and every derived delegated sending token.
+A full registration revoke removes read access, invite/recovery handles and every derived delegated sending token.
 
 The self-registered inbox is capped at 500 MiB before approval. Owner-approved sending first raises it to at least 5 GiB. Revoking sending does not itself change the current inbox storage allocation.
 
