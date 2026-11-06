@@ -199,7 +199,6 @@ Client notes:
 - Cursor: put project config at `.cursor/mcp.json` or global config at `~/.cursor/mcp.json`; Cursor interpolates `${env:NAME}` in `command`, `args`, `env`, `url`, and `headers`.
 - Cline IDE extension: open **Configure MCP Servers** and use literal `${env:NAME}` references in `env` or `headers`. For a remote Sendmux entry, set `type` to `streamableHttp`; omission defaults to legacy SSE.
 - Cline CLI: use the `cline mcp` wizard rather than assuming the IDE's config path or interpolation. The CLI does not expand `${env:NAME}` in MCP JSON, and a literal `env` value overrides the inherited environment. For local stdio, load the exact `SENDMUX_MAILBOX_API_KEY`, `SENDMUX_MANAGEMENT_API_KEY`, or `SENDMUX_SENDING_API_KEY` value from the secret store into Cline's environment and omit `env` from the server entry; keep `command` and `--surfaces` as needed. For hosted OAuth, use explicit `type: "streamableHttp"` and `url` with no bearer header. Do not configure a CLI local-HTTP bearer through an unexpanded secret reference.
-- Legacy Windsurf/Cascade settings: use `~/.codeium/windsurf/mcp_config.json` or **Settings** > **Tools** > **Windsurf Settings** > **Add Server**. Their HTTP config accepts `serverUrl` or `url`, and supports environment interpolation. This is not a Devin Local agent configuration.
 
 ## Claude Code
 
