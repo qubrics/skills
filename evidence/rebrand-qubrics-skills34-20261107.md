@@ -19,7 +19,8 @@ Proposed version metadata is 1.8.2. The bundle builder exposed four missing desc
 - Related existing tests passed: `node --test scripts/check-skill-drift.test.mjs scripts/mailbox-draft-contract-drift.test.mjs scripts/skill-compatibility.test.mjs`, 49 passed, 0 failed, 0 skipped.
 - Static drift passed against an immutable archive of the reviewed SDK source and the existing pinned producer exports.
 - Plugin generation and drift check passed. OpenClaw generation initially failed on missing `SENDMUX_MCP_ALLOW_UNAUTHENTICATED_HTTP` metadata; inventory identified four missing descriptions. After the metadata correction, generation and bundle check passed for all 11 skills.
-- Committed-candidate acceptance, PR CI and merge: pending at this checkpoint.
+- Existing exact checker accepted committed Skills `f17c4b0b9f6f7a73147859fdc0683894227ce2a7` against SDK `3eb0997b379d94b99659112d3c263ae59db7b14c`: 22 reviewed results across published and proposed lanes. Candidate digest: `c244a4c5a6bd34ebbb0e4419460b81da4c485856f34a93b4121e944311eb8d99`. Both `--verify-receipt` for that SDK source and `--verify-skills-receipt` for that Skills source passed. Tree digest stays `d1f44a97309ab1353ec3560941e083584ad41327221744424c43174aa5b630f2`.
+- PR CI and merge: pending at this checkpoint. Required CI generates the acceptance asset against its own immutable commit.
 
 ## Required release boundary
 
