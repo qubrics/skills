@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "kind": "compatibility",
+  "skill": "sendmux-attachments",
+  "skillDigest": "f06e0579bf0f3ee52dcffcc23393b323c5fe9050b939e2694b28731d30ca9a5e",
+  "contractDigest": "7408d16a218a8327fc1adac11c175e1dd7d902bacf09984af818f2b78f37c0d8",
+  "sourceRevisions": {
+    "app": "87ce115810ebcfa91655295603c27af52fcff96f",
+    "sending": "2f4226655efc05f109b5feda50ed2ca1570aea91",
+    "sdk": "3eb0997b379d94b99659112d3c263ae59db7b14c"
+  },
+  "reviewer": "Independent AI source reviewer /root/compatibility_review; coordinating reviewer /root",
+  "rationale": "Attachment schemas, helpers and explicit baseUrl overrides remain available. Current installation examples continue to target released packages; they do not install candidate @qubrics bytes. The independent whole-body and selected-source review is bound below. Source compatibility only: no new runtime evaluation, live origin equivalence, publication or client certification is claimed.",
+  "evidence": [
+    {
+      "path": "skills/sendmux-attachments/SKILL.md",
+      "sha256": "e11b75adf28dc87d6583cbbff09ed143d40bbf35f079a1902504e69d07ea88af"
+    },
+    {
+      "path": "evidence/skill-compatibility/reviews/rebrand-qubrics-skills34/source-review.md",
+      "sha256": "3189f361a839ca378ef33c6a5bfc2f711dfc731eeac8e5f3fd89fa57a2066364"
+    },
+    {
+      "path": "evidence/skill-compatibility/reviews/rebrand-qubrics-php4/sendmux-attachments.json",
+      "sha256": "d46c9c3039640e13dcba7c1e7a0829f4dd5dc27186ee32306bd92bb309aee802"
+    }
+  ]
+}
+

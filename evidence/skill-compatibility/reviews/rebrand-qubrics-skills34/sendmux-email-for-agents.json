@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "kind": "compatibility",
+  "skill": "sendmux-email-for-agents",
+  "skillDigest": "411f7cc5d798a8e0abc7f48dd3561adc64bf5a71435c8c9283d0943f269a6cec",
+  "contractDigest": "7264462de7365aa95d86ade75b83f2d01880de8f0ae97b5ae83642b8948c19f1",
+  "sourceRevisions": {
+    "app": "87ce115810ebcfa91655295603c27af52fcff96f",
+    "sending": "2f4226655efc05f109b5feda50ed2ca1570aea91",
+    "sdk": "3eb0997b379d94b99659112d3c263ae59db7b14c"
+  },
+  "reviewer": "Independent AI source reviewer /root/compatibility_review; coordinating reviewer /root",
+  "rationale": "Bootstrap, saved registration state, profile selection and stored endpoint boundaries are retained. Current installation examples continue to target released packages; they do not install candidate @qubrics bytes. The independent whole-body and selected-source review is bound below. Source compatibility only: no new runtime evaluation, live origin equivalence, publication or client certification is claimed.",
+  "evidence": [
+    {
+      "path": "skills/sendmux-email-for-agents/SKILL.md",
+      "sha256": "24b28b74515ea9f63221fad9739e9927baef1a34b4e414aae0df94bce9ec0f7f"
+    },
+    {
+      "path": "evidence/skill-compatibility/reviews/rebrand-qubrics-skills34/source-review.md",
+      "sha256": "3189f361a839ca378ef33c6a5bfc2f711dfc731eeac8e5f3fd89fa57a2066364"
+    },
+    {
+      "path": "evidence/skill-compatibility/reviews/rebrand-qubrics-php4/sendmux-email-for-agents.json",
+      "sha256": "9f04d430843c4edbf10e6f3668e9f8ee455b8044335d965ad1a2ac4001bd544b"
+    }
+  ]
+}
+

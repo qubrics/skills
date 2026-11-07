@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "kind": "compatibility",
+  "skill": "sendmux-management",
+  "skillDigest": "a82945bdb1521932eef71cfe05264e006ebffd52fde7859c0cc4cfedef72abea",
+  "contractDigest": "75ab7db219d7e1b42ba2e2c5bb6e5cdc501d5ec795d08a4b86ecee2f3cd4ddde",
+  "sourceRevisions": {
+    "app": "87ce115810ebcfa91655295603c27af52fcff96f",
+    "sending": "2f4226655efc05f109b5feda50ed2ca1570aea91",
+    "sdk": "3eb0997b379d94b99659112d3c263ae59db7b14c"
+  },
+  "reviewer": "Independent AI source reviewer /root/compatibility_review; coordinating reviewer /root",
+  "rationale": "Management operations, permission guidance, root-kind configuration and auth-provider behaviour are retained. Current installation examples continue to target released packages; they do not install candidate @qubrics bytes. The independent whole-body and selected-source review is bound below. Source compatibility only: no new runtime evaluation, live origin equivalence, publication or client certification is claimed.",
+  "evidence": [
+    {
+      "path": "skills/sendmux-management/SKILL.md",
+      "sha256": "d6cb879e97cc0e374d9d50e1c7523f1099e6ad6753f2d0df49f54e02241442bc"
+    },
+    {
+      "path": "evidence/skill-compatibility/reviews/rebrand-qubrics-skills34/source-review.md",
+      "sha256": "3189f361a839ca378ef33c6a5bfc2f711dfc731eeac8e5f3fd89fa57a2066364"
+    },
+    {
+      "path": "evidence/skill-compatibility/reviews/rebrand-qubrics-php4/sendmux-management.json",
+      "sha256": "0599aa198758371cfc52bd53ad0d6be83db225b1f720c639b83a40dcd15704a3"
+    }
+  ]
+}
+

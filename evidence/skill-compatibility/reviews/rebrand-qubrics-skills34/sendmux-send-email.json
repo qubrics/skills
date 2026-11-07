@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "kind": "compatibility",
+  "skill": "sendmux-send-email",
+  "skillDigest": "853bac285313fe319a7bf94bf67636793a818e7d616a8938bb81b33ef460ccb3",
+  "contractDigest": "ad42fc4c264f1f66abca1cef3db32ff1b22fb49f67748a210850ed5e07bf422a",
+  "sourceRevisions": {
+    "app": "87ce115810ebcfa91655295603c27af52fcff96f",
+    "sending": "2f4226655efc05f109b5feda50ed2ca1570aea91",
+    "sdk": "3eb0997b379d94b99659112d3c263ae59db7b14c"
+  },
+  "reviewer": "Independent AI source reviewer /root/compatibility_review; coordinating reviewer /root",
+  "rationale": "Sending resource exchange, mutually exclusive auth providers, send operations and authority boundaries are retained. Current installation examples continue to target released packages; they do not install candidate @qubrics bytes. The independent whole-body and selected-source review is bound below. Source compatibility only: no new runtime evaluation, live origin equivalence, publication or client certification is claimed.",
+  "evidence": [
+    {
+      "path": "skills/sendmux-send-email/SKILL.md",
+      "sha256": "4f6fd2badf1166cbe029b0cf3687c4ae50b183b140f9b985dc8e09ebd4412e72"
+    },
+    {
+      "path": "evidence/skill-compatibility/reviews/rebrand-qubrics-skills34/source-review.md",
+      "sha256": "3189f361a839ca378ef33c6a5bfc2f711dfc731eeac8e5f3fd89fa57a2066364"
+    },
+    {
+      "path": "evidence/skill-compatibility/reviews/rebrand-qubrics-php4/sendmux-send-email.json",
+      "sha256": "135a078adff1efbc5801049bf0d91d7162dbbcbd363f9acbff0a5c6bb3438411"
+    }
+  ]
+}
+

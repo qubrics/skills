@@ -2,7 +2,7 @@
   "owner": "sendmux.ai",
   "outputRoot": "dist/clawhub/skills",
   "homepage": "https://github.com/Sendmux/skills",
-  "version": "1.8.1",
+  "version": "1.8.2",
   "releaseTags": ["latest"],
   "manualListing": {
     "license": "MIT-0",
@@ -29,7 +29,11 @@
     "SENDMUX_MAILBOX_API_KEY": "Optional mailbox key for the Mailbox surface in the combined MCP server.",
     "SENDMUX_MANAGEMENT_API_KEY": "Optional root key for the Management surface in the combined MCP server.",
     "SENDMUX_SENDING_API_KEY": "Optional send-capable mailbox key or owner-approved agent token for the Sending MCP surface.",
-    "SENDMUX_MCP_HTTP_BEARER_TOKEN": "Optional bearer token expected by the local HTTP MCP server."
+    "SENDMUX_MCP_HTTP_BEARER_TOKEN": "Optional bearer token expected by the local HTTP MCP server.",
+    "SENDMUX_MCP_OPENAPI_INPUT_DIR": "Schema directory override. Leave unset in this workflow.",
+    "SENDMUX_MCP_APP_OPENAPI": "App schema override. Leave unset in this workflow.",
+    "SENDMUX_MCP_SENDING_OPENAPI": "Sending schema override. Leave unset in this workflow.",
+    "SENDMUX_MCP_ALLOW_UNAUTHENTICATED_HTTP": "Disables HTTP authentication when enabled. Leave unset in this workflow."
   },
   "skills": {
     "sendmux-attachments": {

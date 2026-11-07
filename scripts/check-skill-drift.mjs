@@ -111,11 +111,11 @@ const allowedSkillOnlyEnv = new Set(["SENDMUX_ROOT_KEY", "SENDMUX_MBX_KEY"]);
 const allowedUnderscoreIdentifiers = new Set(["mailbox_id"]);
 
 const tsPackages = {
-  "packages/ts/sdk/package.json": "@sendmux/sdk",
-  "packages/ts/sending/package.json": "@sendmux/sending",
-  "packages/ts/mailbox/package.json": "@sendmux/mailbox",
-  "packages/ts/management/package.json": "@sendmux/management",
-  "packages/ts/cli/package.json": "@sendmux/cli",
+  "packages/ts/sdk/package.json": ["@sendmux/sdk", "@qubrics/sdk"],
+  "packages/ts/sending/package.json": ["@sendmux/sending", "@qubrics/sending"],
+  "packages/ts/mailbox/package.json": ["@sendmux/mailbox", "@qubrics/mailbox"],
+  "packages/ts/management/package.json": ["@sendmux/management", "@qubrics/management"],
+  "packages/ts/cli/package.json": ["@sendmux/cli", "@qubrics/cli"],
 };
 
 const phpPackages = {
@@ -976,8 +976,9 @@ function assertPackageNames(root, packages, readName) {
     const filePath = fullPath(root, relativePath);
     const actualName = readName(filePath);
     if (!actualName) continue;
-    if (actualName !== expectedName) {
-      fail(`${relativePath} expected name ${expectedName}, found ${actualName}`);
+    const expectedNames = [expectedName].flat();
+    if (!expectedNames.includes(actualName)) {
+      fail(`${relativePath} expected name ${expectedNames.join(" or ")}, found ${actualName}`);
     }
   }
 }
@@ -1237,8 +1238,8 @@ function assertCliPackage() {
   const cliPackage = readJson(cliPackagePath);
   if (!cliPackage) return;
 
-  if (cliPackage.name !== "@sendmux/cli") {
-    fail(`CLI package expected @sendmux/cli, found ${cliPackage.name}`);
+  if (cliPackage.name === "@qubrics/cli" && !cliPackage.bin?.qubrics) {
+    fail(`CLI package missing bin.qubrics in ${cliPackagePath}`);
   }
   if (!cliPackage.bin?.sendmux) {
     fail(`CLI package missing bin.sendmux in ${cliPackagePath}`);

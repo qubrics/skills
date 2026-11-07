@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "kind": "compatibility",
+  "skill": "sendmux-getting-started",
+  "skillDigest": "aec42bf3c8c21038749fbef5d3753bd689bf74edfcabd79c56b500ea6bf2e21b",
+  "contractDigest": "30aecf506069ce2fdab897e6af2da91f51de71a155fd27194ef3cd0cbc887b1b",
+  "sourceRevisions": {
+    "app": "87ce115810ebcfa91655295603c27af52fcff96f",
+    "sending": "2f4226655efc05f109b5feda50ed2ca1570aea91",
+    "sdk": "3eb0997b379d94b99659112d3c263ae59db7b14c"
+  },
+  "reviewer": "Independent AI source reviewer /root/compatibility_review; coordinating reviewer /root",
+  "rationale": "Factories retain methods and explicit origins; Python MCP package and console scripts retain their existing identities. Current installation examples continue to target released packages; they do not install candidate @qubrics bytes. The independent whole-body and selected-source review is bound below. Source compatibility only: no new runtime evaluation, live origin equivalence, publication or client certification is claimed.",
+  "evidence": [
+    {
+      "path": "skills/sendmux-getting-started/SKILL.md",
+      "sha256": "d407453b70a792838608009e21f8bb08b2ced99f8bdc0def544215da6a7596fb"
+    },
+    {
+      "path": "evidence/skill-compatibility/reviews/rebrand-qubrics-skills34/source-review.md",
+      "sha256": "3189f361a839ca378ef33c6a5bfc2f711dfc731eeac8e5f3fd89fa57a2066364"
+    },
+    {
+      "path": "evidence/skill-compatibility/reviews/rebrand-qubrics-php4/sendmux-getting-started.json",
+      "sha256": "fbd5d7cdd11cded0b61b8ea8c08d1643da7165004cfe7600c4153dafd7059594"
+    }
+  ]
+}
+
