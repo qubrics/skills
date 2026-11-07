@@ -574,6 +574,54 @@ test("requires usable MCP contract fields without trusting compatibility aliases
   assert.equal(declaredTotalResult.status, 0, declaredTotalResult.stderr);
 });
 
+test("accepts both TS package identities while retaining both renamed CLI launchers", (t) => {
+  const fixture = makeContractFixture(t);
+  const packages = ["sdk", "sending", "mailbox", "management", "cli"];
+  const cliPath = path.join(fixture.sdkRoot, "packages/ts/cli/package.json");
+
+  for (const scope of ["sendmux", "qubrics"]) {
+    for (const name of packages) {
+      mutateJson(
+        path.join(fixture.sdkRoot, `packages/ts/${name}/package.json`),
+        (pkg) => {
+          pkg.name = `@${scope}/${name}`;
+          if (name === "cli") {
+            pkg.bin = { qubrics: "./bin/run.js", sendmux: "./bin/sendmux.js" };
+          }
+        },
+      );
+    }
+    const result = runFixtureChecker(fixture);
+    assert.equal(result.status, 0, result.stderr);
+  }
+
+  mutateJson(cliPath, (pkg) => {
+    delete pkg.bin.qubrics;
+  });
+  const missingPrimary = runFixtureChecker(fixture);
+  assert.equal(missingPrimary.status, 1);
+  assert.match(missingPrimary.stderr, /CLI package missing bin.qubrics/);
+
+  mutateJson(cliPath, (pkg) => {
+    pkg.bin.qubrics = "./bin/run.js";
+    delete pkg.bin.sendmux;
+  });
+  const missingLegacy = runFixtureChecker(fixture);
+  assert.equal(missingLegacy.status, 1);
+  assert.match(missingLegacy.stderr, /CLI package missing bin.sendmux/);
+
+  mutateJson(cliPath, (pkg) => {
+    pkg.bin.sendmux = "./bin/sendmux.js";
+    pkg.name = "@other/cli";
+  });
+  const unknownName = runFixtureChecker(fixture);
+  assert.equal(unknownName.status, 1);
+  assert.match(
+    unknownName.stderr,
+    /expected name @sendmux\/cli or @qubrics\/cli, found @other\/cli/,
+  );
+});
+
 test("rejects a stale v2 Go module after accepting the v3 producer", (t) => {
   const fixture = makeContractFixture(t);
   const baseline = runFixtureChecker(fixture);

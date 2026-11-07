@@ -2409,11 +2409,88 @@
       "contractDigest": "a1888741fffcf3c8a3ff751f756f63ca950c5e81d3b58799b701e677f013e13f",
       "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-php4/agent-email-inbox-app1485.json",
       "sha256": "79d36e43277af3d986d0cfc58cb1639edc5e9b8644bf7af4f19555e4ff8fdc43"
+    },
+    {
+      "skill": "agent-email-inbox",
+      "skillDigest": "956a19a3f81906299d19f35afa0a8dba4a5bd1f1275a45d02ba1d407579f0347",
+      "contractDigest": "ff9bbe9c4e919ceac5310b94e501b49902514a69be84d7e96666628da315693b",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-skills34/agent-email-inbox.json",
+      "sha256": "cbc8ca50bcbf1f34be7b56b26e2a4e32e6332ace77619ff1b964e1c1038e557d"
+    },
+    {
+      "skill": "email-for-ai-agents",
+      "skillDigest": "6f2c0908457404bb6aacc4cdcf18ce49b9054cbd873939b7b3e417224fd4d1d9",
+      "contractDigest": "34abd6b8b1d1020b8f52f33749898bc6a0deda7ee7e0c75fc0e362e7217ca993",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-skills34/email-for-ai-agents.json",
+      "sha256": "905ddba7fc812ca698fb92478f86af5476d70e5dd7070317936238c8ded6b9a2"
+    },
+    {
+      "skill": "sendmux-attachments",
+      "skillDigest": "f06e0579bf0f3ee52dcffcc23393b323c5fe9050b939e2694b28731d30ca9a5e",
+      "contractDigest": "7408d16a218a8327fc1adac11c175e1dd7d902bacf09984af818f2b78f37c0d8",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-skills34/sendmux-attachments.json",
+      "sha256": "0f53edbf026d8c44179d719d937bf8e62853d9787931b55cb3c0bfa7069ba31a"
+    },
+    {
+      "skill": "sendmux-cli",
+      "skillDigest": "79f22216d882af6ffa0c246f01204e4f4537065368e15027f7a9f08c931db929",
+      "contractDigest": "cd2f5d905c533639d3adcebf71f480fcf47ee37f5c051aa52137ee6813191e77",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-skills34/sendmux-cli.json",
+      "sha256": "b1ba88165cf8cfe98b00b2fc740bc7f01a2b5c9052bebd0f414e08ea7a2969e5"
+    },
+    {
+      "skill": "sendmux-email-for-agents",
+      "skillDigest": "411f7cc5d798a8e0abc7f48dd3561adc64bf5a71435c8c9283d0943f269a6cec",
+      "contractDigest": "7264462de7365aa95d86ade75b83f2d01880de8f0ae97b5ae83642b8948c19f1",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-skills34/sendmux-email-for-agents.json",
+      "sha256": "c0aed66477576e78cde9aa3580df09cf87445cae3e1a9ae276809b70b425ef3a"
+    },
+    {
+      "skill": "sendmux-getting-started",
+      "skillDigest": "aec42bf3c8c21038749fbef5d3753bd689bf74edfcabd79c56b500ea6bf2e21b",
+      "contractDigest": "30aecf506069ce2fdab897e6af2da91f51de71a155fd27194ef3cd0cbc887b1b",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-skills34/sendmux-getting-started.json",
+      "sha256": "c13e01e17f5711d5067da224c06b43589b9de49288b013d4dcd0f2472a2f7b6b"
+    },
+    {
+      "skill": "sendmux-mailbox-agent",
+      "skillDigest": "a3e2ba98b2f049335b02ebb3f3ea25b44e4c1c93878160273250222bb693a08a",
+      "contractDigest": "99693eaa313cb4f5ab7e17c015abf490dcf23e9fdc25906fb86df57b5c79a5d1",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-skills34/sendmux-mailbox-agent.json",
+      "sha256": "fced619f41b969196b8210156e6a3cf27dbbd080713d39fa46b821a9237954f1"
+    },
+    {
+      "skill": "sendmux-management",
+      "skillDigest": "a82945bdb1521932eef71cfe05264e006ebffd52fde7859c0cc4cfedef72abea",
+      "contractDigest": "75ab7db219d7e1b42ba2e2c5bb6e5cdc501d5ec795d08a4b86ecee2f3cd4ddde",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-skills34/sendmux-management.json",
+      "sha256": "3103a7aab1cb6c8bb9271c3090284b3f2615d69933b2e386dbb4563df80d44dc"
+    },
+    {
+      "skill": "sendmux-mcp-setup",
+      "skillDigest": "cabb71c6b068c8223d53e0ea5e0a39c788e1bff606b5fdfb48b141e6c530c224",
+      "contractDigest": "fb111c51163d41772dff1a6d370421a4b3aca91d489521dfbe1b5dcf53da4cd5",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-skills34/sendmux-mcp-setup.json",
+      "sha256": "b1cafe70b1b3d730a21433dfe72ce68d26bf8006b44e4ce62749feca85ab9c6f"
+    },
+    {
+      "skill": "sendmux-send-email",
+      "skillDigest": "853bac285313fe319a7bf94bf67636793a818e7d616a8938bb81b33ef460ccb3",
+      "contractDigest": "ad42fc4c264f1f66abca1cef3db32ff1b22fb49f67748a210850ed5e07bf422a",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-skills34/sendmux-send-email.json",
+      "sha256": "7e71fed48826130c4cb8b2a3ac03a471b1c61cfaff1fb42bb61a22d71bd0fb60"
+    },
+    {
+      "skill": "sendmux-token-efficient-usage",
+      "skillDigest": "ece1d30c9a91b3b24376c0ab41d991741b60f9314064da63b0f74da35104a3cb",
+      "contractDigest": "52f8e4f095fad9f160997a895b837212b96a01feedb4d7994fc59b146fa1f392",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-skills34/sendmux-token-efficient-usage.json",
+      "sha256": "4c2001b048b65ad270ee437c903861d05a9521c187b506512a07d6b3b28775f8"
     }
   ],
   "releaseInputs": {
-    "publishedRevision": "fc7c11647c3bb9f6ba80e0aa6679ad6895d94ce1",
-    "sdkRevision": "73bedb8b0005e96e580e39cca4aac6bd030753a5",
+    "publishedRevision": "edc201aa0608a795f0aeddc14be25b6a641d57e8",
+    "sdkRevision": "3eb0997b379d94b99659112d3c263ae59db7b14c",
     "app": {
       "revision": "87ce115810ebcfa91655295603c27af52fcff96f",
       "openapi": "evidence/skill-compatibility/contracts/calendar-20261030/app-openapi.json",
