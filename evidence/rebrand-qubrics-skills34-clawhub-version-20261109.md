@@ -29,6 +29,10 @@ Both failures were the missing `--version 1.8.2`, rather than a fixture or depen
 
 After the fix: `node --test scripts/publish-openclaw-bundle.test.mjs` exited 0; 8 passed, 0 failed, 0 skipped. `git diff --check` exited 0. No tests removed or assertions weakened. No local `check:fast` script exists; the focused existing test file is the local gate, and existing Plugin bundles CI carries these tests.
 
+PR #43's first [CI run 42559856586](https://github.com/qubrics/skills/actions/runs/42559856586) found one additional fixture dependency in `workflow-boundaries.test.mjs:349`: expected `["--owner", "sendmux.ai", "--json"]`, actual added `["--version", "undefined"]`. Its fixture configuration at line 69 omitted `version`; the old exact-argv expectation also omitted the newly required flag. All other 25 tests passed. Full failed-job log: `.claude/artifacts/rebrand-qubrics-skills34/clawhub-version-ci-42559856586.log` in MAIN.
+
+The fixture now supplies version `1.8.2` and its exact command assertion requires that version. Existing credential, file-permission and teardown assertions remain intact. The previously failing case passed locally with `node --test --test-name-pattern='ClawHub publish reads an owner-only ephemeral config without secret argv' scripts/workflow-boundaries.test.mjs`: exit 0, 1 passed, 0 failed, 0 skipped; fixture processes and temporary credentials were verified gone by the existing test. This corrects the fixture to the approved CLI contract; no retry or threshold change. Independent Standards and Spec reviews of the initial code/evidence commit each reported 0 findings; the fixture correction is also reviewed in the final diff.
+
 ## Publication boundary and rollback
 
 No real ClawHub command, login, upload, release, tag, marketplace update or SDK workflow was run. Workflow state was read through GitHub and remains `disabled_manually`; this PR does not change workflow configuration. No `skills/**` path or version metadata changes, so the Notify SITE path trigger is untouched.

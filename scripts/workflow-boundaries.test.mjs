@@ -66,7 +66,7 @@ function makeClawhubFixture() {
   copyFileSync("scripts/publish-openclaw-bundle.mjs", path.join(repo, "scripts", "publish-openclaw-bundle.mjs"));
   writeFileSync(
     path.join(repo, "openclaw.skills.json"),
-    `${JSON.stringify({ owner: "sendmux.ai", outputRoot: "dist/clawhub/skills" })}\n`,
+    `${JSON.stringify({ owner: "sendmux.ai", outputRoot: "dist/clawhub/skills", version: "1.8.2" })}\n`,
   );
   writeFileSync(path.join(repo, "dist", "clawhub", "skills", "sendmux-test", "SKILL.md"), "test\n");
   writeExecutable(
@@ -346,7 +346,7 @@ test("ClawHub publish reads an owner-only ephemeral config without secret argv",
     realpathSync(receipt.argv[2]),
     realpathSync(path.join(fixture.repo, "dist", "clawhub", "skills", "sendmux-test")),
   );
-  assert.deepEqual(receipt.argv.slice(3), ["--owner", "sendmux.ai", "--json"]);
+  assert.deepEqual(receipt.argv.slice(3), ["--owner", "sendmux.ai", "--version", "1.8.2", "--json"]);
   assertSecretAbsent(result);
   assert.equal(existsSync(path.dirname(receipt.configPath)), false);
   assert.equal(isPidRunning(result.pid), false);
