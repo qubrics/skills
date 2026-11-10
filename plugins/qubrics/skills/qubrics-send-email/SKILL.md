@@ -156,18 +156,12 @@ qubrics sending:send \
 
 The owner must already have accepted the invitation and approved sending. The CLI obtains and caches the short-lived delegated token; the durable read credential is not used directly by the Sending API.
 
-One email:
+One email, using a prepared JSON file readable only by its owner (mode `0600`):
 
 ```bash
 QUBRICS_API_KEY="$QUBRICS_MBX_KEY" qubrics sending:send \
   --idempotency-key "$IDEMPOTENCY_KEY" \
-  --body '{
-    "from": { "email": "sender@example.com", "name": "Sender Name" },
-    "to": { "email": "recipient@example.com", "name": "Recipient Name" },
-    "subject": "Subject line",
-    "html_body": "<p>Hello.</p>",
-    "text_body": "Hello."
-  }' \
+  --body-file ./qubrics-email.json \
   --json
 ```
 
@@ -180,7 +174,7 @@ QUBRICS_API_KEY="$QUBRICS_MBX_KEY" qubrics sending:send:batch \
   --json
 ```
 
-Use `--attach ./file.pdf` for local files; the CLI uploads bytes first and injects `attachment_id` refs before sending. Use `--body-file` for larger JSON payloads or already-prepared Sending API attachment objects.
+Use the same owner-only permissions for batch JSON. Remove message files when the authorised task ends. `--body-file` keeps recipients and message content out of process arguments. Use `--attach ./file.pdf` for local files; the CLI uploads bytes first and injects `attachment_id` refs before sending.
 
 ## TypeScript SDK
 

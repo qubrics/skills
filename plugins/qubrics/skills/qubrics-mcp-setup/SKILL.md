@@ -64,6 +64,8 @@ Standard dynamic client registration can omit `resource`; that produces a valid 
 
 ## Candidate source surface map
 
+Use the connected server's public tool discovery before choosing a tool below. If it does not expose the tool, use an available tool or the documented CLI/TypeScript route. The unpublished source catalogue does not establish installed-server support.
+
 | Surface    | Key                                                                     | Tool count | Example tools                                                                                                                                         |
 | ---------- | ----------------------------------------------------------------------- | ---------: | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Mailbox    | `smx_mbx_` or scoped `smx_agent_`                                       |         92 | `mailbox_list_granted_mailboxes`, `mailbox_search_message_snippets`, `mailbox_get_attachment`, `mailbox_upload_attachment`, `mailbox_wait_for_message` |
