@@ -23,7 +23,7 @@ const sdkRoot =
   "/Users/rj/Desktop/GIT-REPOS/sendmux-sdk";
 function mcpSourceRoot(root) {
   const project = readFileSync(path.join(root, "packages/python/mcp/pyproject.toml"), "utf8").split(/^\[project\][ \t]*$/m)[1]?.split(/^\[/m)[0];
-  const name = project?.match(/^name[ \t]*=[ \t]*["']([^"']+)["']/m)?.[1];
+  const name = project?.match(/^name[ \t]*=[ \t]*(["'])([^"'\r\n]+)\1[ \t]*(?:#.*)?$/m)?.[2];
   assert.ok(name === "sendmux-mcp" || name === "qubrics-mcp", "fixture requires a supported MCP identity");
   return `packages/python/mcp/${name === "qubrics-mcp" ? "qubrics/mcp" : "sendmux_mcp"}`;
 }
@@ -264,6 +264,14 @@ test("MCP Python roots follow exact project identities and reject unknown names 
   const legacyRoot = path.join(fixture.sdkRoot, "packages/python/mcp/sendmux_mcp");
   renameSync(path.join(fixture.sdkRoot, canonicalRoot), legacyRoot);
   replaceFixtureText(pyproject, 'name = "qubrics-mcp"', 'name = "sendmux-mcp"');
+  result = runFixtureChecker(fixture);
+  assert.equal(result.status, 0, result.stderr);
+
+  replaceFixtureText(pyproject, 'name = "sendmux-mcp"', 'name = "sendmux-mcp" trailing');
+  result = runFixtureChecker(fixture);
+  assert.equal(result.status, 1, "malformed project identity must fail closed");
+  assert.match(result.stderr, /Unsupported MCP project.name: null/);
+  replaceFixtureText(pyproject, 'name = "sendmux-mcp" trailing', 'name = "sendmux-mcp" # valid comment');
   result = runFixtureChecker(fixture);
   assert.equal(result.status, 0, result.stderr);
 

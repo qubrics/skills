@@ -184,12 +184,12 @@
       "install": [
         {
           "kind": "uv",
-          "package": "sendmux-mcp",
+          "package": "qubrics-mcp",
           "bins": [
-            "sendmux-mcp",
-            "sendmux-mcp-mailbox",
-            "sendmux-mcp-management",
-            "sendmux-mcp-sending"
+            "qubrics-mcp",
+            "qubrics-mcp-mailbox",
+            "qubrics-mcp-management",
+            "qubrics-mcp-sending"
           ]
         }
       ]

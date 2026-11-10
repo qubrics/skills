@@ -1003,12 +1003,12 @@ function jsonPackageName(filePath) {
 
 function tomlProjectName(filePath) {
   const project = readText(filePath).split(/^\[project\][ \t]*$/m)[1]?.split(/^\[/m)[0];
-  const match = project?.match(/^name[ \t]*=[ \t]*["']([^"']+)["']/m);
+  const match = project?.match(/^name[ \t]*=[ \t]*(["'])([^"'\r\n]+)\1[ \t]*(?:#.*)?$/m);
   if (!match) {
     fail(`Missing project name in ${filePath}`);
     return null;
   }
-  return match[1];
+  return match[2];
 }
 
 function rubyGemspecName(filePath) {
