@@ -94,13 +94,22 @@ function producerContract(name, source, base) {
   return { contract, policy: policy?.fingerprints, identity: { revision, sourceTree: receipt.sourceTree, lockfileSha256: receipt.lockfileSha256, openapiSha256: receipt.openapiSha256, ...(policy ? { policySha256: receipt.policySha256 } : {}) } };
 }
 
+function pythonPackage(source, component) {
+  const project = source.read(`packages/python/${component}/pyproject.toml`).split(/^\[project\][ \t]*$/m)[1]?.split(/^\[/m)[0];
+  const name = project?.match(/^name[ \t]*=[ \t]*(["'])([^"'\r\n]+)\1[ \t]*(?:#.*)?$/m)?.[2];
+  assert(name === `sendmux-${component}` || name === `qubrics-${component}`, `Unsupported ${component === "mcp" ? "MCP" : component} project.name: expected sendmux-${component} or qubrics-${component}`);
+  return { name, root: `packages/python/${component}/${name.startsWith("qubrics-") ? `qubrics/${component}` : `sendmux_${component}`}` };
+}
+
+function pythonSourceFile(source, file) {
+  const match = /^packages\/python\/(core|mailbox|sending|mcp)\/(?:sendmux_\1|qubrics\/\1)\/(.+)$/.exec(safePath(file));
+  return match ? `${pythonPackage(source, match[1]).root}/${match[2]}` : file;
+}
+
 function sdkContracts(source, base) {
   assert(source?.root, "Missing SDK source");
   const sdk = committed(resolve(base, source.root), source.revision);
-  const project = sdk.read("packages/python/mcp/pyproject.toml").split(/^\[project\][ \t]*$/m)[1]?.split(/^\[/m)[0];
-  const packageName = project?.match(/^name[ \t]*=[ \t]*["'](sendmux-mcp|qubrics-mcp)["']/m)?.[1];
-  assert(packageName, "Unsupported MCP project.name: expected sendmux-mcp or qubrics-mcp");
-  const mcpRoot = `packages/python/mcp/${packageName === "qubrics-mcp" ? "qubrics/mcp" : "sendmux_mcp"}`;
+  const { root: mcpRoot } = pythonPackage(sdk, "mcp");
   const mcp = JSON.parse(sdk.read(`${mcpRoot}/mcp-contract.json`));
   assert(Object.keys(mcp.tools?.by_surface ?? {}).length > 0, "Missing MCP tool contract");
   assert(Object.keys(mcp.provenance?.sources ?? {}).length > 0, "Missing MCP contract provenance");
@@ -214,7 +223,10 @@ function selectedContracts(mapping, contracts) {
     }));
     selected.cliGlobals = declaration(contracts.source.read(`${cliRoot}/base-command.ts`), "authFlags");
   }
-  if (mapping.public) selected.public = Object.fromEntries(Object.entries(mapping.public).map(([file, names]) => [file, Object.fromEntries(names.map((name) => [name, declaration(contracts.source.read(safePath(file)), name, file)]))]));
+  if (mapping.public) selected.public = Object.fromEntries(Object.entries(mapping.public).map(([file, names]) => {
+    const selectedFile = pythonSourceFile(contracts.source, file);
+    return [selectedFile, Object.fromEntries(names.map((name) => [name, declaration(contracts.source.read(selectedFile), name, selectedFile)]))];
+  }));
   if (mapping.packageJson) selected.packageJson = Object.fromEntries(Object.entries(mapping.packageJson).map(([file, pointers]) => {
     const manifest = JSON.parse(contracts.source.read(safePath(file)));
     return [file, Object.fromEntries(pointers.map((pointer) => {
@@ -229,9 +241,10 @@ function selectedContracts(mapping, contracts) {
     assert(section, `Missing Python console scripts: ${file}`);
     return [file, Object.fromEntries(names.map((name) => {
       assert(/^[A-Za-z0-9_-]+$/.test(name), "Invalid Python console script selector");
-      const entry = new RegExp(`^${name}\\s*=\\s*(["'])([^\\n]*?)\\1\\s*(?:#.*)?$`, "m").exec(section);
-      assert(entry?.[2], `Missing Python console script: ${name}`);
-      return [name, entry[2]];
+      const selectedName = file === "packages/python/mcp/pyproject.toml" ? name.replace(/^(?:sendmux|qubrics)-mcp(?=-|$)/, pythonPackage(contracts.source, "mcp").name) : name;
+      const entry = new RegExp(`^${selectedName}\\s*=\\s*(["'])([^\\n]*?)\\1\\s*(?:#.*)?$`, "m").exec(section);
+      assert(entry?.[2], `Missing Python console script: ${selectedName}`);
+      return [selectedName, entry[2]];
     }))];
   }));
   assert(Object.keys(selected).length > 0, "Missing dependency selectors");

@@ -164,6 +164,54 @@ test("MCP namespace selection rejects missing or unsupported project identity", 
   }
 });
 
+test("canonical Python selectors retain legacy acceptance and bind renamed public paths and scripts", (t) => {
+  const f = fixture(t);
+  const components = ["mailbox", "sending", "core", "mcp"];
+  const files = ["mailbox/attachments.py", "mailbox/client.py", "sending/attachments.py", "sending/client.py", "core/auth.py", "mcp/config.py", "mcp/cli.py"];
+  const scripts = ["", "-mailbox", "-management", "-sending", "-hosted"];
+  const project = (component, brand) => `[project]\nname = "${brand}-${component}"\n` + (component === "mcp" ? `[project.scripts]\n${scripts.map((suffix) => `${brand}-mcp${suffix} = "${brand === "qubrics" ? "qubrics.mcp" : "sendmux_mcp"}.cli:main"`).join("\n")}\n` : "");
+  for (const component of components) {
+    mkdirSync(join(f.sdk, `packages/python/${component}/sendmux_${component}`), { recursive: true });
+    writeFileSync(join(f.sdk, `packages/python/${component}/pyproject.toml`), project(component, "sendmux"));
+  }
+  for (const file of files) {
+    const [component, name] = file.split("/");
+    writeFileSync(join(f.sdk, `packages/python/${component}/sendmux_${component}/${name}`), "def selected(limit=100):\n    return limit\n");
+  }
+  f.policy.dependencies["agent-email-inbox"].public = Object.fromEntries(files.map((file) => {
+    const [component, name] = file.split("/");
+    return [`packages/python/${component}/qubrics/${component}/${name}`, ["selected"]];
+  }));
+  f.policy.dependencies["agent-email-inbox"].pythonScripts = { "packages/python/mcp/pyproject.toml": scripts.map((suffix) => `qubrics-mcp${suffix}`) };
+  json(join(f.skills, "skill-compatibility.json"), f.policy);
+  f.descriptor.skills.proposedRevision = f.commit(f.skills);
+  f.descriptor.sources.sdk.revision = f.commit(f.sdk); f.save();
+  const legacy = f.inspect(); f.review();
+  assert.equal(f.run("--candidate", f.candidate, "--receipt", f.receipt).status, 0);
+  for (const component of components) {
+    const directory = join(f.sdk, `packages/python/${component}`);
+    mkdirSync(join(directory, "qubrics"));
+    renameSync(join(directory, `sendmux_${component}`), join(directory, `qubrics/${component}`));
+    writeFileSync(join(directory, "pyproject.toml"), project(component, "qubrics"));
+  }
+  f.descriptor.sources.sdk.revision = f.commit(f.sdk); f.save();
+  const renamed = f.inspect();
+  assert.notEqual(renamed.skills.proposed.entries.find((entry) => entry.name === "agent-email-inbox").contractDigest, legacy.skills.proposed.entries.find((entry) => entry.name === "agent-email-inbox").contractDigest);
+  let result = f.run("--candidate", f.candidate, "--receipt", f.receipt);
+  assert.notEqual(result.status, 0); assert.match(result.stderr, /compatibility review or workflow evidence/);
+  f.policy.reviews = []; f.review();
+  result = f.run("--candidate", f.candidate, "--receipt", f.receipt);
+  assert.equal(result.status, 0, result.stderr);
+  const pinned = f.inspect();
+  writeFileSync(join(f.sdk, "packages/python/mailbox/pyproject.toml"), project("mailbox", "sendmux"));
+  assert.deepEqual(f.inspect(), pinned);
+  writeFileSync(join(f.sdk, "packages/python/mailbox/pyproject.toml"), project("mailbox", "qubrics"));
+  writeFileSync(join(f.sdk, "packages/python/mcp/pyproject.toml"), project("mcp", "qubrics").replace("qubrics.mcp.cli:main", "qubrics.mcp.other:main"));
+  f.descriptor.sources.sdk.revision = f.commit(f.sdk); f.save();
+  result = f.run("--candidate", f.candidate, "--receipt", f.receipt);
+  assert.notEqual(result.status, 0); assert.match(result.stderr, /compatibility review or workflow evidence/);
+});
+
 test("a changed API limit blocks a hash-only refresh", (t) => {
   const f = fixture(t); f.review();
   const source = f.descriptor.sources.app;
@@ -400,6 +448,7 @@ test("selected SDK helpers and custom CLI commands require review when their beh
   const classFile = "packages/ts/cli/src/base-command.ts";
   const commandFile = "packages/ts/cli/src/commands/profiles/set.ts";
   const writeSdk = (file, text) => { mkdirSync(dirname(join(f.sdk, file)), { recursive: true }); writeFileSync(join(f.sdk, file), text); };
+  writeSdk("packages/python/mailbox/pyproject.toml", '[project]\nname = "sendmux-mailbox"\n');
   writeSdk(pythonFile, 'def read_attachment(limit=100):\n    return limit\n\ndef unrelated():\n    return 1\n');
   const classText = 'export const authFlags = { "api-key": "Sendmux API key" };\nexport abstract class SendmuxCommand {\n  limit = 100;\n}\n';
   writeSdk(classFile, classText);

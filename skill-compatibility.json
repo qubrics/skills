@@ -267,7 +267,7 @@
           "sendEmailWithFiles",
           "uploadAttachmentFromFile"
         ],
-        "packages/python/mailbox/sendmux_mailbox/attachments.py": [
+        "packages/python/mailbox/qubrics/mailbox/attachments.py": [
           "_read_attachment_file",
           "_send_mailbox_message_body",
           "download_mailbox_attachment",
@@ -275,7 +275,7 @@
           "send_mailbox_message_with_files",
           "upload_mailbox_attachment_from_file"
         ],
-        "packages/python/sending/sendmux_sending/attachments.py": [
+        "packages/python/sending/qubrics/sending/attachments.py": [
           "_MAX_SENDING_ATTACHMENTS",
           "_MAX_SENDING_ATTACHMENT_BYTES",
           "_email_send_request",
@@ -283,15 +283,15 @@
           "send_email_with_files",
           "upload_attachment_from_file"
         ],
-        "packages/python/mailbox/sendmux_mailbox/client.py": [
+        "packages/python/mailbox/qubrics/mailbox/client.py": [
           "DEFAULT_BASE_URL",
           "create_mailbox_client"
         ],
-        "packages/python/sending/sendmux_sending/client.py": [
+        "packages/python/sending/qubrics/sending/client.py": [
           "DEFAULT_BASE_URL",
           "create_sending_client"
         ],
-        "packages/python/core/sendmux_core/auth.py": [
+        "packages/python/core/qubrics/core/auth.py": [
           "configure_auth",
           "validate_api_key",
           "validate_auth"
@@ -849,7 +849,7 @@
       },
       "pythonScripts": {
         "packages/python/mcp/pyproject.toml": [
-          "sendmux-mcp"
+          "qubrics-mcp"
         ]
       }
     },
@@ -1121,7 +1121,7 @@
           "sendEmailWithFiles",
           "uploadAttachmentFromFile"
         ],
-        "packages/python/mailbox/sendmux_mailbox/attachments.py": [
+        "packages/python/mailbox/qubrics/mailbox/attachments.py": [
           "_read_attachment_file",
           "_send_mailbox_message_body",
           "download_mailbox_attachment",
@@ -1129,7 +1129,7 @@
           "send_mailbox_message_with_files",
           "upload_mailbox_attachment_from_file"
         ],
-        "packages/python/sending/sendmux_sending/attachments.py": [
+        "packages/python/sending/qubrics/sending/attachments.py": [
           "_MAX_SENDING_ATTACHMENTS",
           "_MAX_SENDING_ATTACHMENT_BYTES",
           "_email_send_request",
@@ -1137,15 +1137,15 @@
           "send_email_with_files",
           "upload_attachment_from_file"
         ],
-        "packages/python/mailbox/sendmux_mailbox/client.py": [
+        "packages/python/mailbox/qubrics/mailbox/client.py": [
           "DEFAULT_BASE_URL",
           "create_mailbox_client"
         ],
-        "packages/python/sending/sendmux_sending/client.py": [
+        "packages/python/sending/qubrics/sending/client.py": [
           "DEFAULT_BASE_URL",
           "create_sending_client"
         ],
-        "packages/python/core/sendmux_core/auth.py": [
+        "packages/python/core/qubrics/core/auth.py": [
           "configure_auth",
           "validate_api_key",
           "validate_auth"
@@ -1707,7 +1707,7 @@
       },
       "pythonScripts": {
         "packages/python/mcp/pyproject.toml": [
-          "sendmux-mcp"
+          "qubrics-mcp"
         ]
       }
     },
@@ -2204,14 +2204,14 @@
         "packages/ts/cli/src/commands/agent/invite-owner.ts": [
           "AgentInviteOwner"
         ],
-        "packages/python/mcp/sendmux_mcp/config.py": [
+        "packages/python/mcp/qubrics/mcp/config.py": [
           "ServerConfig",
           "config_from_env",
           "normalise_surfaces",
           "normalise_transport",
           "surface_api_keys_from_env"
         ],
-        "packages/python/mcp/sendmux_mcp/cli.py": [
+        "packages/python/mcp/qubrics/mcp/cli.py": [
           "config_from_args",
           "main",
           "main_mailbox",
@@ -2221,7 +2221,7 @@
           "surface_api_keys_from_args",
           "surfaces_from_args"
         ],
-        "packages/python/core/sendmux_core/auth.py": [
+        "packages/python/core/qubrics/core/auth.py": [
           "validate_api_key"
         ]
       },
@@ -2241,11 +2241,11 @@
       },
       "pythonScripts": {
         "packages/python/mcp/pyproject.toml": [
-          "sendmux-mcp",
-          "sendmux-mcp-mailbox",
-          "sendmux-mcp-management",
-          "sendmux-mcp-sending",
-          "sendmux-mcp-hosted"
+          "qubrics-mcp",
+          "qubrics-mcp-mailbox",
+          "qubrics-mcp-management",
+          "qubrics-mcp-sending",
+          "qubrics-mcp-hosted"
         ]
       }
     },
@@ -3118,14 +3118,14 @@
         "packages/ts/cli/src/commands/agent/invite-owner.ts": [
           "AgentInviteOwner"
         ],
-        "packages/python/mcp/sendmux_mcp/config.py": [
+        "packages/python/mcp/qubrics/mcp/config.py": [
           "ServerConfig",
           "config_from_env",
           "normalise_surfaces",
           "normalise_transport",
           "surface_api_keys_from_env"
         ],
-        "packages/python/mcp/sendmux_mcp/cli.py": [
+        "packages/python/mcp/qubrics/mcp/cli.py": [
           "config_from_args",
           "main",
           "main_mailbox",
@@ -3135,7 +3135,7 @@
           "surface_api_keys_from_args",
           "surfaces_from_args"
         ],
-        "packages/python/core/sendmux_core/auth.py": [
+        "packages/python/core/qubrics/core/auth.py": [
           "validate_api_key"
         ]
       },
@@ -3154,11 +3154,11 @@
       },
       "pythonScripts": {
         "packages/python/mcp/pyproject.toml": [
-          "sendmux-mcp",
-          "sendmux-mcp-mailbox",
-          "sendmux-mcp-management",
-          "sendmux-mcp-sending",
-          "sendmux-mcp-hosted"
+          "qubrics-mcp",
+          "qubrics-mcp-mailbox",
+          "qubrics-mcp-management",
+          "qubrics-mcp-sending",
+          "qubrics-mcp-hosted"
         ]
       }
     },
