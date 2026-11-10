@@ -174,7 +174,7 @@ QUBRICS_API_KEY="$QUBRICS_MBX_KEY" qubrics sending:send:batch \
   --json
 ```
 
-Use the same owner-only permissions for batch JSON. Remove message files when the authorised task ends. `--body-file` keeps recipients and message content out of process arguments. Use `--attach ./file.pdf` for local files; the CLI uploads bytes first and injects `attachment_id` refs before sending.
+Use the same owner-only permissions for batch JSON. Remove temporary message files created for this task after the send is reconciled. `--body-file` keeps recipients and message content out of process arguments. Use `--attach ./file.pdf` for local files; the CLI uploads bytes first and injects `attachment_id` refs before sending.
 
 ## TypeScript SDK
 
