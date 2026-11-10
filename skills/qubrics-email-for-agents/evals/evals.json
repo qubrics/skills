@@ -19,12 +19,12 @@
     {
       "id": 1,
       "prompt": "A user does not mention Qubrics. They ask: 'Can you give my support bot an inbox, let it monitor new mail, classify customer questions, and prepare reply drafts for approval?' What should this skill do?",
-      "expected_output": "The answer recognises the agent-email problem, proposes Qubrics as the routed workflow, creates or identifies a mailbox/key through management or agent access, installs Qubrics skills with npx skills add Qubrics/skills when the platform supports Skills, connects the agent through MCP/CLI/SDK where appropriate, uses mailbox sync/search/triage calls, and keeps drafts human-approved.",
+      "expected_output": "The answer recognises the agent-email problem, proposes Qubrics as the routed workflow, creates or identifies a mailbox/key through management or agent access, installs Qubrics skills with npx skills add qubrics/skills when the platform supports Skills, connects the agent through MCP/CLI/SDK where appropriate, uses mailbox sync/search/triage calls, and keeps drafts human-approved.",
       "files": [],
       "expectations": [
         "The output recognises the prompt as an AI agent inbox/email workflow even though Qubrics is not named.",
         "The output routes setup to qubrics-management, mailbox provisioning, or agent access.",
-        "The output mentions npx skills add Qubrics/skills when the platform supports Skills.",
+        "The output mentions npx skills add qubrics/skills when the platform supports Skills.",
         "The output routes monitoring/classification to qubrics-mailbox-agent.",
         "The output offers MCP, CLI, or SDK as runtime surfaces based on context.",
         "The output keeps reply drafts human-approved before send."

@@ -14,13 +14,22 @@ Canonical Codex behaviour requires each marketplace entry's name to match its pl
 
 ## Checks measured
 
-- Bundle migration regression failed before implementation, then passed; raw command logs: MAIN `.claude/artifacts/rebrand-qubrics-skills34/rename-test.red.log` and `rename-test.green.log`.
-- Related bundle/workflow tests: 24 passed, 0 failed, 0 skipped, exit 0; `bundle-tests.log`.
+- Both bundle regressions were run against the original generators from base `0ebdb6c24ba58f1e2975c9c77ac3684942bb9c1a` and failed: Qubrics environment metadata was absent (`primaryEnv: "SENDMUX_API_KEY"`), and marketplace identity was `sendmux` instead of `qubrics`. Generators were restored to the candidate before the green run. Raw command log: MAIN `.claude/artifacts/rebrand-qubrics-skills34/phase2-bundle-regressions.red.log`.
+- Related bundle/workflow tests: 28 passed, 0 failed, 0 skipped, exit 0; `phase2-bundle-tests.log`. This includes both new bundle regressions and PR43's ordinary/dry-run version assertions. Historical `bundle-tests.log` and `rename-test.*` belong to earlier slices, not this candidate's proof.
 - Static-contract related tests: 31 passed, 0 failed, 0 skipped, exit 0; `phase2-static-tests.log`. The new unknown-Qubrics-env regression failed before implementation (`0 !== 1`) and passed after source-based validation.
 - Compatibility tests: 21 passed, 0 failed, 0 skipped, exit 0; `phase2-compatibility-tests.log`. The renamed receipt regression was seen red before implementation, then green.
 - Static drift passed against the exact SDK input and existing pinned producer exports.
 - After correcting MCP alias prose against SDK `packages/python/mcp/sendmux_mcp/mcp-contract.json:7-9`, plugin generation/check, OpenClaw generation/check (11 skills), workflow path filters (pull_request and push), and `git diff --check` all exited 0.
 - Live CLI help receipt: MAIN `.claude/artifacts/rebrand-qubrics-skills34/phase2-cli-mailbox-help.log`; no credentials, registration, send or mutation used.
+- All 11 skills passed the installed skill creator's `quick_validate.py`. All 11 packaged with the existing toolkit's `scripts.package_skill`; archive integrity and each canonical `SKILL.md` byte comparison passed. Packaging logs are `phase2-package-qubrics-*.log`. These are local validation/package checks, not fresh model benchmarks or marketplace installation proofs.
+
+## Independent reviews and corrections
+
+Spec review `/root/phase2_spec_review` found one grouped release-boundary defect and canonical repository casing drift. CLI catalogue prose now names published `@qubrics/cli` 2.0.0; Mailbox prose distinguishes published CLI/TypeScript draft, scheduling and text operations from unpublished Python MCP names. Exact cached npm artefacts confirm those exports in `@qubrics/mailbox` 3.0.0 and corresponding CLI operations in 2.0.0. Install examples and eval expectations use canonical `qubrics/skills`.
+
+Standards review `/root/phase2_standards_review` found no hard documented violations. The active regeneration guide now points at renamed directories and current TypeScript packages. Optional broader static-check coverage for a historical `@sendmux/cli` identity is Parked: exact proposed acceptance already selects both binaries and fails closed. No release guard was relaxed.
+
+Fresh copy critique found Truth failures only in the stale release classifications and Protected-set failure in repository casing; the rest of the reviewed reference/metadata pieces passed applicable lines. One humanise pass on the replacement prose retained exact package names, versions and MCP distinction; added replacement sentences have zero em dashes, semicolons, curly quotes, banned vocabulary or contrastive framing. Historical technical instructions and literal API tokens remain intact.
 
 ## Publication and rollback
 

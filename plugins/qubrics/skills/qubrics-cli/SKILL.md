@@ -127,7 +127,7 @@ Command requires a sending API key, but --api-key contains a root API key.
 
 ## Command catalogue
 
-The unpublished candidate CLI source exposes these generated operation commands. Verify its published version before relying on the new commands:
+Published `@qubrics/cli` 2.0.0 exposes these generated operation commands:
 
 | Surface    | Count | Examples                                                                                                                                                   |
 | ---------- | ----: | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
