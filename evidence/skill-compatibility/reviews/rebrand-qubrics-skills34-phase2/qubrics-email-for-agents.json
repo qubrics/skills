@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "kind": "compatibility",
+  "skill": "qubrics-email-for-agents",
+  "skillDigest": "70dc5a8f04dca687b17929ac59d553be893235413271a4e99399fff30c70f0a6",
+  "contractDigest": "8b0c582a8c9ca5cbc4585a37936923c9c03c9ab2fdee980ee19cfa1644cc5c3c",
+  "sourceRevisions": {
+    "app": "87ce115810ebcfa91655295603c27af52fcff96f",
+    "sending": "2f4226655efc05f109b5feda50ed2ca1570aea91",
+    "sdk": "8d3d7492dc83852906c163d0ce0c30cfdd0bc06f"
+  },
+  "reviewer": "Independent AI source reviewer /root/phase2_contract_review; coordinating reviewer /root",
+  "rationale": "Registration, runtime credentials and owner approval remain separate; routed skills and canonical repository installation match the renamed inventory. All eleven whole-body and selected-source reviews are recorded in the bound source review. Source compatibility only; no fresh workflow evaluation, live URL equivalence or publication is claimed.",
+  "evidence": [
+    {
+      "path": "skills/qubrics-email-for-agents/SKILL.md",
+      "sha256": "8ca44ee32dba3bd66edd2543341f79999fdcbecab19e8181466ad39ffb4365a9"
+    },
+    {
+      "path": "evidence/skill-compatibility/reviews/rebrand-qubrics-skills34-phase2/source-review.md",
+      "sha256": "ac34ec03e2f74dc6fe187353b670407d32290426ff079b3d2fd54cddf3e5158e"
+    }
+  ]
+}
