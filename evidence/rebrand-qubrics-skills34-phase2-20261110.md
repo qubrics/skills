@@ -39,4 +39,12 @@ Merge exposes repository marketplace/catalogue content to unpinned clients and m
 
 Rollback: revert the source merge through a PR. Prior immutable release `v1.8.2` can become latest again. External publication records and already-fetched client state require provider-supported corrective updates, so publication remains separately gated. No SDK workflow, npm publish/deprecation, retag, asset replacement or account transfer is included.
 
-Status: local candidate; exact candidate acceptance, fresh compatibility/source review, PR CI and approval pending. No new harness or dependency added. Separate OpenAI universal-directory submission is Parked.
+## Exact acceptance measured
+
+Initial committed-candidate check stopped at `proposed/qubrics-agent-email-inbox requires a compatibility review or workflow evidence for 3f5f47694a28d42237b4cd733e05e0dd3d0e1bab7305420b23096495ac056d31`. After the genuine independent whole-body and selected-source review, 11 compatibility-kind records bind the renamed bytes and selected contracts to the [source review](skill-compatibility/reviews/rebrand-qubrics-skills34-phase2/source-review.md).
+
+Existing checker acceptance on committed Skills `1e352c0d7a5f4621873d1dd67411ce62823395a7` passed against SDK `8d3d7492dc83852906c163d0ce0c30cfdd0bc06f`: 11 reviewed proposed results and 11 no-impact published results. Candidate digest `1e3fd4040bba880195ba76adad6da4afca1c57c51dbdca585859f2eec7938a5b`. Both SDK `--verify-receipt` and Skills `--verify-skills-receipt` passed, exit 0. Logs: `phase2.accept.log`, `phase2.verify-sdk.log`, `phase2.verify-skills.log` under MAIN task artifacts. Historical maps/reviews and all exact evidence guards remain intact.
+
+This is the local source-qualification proof. PR and main CI each generate acceptance for their own commit; any approved release must attach the unmodified main-CI asset for its exact approved tag commit. No source review is represented as a runtime workflow evaluation.
+
+Status: reviewed source candidate, not merged or published; PR CI and exact-head merge approval pending. No new harness or dependency added. Fresh model benchmarks/description optimisation were not rerun for this rename and are not claimed. Separate OpenAI universal-directory submission is Parked.
