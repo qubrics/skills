@@ -1,5 +1,10 @@
 {
   "schemaVersion": 1,
+  "renames": {
+    "sendmux-attachments": "qubrics-attachments",
+    "sendmux-getting-started": "qubrics-getting-started",
+    "sendmux-mcp-setup": "qubrics-mcp-setup"
+  },
   "dependencies": {
     "agent-email-inbox": {
       "app": [
@@ -4355,7 +4360,7 @@
   ],
   "releaseInputs": {
     "publishedRevision": "9d8059b10111943ce08860217a27222f43507686",
-    "sdkRevision": "8d3d7492dc83852906c163d0ce0c30cfdd0bc06f",
+    "sdkRevision": "a326bc923fff448470d908bb527afaaa35f6d739",
     "app": {
       "revision": "87ce115810ebcfa91655295603c27af52fcff96f",
       "openapi": "evidence/skill-compatibility/contracts/calendar-20261030/app-openapi.json",

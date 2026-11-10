@@ -475,10 +475,22 @@ test("selected SDK helpers and custom CLI commands require review when their beh
   assert.notEqual(result.status, 0); assert.match(result.stderr, /compatibility review or workflow evidence/);
 });
 
-function workflowFixture(t) {
+function workflowFixture(t, renamed = false) {
   const f = fixture(t); f.review();
-  const name = "agent-email-inbox";
-  const before = f.inspect().skills.proposed.entries.find((item) => item.name === name);
+  const previousName = "agent-email-inbox";
+  const before = f.inspect().skills.proposed.entries.find((item) => item.name === previousName);
+  const name = renamed ? "qubrics-agent-email-inbox" : previousName;
+  if (renamed) {
+    for (const oldName of names) {
+      const replacement = oldName.startsWith("sendmux-") ? oldName.replace("sendmux-", "qubrics-") : `qubrics-${oldName}`;
+      renameSync(join(f.skills, "skills", oldName), join(f.skills, "skills", replacement));
+      f.policy.dependencies[replacement] = structuredClone(f.policy.dependencies[oldName]);
+      const file = join(f.skills, "skills", replacement, "SKILL.md");
+      writeFileSync(file, readFileSync(file, "utf8").replace(`name: ${oldName}`, `name: ${replacement}`));
+    }
+    json(join(f.skills, "skill-compatibility.json"), f.policy);
+    f.descriptor.skills.proposedRevision = f.commit(f.skills); f.save(); f.review();
+  }
   const skillFile = join(f.skills, "skills", name, "SKILL.md");
   writeFileSync(skillFile, `${readFileSync(skillFile, "utf8")}Updated workflow instruction.\n`);
   f.descriptor.skills.proposedRevision = f.commit(f.skills); f.save();
@@ -556,4 +568,33 @@ test("an incompatible published skill is superseded only by its tested replaceme
   saveReview();
   result = f.run("--candidate", f.candidate, "--receipt", f.receipt);
   assert.notEqual(result.status, 0); assert.match(result.stderr, /superseded/);
+});
+
+test("A13 renamed skills supersede legacy instructions only through a canonical map and bound workflow", (t) => {
+  const { f, name, before, entry, record, saveReview } = workflowFixture(t, true);
+  const previousName = "agent-email-inbox";
+  f.policy.reviews = f.policy.reviews.filter((review) => review.skill !== previousName || review.skillDigest !== before.skillDigest);
+  saveReview();
+  let result = f.run("--candidate", f.candidate, "--receipt", f.receipt);
+  assert.notEqual(result.status, 0); assert.match(result.stderr, /requires a compatibility review/);
+  f.policy.renames = { [previousName]: name }; saveReview();
+  result = f.run("--candidate", f.candidate, "--receipt", f.receipt);
+  assert.equal(result.status, 0, result.stderr);
+  const old = JSON.parse(readFileSync(f.receipt)).results.find((row) => row.lane === "published" && row.name === previousName);
+  assert.equal(old.status, "superseded");
+  assert.equal(old.skillDigest, before.skillDigest); assert.equal(old.replacementDigest, entry.skillDigest);
+  assert.equal(f.run("--verify-skills-receipt", f.receipt, "--skills-root", f.skills, "--revision", f.descriptor.skills.proposedRevision).status, 0);
+  record.previousSkillDigest = "0".repeat(64); saveReview();
+  result = f.run("--candidate", f.candidate, "--receipt", f.receipt);
+  assert.notEqual(result.status, 0); assert.match(result.stderr, /superseded/);
+  record.previousSkillDigest = before.skillDigest; record.kind = "compatibility";
+  record.reviewer = "Fixture reviewer"; record.rationale = "An untested statement cannot supersede renamed legacy instructions."; saveReview();
+  result = f.run("--candidate", f.candidate, "--receipt", f.receipt);
+  assert.notEqual(result.status, 0); assert.match(result.stderr, /superseded/);
+  record.kind = "workflow";
+  for (const renames of [[], null, { [previousName]: "qubrics-cli" }, { unknown: name }]) {
+    f.policy.renames = renames; saveReview();
+    result = f.run("--candidate", f.candidate, "--receipt", f.receipt);
+    assert.notEqual(result.status, 0); assert.match(result.stderr, /Invalid skill rename/);
+  }
 });

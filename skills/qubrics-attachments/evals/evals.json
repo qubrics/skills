@@ -31,12 +31,13 @@
     {
       "id": 2,
       "prompt": "Show TypeScript and Python Qubrics helpers for sending an email with a local file attachment without manual base64 encoding.",
-      "expected_output": "The answer uses @qubrics/mailbox/node or @qubrics/sending/node helpers in TypeScript and sendmux_mailbox or sendmux_sending file helpers in Python, with file paths rather than hand-written base64.",
+      "expected_output": "The answer uses @qubrics/mailbox/node or @qubrics/sending/node helpers in TypeScript and qubrics.mailbox or qubrics.sending file helpers in Python, with file paths rather than hand-written base64. It identifies the Python examples as unpublished source and verifies a published release before recommending installation of the new Python distributions.",
       "files": [],
       "expectations": [
         "The output names @qubrics/mailbox/node or @qubrics/sending/node.",
         "The output names sendMailboxMessageWithFiles or sendEmailWithFiles.",
         "The output names Python send_mailbox_message_with_files or send_email_with_files.",
+        "The output imports Python helpers from qubrics.mailbox or qubrics.sending and identifies the new Python distributions as pending publication.",
         "The output passes a file path.",
         "The output avoids manual base64 encoding."
       ]

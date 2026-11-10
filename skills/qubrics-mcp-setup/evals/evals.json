@@ -4,12 +4,12 @@
     {
       "id": 0,
       "prompt": "Set up Qubrics MCP in Claude Code for a mailbox-only local stdio server, then tell me how to confirm the right tools loaded.",
-      "expected_output": "The answer installs sendmux-mcp, uses claude mcp add with sendmux-mcp-mailbox and a mailbox key env var backed by a secret store, avoids pasted or hardcoded secrets, and verifies mailbox tools without management/sending tools.",
+      "expected_output": "The answer identifies qubrics-mcp as pending publication, uses an installed candidate source build or verifies a published release before installation, configures Claude Code with qubrics-mcp-mailbox and a mailbox key env var backed by a secret store, avoids pasted or hardcoded secrets, and verifies mailbox tools without management/sending tools.",
       "files": [],
       "expectations": [
-        "The output installs sendmux-mcp or mentions the sendmux-mcp package.",
+        "The output names qubrics-mcp and requires an installed candidate source build or a verified published release before local setup.",
         "The output uses Claude Code MCP setup for a stdio server.",
-        "The output uses sendmux-mcp-mailbox.",
+        "The output uses qubrics-mcp-mailbox.",
         "The output uses an smx_mbx_ mailbox key placeholder or environment variable.",
         "The output avoids pasted or hardcoded raw secrets and prefers secret-backed environment variables.",
         "The output keeps the mailbox API key out of process arguments, including shell-expanded claude mcp add --env values.",
@@ -19,11 +19,11 @@
     {
       "id": 1,
       "prompt": "I need Cursor or Cline config for a local Qubrics MCP server with mailbox, management, and sending enabled. Show the JSON and key scopes.",
-      "expected_output": "The answer uses an mcpServers JSON entry running sendmux-mcp with --surfaces mailbox,management,sending, supplies SENDMUX_MAILBOX_API_KEY, SENDMUX_MANAGEMENT_API_KEY, and SENDMUX_SENDING_API_KEY from secret-backed environment variables, and assigns smx_mbx_ to mailbox/sending or owner-approved Sending-resource smx_agent_ to sending plus smx_root_ to management.",
+      "expected_output": "The answer uses an mcpServers JSON entry running qubrics-mcp with --surfaces mailbox,management,sending, supplies SENDMUX_MAILBOX_API_KEY, SENDMUX_MANAGEMENT_API_KEY, and SENDMUX_SENDING_API_KEY from secret-backed environment variables, and assigns smx_mbx_ to mailbox/sending or owner-approved Sending-resource smx_agent_ to sending plus smx_root_ to management. It requires an installed candidate source build or a verified published release of qubrics-mcp before local setup.",
       "files": [],
       "expectations": [
         "The output includes an mcpServers JSON configuration.",
-        "The output runs sendmux-mcp with mailbox, management, and sending surfaces.",
+        "The output runs qubrics-mcp with mailbox, management, and sending surfaces.",
         "The output includes SENDMUX_MAILBOX_API_KEY.",
         "The output includes SENDMUX_MANAGEMENT_API_KEY.",
         "The output includes SENDMUX_SENDING_API_KEY.",
@@ -100,11 +100,11 @@
     {
       "id": 7,
       "prompt": "For a compatibility note, what protocol revisions can the Qubrics MCP package speak, and how is that different from its package version? Our setup guide lists mailbox, management, and sending tools, but a customer only sees some after OAuth—should they expect the whole catalogue? Also, are the clients named in the setup guide automatically certified?",
-      "expected_output": "The answer names protocol revisions 2025-11-25 and 2026-07-28, distinguishes the released sendmux-mcp 2.2.0 package version, identifies unpublished Python MCP source at SDK 8d3d7492dc83852906c163d0ce0c30cfdd0bc06f as different source with the same package version rather than a verified release of its features, distinguishes the unpublished candidate source catalogue of 150 tool names (92 Mailbox, 46 Management, 12 Sending), comprising 75 unprefixed tools and 75 qubrics_ aliases, from the released 2.2.0 wheel catalogue of 54 tools (26 Mailbox, 22 Management, 6 Sending), while qualifying grant-visible subsets, and does not claim named clients are certified.",
+      "expected_output": "The answer names protocol revisions 2025-11-25 and 2026-07-28, distinguishes the released sendmux-mcp 2.2.0 package from unpublished qubrics-mcp source at SDK a326bc923fff448470d908bb527afaaa35f6d739 with development metadata version 2.2.0, and does not treat that source version as a verified release. It distinguishes the unpublished candidate source catalogue of 150 tool names (92 Mailbox, 46 Management, 12 Sending), comprising 75 unprefixed tools and 75 qubrics_ aliases, from the released sendmux-mcp 2.2.0 wheel catalogue of 54 tools (26 Mailbox, 22 Management, 6 Sending), while qualifying grant-visible subsets, and does not claim named clients are certified.",
       "files": [],
       "expectations": [
         "The answer names the contract-supported protocol revisions 2025-11-25 and 2026-07-28.",
-        "The answer distinguishes the released sendmux-mcp package version 2.2.0 from protocol revisions and identifies unpublished Python MCP source at SDK 8d3d7492dc83852906c163d0ce0c30cfdd0bc06f as different source with the same package version rather than a verified feature release.",
+        "The answer distinguishes released sendmux-mcp 2.2.0 from protocol revisions and identifies qubrics-mcp at SDK a326bc923fff448470d908bb527afaaa35f6d739 as unpublished source whose development metadata version 2.2.0 is not a verified release.",
         "The answer identifies the unpublished candidate contract catalogue as 150 tool names (92 Mailbox, 46 Management, 12 Sending), comprising 75 unprefixed tools and 75 qubrics_ aliases, keeps the released 2.2.0 wheel catalogue separate as 54 tools (26 Mailbox, 22 Management, 6 Sending), and explains that OAuth grants and selected surfaces determine actual visible tools.",
         "The answer does not treat a client listed in setup guidance as automatically certified."
       ]

@@ -6,6 +6,7 @@ import {
   mkdtempSync,
   readFileSync,
   readdirSync,
+  renameSync,
   rmSync,
   writeFileSync,
 } from "node:fs";
@@ -20,17 +21,24 @@ const checkerPath = path.join(repoRoot, "scripts/check-skill-drift.mjs");
 const sdkRoot =
   process.env.SENDMUX_SDK ||
   "/Users/rj/Desktop/GIT-REPOS/sendmux-sdk";
+function mcpSourceRoot(root) {
+  const project = readFileSync(path.join(root, "packages/python/mcp/pyproject.toml"), "utf8").split(/^\[project\][ \t]*$/m)[1]?.split(/^\[/m)[0];
+  const name = project?.match(/^name[ \t]*=[ \t]*["']([^"']+)["']/m)?.[1];
+  assert.ok(name === "sendmux-mcp" || name === "qubrics-mcp", "fixture requires a supported MCP identity");
+  return `packages/python/mcp/${name === "qubrics-mcp" ? "qubrics/mcp" : "sendmux_mcp"}`;
+}
+const sourceMcpRoot = mcpSourceRoot(sdkRoot);
 const appOpenApi =
   process.env.SENDMUX_APP_OPENAPI ||
   path.join(
     sdkRoot,
-    "packages/python/mcp/sendmux_mcp/openapi/openapi-app.json",
+    `${sourceMcpRoot}/openapi/openapi-app.json`,
   );
 const sendingOpenApi =
   process.env.SENDMUX_SENDING_OPENAPI ||
   path.join(
     sdkRoot,
-    "packages/python/mcp/sendmux_mcp/openapi/openapi-sending.json",
+    `${sourceMcpRoot}/openapi/openapi-sending.json`,
   );
 const publicSkillEntries = [
   "SKILL.md",
@@ -60,10 +68,10 @@ const minimalSdkFiles = [
   "packages/python/mailbox/pyproject.toml",
   "packages/python/management/pyproject.toml",
   "packages/python/mcp/pyproject.toml",
-  "packages/python/mcp/sendmux_mcp/curation.py",
-  "packages/python/mcp/sendmux_mcp/config.py",
-  "packages/python/mcp/sendmux_mcp/hosted.py",
-  "packages/python/mcp/sendmux_mcp/mcp-contract.json",
+  `${sourceMcpRoot}/curation.py`,
+  `${sourceMcpRoot}/config.py`,
+  `${sourceMcpRoot}/hosted.py`,
+  `${sourceMcpRoot}/mcp-contract.json`,
   "packages/python/mcp/README.md",
   "packages/ruby/sdk/sendmux-sdk.gemspec",
   "packages/ruby/sending/sendmux-sending.gemspec",
@@ -156,7 +164,7 @@ function mutateJson(filePath, mutate) {
 function contractPath(fixture) {
   return path.join(
     fixture.sdkRoot,
-    "packages/python/mcp/sendmux_mcp/mcp-contract.json",
+    `${mcpSourceRoot(fixture.sdkRoot)}/mcp-contract.json`,
   );
 }
 
@@ -235,6 +243,36 @@ test("accepts the documented generic SENDMUX_API_KEY alongside surface keys", (t
   assert.equal(result.status, 0, result.stderr);
 });
 
+test("MCP Python roots follow exact project identities and reject unknown names without a path fallback", (t) => {
+  const fixture = makeContractFixture(t);
+  const originalRoot = mcpSourceRoot(fixture.sdkRoot);
+  const canonicalRoot = "packages/python/mcp/qubrics/mcp";
+  if (originalRoot !== canonicalRoot) {
+    mkdirSync(path.dirname(path.join(fixture.sdkRoot, canonicalRoot)), { recursive: true });
+    renameSync(path.join(fixture.sdkRoot, originalRoot), path.join(fixture.sdkRoot, canonicalRoot));
+  }
+  for (const component of ["sdk", "sending", "mailbox", "management", "mcp"]) {
+    const file = path.join(fixture.sdkRoot, `packages/python/${component}/pyproject.toml`);
+    writeFileSync(file, readFileSync(file, "utf8").replace(/^name\s*=\s*["'][^"']+["']/m, `name = "qubrics-${component}"`));
+  }
+  const pyproject = path.join(fixture.sdkRoot, "packages/python/mcp/pyproject.toml");
+  writeFileSync(pyproject, `[tool.fixture]\nname = "sendmux-mcp"\n${readFileSync(pyproject, "utf8")}`);
+  mutateJson(contractPath(fixture), (contract) => { contract.package.identity = "qubrics-mcp"; });
+  let result = runFixtureChecker(fixture);
+  assert.equal(result.status, 0, result.stderr);
+
+  const legacyRoot = path.join(fixture.sdkRoot, "packages/python/mcp/sendmux_mcp");
+  renameSync(path.join(fixture.sdkRoot, canonicalRoot), legacyRoot);
+  replaceFixtureText(pyproject, 'name = "qubrics-mcp"', 'name = "sendmux-mcp"');
+  result = runFixtureChecker(fixture);
+  assert.equal(result.status, 0, result.stderr);
+
+  replaceFixtureText(pyproject, 'name = "sendmux-mcp"', 'name = "other-mcp"');
+  result = runFixtureChecker(fixture);
+  assert.equal(result.status, 1);
+  assert.match(result.stderr, /Unsupported MCP project.name/);
+});
+
 test("rejects a bogus surface API key even when SDK prose mentions it", (t) => {
   const fixture = makeContractFixture(t);
   for (const relativePath of [
@@ -267,7 +305,7 @@ test("validates Qubrics environment aliases against declared MCP surfaces", (t) 
 test("rejects a surface API key after its surface is removed from SDK SURFACES", (t) => {
   const fixture = makeContractFixture(t);
   replaceFixtureText(
-    path.join(fixture.sdkRoot, "packages/python/mcp/sendmux_mcp/config.py"),
+    path.join(fixture.sdkRoot, mcpSourceRoot(fixture.sdkRoot), "config.py"),
     'SURFACES: tuple[Surface, ...] = ("mailbox", "management", "sending")',
     'SURFACES: tuple[Surface, ...] = ("management", "sending")',
   );
@@ -564,7 +602,7 @@ test("requires usable MCP contract fields without trusting compatibility aliases
 
     const contractPath = path.join(
       fixture.sdkRoot,
-      "packages/python/mcp/sendmux_mcp/mcp-contract.json",
+      `${mcpSourceRoot(fixture.sdkRoot)}/mcp-contract.json`,
     );
     mutateJson(contractPath, mutation.mutate);
     const result = runFixtureChecker(fixture);
@@ -578,7 +616,7 @@ test("requires usable MCP contract fields without trusting compatibility aliases
   mutateJson(
     path.join(
       declaredTotalFixture.sdkRoot,
-      "packages/python/mcp/sendmux_mcp/mcp-contract.json",
+      `${mcpSourceRoot(declaredTotalFixture.sdkRoot)}/mcp-contract.json`,
     ),
     (contract) => {
       contract.tools.count = 999;
@@ -638,6 +676,8 @@ test("accepts both TS package identities while retaining both renamed CLI launch
 
 test("rejects a stale v2 Go module after accepting the v3 producer", (t) => {
   const fixture = makeContractFixture(t);
+  const goMod = path.join(fixture.sdkRoot, "go/go.mod");
+  writeFileSync(goMod, readFileSync(goMod, "utf8").replace(/^module\s+\S+/m, "module sendmux.ai/go/v3"));
   const baseline = runFixtureChecker(fixture);
   assert.equal(baseline.status, 0, baseline.stderr);
 
@@ -652,19 +692,27 @@ test("rejects a stale v2 Go module after accepting the v3 producer", (t) => {
     staleModule.stderr,
     /Go module expected sendmux\.ai\/go\/v3, found sendmux\.ai\/go\/v2\n/,
   );
+  replaceFixtureText(goMod, "module sendmux.ai/go/v2", "module qubrics.com/go/v4");
+  const renamedModule = runFixtureChecker(fixture);
+  assert.equal(renamedModule.status, 0, renamedModule.stderr);
+  replaceFixtureText(goMod, "module qubrics.com/go/v4", "module qubrics.com/go/v3");
+  const staleRenamed = runFixtureChecker(fixture);
+  assert.equal(staleRenamed.status, 1);
+  assert.match(staleRenamed.stderr, /Go module expected qubrics\.com\/go\/v4, found qubrics\.com\/go\/v3\n/);
 });
 
-test("requires consistent released package guidance in the setup guide and case 7", (t) => {
+test("requires consistent package publication guidance in the setup guide and case 7", (t) => {
   for (const location of ["guide", "expected_output", "expectations"]) {
     const fixture = makeContractFixture(t);
     const baseline = runFixtureChecker(fixture);
     assert.equal(baseline.status, 0, `${location} baseline: ${baseline.stderr}`);
+    const candidate = readFileSync(path.join(fixture.skillsRoot, "skills/qubrics-mcp-setup/SKILL.md"), "utf8").includes("The candidate ");
 
     if (location === "guide") {
       replaceFixtureText(
         path.join(fixture.skillsRoot, "skills/qubrics-mcp-setup/SKILL.md"),
-        "targets the released",
-        "targets the unpublished",
+        candidate ? "The candidate " : "targets the released",
+        candidate ? "The released " : "targets the unpublished",
       );
     } else {
       mutateJson(
@@ -672,15 +720,15 @@ test("requires consistent released package guidance in the setup guide and case 
         (value) => {
           const compatibility = value.evals.find((entry) => entry.id === 7);
           if (location === "expected_output") {
-            compatibility.expected_output = compatibility.expected_output.replace(
-              "distinguishes the released",
-              "distinguishes the unpublished",
+            compatibility.expected_output = compatibility.expected_output.replaceAll(
+              candidate ? "unpublished" : "distinguishes the released",
+              candidate ? "published" : "distinguishes the unpublished",
             );
           } else {
             compatibility.expectations = compatibility.expectations.map((text) =>
-              text.replace(
-                "distinguishes the released",
-                "distinguishes the unpublished",
+              text.replaceAll(
+                candidate ? "unpublished" : "distinguishes the released",
+                candidate ? "published" : "distinguishes the unpublished",
               ),
             );
           }
@@ -731,7 +779,10 @@ test("rejects substring matches for published contract values and sync fields", 
           "skills/qubrics-mcp-setup/SKILL.md",
         );
         const original = readFileSync(guidePath, "utf8");
-        const changed = original.replace(/^This guide targets .+$/m, (line) =>
+        const guideLine = original.includes("The candidate ")
+          ? field === "total" ? /^Its catalogue contains .+$/m : /^The candidate .+$/m
+          : /^This guide targets .+$/m;
+        const changed = original.replace(guideLine, (line) =>
           line.replaceAll(value, replacement),
         );
         assert.notEqual(changed, original);

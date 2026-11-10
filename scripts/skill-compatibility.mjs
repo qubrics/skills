@@ -20,6 +20,14 @@ const hex = (value) => /^[0-9a-f]{64}$/.test(value ?? "");
 const safePath = (value) => { assert(typeof value === "string" && value.length > 0 && !value.startsWith("/") && !value.split("/").includes(".."), "Invalid repository path"); return value; };
 let gitEnvironment;
 
+function validateRenames(renames = {}) {
+  assert(renames && typeof renames === "object" && !Array.isArray(renames), "Invalid skill rename map");
+  for (const [name, replacement] of Object.entries(renames)) {
+    const index = requiredSkills.indexOf(name);
+    assert(index !== -1 && replacement === qubricsSkills[index], `Invalid skill rename: ${name}`);
+  }
+}
+
 function normalize(value) {
   if (Array.isArray(value)) return value.map(normalize);
   if (value && typeof value === "object") return Object.fromEntries(Object.keys(value).sort().map((key) => [key, normalize(value[key])]));
@@ -278,6 +286,7 @@ export function inspectCandidate(file, inspectionMap) {
   const policyBytes = inspectionMap ? readFileSync(inspectionMap) : source.read(policyPath);
   const policy = JSON.parse(policyBytes);
   assert(policy.schemaVersion === 1 && Array.isArray(policy.reviews), "Missing compatibility review map");
+  validateRenames(policy.renames);
   const contracts = { app: app.contract, sending: sending.contract, appPolicy: app.policy, sendingPolicy: sending.policy, ...sdk.contracts };
   const published = skillSnapshot(repository, descriptor.skills.publishedRevision, policy.dependencies, contracts);
   const proposed = skillSnapshot(repository, descriptor.skills.proposedRevision, policy.dependencies, contracts);
@@ -330,7 +339,8 @@ function findReview(entry, candidate) {
 function acceptSkill(entry, lane, candidate) {
   const review = findReview(entry, candidate);
   if (!review && lane === "published") {
-    const replacement = candidate.skills.proposed.entries.find((item) => item.name === entry.name && item.skillDigest !== entry.skillDigest);
+    const replacementName = candidate.policy.renames?.[entry.name] ?? entry.name;
+    const replacement = candidate.skills.proposed.entries.find((item) => item.name === replacementName && item.skillDigest !== entry.skillDigest);
     assert(replacement, `${lane}/${entry.name} requires a compatibility review or workflow evidence for ${entry.contractDigest}`);
     const accepted = acceptSkill(replacement, "proposed", candidate);
     const replacementReview = findReview(replacement, candidate);
@@ -377,6 +387,7 @@ export function verifySkillsReceipt(file, root, revision) {
   assert(receipt.schemaVersion === 1 && receipt.accepted === true && receipt.skills?.proposed?.revision === sha(revision), "Skills revision mismatch in acceptance receipt");
   assert(receipt.policyDigest === hash(source.read(policyPath)) && receipt.checkerDigest === hash(source.read("scripts/skill-compatibility.mjs")), "Stale published skill acceptance receipt");
   const policy = JSON.parse(source.read(policyPath));
+  validateRenames(policy.renames);
   const identity = { sourceRevisions: receipt.sourceRevisions, sources: receipt.sources, skills: receipt.skills, policyDigest: receipt.policyDigest, checkerDigest: receipt.checkerDigest };
   assert(receipt.candidateDigest === objectHash(identity), "Invalid published candidate digest");
   const candidate = { ...identity, policy, source };

@@ -69,7 +69,7 @@ These operations need no mailbox selector. Explain the returned connection metad
 
 ## Choose the surface
 
-1. Use MCP first when the user's agent already has the relevant `sendmux-mcp` server connected and the needed tool is curated.
+1. Use MCP first when the user's agent already has the relevant Qubrics MCP server connected and the needed tool is curated.
 2. Use the `qubrics` CLI for one-shot terminal work, debugging, shell scripts, and examples the user can copy into a terminal. Add `--json` so downstream agents can parse the envelope.
 3. Use an SDK when writing application code. Install only the package for the chosen surface unless the project needs multiple surfaces.
 4. Use direct HTTP only when the user's environment cannot use MCP, CLI, or an SDK.
@@ -82,13 +82,13 @@ CLI:
 npm install -g @qubrics/cli
 ```
 
-MCP:
+MCP: `qubrics-mcp` is pending publication. For setup now, use hosted OAuth at `https://mcp.qubrics.com/mcp` or an authorised existing server. Verify the intended release before using this install command:
 
 ```bash
-pipx install sendmux-mcp
+pipx install qubrics-mcp
 ```
 
-The local Python MCP package retains the published `sendmux-mcp` name and its `SENDMUX_*` credential names; use [Qubrics MCP setup](../qubrics-mcp-setup/SKILL.md) for that package's configuration.
+SDK source `a326bc923fff448470d908bb527afaaa35f6d739` provides the `qubrics-mcp` executables and reads `QUBRICS_*` credential names before the `SENDMUX_*` fallbacks. For local configuration and the released-package distinction, use [Qubrics MCP setup](../qubrics-mcp-setup/SKILL.md).
 
 TypeScript SDK packages:
 

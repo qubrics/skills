@@ -298,10 +298,10 @@ The combined package also exposes `@qubrics/sdk/node`.
 
 Mailbox:
 
-Python examples retain the supported `sendmux_mailbox` and `sendmux_sending` module names.
+Python examples below use SDK source `a326bc923fff448470d908bb527afaaa35f6d739`. The `qubrics-mailbox` and `qubrics-sending` distributions are pending publication. Run an installed source build. Before installing either distribution from a package index, verify that the intended release is published.
 
 ```python
-from sendmux_mailbox import create_mailbox_client, read_mailbox_text_attachment, send_mailbox_message_with_files
+from qubrics.mailbox import create_mailbox_client, read_mailbox_text_attachment, send_mailbox_message_with_files
 
 client = create_mailbox_client(api_key=api_key)
 
@@ -326,7 +326,7 @@ text = read_mailbox_text_attachment(
 Sending API:
 
 ```python
-from sendmux_sending import create_sending_client, send_email_with_files
+from qubrics.sending import create_sending_client, send_email_with_files
 
 client = create_sending_client(api_key=api_key)
 
