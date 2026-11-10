@@ -20,6 +20,14 @@ const hex = (value) => /^[0-9a-f]{64}$/.test(value ?? "");
 const safePath = (value) => { assert(typeof value === "string" && value.length > 0 && !value.startsWith("/") && !value.split("/").includes(".."), "Invalid repository path"); return value; };
 let gitEnvironment;
 
+function validateRenames(renames = {}) {
+  assert(renames && typeof renames === "object" && !Array.isArray(renames), "Invalid skill rename map");
+  for (const [name, replacement] of Object.entries(renames)) {
+    const index = requiredSkills.indexOf(name);
+    assert(index !== -1 && replacement === qubricsSkills[index], `Invalid skill rename: ${name}`);
+  }
+}
+
 function normalize(value) {
   if (Array.isArray(value)) return value.map(normalize);
   if (value && typeof value === "object") return Object.fromEntries(Object.keys(value).sort().map((key) => [key, normalize(value[key])]));
@@ -94,13 +102,22 @@ function producerContract(name, source, base) {
   return { contract, policy: policy?.fingerprints, identity: { revision, sourceTree: receipt.sourceTree, lockfileSha256: receipt.lockfileSha256, openapiSha256: receipt.openapiSha256, ...(policy ? { policySha256: receipt.policySha256 } : {}) } };
 }
 
+function pythonPackage(source, component) {
+  const project = source.read(`packages/python/${component}/pyproject.toml`).split(/^\[project\][ \t]*$/m)[1]?.split(/^\[/m)[0];
+  const name = project?.match(/^name[ \t]*=[ \t]*(["'])([^"'\r\n]+)\1[ \t]*(?:#.*)?$/m)?.[2];
+  assert(name === `sendmux-${component}` || name === `qubrics-${component}`, `Unsupported ${component === "mcp" ? "MCP" : component} project.name: expected sendmux-${component} or qubrics-${component}`);
+  return { name, root: `packages/python/${component}/${name.startsWith("qubrics-") ? `qubrics/${component}` : `sendmux_${component}`}` };
+}
+
+function pythonSourceFile(source, file) {
+  const match = /^packages\/python\/(core|mailbox|sending|mcp)\/(?:sendmux_\1|qubrics\/\1)\/(.+)$/.exec(safePath(file));
+  return match ? `${pythonPackage(source, match[1]).root}/${match[2]}` : file;
+}
+
 function sdkContracts(source, base) {
   assert(source?.root, "Missing SDK source");
   const sdk = committed(resolve(base, source.root), source.revision);
-  const project = sdk.read("packages/python/mcp/pyproject.toml").split(/^\[project\][ \t]*$/m)[1]?.split(/^\[/m)[0];
-  const packageName = project?.match(/^name[ \t]*=[ \t]*["'](sendmux-mcp|qubrics-mcp)["']/m)?.[1];
-  assert(packageName, "Unsupported MCP project.name: expected sendmux-mcp or qubrics-mcp");
-  const mcpRoot = `packages/python/mcp/${packageName === "qubrics-mcp" ? "qubrics/mcp" : "sendmux_mcp"}`;
+  const { root: mcpRoot } = pythonPackage(sdk, "mcp");
   const mcp = JSON.parse(sdk.read(`${mcpRoot}/mcp-contract.json`));
   assert(Object.keys(mcp.tools?.by_surface ?? {}).length > 0, "Missing MCP tool contract");
   assert(Object.keys(mcp.provenance?.sources ?? {}).length > 0, "Missing MCP contract provenance");
@@ -214,7 +231,10 @@ function selectedContracts(mapping, contracts) {
     }));
     selected.cliGlobals = declaration(contracts.source.read(`${cliRoot}/base-command.ts`), "authFlags");
   }
-  if (mapping.public) selected.public = Object.fromEntries(Object.entries(mapping.public).map(([file, names]) => [file, Object.fromEntries(names.map((name) => [name, declaration(contracts.source.read(safePath(file)), name, file)]))]));
+  if (mapping.public) selected.public = Object.fromEntries(Object.entries(mapping.public).map(([file, names]) => {
+    const selectedFile = pythonSourceFile(contracts.source, file);
+    return [selectedFile, Object.fromEntries(names.map((name) => [name, declaration(contracts.source.read(selectedFile), name, selectedFile)]))];
+  }));
   if (mapping.packageJson) selected.packageJson = Object.fromEntries(Object.entries(mapping.packageJson).map(([file, pointers]) => {
     const manifest = JSON.parse(contracts.source.read(safePath(file)));
     return [file, Object.fromEntries(pointers.map((pointer) => {
@@ -229,9 +249,10 @@ function selectedContracts(mapping, contracts) {
     assert(section, `Missing Python console scripts: ${file}`);
     return [file, Object.fromEntries(names.map((name) => {
       assert(/^[A-Za-z0-9_-]+$/.test(name), "Invalid Python console script selector");
-      const entry = new RegExp(`^${name}\\s*=\\s*(["'])([^\\n]*?)\\1\\s*(?:#.*)?$`, "m").exec(section);
-      assert(entry?.[2], `Missing Python console script: ${name}`);
-      return [name, entry[2]];
+      const selectedName = file === "packages/python/mcp/pyproject.toml" ? name.replace(/^(?:sendmux|qubrics)-mcp(?=-|$)/, pythonPackage(contracts.source, "mcp").name) : name;
+      const entry = new RegExp(`^${selectedName}\\s*=\\s*(["'])([^\\n]*?)\\1\\s*(?:#.*)?$`, "m").exec(section);
+      assert(entry?.[2], `Missing Python console script: ${selectedName}`);
+      return [selectedName, entry[2]];
     }))];
   }));
   assert(Object.keys(selected).length > 0, "Missing dependency selectors");
@@ -265,6 +286,7 @@ export function inspectCandidate(file, inspectionMap) {
   const policyBytes = inspectionMap ? readFileSync(inspectionMap) : source.read(policyPath);
   const policy = JSON.parse(policyBytes);
   assert(policy.schemaVersion === 1 && Array.isArray(policy.reviews), "Missing compatibility review map");
+  validateRenames(policy.renames);
   const contracts = { app: app.contract, sending: sending.contract, appPolicy: app.policy, sendingPolicy: sending.policy, ...sdk.contracts };
   const published = skillSnapshot(repository, descriptor.skills.publishedRevision, policy.dependencies, contracts);
   const proposed = skillSnapshot(repository, descriptor.skills.proposedRevision, policy.dependencies, contracts);
@@ -317,7 +339,8 @@ function findReview(entry, candidate) {
 function acceptSkill(entry, lane, candidate) {
   const review = findReview(entry, candidate);
   if (!review && lane === "published") {
-    const replacement = candidate.skills.proposed.entries.find((item) => item.name === entry.name && item.skillDigest !== entry.skillDigest);
+    const replacementName = candidate.policy.renames?.[entry.name] ?? entry.name;
+    const replacement = candidate.skills.proposed.entries.find((item) => item.name === replacementName && item.skillDigest !== entry.skillDigest);
     assert(replacement, `${lane}/${entry.name} requires a compatibility review or workflow evidence for ${entry.contractDigest}`);
     const accepted = acceptSkill(replacement, "proposed", candidate);
     const replacementReview = findReview(replacement, candidate);
@@ -364,6 +387,7 @@ export function verifySkillsReceipt(file, root, revision) {
   assert(receipt.schemaVersion === 1 && receipt.accepted === true && receipt.skills?.proposed?.revision === sha(revision), "Skills revision mismatch in acceptance receipt");
   assert(receipt.policyDigest === hash(source.read(policyPath)) && receipt.checkerDigest === hash(source.read("scripts/skill-compatibility.mjs")), "Stale published skill acceptance receipt");
   const policy = JSON.parse(source.read(policyPath));
+  validateRenames(policy.renames);
   const identity = { sourceRevisions: receipt.sourceRevisions, sources: receipt.sources, skills: receipt.skills, policyDigest: receipt.policyDigest, checkerDigest: receipt.checkerDigest };
   assert(receipt.candidateDigest === objectHash(identity), "Invalid published candidate digest");
   const candidate = { ...identity, policy, source };

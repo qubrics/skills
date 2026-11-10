@@ -126,11 +126,11 @@ const phpPackages = {
 };
 
 const pythonPackages = {
-  "packages/python/sdk/pyproject.toml": "sendmux-sdk",
-  "packages/python/sending/pyproject.toml": "sendmux-sending",
-  "packages/python/mailbox/pyproject.toml": "sendmux-mailbox",
-  "packages/python/management/pyproject.toml": "sendmux-management",
-  "packages/python/mcp/pyproject.toml": "sendmux-mcp",
+  "packages/python/sdk/pyproject.toml": ["sendmux-sdk", "qubrics-sdk"],
+  "packages/python/sending/pyproject.toml": ["sendmux-sending", "qubrics-sending"],
+  "packages/python/mailbox/pyproject.toml": ["sendmux-mailbox", "qubrics-mailbox"],
+  "packages/python/management/pyproject.toml": ["sendmux-management", "qubrics-management"],
+  "packages/python/mcp/pyproject.toml": ["sendmux-mcp", "qubrics-mcp"],
 };
 
 const rubyPackages = {
@@ -157,10 +157,10 @@ const requiredCorpusTokens = [
   ["Sending TS package", /@qubrics\/sending/],
   ["Mailbox TS package", /@qubrics\/mailbox/],
   ["Management TS package", /@qubrics\/management/],
-  ["MCP package", /sendmux-mcp/],
-  ["mailbox MCP server", /sendmux-mcp-mailbox/],
-  ["management MCP server", /sendmux-mcp-management/],
-  ["sending MCP server", /sendmux-mcp-sending/],
+  ["MCP package", /qubrics-mcp/],
+  ["mailbox MCP server", /qubrics-mcp-mailbox/],
+  ["management MCP server", /qubrics-mcp-management/],
+  ["sending MCP server", /qubrics-mcp-sending/],
   ["MCP HTTP bearer token env", /SENDMUX_MCP_HTTP_BEARER_TOKEN/],
   ["batch send MCP tool", /sending_send_email_batch/],
   ["mailbox count MCP tool", /mailbox_count_messages/],
@@ -199,6 +199,14 @@ const forbiddenAgentOnboardingPatterns = [
 ];
 
 const failures = [];
+const mcpRoot = readMcpRoot();
+
+function readMcpRoot() {
+  const name = tomlProjectName(fullPath(sdkRoot, "packages/python/mcp/pyproject.toml"));
+  if (name === "sendmux-mcp") return "packages/python/mcp/sendmux_mcp";
+  if (name === "qubrics-mcp") return "packages/python/mcp/qubrics/mcp";
+  throw new Error(`Unsupported MCP project.name: ${name}`);
+}
 
 function fail(message) {
   failures.push(message);
@@ -244,7 +252,7 @@ function readMcpContractFacts() {
   const initialFailureCount = failures.length;
   const contractPath = fullPath(
     sdkRoot,
-    "packages/python/mcp/sendmux_mcp/mcp-contract.json",
+    `${mcpRoot}/mcp-contract.json`,
   );
   const contract = readJson(contractPath);
   if (!isObject(contract)) {
@@ -442,18 +450,21 @@ function assertMcpContractPublishing(facts) {
   const compatibilityExpectations = Array.isArray(compatibilityEval?.expectations)
     ? compatibilityEval.expectations.join("\n")
     : "";
+  const candidatePackage = facts.packageIdentity === "qubrics-mcp";
   const installLine = setupText
     .split("\n")
-    .find((line) => line.startsWith("This guide targets ")) || "";
+    .find((line) => line.startsWith(candidatePackage ? "The candidate " : "This guide targets ")) || "";
 
   const packageValues = [facts.packageIdentity, facts.packageVersion];
   const packageGuidanceValid =
     containsInOrder(installLine, packageValues) &&
-    /^This guide targets the released\b/i.test(installLine) &&
+    (candidatePackage
+      ? /^The candidate\b/i.test(installLine) && /\bsource is unpublished\b/i.test(installLine)
+      : /^This guide targets the released\b/i.test(installLine)) &&
     containsInOrder(compatibilityExpected, packageValues) &&
-    /\bdistinguishes the released\b/i.test(compatibilityExpected) &&
+    (candidatePackage ? /\bunpublished\b/i : /\bdistinguishes the released\b/i).test(compatibilityExpected) &&
     containsInOrder(compatibilityExpectations, packageValues) &&
-    /\bdistinguishes the released\b/i.test(compatibilityExpectations);
+    (candidatePackage ? /\bunpublished\b/i : /\bdistinguishes the released\b/i).test(compatibilityExpectations);
   if (!packageGuidanceValid) {
     fail("MCP package identity/version guidance drift");
   }
@@ -478,6 +489,9 @@ function assertMcpContractPublishing(facts) {
     ]),
   );
   const total = Object.values(counts).reduce((sum, count) => sum + count, 0);
+  const catalogueLine = candidatePackage
+    ? setupText.split("\n").find((line) => line.startsWith("Its catalogue contains ")) || ""
+    : installLine;
   const countValues = [
     total,
     counts.mailbox,
@@ -494,7 +508,7 @@ function assertMcpContractPublishing(facts) {
     ),
   );
   if (
-    !containsInOrder(installLine, countValues) ||
+    !containsInOrder(catalogueLine, countValues) ||
     !tableHasCounts ||
     !containsInOrder(compatibilityExpected, countValues) ||
     !containsInOrder(compatibilityExpectations, countValues) ||
@@ -988,12 +1002,13 @@ function jsonPackageName(filePath) {
 }
 
 function tomlProjectName(filePath) {
-  const match = readText(filePath).match(/^name\s*=\s*["']([^"']+)["']/m);
+  const project = readText(filePath).split(/^\[project\][ \t]*$/m)[1]?.split(/^\[/m)[0];
+  const match = project?.match(/^name[ \t]*=[ \t]*(["'])([^"'\r\n]+)\1[ \t]*(?:#.*)?$/m);
   if (!match) {
     fail(`Missing project name in ${filePath}`);
     return null;
   }
-  return match[1];
+  return match[2];
 }
 
 function rubyGemspecName(filePath) {
@@ -1337,11 +1352,11 @@ function assertCliCommandCounts() {
 function assertMcpSources() {
   const curationPath = fullPath(
     sdkRoot,
-    "packages/python/mcp/sendmux_mcp/curation.py",
+    `${mcpRoot}/curation.py`,
   );
   const configPath = fullPath(
     sdkRoot,
-    "packages/python/mcp/sendmux_mcp/config.py",
+    `${mcpRoot}/config.py`,
   );
   const curation = readText(curationPath);
   const config = readText(configPath);
@@ -1363,7 +1378,7 @@ function assertMcpSources() {
 function allMcpToolNames() {
   const curationPath = fullPath(
     sdkRoot,
-    "packages/python/mcp/sendmux_mcp/curation.py",
+    `${mcpRoot}/curation.py`,
   );
   const curation = readText(curationPath);
   return new Set(
@@ -1390,7 +1405,7 @@ function assertClaimedMcpToolsExist() {
 }
 
 function assertOfficialSendmuxEnvOnly() {
-  const configText = readText(fullPath(sdkRoot, "packages/python/mcp/sendmux_mcp/config.py"));
+  const configText = readText(fullPath(sdkRoot, `${mcpRoot}/config.py`));
   const surfacesDeclaration = configText.match(/^SURFACES:[^\n=]*=\s*\(([^)]*)\)/m)?.[1];
   const surfaces = [...(surfacesDeclaration || "").matchAll(/["']([^"']+)["']/g)].map((match) => match[1]);
   const keyTemplate = configText.match(/env_value\(f["']([^"']*\{surface\.upper\(\)\}[^"']*)["']\)/)?.[1];
@@ -1402,7 +1417,7 @@ function assertOfficialSendmuxEnvOnly() {
   const surfaceKeys = new Set(surfaces.map((surface) => keyTemplate?.replace("{surface.upper()}", surface.toUpperCase())));
   const sourceText = [
     configText,
-    readText(fullPath(sdkRoot, "packages/python/mcp/sendmux_mcp/hosted.py")),
+    readText(fullPath(sdkRoot, `${mcpRoot}/hosted.py`)),
     readText(fullPath(sdkRoot, "packages/python/mcp/README.md")),
     readText(fullPath(sdkRoot, "packages/ts/cli/src/base-command.ts")),
     readText(fullPath(sdkRoot, "packages/ts/cli/src/profiles.ts")),
@@ -1438,8 +1453,9 @@ function assertSdkPackages() {
   const goModule = readText(goModPath).match(/^module\s+(\S+)/m)?.[1];
   if (!goModule) {
     fail(`Missing Go module declaration in ${goModPath}`);
-  } else if (goModule !== "sendmux.ai/go/v3") {
-    fail(`Go module expected sendmux.ai/go/v3, found ${goModule}`);
+  } else {
+    const expectedModule = goModule.startsWith("qubrics.com/") ? "qubrics.com/go/v4" : "sendmux.ai/go/v3";
+    if (goModule !== expectedModule) fail(`Go module expected ${expectedModule}, found ${goModule}`);
   }
 }
 

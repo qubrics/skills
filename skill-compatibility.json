@@ -1,5 +1,10 @@
 {
   "schemaVersion": 1,
+  "renames": {
+    "sendmux-attachments": "qubrics-attachments",
+    "sendmux-getting-started": "qubrics-getting-started",
+    "sendmux-mcp-setup": "qubrics-mcp-setup"
+  },
   "dependencies": {
     "agent-email-inbox": {
       "app": [
@@ -267,7 +272,7 @@
           "sendEmailWithFiles",
           "uploadAttachmentFromFile"
         ],
-        "packages/python/mailbox/sendmux_mailbox/attachments.py": [
+        "packages/python/mailbox/qubrics/mailbox/attachments.py": [
           "_read_attachment_file",
           "_send_mailbox_message_body",
           "download_mailbox_attachment",
@@ -275,7 +280,7 @@
           "send_mailbox_message_with_files",
           "upload_mailbox_attachment_from_file"
         ],
-        "packages/python/sending/sendmux_sending/attachments.py": [
+        "packages/python/sending/qubrics/sending/attachments.py": [
           "_MAX_SENDING_ATTACHMENTS",
           "_MAX_SENDING_ATTACHMENT_BYTES",
           "_email_send_request",
@@ -283,15 +288,15 @@
           "send_email_with_files",
           "upload_attachment_from_file"
         ],
-        "packages/python/mailbox/sendmux_mailbox/client.py": [
+        "packages/python/mailbox/qubrics/mailbox/client.py": [
           "DEFAULT_BASE_URL",
           "create_mailbox_client"
         ],
-        "packages/python/sending/sendmux_sending/client.py": [
+        "packages/python/sending/qubrics/sending/client.py": [
           "DEFAULT_BASE_URL",
           "create_sending_client"
         ],
-        "packages/python/core/sendmux_core/auth.py": [
+        "packages/python/core/qubrics/core/auth.py": [
           "configure_auth",
           "validate_api_key",
           "validate_auth"
@@ -849,7 +854,7 @@
       },
       "pythonScripts": {
         "packages/python/mcp/pyproject.toml": [
-          "sendmux-mcp"
+          "qubrics-mcp"
         ]
       }
     },
@@ -1121,7 +1126,7 @@
           "sendEmailWithFiles",
           "uploadAttachmentFromFile"
         ],
-        "packages/python/mailbox/sendmux_mailbox/attachments.py": [
+        "packages/python/mailbox/qubrics/mailbox/attachments.py": [
           "_read_attachment_file",
           "_send_mailbox_message_body",
           "download_mailbox_attachment",
@@ -1129,7 +1134,7 @@
           "send_mailbox_message_with_files",
           "upload_mailbox_attachment_from_file"
         ],
-        "packages/python/sending/sendmux_sending/attachments.py": [
+        "packages/python/sending/qubrics/sending/attachments.py": [
           "_MAX_SENDING_ATTACHMENTS",
           "_MAX_SENDING_ATTACHMENT_BYTES",
           "_email_send_request",
@@ -1137,15 +1142,15 @@
           "send_email_with_files",
           "upload_attachment_from_file"
         ],
-        "packages/python/mailbox/sendmux_mailbox/client.py": [
+        "packages/python/mailbox/qubrics/mailbox/client.py": [
           "DEFAULT_BASE_URL",
           "create_mailbox_client"
         ],
-        "packages/python/sending/sendmux_sending/client.py": [
+        "packages/python/sending/qubrics/sending/client.py": [
           "DEFAULT_BASE_URL",
           "create_sending_client"
         ],
-        "packages/python/core/sendmux_core/auth.py": [
+        "packages/python/core/qubrics/core/auth.py": [
           "configure_auth",
           "validate_api_key",
           "validate_auth"
@@ -1707,7 +1712,7 @@
       },
       "pythonScripts": {
         "packages/python/mcp/pyproject.toml": [
-          "sendmux-mcp"
+          "qubrics-mcp"
         ]
       }
     },
@@ -2204,14 +2209,14 @@
         "packages/ts/cli/src/commands/agent/invite-owner.ts": [
           "AgentInviteOwner"
         ],
-        "packages/python/mcp/sendmux_mcp/config.py": [
+        "packages/python/mcp/qubrics/mcp/config.py": [
           "ServerConfig",
           "config_from_env",
           "normalise_surfaces",
           "normalise_transport",
           "surface_api_keys_from_env"
         ],
-        "packages/python/mcp/sendmux_mcp/cli.py": [
+        "packages/python/mcp/qubrics/mcp/cli.py": [
           "config_from_args",
           "main",
           "main_mailbox",
@@ -2221,7 +2226,7 @@
           "surface_api_keys_from_args",
           "surfaces_from_args"
         ],
-        "packages/python/core/sendmux_core/auth.py": [
+        "packages/python/core/qubrics/core/auth.py": [
           "validate_api_key"
         ]
       },
@@ -2241,11 +2246,11 @@
       },
       "pythonScripts": {
         "packages/python/mcp/pyproject.toml": [
-          "sendmux-mcp",
-          "sendmux-mcp-mailbox",
-          "sendmux-mcp-management",
-          "sendmux-mcp-sending",
-          "sendmux-mcp-hosted"
+          "qubrics-mcp",
+          "qubrics-mcp-mailbox",
+          "qubrics-mcp-management",
+          "qubrics-mcp-sending",
+          "qubrics-mcp-hosted"
         ]
       }
     },
@@ -3118,14 +3123,14 @@
         "packages/ts/cli/src/commands/agent/invite-owner.ts": [
           "AgentInviteOwner"
         ],
-        "packages/python/mcp/sendmux_mcp/config.py": [
+        "packages/python/mcp/qubrics/mcp/config.py": [
           "ServerConfig",
           "config_from_env",
           "normalise_surfaces",
           "normalise_transport",
           "surface_api_keys_from_env"
         ],
-        "packages/python/mcp/sendmux_mcp/cli.py": [
+        "packages/python/mcp/qubrics/mcp/cli.py": [
           "config_from_args",
           "main",
           "main_mailbox",
@@ -3135,7 +3140,7 @@
           "surface_api_keys_from_args",
           "surfaces_from_args"
         ],
-        "packages/python/core/sendmux_core/auth.py": [
+        "packages/python/core/qubrics/core/auth.py": [
           "validate_api_key"
         ]
       },
@@ -3154,11 +3159,11 @@
       },
       "pythonScripts": {
         "packages/python/mcp/pyproject.toml": [
-          "sendmux-mcp",
-          "sendmux-mcp-mailbox",
-          "sendmux-mcp-management",
-          "sendmux-mcp-sending",
-          "sendmux-mcp-hosted"
+          "qubrics-mcp",
+          "qubrics-mcp-mailbox",
+          "qubrics-mcp-management",
+          "qubrics-mcp-sending",
+          "qubrics-mcp-hosted"
         ]
       }
     },
@@ -3540,6 +3545,111 @@
     }
   },
   "reviews": [
+    {
+      "skill": "agent-email-inbox",
+      "skillDigest": "956a19a3f81906299d19f35afa0a8dba4a5bd1f1275a45d02ba1d407579f0347",
+      "contractDigest": "72cf77a188092ca920524775efb225c953da93107e9b23a7cd41325a11f48ae7",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-skills34-sdk344/agent-email-inbox.json",
+      "sha256": "ddb9080af32623e8a15537e1877396e9f75faef89555266340a4d3026088a82c"
+    },
+    {
+      "skill": "email-for-ai-agents",
+      "skillDigest": "6f2c0908457404bb6aacc4cdcf18ce49b9054cbd873939b7b3e417224fd4d1d9",
+      "contractDigest": "d2a34a8d395f431e3aa0c67ab6705f14a4d077c95b88591fd188c6bb81f6fa8a",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-skills34-sdk344/email-for-ai-agents.json",
+      "sha256": "345862010aabe3e9318489af7b0992edeafef701ae63f2742505874ee31ccba5"
+    },
+    {
+      "skill": "sendmux-email-for-agents",
+      "skillDigest": "411f7cc5d798a8e0abc7f48dd3561adc64bf5a71435c8c9283d0943f269a6cec",
+      "contractDigest": "cd6384fad1bc9ea9a33969f7aabff17e627f7fb4383bd6f70e6b04d800a532b2",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-skills34-sdk344/sendmux-email-for-agents.json",
+      "sha256": "6e1eb4ddb50470901bc35a44851238af15e69f1b94c65a83a3942aa871d16bd1"
+    },
+    {
+      "skill": "sendmux-mailbox-agent",
+      "skillDigest": "a3e2ba98b2f049335b02ebb3f3ea25b44e4c1c93878160273250222bb693a08a",
+      "contractDigest": "436834eaa65914da52d15e91ef22f4c4a26370134dc6af2e53e9f36566d76169",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-skills34-sdk344/sendmux-mailbox-agent.json",
+      "sha256": "99968686b482f4a80e16447d28c10d7e0e21fe2ab54fed40efec3a9505b3d8ac"
+    },
+    {
+      "skill": "sendmux-send-email",
+      "skillDigest": "853bac285313fe319a7bf94bf67636793a818e7d616a8938bb81b33ef460ccb3",
+      "contractDigest": "e7d8d2212db0434894f5bbb84bb7ba0a17dbc6738c6b7e01e1b57fd55a341360",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-skills34-sdk344/sendmux-send-email.json",
+      "sha256": "8516a71390a9610f57ce72183eff2993ea3bb9152dff5d82ceb3bd52c8b59e0a"
+    },
+    {
+      "skill": "sendmux-token-efficient-usage",
+      "skillDigest": "ece1d30c9a91b3b24376c0ab41d991741b60f9314064da63b0f74da35104a3cb",
+      "contractDigest": "48f5f2c095febab65b4af225448694b14c0d8a8d35cf4165c9029d3b5294a8d6",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-skills34-sdk344/sendmux-token-efficient-usage.json",
+      "sha256": "ea3ab38eaedea8145c4986fad013ce62e0f35b174ceaca1dccf5fdcc73f112bc"
+    },
+    {
+      "skill": "qubrics-agent-email-inbox",
+      "skillDigest": "4a72427ac606f9ad94b4760e039d49ad7918b3f92d3b1d70ae8dfe87ac83ac86",
+      "contractDigest": "4a68ba31b697ff03f9e0f859f62507478d532280d58192b1d5f0ae54b8277a84",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-skills34-sdk344/qubrics-agent-email-inbox.json",
+      "sha256": "f7ec203fc5425ec430c37429862581fcf2f5fac84c437107863b4b3468e824c3"
+    },
+    {
+      "skill": "qubrics-attachments",
+      "skillDigest": "10ae2e30c7e7c4db49f444f7c749774072fb84caa6c76345c885a99834ea8bc5",
+      "contractDigest": "86510d890d8e8713abcdd5081dc3f3cff2ad87b5ab0d8cd9d84d513e818554e9",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-skills34-sdk344/qubrics-attachments.json",
+      "sha256": "1b60bfde36caa9d200382c376b1a76b4bbd936f01db06fdbbf884dc143c0fa4b"
+    },
+    {
+      "skill": "qubrics-email-for-agents",
+      "skillDigest": "70dc5a8f04dca687b17929ac59d553be893235413271a4e99399fff30c70f0a6",
+      "contractDigest": "7632a317f39ecfffe6de64f1700cd5b885d678f8f4da4e822d0616cb3a1f6b60",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-skills34-sdk344/qubrics-email-for-agents.json",
+      "sha256": "a323a78e3250a5dcd16545f5503ce43d4f954d470ff90384ce8636b5d0e9ebc8"
+    },
+    {
+      "skill": "qubrics-email-for-ai-agents",
+      "skillDigest": "bb7c1d2dececb3955dc5c7c446e5bebb84b329643678791cae4c0147bc6769ac",
+      "contractDigest": "baea754ca9017d9712eb167e7c33f338971c48a1671f824d5115454ccabe8990",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-skills34-sdk344/qubrics-email-for-ai-agents.json",
+      "sha256": "77e428d8c49d111295cd6cffd31e428ac45a27973cccef0754db6d7bf0654b72"
+    },
+    {
+      "skill": "qubrics-getting-started",
+      "skillDigest": "226820de7247bd3e2453b938ff62ae0d993e3012fc8b5489872094a4fb45f9c5",
+      "contractDigest": "fe75672141ce3eee578b18a20f44ace0b81a5f2326d7d0ef11f11b538bc65831",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-skills34-sdk344/qubrics-getting-started.json",
+      "sha256": "3eecd72ade7fa02185dd6003055f8ec40fb06a811aef0966fb749bc241f4fc92"
+    },
+    {
+      "skill": "qubrics-mailbox-agent",
+      "skillDigest": "1cdd58768ac528e492d6c00c877b3d5b3863db8a050ab978e9e6a780b9991478",
+      "contractDigest": "0067f329fe3397c410bf768b25e5424adf9be2c784c50349b514e83b8db29da8",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-skills34-sdk344/qubrics-mailbox-agent.json",
+      "sha256": "389f2c4841a32bb09ac78151928d275472ce68dec3b22ad4cc503b9b723931af"
+    },
+    {
+      "skill": "qubrics-mcp-setup",
+      "skillDigest": "4ea84f54ef9294fd2e8083aecac923f29a875e26d000b4513e4a2a49e5dbe927",
+      "contractDigest": "e4390252ea6aa92a6b7e51cf2ffad85fddc226769a245a89f1df6f8f9b20959b",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-skills34-sdk344/qubrics-mcp-setup.json",
+      "sha256": "c41c43d052b4bd8c18851b3326668dc81679e8e1efff1a7abf898638b43a3c91"
+    },
+    {
+      "skill": "qubrics-send-email",
+      "skillDigest": "4ffab36dcec098252982995431fccb2bcb6a343481f30822d5d6831e8b5616cf",
+      "contractDigest": "f11071ec3f5673d92a5de532642d90b457f1c0b55bd90e8ade203a6cbd9280f5",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-skills34-sdk344/qubrics-send-email.json",
+      "sha256": "a0c62daeafa93d87ed543df63ef8be7c52fa94110ae69e8319a4873024b8e7d1"
+    },
+    {
+      "skill": "qubrics-token-efficient-usage",
+      "skillDigest": "7c4d1d3ac670ed25ba71248e12b5e77cdd6ab15c6aab6ed747f0bbc9071a6eeb",
+      "contractDigest": "6515f8881e810c62e2adbd5a173ccc2e27897d0d79dbfe021143458fee2dba9e",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-skills34-sdk344/qubrics-token-efficient-usage.json",
+      "sha256": "4e63985b1d3c78910ad19b494071c5476805c4c9fc6e582baf63a3cc4515dfbd"
+    },
     {
       "skill": "email-for-ai-agents",
       "skillDigest": "eb668c43d4c594ea0e70a59e0c6fb8dc75bed7c3244d0ad706afd2ec770f3060",
@@ -4355,7 +4465,7 @@
   ],
   "releaseInputs": {
     "publishedRevision": "9d8059b10111943ce08860217a27222f43507686",
-    "sdkRevision": "8d3d7492dc83852906c163d0ce0c30cfdd0bc06f",
+    "sdkRevision": "a326bc923fff448470d908bb527afaaa35f6d739",
     "app": {
       "revision": "87ce115810ebcfa91655295603c27af52fcff96f",
       "openapi": "evidence/skill-compatibility/contracts/calendar-20261030/app-openapi.json",

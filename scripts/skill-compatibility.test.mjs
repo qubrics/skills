@@ -164,6 +164,54 @@ test("MCP namespace selection rejects missing or unsupported project identity", 
   }
 });
 
+test("canonical Python selectors retain legacy acceptance and bind renamed public paths and scripts", (t) => {
+  const f = fixture(t);
+  const components = ["mailbox", "sending", "core", "mcp"];
+  const files = ["mailbox/attachments.py", "mailbox/client.py", "sending/attachments.py", "sending/client.py", "core/auth.py", "mcp/config.py", "mcp/cli.py"];
+  const scripts = ["", "-mailbox", "-management", "-sending", "-hosted"];
+  const project = (component, brand) => `[project]\nname = "${brand}-${component}"\n` + (component === "mcp" ? `[project.scripts]\n${scripts.map((suffix) => `${brand}-mcp${suffix} = "${brand === "qubrics" ? "qubrics.mcp" : "sendmux_mcp"}.cli:main"`).join("\n")}\n` : "");
+  for (const component of components) {
+    mkdirSync(join(f.sdk, `packages/python/${component}/sendmux_${component}`), { recursive: true });
+    writeFileSync(join(f.sdk, `packages/python/${component}/pyproject.toml`), project(component, "sendmux"));
+  }
+  for (const file of files) {
+    const [component, name] = file.split("/");
+    writeFileSync(join(f.sdk, `packages/python/${component}/sendmux_${component}/${name}`), "def selected(limit=100):\n    return limit\n");
+  }
+  f.policy.dependencies["agent-email-inbox"].public = Object.fromEntries(files.map((file) => {
+    const [component, name] = file.split("/");
+    return [`packages/python/${component}/qubrics/${component}/${name}`, ["selected"]];
+  }));
+  f.policy.dependencies["agent-email-inbox"].pythonScripts = { "packages/python/mcp/pyproject.toml": scripts.map((suffix) => `qubrics-mcp${suffix}`) };
+  json(join(f.skills, "skill-compatibility.json"), f.policy);
+  f.descriptor.skills.proposedRevision = f.commit(f.skills);
+  f.descriptor.sources.sdk.revision = f.commit(f.sdk); f.save();
+  const legacy = f.inspect(); f.review();
+  assert.equal(f.run("--candidate", f.candidate, "--receipt", f.receipt).status, 0);
+  for (const component of components) {
+    const directory = join(f.sdk, `packages/python/${component}`);
+    mkdirSync(join(directory, "qubrics"));
+    renameSync(join(directory, `sendmux_${component}`), join(directory, `qubrics/${component}`));
+    writeFileSync(join(directory, "pyproject.toml"), project(component, "qubrics"));
+  }
+  f.descriptor.sources.sdk.revision = f.commit(f.sdk); f.save();
+  const renamed = f.inspect();
+  assert.notEqual(renamed.skills.proposed.entries.find((entry) => entry.name === "agent-email-inbox").contractDigest, legacy.skills.proposed.entries.find((entry) => entry.name === "agent-email-inbox").contractDigest);
+  let result = f.run("--candidate", f.candidate, "--receipt", f.receipt);
+  assert.notEqual(result.status, 0); assert.match(result.stderr, /compatibility review or workflow evidence/);
+  f.policy.reviews = []; f.review();
+  result = f.run("--candidate", f.candidate, "--receipt", f.receipt);
+  assert.equal(result.status, 0, result.stderr);
+  const pinned = f.inspect();
+  writeFileSync(join(f.sdk, "packages/python/mailbox/pyproject.toml"), project("mailbox", "sendmux"));
+  assert.deepEqual(f.inspect(), pinned);
+  writeFileSync(join(f.sdk, "packages/python/mailbox/pyproject.toml"), project("mailbox", "qubrics"));
+  writeFileSync(join(f.sdk, "packages/python/mcp/pyproject.toml"), project("mcp", "qubrics").replace("qubrics.mcp.cli:main", "qubrics.mcp.other:main"));
+  f.descriptor.sources.sdk.revision = f.commit(f.sdk); f.save();
+  result = f.run("--candidate", f.candidate, "--receipt", f.receipt);
+  assert.notEqual(result.status, 0); assert.match(result.stderr, /compatibility review or workflow evidence/);
+});
+
 test("a changed API limit blocks a hash-only refresh", (t) => {
   const f = fixture(t); f.review();
   const source = f.descriptor.sources.app;
@@ -400,6 +448,7 @@ test("selected SDK helpers and custom CLI commands require review when their beh
   const classFile = "packages/ts/cli/src/base-command.ts";
   const commandFile = "packages/ts/cli/src/commands/profiles/set.ts";
   const writeSdk = (file, text) => { mkdirSync(dirname(join(f.sdk, file)), { recursive: true }); writeFileSync(join(f.sdk, file), text); };
+  writeSdk("packages/python/mailbox/pyproject.toml", '[project]\nname = "sendmux-mailbox"\n');
   writeSdk(pythonFile, 'def read_attachment(limit=100):\n    return limit\n\ndef unrelated():\n    return 1\n');
   const classText = 'export const authFlags = { "api-key": "Sendmux API key" };\nexport abstract class SendmuxCommand {\n  limit = 100;\n}\n';
   writeSdk(classFile, classText);
@@ -426,10 +475,22 @@ test("selected SDK helpers and custom CLI commands require review when their beh
   assert.notEqual(result.status, 0); assert.match(result.stderr, /compatibility review or workflow evidence/);
 });
 
-function workflowFixture(t) {
+function workflowFixture(t, renamed = false) {
   const f = fixture(t); f.review();
-  const name = "agent-email-inbox";
-  const before = f.inspect().skills.proposed.entries.find((item) => item.name === name);
+  const previousName = "agent-email-inbox";
+  const before = f.inspect().skills.proposed.entries.find((item) => item.name === previousName);
+  const name = renamed ? "qubrics-agent-email-inbox" : previousName;
+  if (renamed) {
+    for (const oldName of names) {
+      const replacement = oldName.startsWith("sendmux-") ? oldName.replace("sendmux-", "qubrics-") : `qubrics-${oldName}`;
+      renameSync(join(f.skills, "skills", oldName), join(f.skills, "skills", replacement));
+      f.policy.dependencies[replacement] = structuredClone(f.policy.dependencies[oldName]);
+      const file = join(f.skills, "skills", replacement, "SKILL.md");
+      writeFileSync(file, readFileSync(file, "utf8").replace(`name: ${oldName}`, `name: ${replacement}`));
+    }
+    json(join(f.skills, "skill-compatibility.json"), f.policy);
+    f.descriptor.skills.proposedRevision = f.commit(f.skills); f.save(); f.review();
+  }
   const skillFile = join(f.skills, "skills", name, "SKILL.md");
   writeFileSync(skillFile, `${readFileSync(skillFile, "utf8")}Updated workflow instruction.\n`);
   f.descriptor.skills.proposedRevision = f.commit(f.skills); f.save();
@@ -507,4 +568,33 @@ test("an incompatible published skill is superseded only by its tested replaceme
   saveReview();
   result = f.run("--candidate", f.candidate, "--receipt", f.receipt);
   assert.notEqual(result.status, 0); assert.match(result.stderr, /superseded/);
+});
+
+test("A13 renamed skills supersede legacy instructions only through a canonical map and bound workflow", (t) => {
+  const { f, name, before, entry, record, saveReview } = workflowFixture(t, true);
+  const previousName = "agent-email-inbox";
+  f.policy.reviews = f.policy.reviews.filter((review) => review.skill !== previousName || review.skillDigest !== before.skillDigest);
+  saveReview();
+  let result = f.run("--candidate", f.candidate, "--receipt", f.receipt);
+  assert.notEqual(result.status, 0); assert.match(result.stderr, /requires a compatibility review/);
+  f.policy.renames = { [previousName]: name }; saveReview();
+  result = f.run("--candidate", f.candidate, "--receipt", f.receipt);
+  assert.equal(result.status, 0, result.stderr);
+  const old = JSON.parse(readFileSync(f.receipt)).results.find((row) => row.lane === "published" && row.name === previousName);
+  assert.equal(old.status, "superseded");
+  assert.equal(old.skillDigest, before.skillDigest); assert.equal(old.replacementDigest, entry.skillDigest);
+  assert.equal(f.run("--verify-skills-receipt", f.receipt, "--skills-root", f.skills, "--revision", f.descriptor.skills.proposedRevision).status, 0);
+  record.previousSkillDigest = "0".repeat(64); saveReview();
+  result = f.run("--candidate", f.candidate, "--receipt", f.receipt);
+  assert.notEqual(result.status, 0); assert.match(result.stderr, /superseded/);
+  record.previousSkillDigest = before.skillDigest; record.kind = "compatibility";
+  record.reviewer = "Fixture reviewer"; record.rationale = "An untested statement cannot supersede renamed legacy instructions."; saveReview();
+  result = f.run("--candidate", f.candidate, "--receipt", f.receipt);
+  assert.notEqual(result.status, 0); assert.match(result.stderr, /superseded/);
+  record.kind = "workflow";
+  for (const renames of [[], null, { [previousName]: "qubrics-cli" }, { unknown: name }]) {
+    f.policy.renames = renames; saveReview();
+    result = f.run("--candidate", f.candidate, "--receipt", f.receipt);
+    assert.notEqual(result.status, 0); assert.match(result.stderr, /Invalid skill rename/);
+  }
 });

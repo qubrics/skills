@@ -2,7 +2,7 @@
   "owner": "sendmux.ai",
   "outputRoot": "dist/clawhub/skills",
   "homepage": "https://github.com/qubrics/skills",
-  "version": "2.0.0",
+  "version": "2.0.3",
   "releaseTags": [
     "latest"
   ],
@@ -184,12 +184,12 @@
       "install": [
         {
           "kind": "uv",
-          "package": "sendmux-mcp",
+          "package": "qubrics-mcp",
           "bins": [
-            "sendmux-mcp",
-            "sendmux-mcp-mailbox",
-            "sendmux-mcp-management",
-            "sendmux-mcp-sending"
+            "qubrics-mcp",
+            "qubrics-mcp-mailbox",
+            "qubrics-mcp-management",
+            "qubrics-mcp-sending"
           ]
         }
       ]

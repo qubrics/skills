@@ -1,0 +1,11 @@
+{
+  "eval_id": 0,
+  "prompt": "Using this MCP setup skill for exact SDK candidate a326bc923fff448470d908bb527afaaa35f6d739, name all five Python console executables and give a Cursor local mailbox-only configuration with a placeholder environment credential. Explain canonical versus legacy environment names, legacy MCP tool names and their qubrics_ aliases, and the hosted OAuth resource boundary. Do not launch a server, authenticate, access a mailbox or claim that the source distribution is already published.",
+  "assertions": [
+    "Names qubrics-mcp, qubrics-mcp-hosted, qubrics-mcp-mailbox, qubrics-mcp-management and qubrics-mcp-sending without teaching old console executables.",
+    "Uses qubrics-mcp-mailbox for local Cursor mailbox-only setup and keeps the credential a placeholder in environment configuration.",
+    "Documents QUBRICS environment names with their retained SENDMUX compatibility fallbacks.",
+    "Preserves existing MCP runtime tool names and explains their qubrics_ aliases without inventing renamed selectors.",
+    "Keeps hosted MCP OAuth resource https://mcp.qubrics.com/mcp separate from REST tokens and claims no external action or unpublished package availability."
+  ]
+}
