@@ -1,0 +1,45 @@
+{
+  "metadata": {
+    "skill_name": "qubrics-mcp-setup"
+  },
+  "runs": [
+    {
+      "eval_id": 0,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "passed": 5,
+        "failed": 0,
+        "total": 5,
+        "pass_rate": 1
+      },
+      "expectations": [
+        {
+          "text": "Names qubrics-mcp, qubrics-mcp-hosted, qubrics-mcp-mailbox, qubrics-mcp-management and qubrics-mcp-sending without teaching old console executables.",
+          "passed": true,
+          "evidence": "Actual response lists exactly qubrics-mcp, qubrics-mcp-mailbox, qubrics-mcp-management, qubrics-mcp-sending and qubrics-mcp-hosted, matching immutable pyproject.toml:32-37."
+        },
+        {
+          "text": "Uses qubrics-mcp-mailbox for local Cursor mailbox-only setup and keeps the credential a placeholder in environment configuration.",
+          "passed": true,
+          "evidence": "Actual Cursor JSON uses command qubrics-mcp-mailbox with literal ${env:SENDMUX_MBX_KEY}; response explains it is a retained environment reference, not a credential, and no key is supplied."
+        },
+        {
+          "text": "Documents QUBRICS environment names with their retained SENDMUX compatibility fallbacks.",
+          "passed": true,
+          "evidence": "Actual response documents canonical QUBRICS names and compatible SENDMUX fallbacks, and clears both inherited families before loading intended credentials; immutable config.py:27-31 retains this precedence."
+        },
+        {
+          "text": "Preserves existing MCP runtime tool names and explains their qubrics_ aliases without inventing renamed selectors.",
+          "passed": true,
+          "evidence": "Actual response preserves mailbox_get_connection and mailbox_search_message_snippets and gives qubrics_mailbox_get_connection as alias; it explicitly separates executable names from runtime tool names."
+        },
+        {
+          "text": "Keeps hosted MCP OAuth resource https://mcp.qubrics.com/mcp separate from REST tokens and claims no external action or unpublished package availability.",
+          "passed": true,
+          "evidence": "Actual response binds hosted OAuth to https://mcp.qubrics.com/mcp and rejects REST-token reuse; it marks source publication pending and explicitly claims no server, authentication, content access or certification."
+        }
+      ]
+    }
+  ]
+}

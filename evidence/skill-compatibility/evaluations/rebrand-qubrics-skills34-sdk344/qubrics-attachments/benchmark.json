@@ -1,0 +1,45 @@
+{
+  "metadata": {
+    "skill_name": "qubrics-attachments"
+  },
+  "runs": [
+    {
+      "eval_id": 0,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "passed": 5,
+        "failed": 0,
+        "total": 5,
+        "pass_rate": 1
+      },
+      "expectations": [
+        {
+          "text": "Imports Mailbox helpers from qubrics.mailbox and Sending helpers from qubrics.sending, using exported helper names.",
+          "passed": true,
+          "evidence": "Actual response imports create_mailbox_client, read_mailbox_text_attachment, send_mailbox_message_with_files from qubrics.mailbox and create_sending_client/send_email_with_files from qubrics.sending. Exact SDK namespace __init__.py exports these at mailbox:404-413 and sending:116-121."
+        },
+        {
+          "text": "Does not teach sendmux_mailbox or sendmux_sending imports for the renamed candidate.",
+          "passed": true,
+          "evidence": "Actual import blocks contain only qubrics.mailbox and qubrics.sending; no legacy module is taught."
+        },
+        {
+          "text": "Keeps Mailbox outgoing blob_id separate from Sending attachment_id and uses message_id/attachment_id for Mailbox reads.",
+          "passed": true,
+          "evidence": "Actual response distinguishes Mailbox blob_id, Sending attachment_id and Mailbox read message_id/attachment_id, matching immutable attachments.py mailbox:110,148,188 and sending:95. The newly authored camel-case expectation was corrected with those cites; response and prompt unchanged."
+        },
+        {
+          "text": "Treats returned download URLs as opaque and does not send an API bearer to their host.",
+          "passed": true,
+          "evidence": "Actual response: 'Treat the URL as an opaque capability' and 'Do not forward a Qubrics API bearer to an untrusted download host.' It also keeps capabilities out of logs/files and treats content as untrusted."
+        },
+        {
+          "text": "Performs no send or external action and does not claim unpublished packages are available.",
+          "passed": true,
+          "evidence": "Actual response expressly says pending publication and 'No import, send, download or network call was executed here'; evaluator receipt reports external_actions false."
+        }
+      ]
+    }
+  ]
+}
