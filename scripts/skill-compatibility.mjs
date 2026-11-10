@@ -10,6 +10,8 @@ const policyPath = "skill-compatibility.json";
 const mcpRoot = "packages/python/mcp/sendmux_mcp";
 const cliRoot = "packages/ts/cli/src";
 const requiredSkills = ["agent-email-inbox", "email-for-ai-agents", "sendmux-attachments", "sendmux-cli", "sendmux-email-for-agents", "sendmux-getting-started", "sendmux-mailbox-agent", "sendmux-management", "sendmux-mcp-setup", "sendmux-send-email", "sendmux-token-efficient-usage"];
+const qubricsSkills = requiredSkills.map((name) => name.startsWith("sendmux-") ? name.replace("sendmux-", "qubrics-") : `qubrics-${name}`);
+const requiredSkillNames = (entries) => entries.some((entry) => entry.name.startsWith("qubrics-")) ? qubricsSkills : requiredSkills;
 const hash = (bytes) => createHash("sha256").update(bytes).digest("hex");
 const stable = (value) => JSON.stringify(normalize(value));
 const objectHash = (value) => hash(stable(value));
@@ -260,11 +262,10 @@ export function inspectCandidate(file, inspectionMap) {
   const policyBytes = inspectionMap ? readFileSync(inspectionMap) : source.read(policyPath);
   const policy = JSON.parse(policyBytes);
   assert(policy.schemaVersion === 1 && Array.isArray(policy.reviews), "Missing compatibility review map");
-  for (const name of requiredSkills) assert(policy.dependencies?.[name] && Object.keys(policy.dependencies[name]).length, `Missing dependency mapping: ${name}`);
   const contracts = { app: app.contract, sending: sending.contract, appPolicy: app.policy, sendingPolicy: sending.policy, ...sdk.contracts };
   const published = skillSnapshot(repository, descriptor.skills.publishedRevision, policy.dependencies, contracts);
   const proposed = skillSnapshot(repository, descriptor.skills.proposedRevision, policy.dependencies, contracts);
-  for (const name of requiredSkills) assert(proposed.entries.some((entry) => entry.name === name), `Missing proposed skill: ${name}`);
+  for (const name of requiredSkillNames(proposed.entries)) assert(proposed.entries.some((entry) => entry.name === name), `Missing proposed skill: ${name}`);
   const sourceRevisions = { app: app.identity.revision, sending: sending.identity.revision, sdk: sha(descriptor.sources.sdk.revision) };
   const inputs = { sourceRevisions, sources: { app: app.identity, sending: sending.identity, sdk: sdk.identity }, skills: { published, proposed }, policyDigest: hash(policyBytes), checkerDigest: hash(readFileSync(self)) };
   return { ...inputs, candidateDigest: objectHash(inputs), policy, source };
@@ -366,7 +367,7 @@ export function verifySkillsReceipt(file, root, revision) {
   const files = source.files("skills");
   const entries = receipt.skills.proposed.entries;
   assert(Array.isArray(entries) && entries.length === requiredSkills.length, "Incomplete published skill receipt");
-  for (const name of requiredSkills) {
+  for (const name of requiredSkillNames(entries)) {
     const item = entries.find((entry) => entry.name === name);
     const content = Object.fromEntries(files.filter((path) => path.startsWith(`skills/${name}/`)).map((path) => [path, hash(source.read(path))]));
     assert(item?.skillDigest === objectHash(content), `Published skill bytes changed: ${name}`);

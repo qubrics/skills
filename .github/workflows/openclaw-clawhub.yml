@@ -36,7 +36,7 @@ on:
   workflow_dispatch:
     inputs:
       publish:
-        description: "Publish generated Sendmux skills to ClawHub"
+        description: "Publish generated Qubrics skills to ClawHub"
         required: true
         default: false
         type: boolean
@@ -58,6 +58,8 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
+        with:
+          persist-credentials: false
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
@@ -89,6 +91,8 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
+        with:
+          persist-credentials: false
 
       - name: Set up Node.js
         uses: actions/setup-node@v4

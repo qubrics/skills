@@ -19,14 +19,17 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const defaultRepoRoot = path.resolve(__dirname, "..");
 
-const PLUGIN_NAME = "sendmux";
-const DISPLAY_NAME = "Sendmux";
+const PLUGIN_NAME = "qubrics";
+const PLUGIN_NAMES = [PLUGIN_NAME, "sendmux"];
+const DISPLAY_NAME = "Qubrics";
 const DESCRIPTION =
-  "Official Sendmux Agent Skills for email, mailbox, MCP, CLI, and SDK workflows.";
+  "Official Qubrics Agent Skills for email, mailbox, MCP, CLI, and SDK workflows.";
 const LONG_DESCRIPTION =
-  "Official Sendmux Agent Skills teach Codex how to send email, read mailboxes, manage team resources, and choose efficient Sendmux API, CLI, MCP, or SDK workflows.";
+  "Official Qubrics Agent Skills teach Codex how to send email, read mailboxes, manage team resources, and choose efficient Qubrics API, CLI, MCP, or SDK workflows.";
+const DEPRECATED_DESCRIPTION =
+  "Deprecated: install the qubrics plugin from the qubrics marketplace. This compatibility entry includes the same Qubrics skills.";
 const CURSOR_LOGO = "assets/sendmux-mark.svg";
-const MCP_SERVER_URL = "https://mcp.sendmux.ai/mcp";
+const MCP_SERVER_URL = "https://mcp.qubrics.com/mcp";
 const RUNTIME_SKILL_ENTRIES = ["SKILL.md", "references", "scripts", "assets", "agents"];
 const GENERATED_OUTPUTS = [
   ".claude-plugin",
@@ -34,6 +37,7 @@ const GENERATED_OUTPUTS = [
   ".cursor-plugin",
   ".mcp.json",
   "mcp.json",
+  "plugins/qubrics",
   "plugins/sendmux",
 ];
 
@@ -87,56 +91,58 @@ function readPluginMetadata(repoRoot) {
     throw new Error("openclaw.skills.json must define homepage for plugin bundles");
   }
   return {
-    homepage: "https://docs.sendmux.ai/guides/agent-skills",
+    homepage: "https://qubrics.com/docs/guides/agent-skills",
     repository: config.homepage,
     version: config.version,
   };
 }
 
-function claudePluginManifest(metadata) {
+function claudePluginManifest(metadata, pluginName = PLUGIN_NAME) {
   return {
-    name: PLUGIN_NAME,
-    displayName: DISPLAY_NAME,
+    name: pluginName,
+    displayName: pluginName === "sendmux" ? "Sendmux (deprecated)" : DISPLAY_NAME,
     version: metadata.version,
-    description: DESCRIPTION,
+    description: pluginName === "sendmux" ? DEPRECATED_DESCRIPTION : DESCRIPTION,
     author: {
-      name: "Sendmux",
-      url: "https://sendmux.ai",
+      name: "Qubrics",
+      url: "https://qubrics.com",
     },
     homepage: metadata.homepage,
     repository: metadata.repository,
     license: "Apache-2.0",
-    keywords: ["sendmux", "email", "agent-skills", "mcp", "cli"],
+    keywords: ["qubrics", "email", "agent-skills", "mcp", "cli"],
     skills: "./skills/",
   };
 }
 
-function codexPluginManifest(metadata) {
+function codexPluginManifest(metadata, pluginName = PLUGIN_NAME) {
   return {
-    name: PLUGIN_NAME,
+    name: pluginName,
     version: metadata.version,
-    description: DESCRIPTION,
+    description: pluginName === "sendmux" ? DEPRECATED_DESCRIPTION : DESCRIPTION,
     author: {
-      name: "Sendmux",
-      url: "https://sendmux.ai",
+      name: "Qubrics",
+      url: "https://qubrics.com",
     },
     homepage: metadata.homepage,
     repository: metadata.repository,
     license: "Apache-2.0",
-    keywords: ["sendmux", "email", "agent-skills", "mcp", "cli"],
+    keywords: ["qubrics", "email", "agent-skills", "mcp", "cli"],
     skills: "./skills/",
     interface: {
-      displayName: DISPLAY_NAME,
-      shortDescription: "Use Sendmux email, mailbox, MCP, CLI, and SDK workflows.",
-      longDescription: LONG_DESCRIPTION,
-      developerName: "Sendmux",
+      displayName: pluginName === "sendmux" ? "Sendmux (deprecated)" : DISPLAY_NAME,
+      shortDescription: pluginName === "sendmux"
+        ? "Deprecated: install Qubrics from the qubrics marketplace."
+        : "Use Qubrics email, mailbox, MCP, CLI, and SDK workflows.",
+      longDescription: pluginName === "sendmux" ? DEPRECATED_DESCRIPTION : LONG_DESCRIPTION,
+      developerName: "Qubrics",
       category: "Communication",
       capabilities: ["Instructions", "Automation"],
       brandColor: "#4F46E5",
       defaultPrompt: [
-        "Use Sendmux to set up an agent inbox.",
-        "Send a Sendmux email with the right credential.",
-        "Connect Sendmux MCP to this agent.",
+        "Use Qubrics to set up an agent inbox.",
+        "Send a Qubrics email with the right credential.",
+        "Connect Qubrics MCP to this agent.",
       ],
     },
   };
@@ -148,12 +154,12 @@ function cursorPluginManifest(metadata) {
     displayName: DISPLAY_NAME,
     version: metadata.version,
     description: DESCRIPTION,
-    author: { name: "Sendmux" },
+    author: { name: "Qubrics" },
     homepage: metadata.homepage,
     repository: metadata.repository,
     license: "Apache-2.0",
     logo: CURSOR_LOGO,
-    keywords: ["sendmux", "email", "agent-skills", "mcp", "cli"],
+    keywords: ["qubrics", "email", "agent-skills", "mcp", "cli"],
     category: "communication",
     skills: "./skills/",
     mcpServers: "./mcp.json",
@@ -163,7 +169,7 @@ function cursorPluginManifest(metadata) {
 function mcpConfiguration() {
   return {
     mcpServers: {
-      sendmux: {
+      qubrics: {
         type: "http",
         url: MCP_SERVER_URL,
       },
@@ -174,48 +180,44 @@ function mcpConfiguration() {
 function claudeMarketplace(metadata) {
   return {
     $schema: "https://anthropic.com/claude-code/marketplace.schema.json",
-    name: "sendmux",
+    name: PLUGIN_NAME,
     description: DESCRIPTION,
     owner: {
-      name: "Sendmux",
-      url: "https://sendmux.ai",
+      name: "Qubrics",
+      url: "https://qubrics.com",
     },
-    plugins: [
-      {
-        name: PLUGIN_NAME,
-        source: "./plugins/sendmux",
-        description: DESCRIPTION,
+    plugins: PLUGIN_NAMES.map((name) => ({
+        name,
+        source: `./plugins/${name}`,
+        description: name === "sendmux" ? DEPRECATED_DESCRIPTION : DESCRIPTION,
         version: metadata.version,
         author: {
-          name: "Sendmux",
+          name: "Qubrics",
         },
         category: "communication",
         homepage: metadata.homepage,
-      },
-    ],
+    })),
   };
 }
 
 function codexMarketplace() {
   return {
-    name: "sendmux",
+    name: PLUGIN_NAME,
     interface: {
-      displayName: "Sendmux",
+      displayName: DISPLAY_NAME,
     },
-    plugins: [
-      {
-        name: PLUGIN_NAME,
+    plugins: PLUGIN_NAMES.map((name) => ({
+        name,
         source: {
           source: "local",
-          path: "./plugins/sendmux",
+          path: `./plugins/${name}`,
         },
         policy: {
           installation: "AVAILABLE",
           authentication: "ON_INSTALL",
         },
         category: "Communication",
-      },
-    ],
+    })),
   };
 }
 
@@ -238,13 +240,22 @@ export function buildPluginBundles(repoRoot = defaultRepoRoot) {
     throw new Error(`${CURSOR_LOGO} must exist for the Cursor plugin bundle`);
   }
   const pluginRoot = path.join(repoRoot, "plugins", PLUGIN_NAME);
-  assertSafeGeneratedPath(repoRoot, pluginRoot);
-
-  rmSync(pluginRoot, { recursive: true, force: true });
-  mkdirSync(path.join(pluginRoot, "skills"), { recursive: true });
-
-  for (const slug of listSkillSlugs(repoRoot)) {
-    copySkillRuntimeFiles(repoRoot, path.join(pluginRoot, "skills"), slug);
+  for (const pluginName of PLUGIN_NAMES) {
+    const currentPluginRoot = path.join(repoRoot, "plugins", pluginName);
+    assertSafeGeneratedPath(repoRoot, currentPluginRoot);
+    rmSync(currentPluginRoot, { recursive: true, force: true });
+    mkdirSync(path.join(currentPluginRoot, "skills"), { recursive: true });
+    for (const slug of listSkillSlugs(repoRoot)) {
+      copySkillRuntimeFiles(repoRoot, path.join(currentPluginRoot, "skills"), slug);
+    }
+    writeJson(
+      path.join(currentPluginRoot, ".claude-plugin", "plugin.json"),
+      claudePluginManifest(metadata, pluginName),
+    );
+    writeJson(
+      path.join(currentPluginRoot, ".codex-plugin", "plugin.json"),
+      codexPluginManifest(metadata, pluginName),
+    );
   }
 
   writeJson(
@@ -264,15 +275,6 @@ export function buildPluginBundles(repoRoot = defaultRepoRoot) {
     assertSafeGeneratedPath(repoRoot, outputPath);
     writeJson(outputPath, mcpConfiguration());
   }
-  writeJson(
-    path.join(pluginRoot, ".claude-plugin", "plugin.json"),
-    claudePluginManifest(metadata),
-  );
-  writeJson(
-    path.join(pluginRoot, ".codex-plugin", "plugin.json"),
-    codexPluginManifest(metadata),
-  );
-
   return {
     pluginRoot,
     skills: listSkillSlugs(repoRoot),

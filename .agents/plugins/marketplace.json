@@ -1,9 +1,21 @@
 {
-  "name": "sendmux",
+  "name": "qubrics",
   "interface": {
-    "displayName": "Sendmux"
+    "displayName": "Qubrics"
   },
   "plugins": [
+    {
+      "name": "qubrics",
+      "source": {
+        "source": "local",
+        "path": "./plugins/qubrics"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Communication"
+    },
     {
       "name": "sendmux",
       "source": {

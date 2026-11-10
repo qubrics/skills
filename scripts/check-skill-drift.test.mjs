@@ -170,7 +170,7 @@ function replaceFixtureText(filePath, currentText, replacement) {
 function replaceDirectUploadCode(skillsRoot, replacement) {
   const skillPath = path.join(
     skillsRoot,
-    "skills/sendmux-attachments/SKILL.md",
+    "skills/qubrics-attachments/SKILL.md",
   );
   const skillText = readFileSync(skillPath, "utf8");
   const updated = skillText.replace(
@@ -184,7 +184,7 @@ function replaceDirectUploadCode(skillsRoot, replacement) {
 function mutateDirectUploadCode(skillsRoot, mutate) {
   const skillPath = path.join(
     skillsRoot,
-    "skills/sendmux-attachments/SKILL.md",
+    "skills/qubrics-attachments/SKILL.md",
   );
   const skillText = readFileSync(skillPath, "utf8");
   const sectionPattern =
@@ -202,7 +202,7 @@ function mutateDirectUploadCode(skillsRoot, mutate) {
 function appendToGettingStarted(skillsRoot, text) {
   const skillPath = path.join(
     skillsRoot,
-    "skills/sendmux-getting-started/SKILL.md",
+    "skills/qubrics-getting-started/SKILL.md",
   );
   const skillText = readFileSync(skillPath, "utf8");
   writeFileSync(skillPath, `${skillText}\n${text}\n`);
@@ -211,7 +211,7 @@ function appendToGettingStarted(skillsRoot, text) {
 function replaceInGettingStarted(skillsRoot, currentText, replacement) {
   const skillPath = path.join(
     skillsRoot,
-    "skills/sendmux-getting-started/SKILL.md",
+    "skills/qubrics-getting-started/SKILL.md",
   );
   const skillText = readFileSync(skillPath, "utf8");
   const updated = skillText.replace(currentText, replacement);
@@ -220,7 +220,7 @@ function replaceInGettingStarted(skillsRoot, currentText, replacement) {
 }
 
 const argvDirectUpload = [
-  'curl -X POST "https://smtp.sendmux.ai/api/v1/emails/attachments?filename=report.pdf" \\',
+  'curl -X POST "https://smtp.qubrics.com/api/v1/emails/attachments?filename=report.pdf" \\',
   '  -H "Authorization: Bearer $SENDMUX_MBX_KEY" \\',
   '  -H "Content-Type: application/pdf" \\',
   '  -H "Content-Length: $SIZE_BYTES" \\',
@@ -229,7 +229,7 @@ const argvDirectUpload = [
 
 test("accepts the documented generic SENDMUX_API_KEY alongside surface keys", (t) => {
   const fixture = makeContractFixture(t);
-  const file = path.join(fixture.skillsRoot, "skills/sendmux-mcp-setup/SKILL.md");
+  const file = path.join(fixture.skillsRoot, "skills/qubrics-mcp-setup/SKILL.md");
   writeFileSync(file, `${readFileSync(file, "utf8")}\nSENDMUX_API_KEY\n`);
   const result = runFixtureChecker(fixture);
   assert.equal(result.status, 0, result.stderr);
@@ -238,7 +238,7 @@ test("accepts the documented generic SENDMUX_API_KEY alongside surface keys", (t
 test("rejects a bogus surface API key even when SDK prose mentions it", (t) => {
   const fixture = makeContractFixture(t);
   for (const relativePath of [
-    "skills/sendmux-mcp-setup/SKILL.md",
+    "skills/qubrics-mcp-setup/SKILL.md",
     "sdk/packages/python/mcp/README.md",
   ]) {
     const file = path.join(fixture.skillsRoot, relativePath);
@@ -248,6 +248,20 @@ test("rejects a bogus surface API key even when SDK prose mentions it", (t) => {
   assert.equal(result.status, 1);
   assert.match(result.stderr, /undocumented env var SENDMUX_BOGUS_API_KEY/);
   t.diagnostic("SENDMUX_BOGUS_API_KEY rejected with exit 1");
+});
+
+test("validates Qubrics environment aliases against declared MCP surfaces", (t) => {
+  const fixture = makeContractFixture(t);
+  const skill = path.join(fixture.skillsRoot, "skills/qubrics-mcp-setup/SKILL.md");
+  writeFileSync(skill, `${readFileSync(skill, "utf8")}\nQUBRICS_API_KEY QUBRICS_MAILBOX_API_KEY\n`);
+  const valid = runFixtureChecker(fixture);
+  assert.equal(valid.status, 0, valid.stderr);
+  const readme = path.join(fixture.sdkRoot, "packages/python/mcp/README.md");
+  writeFileSync(readme, `${readFileSync(readme, "utf8")}\nQUBRICS_BOGUS_API_KEY\n`);
+  writeFileSync(skill, `${readFileSync(skill, "utf8")}\nQUBRICS_BOGUS_API_KEY\n`);
+  const bogus = runFixtureChecker(fixture);
+  assert.equal(bogus.status, 1);
+  assert.match(bogus.stderr, /undocumented env var QUBRICS_BOGUS_API_KEY/);
 });
 
 test("rejects a surface API key after its surface is removed from SDK SURFACES", (t) => {
@@ -367,7 +381,7 @@ test("requires complete command-local direct attachment upload evidence", (t) =>
         );
         const skillPath = path.join(
           fixtureRoot,
-          "skills/sendmux-attachments/SKILL.md",
+          "skills/qubrics-attachments/SKILL.md",
         );
         const skillText = readFileSync(skillPath, "utf8");
         writeFileSync(
@@ -400,8 +414,8 @@ test("requires complete command-local direct attachment upload evidence", (t) =>
       apply: (fixtureRoot) =>
         mutateDirectUploadCode(fixtureRoot, (code) =>
           code.replace(
-            'url = "https://smtp.sendmux.ai/api/v1/emails/attachments?filename=report.pdf&content_type=application/pdf"',
-            'header = "X-Upload-URL: https://smtp.sendmux.ai/api/v1/emails/attachments?filename=report.pdf"',
+            'url = "https://smtp.qubrics.com/api/v1/emails/attachments?filename=report.pdf&content_type=application/pdf"',
+            'header = "X-Upload-URL: https://smtp.qubrics.com/api/v1/emails/attachments?filename=report.pdf"',
           ),
         ),
     },
@@ -421,8 +435,8 @@ test("requires complete command-local direct attachment upload evidence", (t) =>
       apply: (fixtureRoot) =>
         mutateDirectUploadCode(fixtureRoot, (code) =>
           code.replace(
-            "https://smtp.sendmux.ai/api/v1/emails/attachments?",
-            "https://smtp.sendmux.ai/api/v1/emails/attachment-uploads?",
+            "https://smtp.qubrics.com/api/v1/emails/attachments?",
+            "https://smtp.qubrics.com/api/v1/emails/attachment-uploads?",
           ),
         ),
     },
@@ -648,13 +662,13 @@ test("requires consistent released package guidance in the setup guide and case 
 
     if (location === "guide") {
       replaceFixtureText(
-        path.join(fixture.skillsRoot, "skills/sendmux-mcp-setup/SKILL.md"),
+        path.join(fixture.skillsRoot, "skills/qubrics-mcp-setup/SKILL.md"),
         "targets the released",
         "targets the unpublished",
       );
     } else {
       mutateJson(
-        path.join(fixture.skillsRoot, "skills/sendmux-mcp-setup/evals/evals.json"),
+        path.join(fixture.skillsRoot, "skills/qubrics-mcp-setup/evals/evals.json"),
         (value) => {
           const compatibility = value.evals.find((entry) => entry.id === 7);
           if (location === "expected_output") {
@@ -714,7 +728,7 @@ test("rejects substring matches for published contract values and sync fields", 
       if (location === "guide") {
         const guidePath = path.join(
           fixture.skillsRoot,
-          "skills/sendmux-mcp-setup/SKILL.md",
+          "skills/qubrics-mcp-setup/SKILL.md",
         );
         const original = readFileSync(guidePath, "utf8");
         const changed = original.replace(/^This guide targets .+$/m, (line) =>
@@ -724,7 +738,7 @@ test("rejects substring matches for published contract values and sync fields", 
         writeFileSync(guidePath, changed);
       } else {
         mutateJson(
-          path.join(fixture.skillsRoot, "skills/sendmux-mcp-setup/evals/evals.json"),
+          path.join(fixture.skillsRoot, "skills/qubrics-mcp-setup/evals/evals.json"),
           (document) => {
             const compatibility = document.evals.find((entry) => entry.id === 7);
             if (location === "expected_output") {
@@ -754,7 +768,7 @@ test("rejects substring matches for published contract values and sync fields", 
     assert.equal(baseline.status, 0, baseline.stderr);
     const field = `data.types.${surface}.new_state`;
     replaceFixtureText(
-      path.join(fixture.skillsRoot, "skills/sendmux-token-efficient-usage/SKILL.md"),
+      path.join(fixture.skillsRoot, "skills/qubrics-token-efficient-usage/SKILL.md"),
       field,
       `${field}_extra`,
     );
@@ -880,8 +894,8 @@ test("matches MCP contract fields only at their publishing locations", (t) => {
     value.package.version = futureVersion;
   });
   for (const relativePath of [
-    "skills/sendmux-mcp-setup/SKILL.md",
-    "skills/sendmux-mcp-setup/evals/evals.json",
+    "skills/qubrics-mcp-setup/SKILL.md",
+    "skills/qubrics-mcp-setup/evals/evals.json",
   ]) {
     replaceFixtureText(
       path.join(futureVersionFixture.skillsRoot, relativePath),
@@ -895,7 +909,7 @@ test("matches MCP contract fields only at their publishing locations", (t) => {
   replaceFixtureText(
     path.join(
       futureVersionFixture.skillsRoot,
-      "skills/sendmux-mcp-setup/evals/evals.json",
+      "skills/qubrics-mcp-setup/evals/evals.json",
     ),
     futureVersion,
     contract.package.version,
@@ -918,8 +932,8 @@ test("matches MCP contract fields only at their publishing locations", (t) => {
   assert.equal(staleProtocol.status, 1);
   assert.match(staleProtocol.stderr, /MCP protocol guidance drift/);
   for (const relativePath of [
-    "skills/sendmux-mcp-setup/SKILL.md",
-    "skills/sendmux-mcp-setup/evals/evals.json",
+    "skills/qubrics-mcp-setup/SKILL.md",
+    "skills/qubrics-mcp-setup/evals/evals.json",
   ]) {
     const filePath = path.join(exactProtocolFixture.skillsRoot, relativePath);
     const text = readFileSync(filePath, "utf8");
@@ -949,10 +963,10 @@ test("matches MCP contract fields only at their publishing locations", (t) => {
     delete uploadTool.input_schema.properties[oldMode];
   });
   for (const skillName of [
-    "sendmux-mcp-setup",
-    "sendmux-attachments",
-    "sendmux-mailbox-agent",
-    "sendmux-token-efficient-usage",
+    "qubrics-mcp-setup",
+    "qubrics-attachments",
+    "qubrics-mailbox-agent",
+    "qubrics-token-efficient-usage",
   ]) {
     replaceFixtureText(
       path.join(futureModeFixture.skillsRoot, `skills/${skillName}/SKILL.md`),
@@ -967,22 +981,22 @@ test("matches MCP contract fields only at their publishing locations", (t) => {
 test("requires the Sending response size authority in each publishing skill", (t) => {
   const publishingSkills = [
     {
-      name: "sendmux-mcp-setup",
+      name: "qubrics-mcp-setup",
       responseText: "its returned `max_size_bytes`",
       requestText: "its requested `max_size_bytes`",
     },
     {
-      name: "sendmux-attachments",
+      name: "qubrics-attachments",
       responseText: "upload intent's returned `max_size_bytes`",
       requestText: "upload intent's requested `max_size_bytes`",
     },
     {
-      name: "sendmux-send-email",
+      name: "qubrics-send-email",
       responseText: "upload intent's returned `max_size_bytes`",
       requestText: "upload intent's requested `max_size_bytes`",
     },
     {
-      name: "sendmux-token-efficient-usage",
+      name: "qubrics-token-efficient-usage",
       responseText: "upload intent's returned `max_size_bytes`",
       requestText: "upload intent's requested `max_size_bytes`",
     },
@@ -1045,7 +1059,7 @@ test("keeps MCP file_path guidance aligned in both contract directions", (t) => 
   assert.equal(baseline.status, 0, baseline.stderr);
   const attachmentPath = path.join(
     guidanceRecommendsFilePath.skillsRoot,
-    "skills/sendmux-attachments/SKILL.md",
+    "skills/qubrics-attachments/SKILL.md",
   );
   replaceFixtureText(
     attachmentPath,
@@ -1115,7 +1129,7 @@ test("guards the documented sync, SDK envelope, throwing, and recipient semantic
       diagnostic: /typed multi-resource sync guidance drift/,
       apply: (fixture) =>
         replaceFixtureText(
-          skillPath(fixture, "sendmux-token-efficient-usage"),
+          skillPath(fixture, "qubrics-token-efficient-usage"),
           "  --query types=messages,folders,threads \\",
           "  --query limit=3 \\",
         ),
@@ -1125,7 +1139,7 @@ test("guards the documented sync, SDK envelope, throwing, and recipient semantic
       diagnostic: /typed continuation guidance drift/,
       apply: (fixture) =>
         replaceFixtureText(
-          skillPath(fixture, "sendmux-token-efficient-usage"),
+          skillPath(fixture, "qubrics-token-efficient-usage"),
           "set `NEXT_MESSAGES_STATE` from its `data.types.messages.new_state`, and repeat only while that same latest response's `data.types.messages.has_more` is true",
           "set `NEXT_MESSAGES_STATE` from its `data.new_state`, and repeat only while that same latest response's `data.has_more` is true",
         ),
@@ -1135,7 +1149,7 @@ test("guards the documented sync, SDK envelope, throwing, and recipient semantic
       diagnostic: /typed continuation guidance drift/,
       apply: (fixture) =>
         replaceFixtureText(
-          skillPath(fixture, "sendmux-token-efficient-usage"),
+          skillPath(fixture, "qubrics-token-efficient-usage"),
           "set `NEXT_MESSAGES_STATE` from its `data.types.messages.new_state`, and repeat only while that same latest response's `data.types.messages.has_more` is true",
           "set `NEXT_MESSAGES_STATE` from its `pagination.next_cursor`, and repeat only while that same latest response's `data.types.messages.has_more` is true",
         ),
@@ -1145,7 +1159,7 @@ test("guards the documented sync, SDK envelope, throwing, and recipient semantic
       diagnostic: /filtered sync guidance drift/,
       apply: (fixture) =>
         replaceFixtureText(
-          skillPath(fixture, "sendmux-token-efficient-usage"),
+          skillPath(fixture, "qubrics-token-efficient-usage"),
           "set `QUERY_STATE` from its `data.new_query_state`, and continue with the same filters only while that same latest response's `data.has_more` is true",
           "set `QUERY_STATE` from its `data.new_state`, and continue with the same filters only while that same latest response's `data.types.messages.has_more` is true",
         ),
@@ -1155,7 +1169,7 @@ test("guards the documented sync, SDK envelope, throwing, and recipient semantic
       diagnostic: /list pagination guidance drift/,
       apply: (fixture) =>
         replaceFixtureText(
-          skillPath(fixture, "sendmux-token-efficient-usage"),
+          skillPath(fixture, "qubrics-token-efficient-usage"),
           "map the returned `pagination.next_cursor` to the next `cursor` input",
           "map the returned `data.next_cursor` to the next `cursor` input",
         ),
@@ -1165,7 +1179,7 @@ test("guards the documented sync, SDK envelope, throwing, and recipient semantic
       diagnostic: /Sending SDK response envelope guidance drift/,
       apply: (fixture) =>
         replaceFixtureText(
-          skillPath(fixture, "sendmux-send-email"),
+          skillPath(fixture, "qubrics-send-email"),
           "response.data.data.message_id, response.data.data.status",
           "response.data.info.message_id, response.data.info.status",
         ),
@@ -1175,7 +1189,7 @@ test("guards the documented sync, SDK envelope, throwing, and recipient semantic
       diagnostic: /Sending SDK response envelope guidance drift/,
       apply: (fixture) =>
         replaceFixtureText(
-          skillPath(fixture, "sendmux-send-email"),
+          skillPath(fixture, "qubrics-send-email"),
           "response.data.data.results",
           "response.data.info.results",
         ),
@@ -1184,7 +1198,7 @@ test("guards the documented sync, SDK envelope, throwing, and recipient semantic
       name: "single-send throwOnError",
       diagnostic: /throwOnError guidance drift/,
       apply: (fixture) => {
-        const filePath = skillPath(fixture, "sendmux-send-email");
+        const filePath = skillPath(fixture, "qubrics-send-email");
         const text = readFileSync(filePath, "utf8");
         const updated = text.replace("  throwOnError: true,", "  throwOnError: false,");
         assert.notEqual(updated, text);
@@ -1195,7 +1209,7 @@ test("guards the documented sync, SDK envelope, throwing, and recipient semantic
       name: "batch-send throwOnError",
       diagnostic: /throwOnError guidance drift/,
       apply: (fixture) => {
-        const filePath = skillPath(fixture, "sendmux-send-email");
+        const filePath = skillPath(fixture, "qubrics-send-email");
         const text = readFileSync(filePath, "utf8");
         const first = text.indexOf("  throwOnError: true,");
         const second = text.indexOf("  throwOnError: true,", first + 1);
@@ -1211,7 +1225,7 @@ test("guards the documented sync, SDK envelope, throwing, and recipient semantic
       diagnostic: /throwOnError guidance drift/,
       apply: (fixture) =>
         replaceFixtureText(
-          skillPath(fixture, "sendmux-getting-started"),
+          skillPath(fixture, "qubrics-getting-started"),
           "sendingGetOpenApiSpec({ client, throwOnError: true })",
           "sendingGetOpenApiSpec({ client, throwOnError: false })",
         ),
@@ -1221,7 +1235,7 @@ test("guards the documented sync, SDK envelope, throwing, and recipient semantic
       diagnostic: /Sending recipient bounds guidance drift/,
       apply: (fixture) =>
         replaceFixtureText(
-          skillPath(fixture, "sendmux-send-email"),
+          skillPath(fixture, "qubrics-send-email"),
           "max 49 each and subject to 50 total",
           "max 50 each and subject to 50 total",
         ),
@@ -1231,7 +1245,7 @@ test("guards the documented sync, SDK envelope, throwing, and recipient semantic
       diagnostic: /Sending recipient bounds guidance drift/,
       apply: (fixture) =>
         replaceFixtureText(
-          skillPath(fixture, "sendmux-send-email"),
+          skillPath(fixture, "qubrics-send-email"),
           "max 49 each and subject to 50 total",
           "max 49 each and subject to 51 total",
         ),
@@ -1241,7 +1255,7 @@ test("guards the documented sync, SDK envelope, throwing, and recipient semantic
       diagnostic: /Sending recipient bounds guidance drift/,
       apply: (fixture) =>
         replaceFixtureText(
-          skillPath(fixture, "sendmux-send-email"),
+          skillPath(fixture, "qubrics-send-email"),
           "A `messages[]` body with up to 100 independently confirmed messages.",
           "A `messages[]` body with up to 101 independently confirmed messages.",
         ),
@@ -1265,7 +1279,7 @@ test("validates the documented management:create-mailbox-key JSON body against O
   assert.equal(baseline.status, 0, baseline.stderr);
   const wrongFieldPath = path.join(
     wrongFieldFixture.skillsRoot,
-    "skills/sendmux-management/SKILL.md",
+    "skills/qubrics-management/SKILL.md",
   );
   replaceFixtureText(
     wrongFieldPath,
@@ -1289,7 +1303,7 @@ test("validates the documented management:create-mailbox-key JSON body against O
   replaceFixtureText(
     path.join(
       missingLabelFixture.skillsRoot,
-      "skills/sendmux-management/SKILL.md",
+      "skills/qubrics-management/SKILL.md",
     ),
     '--body \'{"app_name":"agent-runtime"}\'',
     "--body '{}'",
@@ -1310,7 +1324,7 @@ test("requires authenticated SDK clients and response envelopes at dereference s
   replaceFixtureText(
     path.join(
       missingClientFixture.skillsRoot,
-      "skills/sendmux-token-efficient-usage/SKILL.md",
+      "skills/qubrics-token-efficient-usage/SKILL.md",
     ),
     "const result = await managementGetEmailLog({\n  client,\n  path:",
     "const result = await managementGetEmailLog({\n  path:",
@@ -1325,7 +1339,7 @@ test("requires authenticated SDK clients and response envelopes at dereference s
   replaceFixtureText(
     path.join(
       wrongEnvelopeFixture.skillsRoot,
-      "skills/sendmux-mailbox-agent/SKILL.md",
+      "skills/qubrics-mailbox-agent/SKILL.md",
     ),
     "snippets.data.data.snippets.map",
     "snippets.data.snippets.map",
@@ -1339,7 +1353,7 @@ test("requires authenticated SDK clients and response envelopes at dereference s
   assert.equal(baseline.status, 0, baseline.stderr);
   const mailboxAgentPath = path.join(
     nonThrowingFixture.skillsRoot,
-    "skills/sendmux-mailbox-agent/SKILL.md",
+    "skills/qubrics-mailbox-agent/SKILL.md",
   );
   const mailboxAgentText = readFileSync(mailboxAgentPath, "utf8");
   const nonThrowingText = mailboxAgentText.replace(
@@ -1358,7 +1372,7 @@ test("requires authenticated SDK clients and response envelopes at dereference s
   replaceFixtureText(
     path.join(
       unguardedEmptyFixture.skillsRoot,
-      "skills/sendmux-mailbox-agent/SKILL.md",
+      "skills/qubrics-mailbox-agent/SKILL.md",
     ),
     "if (ids.length > 0) {",
     "if (ids.length >= 0) {",
@@ -1373,7 +1387,7 @@ test("requires authenticated SDK clients and response envelopes at dereference s
   replaceFixtureText(
     path.join(
       undefinedHeadersFixture.skillsRoot,
-      "skills/sendmux-token-efficient-usage/SKILL.md",
+      "skills/qubrics-token-efficient-usage/SKILL.md",
     ),
     'headers: priorEtag ? { "If-None-Match": priorEtag } : {},',
     'headers: priorEtag ? { "If-None-Match": priorEtag } : undefined,',

@@ -1,13 +1,13 @@
 name: Notify SITE of skill changes
 
-# On every skill change merged to main, tell SITE_sendmux.ai to re-sync its
+# On every skill change merged to main, tell SITE_qubrics.ai to re-sync its
 # agent-skills discovery surfaces immediately (instead of waiting for the SITE's
 # daily schedule). Fires a `skills-updated` repository_dispatch that the SITE's
 # .github/workflows/sync-agent-skills.yml listens for.
 #
 # ── One-time secret (optional; enables the *immediate* trigger) ──
 # Add a repo/org secret SITE_DISPATCH_TOKEN = a fine-grained PAT scoped to
-# Sendmux/SITE_sendmux.ai with Contents: Read and write (the dispatches API
+# qubrics/SITE_qubrics.ai with Contents: Read and write (the dispatches API
 # needs write). Without it this workflow skips cleanly and the SITE's daily
 # schedule still catches the drift within 24h.
 
@@ -46,6 +46,6 @@ jobs:
             "X-GitHub-Api-Version: 2022-11-28" \
             | curl -fsSL -X POST \
               --header @- \
-              https://api.github.com/repos/Sendmux/SITE_sendmux.ai/dispatches \
+              https://api.github.com/repos/qubrics/SITE_qubrics.ai/dispatches \
               --data '{"event_type":"skills-updated"}'
-          echo "Dispatched skills-updated to Sendmux/SITE_sendmux.ai."
+          echo "Dispatched skills-updated to qubrics/SITE_qubrics.ai."

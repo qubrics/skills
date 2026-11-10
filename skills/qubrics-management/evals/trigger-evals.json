@@ -1,0 +1,26 @@
+[
+  {
+    "query": "Create a Qubrics domain, show me the DNS records, then verify it.",
+    "should_trigger": true
+  },
+  {
+    "query": "Provision a Qubrics mailbox and mailbox API key for an agent.",
+    "should_trigger": true
+  },
+  {
+    "query": "List Qubrics webhooks and send a test event to one of them.",
+    "should_trigger": true
+  },
+  {
+    "query": "Show Qubrics spend and failed delivery logs for this week.",
+    "should_trigger": true
+  },
+  {
+    "query": "Search unread invoice emails inside one mailbox.",
+    "should_trigger": false
+  },
+  {
+    "query": "Send a batch of transactional emails through Qubrics.",
+    "should_trigger": false
+  }
+]
