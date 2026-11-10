@@ -1,0 +1,21 @@
+{
+  "name": "qubrics",
+  "displayName": "Qubrics",
+  "version": "2.0.0",
+  "description": "Official Qubrics Agent Skills for email, mailbox, MCP, CLI, and SDK workflows.",
+  "author": {
+    "name": "Qubrics",
+    "url": "https://qubrics.com"
+  },
+  "homepage": "https://qubrics.com/docs/guides/agent-skills",
+  "repository": "https://github.com/qubrics/skills",
+  "license": "Apache-2.0",
+  "keywords": [
+    "qubrics",
+    "email",
+    "agent-skills",
+    "mcp",
+    "cli"
+  ],
+  "skills": "./skills/"
+}

@@ -1,22 +1,33 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
-  "name": "sendmux",
-  "description": "Official Sendmux Agent Skills for email, mailbox, MCP, CLI, and SDK workflows.",
+  "name": "qubrics",
+  "description": "Official Qubrics Agent Skills for email, mailbox, MCP, CLI, and SDK workflows.",
   "owner": {
-    "name": "Sendmux",
-    "url": "https://sendmux.ai"
+    "name": "Qubrics",
+    "url": "https://qubrics.com"
   },
   "plugins": [
     {
-      "name": "sendmux",
-      "source": "./plugins/sendmux",
-      "description": "Official Sendmux Agent Skills for email, mailbox, MCP, CLI, and SDK workflows.",
-      "version": "1.8.2",
+      "name": "qubrics",
+      "source": "./plugins/qubrics",
+      "description": "Official Qubrics Agent Skills for email, mailbox, MCP, CLI, and SDK workflows.",
+      "version": "2.0.0",
       "author": {
-        "name": "Sendmux"
+        "name": "Qubrics"
       },
       "category": "communication",
-      "homepage": "https://docs.sendmux.ai/guides/agent-skills"
+      "homepage": "https://qubrics.com/docs/guides/agent-skills"
+    },
+    {
+      "name": "sendmux",
+      "source": "./plugins/sendmux",
+      "description": "Deprecated: install the qubrics plugin from the qubrics marketplace. This compatibility entry includes the same Qubrics skills.",
+      "version": "2.0.0",
+      "author": {
+        "name": "Qubrics"
+      },
+      "category": "communication",
+      "homepage": "https://qubrics.com/docs/guides/agent-skills"
     }
   ]
 }

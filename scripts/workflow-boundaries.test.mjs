@@ -700,7 +700,7 @@ test("SITE notification preserves its fallback and sends the secret header only 
     "POST",
     "--header",
     "@-",
-    "https://api.github.com/repos/Sendmux/SITE_sendmux.ai/dispatches",
+    "https://api.github.com/repos/qubrics/SITE_qubrics.ai/dispatches",
     "--data",
     '{"event_type":"skills-updated"}',
   ]);
@@ -715,7 +715,7 @@ test("SITE notification preserves its fallback and sends the secret header only 
   );
   assert.equal(receipt.argv.some((argument) => argument.includes(siteToken)), false);
   assert.equal([success.stdout, success.stderr].some((output) => output.includes(siteToken)), false);
-  assert.match(success.stdout, /Dispatched skills-updated to Sendmux\/SITE_sendmux\.ai/);
+  assert.match(success.stdout, /Dispatched skills-updated to qubrics\/SITE_qubrics\.ai/);
   assert.equal(isPidRunning(success.pid), false);
   assert.equal(isPidRunning(receipt.pid), false);
 

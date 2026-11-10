@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
 import { execFileSync, spawnSync } from "node:child_process";
-import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, mkdtempSync, readFileSync, renameSync, rmSync, writeFileSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import test from "node:test";
@@ -105,6 +105,26 @@ test("an unchanged contract gets an exact-candidate receipt for published and pr
   json(f.descriptor.sources.app.exportReceipt, exported); f.save();
   assert.equal(f.run("--candidate", f.candidate, "--receipt", f.receipt).status, 0);
   assert.ok(JSON.parse(readFileSync(f.receipt)).results.every((row) => row.status === "no-impact"));
+});
+
+test("a Qubrics release receipt retains reviewed legacy skills and verifies renamed skill bytes", (t) => {
+  const f = fixture(t); f.review();
+  for (const name of names) {
+    const renamed = name.startsWith("sendmux-") ? name.replace("sendmux-", "qubrics-") : `qubrics-${name}`;
+    renameSync(join(f.skills, "skills", name), join(f.skills, "skills", renamed));
+    f.policy.dependencies[renamed] = structuredClone(f.policy.dependencies[name]);
+    const file = join(f.skills, "skills", renamed, "SKILL.md");
+    writeFileSync(file, readFileSync(file, "utf8").replace(`name: ${name}`, `name: ${renamed}`));
+  }
+  json(join(f.skills, "skill-compatibility.json"), f.policy);
+  f.descriptor.skills.proposedRevision = f.commit(f.skills); f.save(); f.review();
+  const accepted = f.run("--candidate", f.candidate, "--receipt", f.receipt);
+  assert.equal(accepted.status, 0, accepted.stderr);
+  const receipt = JSON.parse(readFileSync(f.receipt));
+  assert.equal(receipt.results.length, 22);
+  assert.ok(receipt.results.filter((row) => row.lane === "proposed").every((row) => row.name.startsWith("qubrics-")));
+  const verified = f.run("--verify-skills-receipt", f.receipt, "--skills-root", f.skills, "--revision", f.descriptor.skills.proposedRevision);
+  assert.equal(verified.status, 0, verified.stderr);
 });
 
 test("a changed API limit blocks a hash-only refresh", (t) => {

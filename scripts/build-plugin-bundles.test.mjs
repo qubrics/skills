@@ -1,10 +1,13 @@
 import assert from "node:assert/strict";
+import { spawnSync } from "node:child_process";
 import {
+  cpSync,
   existsSync,
   mkdirSync,
   mkdtempSync,
   readdirSync,
   readFileSync,
+  renameSync,
   rmSync,
   writeFileSync,
 } from "node:fs";
@@ -32,7 +35,7 @@ function makeRepo() {
     path.join(repoRoot, "openclaw.skills.json"),
     `${JSON.stringify(
       {
-        homepage: "https://github.com/Sendmux/skills",
+        homepage: "https://github.com/qubrics/skills",
         version: "1.2.3",
         skills: {
           "sendmux-test": {
@@ -75,6 +78,69 @@ function readJson(filePath) {
   return JSON.parse(readFileSync(filePath, "utf8"));
 }
 
+test("OpenClaw metadata declares both environment names with Qubrics primary", () => {
+  const repoRoot = makeRepo();
+  try {
+    const configPath = path.join(repoRoot, "openclaw.skills.json");
+    const config = readJson(configPath);
+    config.envVars = { QUBRICS_API_KEY: "Qubrics credential", SENDMUX_API_KEY: "Compatibility credential" };
+    config.outputRoot = "dist/clawhub/skills";
+    writeFileSync(configPath, JSON.stringify(config));
+    const skillPath = path.join(repoRoot, "skills", "sendmux-test", "SKILL.md");
+    writeFileSync(skillPath, `${readFileSync(skillPath, "utf8")}Use QUBRICS_API_KEY; SENDMUX_API_KEY remains supported.\n`);
+    mkdirSync(path.join(repoRoot, "scripts"));
+    cpSync("scripts/build-openclaw-bundle.mjs", path.join(repoRoot, "scripts", "build-openclaw-bundle.mjs"));
+
+    const result = spawnSync(process.execPath, [path.join(repoRoot, "scripts", "build-openclaw-bundle.mjs")], { encoding: "utf8" });
+    assert.equal(result.status, 0, result.stderr);
+    const generated = readFileSync(path.join(repoRoot, "dist", "clawhub", "skills", "sendmux-test", "SKILL.md"), "utf8");
+    const frontmatter = generated.split("---")[1];
+    assert.match(frontmatter, /primaryEnv: "QUBRICS_API_KEY"/);
+    assert.match(frontmatter, /name: "QUBRICS_API_KEY"/);
+    assert.match(frontmatter, /name: "SENDMUX_API_KEY"/);
+  } finally {
+    rmSync(repoRoot, { recursive: true, force: true });
+  }
+});
+
+test("resolves Qubrics and deprecated Sendmux entries to installable matching manifests", () => {
+  const repoRoot = makeRepo();
+  try {
+    renameSync(
+      path.join(repoRoot, "skills", "sendmux-test"),
+      path.join(repoRoot, "skills", "qubrics-test"),
+    );
+    const source = path.join(repoRoot, "skills", "qubrics-test", "SKILL.md");
+    writeFileSync(source, readFileSync(source, "utf8").replaceAll("sendmux-test", "qubrics-test"));
+    buildPluginBundles(repoRoot);
+
+    for (const [catalogue, manifestDirectory] of [
+      [".agents/plugins/marketplace.json", ".codex-plugin"],
+      [".claude-plugin/marketplace.json", ".claude-plugin"],
+    ]) {
+      const marketplace = readJson(path.join(repoRoot, catalogue));
+      assert.equal(marketplace.name, "qubrics");
+      assert.deepEqual(marketplace.plugins.map((entry) => entry.name), ["qubrics", "sendmux"]);
+      for (const entry of marketplace.plugins) {
+        const pluginRoot = path.resolve(repoRoot, typeof entry.source === "string" ? entry.source : entry.source.path);
+        const manifest = readJson(path.join(pluginRoot, manifestDirectory, "plugin.json"));
+        assert.equal(manifest.name, entry.name, "installer requires marketplace and manifest names to match");
+        assert.equal(manifest.version, "1.2.3");
+        assert.equal(
+          readFileSync(path.resolve(pluginRoot, manifest.skills, "qubrics-test", "SKILL.md"), "utf8"),
+          readFileSync(source, "utf8"),
+        );
+        if (entry.name === "sendmux") {
+          assert.match(manifest.description, /deprecated.*qubrics/i);
+          if (manifest.interface) assert.match(manifest.interface.shortDescription, /deprecated.*qubrics/i);
+        }
+      }
+    }
+  } finally {
+    rmSync(repoRoot, { recursive: true, force: true });
+  }
+});
+
 test("builds marketplace plugin bundles from canonical skills", () => {
   const repoRoot = makeRepo();
   try {
@@ -83,43 +149,43 @@ test("builds marketplace plugin bundles from canonical skills", () => {
     const claudeMarketplace = readJson(
       path.join(repoRoot, ".claude-plugin", "marketplace.json"),
     );
-    assert.equal(claudeMarketplace.name, "sendmux");
-    assert.equal(claudeMarketplace.owner.name, "Sendmux");
-    assert.equal(claudeMarketplace.plugins[0].name, "sendmux");
-    assert.equal(claudeMarketplace.plugins[0].source, "./plugins/sendmux");
+    assert.equal(claudeMarketplace.name, "qubrics");
+    assert.equal(claudeMarketplace.owner.name, "Qubrics");
+    assert.equal(claudeMarketplace.plugins[0].name, "qubrics");
+    assert.equal(claudeMarketplace.plugins[0].source, "./plugins/qubrics");
     assert.equal(claudeMarketplace.plugins[0].version, "1.2.3");
 
     const codexMarketplace = readJson(
       path.join(repoRoot, ".agents", "plugins", "marketplace.json"),
     );
-    assert.equal(codexMarketplace.name, "sendmux");
-    assert.equal(codexMarketplace.interface.displayName, "Sendmux");
-    assert.equal(codexMarketplace.plugins[0].source.path, "./plugins/sendmux");
+    assert.equal(codexMarketplace.name, "qubrics");
+    assert.equal(codexMarketplace.interface.displayName, "Qubrics");
+    assert.equal(codexMarketplace.plugins[0].source.path, "./plugins/qubrics");
     assert.equal(codexMarketplace.plugins[0].policy.installation, "AVAILABLE");
 
     const codexManifest = readJson(
-      path.join(repoRoot, "plugins", "sendmux", ".codex-plugin", "plugin.json"),
+      path.join(repoRoot, "plugins", "qubrics", ".codex-plugin", "plugin.json"),
     );
-    assert.equal(codexManifest.name, "sendmux");
+    assert.equal(codexManifest.name, "qubrics");
     assert.equal(codexManifest.version, "1.2.3");
     assert.equal(codexManifest.skills, "./skills/");
-    assert.equal(codexManifest.interface.displayName, "Sendmux");
+    assert.equal(codexManifest.interface.displayName, "Qubrics");
 
     const cursorManifest = readJson(
       path.join(repoRoot, ".cursor-plugin", "plugin.json"),
     );
     assert.deepEqual(cursorManifest, {
-      name: "sendmux",
-      displayName: "Sendmux",
+      name: "qubrics",
+      displayName: "Qubrics",
       version: "1.2.3",
       description:
-        "Official Sendmux Agent Skills for email, mailbox, MCP, CLI, and SDK workflows.",
-      author: { name: "Sendmux" },
-      homepage: "https://docs.sendmux.ai/guides/agent-skills",
-      repository: "https://github.com/Sendmux/skills",
+        "Official Qubrics Agent Skills for email, mailbox, MCP, CLI, and SDK workflows.",
+      author: { name: "Qubrics" },
+      homepage: "https://qubrics.com/docs/guides/agent-skills",
+      repository: "https://github.com/qubrics/skills",
       license: "Apache-2.0",
       logo: "assets/sendmux-mark.svg",
-      keywords: ["sendmux", "email", "agent-skills", "mcp", "cli"],
+      keywords: ["qubrics", "email", "agent-skills", "mcp", "cli"],
       category: "communication",
       skills: "./skills/",
       mcpServers: "./mcp.json",
@@ -130,31 +196,31 @@ test("builds marketplace plugin bundles from canonical skills", () => {
     assert.equal(cursorMcp, openPluginMcp);
     assert.deepEqual(JSON.parse(cursorMcp), {
       mcpServers: {
-        sendmux: {
+        qubrics: {
           type: "http",
-          url: "https://mcp.sendmux.ai/mcp",
+          url: "https://mcp.qubrics.com/mcp",
         },
       },
     });
 
     assert.equal(
-      existsSync(path.join(repoRoot, "plugins", "sendmux", "skills", "sendmux-test", "SKILL.md")),
+      existsSync(path.join(repoRoot, "plugins", "qubrics", "skills", "sendmux-test", "SKILL.md")),
       true,
     );
     assert.equal(
       existsSync(
-        path.join(repoRoot, "plugins", "sendmux", "skills", "sendmux-test", "references", "notes.md"),
+        path.join(repoRoot, "plugins", "qubrics", "skills", "sendmux-test", "references", "notes.md"),
       ),
       true,
     );
     assert.equal(
       existsSync(
-        path.join(repoRoot, "plugins", "sendmux", "skills", "sendmux-test", "agents", "openai.yaml"),
+        path.join(repoRoot, "plugins", "qubrics", "skills", "sendmux-test", "agents", "openai.yaml"),
       ),
       true,
     );
     assert.equal(
-      existsSync(path.join(repoRoot, "plugins", "sendmux", "skills", "sendmux-test", "evals")),
+      existsSync(path.join(repoRoot, "plugins", "qubrics", "skills", "sendmux-test", "evals")),
       false,
     );
   } finally {
@@ -310,10 +376,10 @@ test("Cursor discovers every declared canonical skill", () => {
   assert.deepEqual(discoverable, Object.keys(config.skills).sort());
 });
 
-test("documents the prepared Cursor plugin without claiming publication", () => {
+test("documents the pending Cursor plugin without claiming publication", () => {
   const readme = readFileSync("README.md", "utf8");
   assert.match(readme, /Cursor \(after marketplace publication\):/);
-  assert.match(readme, /\/add-plugin sendmux/);
+  assert.match(readme, /\/add-plugin qubrics/);
   assert.match(readme, /\| Cursor \| After official marketplace publication/);
   assert.match(readme, /Generate Cursor, Claude, and Codex marketplace bundles:/);
 });

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Qubrics MCP Setup"
+  short_description: "Connect Qubrics MCP servers."
+  default_prompt: "Use $qubrics-mcp-setup to configure Qubrics MCP servers for my agent client."

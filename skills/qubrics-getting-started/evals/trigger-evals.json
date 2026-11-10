@@ -1,0 +1,26 @@
+[
+  {
+    "query": "Set up Qubrics for my coding agent and make a first API call.",
+    "should_trigger": true
+  },
+  {
+    "query": "Which Qubrics key do I use for mailbox work versus management work?",
+    "should_trigger": true
+  },
+  {
+    "query": "Use the qubrics CLI to check whether my root key works.",
+    "should_trigger": true
+  },
+  {
+    "query": "Let my agent register itself with Qubrics and invite me as the owner.",
+    "should_trigger": true
+  },
+  {
+    "query": "Write a reusable table component for a dashboard.",
+    "should_trigger": false
+  },
+  {
+    "query": "Explain SPF records in general without using any Qubrics product.",
+    "should_trigger": false
+  }
+]

@@ -4,31 +4,31 @@
   "groupings": [
     {
       "title": "Start and connect",
-      "description": "Skills for registering durable agent inboxes, choosing a Sendmux surface, authenticating, and connecting agent clients.",
+      "description": "Skills for registering durable agent inboxes, choosing a Qubrics surface, authenticating, and connecting agent clients.",
       "skills": [
-        "sendmux-getting-started",
-        "sendmux-cli",
-        "sendmux-mcp-setup"
+        "qubrics-getting-started",
+        "qubrics-cli",
+        "qubrics-mcp-setup"
       ]
     },
     {
       "title": "Send and mailbox workflows",
       "description": "Skills for sending email, reading mailboxes, and giving agents email workflows.",
       "skills": [
-        "agent-email-inbox",
-        "email-for-ai-agents",
-        "sendmux-send-email",
-        "sendmux-attachments",
-        "sendmux-mailbox-agent",
-        "sendmux-email-for-agents"
+        "qubrics-agent-email-inbox",
+        "qubrics-email-for-ai-agents",
+        "qubrics-send-email",
+        "qubrics-attachments",
+        "qubrics-mailbox-agent",
+        "qubrics-email-for-agents"
       ]
     },
     {
       "title": "Administration and efficiency",
-      "description": "Skills for account-level management and low-token Sendmux usage.",
+      "description": "Skills for account-level management and low-token Qubrics usage.",
       "skills": [
-        "sendmux-management",
-        "sendmux-token-efficient-usage"
+        "qubrics-management",
+        "qubrics-token-efficient-usage"
       ]
     }
   ]

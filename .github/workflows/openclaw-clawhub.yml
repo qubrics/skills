@@ -36,7 +36,7 @@ on:
   workflow_dispatch:
     inputs:
       publish:
-        description: "Publish generated Sendmux skills to ClawHub"
+        description: "Publish generated Qubrics skills to ClawHub"
         required: true
         default: false
         type: boolean

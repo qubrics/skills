@@ -1,14 +1,20 @@
 {
   "owner": "sendmux.ai",
   "outputRoot": "dist/clawhub/skills",
-  "homepage": "https://github.com/Sendmux/skills",
-  "version": "1.8.2",
-  "releaseTags": ["latest"],
+  "homepage": "https://github.com/qubrics/skills",
+  "version": "2.0.0",
+  "releaseTags": [
+    "latest"
+  ],
   "manualListing": {
     "license": "MIT-0",
-    "categories": ["Communication", "Developer Tools", "Automation"],
+    "categories": [
+      "Communication",
+      "Developer Tools",
+      "Automation"
+    ],
     "topics": [
-      "sendmux",
+      "qubrics",
       "email",
       "agent-inbox",
       "mcp",
@@ -20,12 +26,12 @@
   },
   "envVars": {
     "SENDMUX_ACCESS_TOKEN": "Optional externally managed OAuth access token for CLI HTTP requests; the CLI does not refresh it.",
-    "SENDMUX_API_KEY": "Optional Sendmux API key or scoped agent token used by CLI, SDK, HTTP, or MCP examples.",
-    "SENDMUX_ROOT_KEY": "Optional Sendmux root key for account-level Management API setup.",
-    "SENDMUX_MBX_KEY": "Optional Sendmux mailbox key for Mailbox and send-capable mailbox workflows.",
-    "SENDMUX_PROFILE": "Optional Sendmux CLI profile name.",
-    "SENDMUX_BASE_URL": "Optional Sendmux API base URL override for CLI examples.",
-    "SENDMUX_MCP_SURFACES": "Optional comma-separated surfaces for the combined Sendmux MCP server.",
+    "SENDMUX_API_KEY": "Optional Qubrics API key or scoped agent token used by CLI, SDK, HTTP, or MCP examples.",
+    "SENDMUX_ROOT_KEY": "Optional Qubrics root key for account-level Management API setup.",
+    "SENDMUX_MBX_KEY": "Optional Qubrics mailbox key for Mailbox and send-capable mailbox workflows.",
+    "SENDMUX_PROFILE": "Optional Qubrics CLI profile name.",
+    "SENDMUX_BASE_URL": "Optional Qubrics API base URL override for CLI examples.",
+    "SENDMUX_MCP_SURFACES": "Optional comma-separated surfaces for the combined Qubrics MCP server.",
     "SENDMUX_MAILBOX_API_KEY": "Optional mailbox key for the Mailbox surface in the combined MCP server.",
     "SENDMUX_MANAGEMENT_API_KEY": "Optional root key for the Management surface in the combined MCP server.",
     "SENDMUX_SENDING_API_KEY": "Optional send-capable mailbox key or owner-approved agent token for the Sending MCP surface.",
@@ -33,34 +39,72 @@
     "SENDMUX_MCP_OPENAPI_INPUT_DIR": "Schema directory override. Leave unset in this workflow.",
     "SENDMUX_MCP_APP_OPENAPI": "App schema override. Leave unset in this workflow.",
     "SENDMUX_MCP_SENDING_OPENAPI": "Sending schema override. Leave unset in this workflow.",
-    "SENDMUX_MCP_ALLOW_UNAUTHENTICATED_HTTP": "Disables HTTP authentication when enabled. Leave unset in this workflow."
+    "SENDMUX_MCP_ALLOW_UNAUTHENTICATED_HTTP": "Disables HTTP authentication when enabled. Leave unset in this workflow.",
+    "QUBRICS_ACCESS_TOKEN": "Optional externally managed OAuth access token for CLI HTTP requests; the CLI does not refresh it.",
+    "QUBRICS_API_KEY": "Optional Qubrics API key or scoped agent token used by CLI, SDK, HTTP, or MCP examples.",
+    "QUBRICS_ROOT_KEY": "Example secret-store variable for a root key; explicitly pass its value through QUBRICS_API_KEY or the authorised request header.",
+    "QUBRICS_MBX_KEY": "Example secret-store variable for a mailbox key; explicitly pass its value through QUBRICS_API_KEY or the authorised request header.",
+    "QUBRICS_PROFILE": "Optional Qubrics CLI profile name.",
+    "QUBRICS_BASE_URL": "Optional Qubrics API base URL override for CLI examples.",
+    "QUBRICS_MCP_SURFACES": "Inherited alias supported by the unpublished MCP source; leave unset for the released local MCP workflow.",
+    "QUBRICS_MCP_OPENAPI_INPUT_DIR": "Inherited alias supported by the unpublished MCP source; leave unset for the released local MCP workflow.",
+    "QUBRICS_MCP_APP_OPENAPI": "Inherited alias supported by the unpublished MCP source; leave unset for the released local MCP workflow.",
+    "QUBRICS_MCP_SENDING_OPENAPI": "Inherited alias supported by the unpublished MCP source; leave unset for the released local MCP workflow.",
+    "QUBRICS_MCP_ALLOW_UNAUTHENTICATED_HTTP": "Inherited alias supported by the unpublished MCP source; leave unset for the released local MCP workflow."
   },
   "skills": {
-    "sendmux-attachments": {
-      "displayName": "Sendmux Attachments",
-      "description": "Move email attachments through Sendmux without putting file bytes in model context, using presigned URLs through MCP or file paths through CLI and SDK helpers.",
-      "categories": ["Communication", "Developer Tools", "Automation"],
-      "topics": ["sendmux", "email", "attachments", "mcp", "cli", "file-upload"]
+    "qubrics-attachments": {
+      "displayName": "Qubrics Attachments",
+      "description": "Move email attachments through Qubrics without putting file bytes in model context, using presigned URLs through MCP or file paths through CLI and SDK helpers.",
+      "categories": [
+        "Communication",
+        "Developer Tools",
+        "Automation"
+      ],
+      "topics": [
+        "qubrics",
+        "email",
+        "attachments",
+        "mcp",
+        "cli",
+        "file-upload"
+      ]
     },
-    "sendmux-cli": {
-      "displayName": "Sendmux CLI",
-      "description": "Use the Sendmux CLI for durable agent inbox registration, owner invites, profiles, and terminal-driven Management, Mailbox, and Sending workflows.",
-      "categories": ["Developer Tools", "Communication", "Automation"],
-      "topics": ["sendmux", "cli", "email", "developer-tools", "automation"],
+    "qubrics-cli": {
+      "displayName": "Qubrics CLI",
+      "description": "Use the Qubrics CLI for durable agent inbox registration, owner invites, profiles, and terminal-driven Management, Mailbox, and Sending workflows.",
+      "categories": [
+        "Developer Tools",
+        "Communication",
+        "Automation"
+      ],
+      "topics": [
+        "qubrics",
+        "cli",
+        "email",
+        "developer-tools",
+        "automation"
+      ],
       "install": [
         {
           "kind": "node",
-          "package": "@sendmux/cli",
-          "bins": ["sendmux"]
+          "package": "@qubrics/cli",
+          "bins": [
+            "qubrics"
+          ]
         }
       ]
     },
-    "sendmux-email-for-agents": {
-      "displayName": "Sendmux Agent Inbox",
-      "description": "Give OpenClaw agents a Sendmux inbox to receive, triage, route, reply to, and send email with owner approval and scoped credentials.",
-      "categories": ["Communication", "Automation", "Developer Tools"],
+    "qubrics-email-for-agents": {
+      "displayName": "Qubrics Agent Inbox",
+      "description": "Give OpenClaw agents a Qubrics inbox to receive, triage, route, reply to, and send email with owner approval and scoped credentials.",
+      "categories": [
+        "Communication",
+        "Automation",
+        "Developer Tools"
+      ],
       "topics": [
-        "sendmux",
+        "qubrics",
         "agent-inbox",
         "email",
         "inbound-email",
@@ -70,29 +114,73 @@
         "mcp"
       ]
     },
-    "sendmux-getting-started": {
-      "displayName": "Sendmux Getting Started",
-      "description": "Set up Sendmux for agents, register a durable inbox without an existing key, link an owner, choose a runtime surface, and make the first harmless call.",
-      "categories": ["Developer Tools", "Communication", "Automation"],
-      "topics": ["sendmux", "getting-started", "email", "agent-auth", "mcp", "cli"]
+    "qubrics-getting-started": {
+      "displayName": "Qubrics Getting Started",
+      "description": "Set up Qubrics for agents, register a durable inbox without an existing key, link an owner, choose a runtime surface, and make the first harmless call.",
+      "categories": [
+        "Developer Tools",
+        "Communication",
+        "Automation"
+      ],
+      "topics": [
+        "qubrics",
+        "getting-started",
+        "email",
+        "agent-auth",
+        "mcp",
+        "cli"
+      ]
     },
-    "sendmux-mailbox-agent": {
-      "displayName": "Sendmux Mailbox Agent",
-      "description": "Let an OpenClaw agent read, search, count, sync, triage, file, delete, thread, and reply from one Sendmux mailbox efficiently.",
-      "categories": ["Communication", "Automation", "Developer Tools"],
-      "topics": ["sendmux", "mailbox", "agent-inbox", "email", "triage", "sync"]
+    "qubrics-mailbox-agent": {
+      "displayName": "Qubrics Mailbox Agent",
+      "description": "Let an OpenClaw agent read, search, count, sync, triage, file, delete, thread, and reply from one Qubrics mailbox efficiently.",
+      "categories": [
+        "Communication",
+        "Automation",
+        "Developer Tools"
+      ],
+      "topics": [
+        "qubrics",
+        "mailbox",
+        "agent-inbox",
+        "email",
+        "triage",
+        "sync"
+      ]
     },
-    "sendmux-management": {
-      "displayName": "Sendmux Management",
-      "description": "Manage Sendmux domains, mailboxes, mailbox keys, sending accounts, webhooks, logs, billing, and account-level setup.",
-      "categories": ["Developer Tools", "Automation", "Communication"],
-      "topics": ["sendmux", "management", "domains", "mailboxes", "webhooks", "email"]
+    "qubrics-management": {
+      "displayName": "Qubrics Management",
+      "description": "Manage Qubrics domains, mailboxes, mailbox keys, sending accounts, webhooks, logs, billing, and account-level setup.",
+      "categories": [
+        "Developer Tools",
+        "Automation",
+        "Communication"
+      ],
+      "topics": [
+        "qubrics",
+        "management",
+        "domains",
+        "mailboxes",
+        "webhooks",
+        "email"
+      ]
     },
-    "sendmux-mcp-setup": {
-      "displayName": "Sendmux MCP Setup",
-      "description": "Connect OpenClaw and other agent clients to hosted or local Sendmux MCP servers for mailbox, sending, and management tools.",
-      "categories": ["Developer Tools", "Automation", "Communication"],
-      "topics": ["sendmux", "mcp", "openclaw", "email", "agent-tools", "setup"],
+    "qubrics-mcp-setup": {
+      "displayName": "Qubrics MCP Setup",
+      "description": "Connect OpenClaw and other agent clients to hosted or local Qubrics MCP servers for mailbox, sending, and management tools.",
+      "categories": [
+        "Developer Tools",
+        "Automation",
+        "Communication"
+      ],
+      "topics": [
+        "qubrics",
+        "mcp",
+        "openclaw",
+        "email",
+        "agent-tools",
+        "setup"
+      ],
       "install": [
         {
           "kind": "uv",
@@ -106,29 +194,73 @@
         }
       ]
     },
-    "sendmux-send-email": {
-      "displayName": "Sendmux Send Email",
-      "description": "Send one or many emails through Sendmux using approved mailbox or agent credentials, idempotency keys, attachments, MCP, CLI, SDKs, or HTTP.",
-      "categories": ["Communication", "Automation", "Developer Tools"],
-      "topics": ["sendmux", "email", "outbound-email", "sending", "attachments", "mcp"]
+    "qubrics-send-email": {
+      "displayName": "Qubrics Send Email",
+      "description": "Send one or many emails through Qubrics using approved mailbox or agent credentials, idempotency keys, attachments, MCP, CLI, SDKs, or HTTP.",
+      "categories": [
+        "Communication",
+        "Automation",
+        "Developer Tools"
+      ],
+      "topics": [
+        "qubrics",
+        "email",
+        "outbound-email",
+        "sending",
+        "attachments",
+        "mcp"
+      ]
     },
-    "sendmux-token-efficient-usage": {
-      "displayName": "Sendmux Token Efficient Usage",
-      "description": "Choose low-token Sendmux calls across MCP, CLI, SDKs, and HTTP by using snippets, counts, batches, deltas, cursors, ETags, and idempotency.",
-      "categories": ["Developer Tools", "Automation", "Communication"],
-      "topics": ["sendmux", "token-efficiency", "mcp", "cli", "batching", "email"]
+    "qubrics-token-efficient-usage": {
+      "displayName": "Qubrics Token Efficient Usage",
+      "description": "Choose low-token Qubrics calls across MCP, CLI, SDKs, and HTTP by using snippets, counts, batches, deltas, cursors, ETags, and idempotency.",
+      "categories": [
+        "Developer Tools",
+        "Automation",
+        "Communication"
+      ],
+      "topics": [
+        "qubrics",
+        "token-efficiency",
+        "mcp",
+        "cli",
+        "batching",
+        "email"
+      ]
     },
-    "agent-email-inbox": {
+    "qubrics-agent-email-inbox": {
       "displayName": "Agent Email Inbox",
-      "description": "Use when an AI agent needs read-only triage of an existing Sendmux inbox or unsent reply text from its messages. Trigger for bounded inbox reviews, unread invoice or support searches, and draft-only replies, including agent inbox requests without the Sendmux name. Mailbox mutations and sending are outside this workflow.",
-      "categories": ["Communication", "Automation", "Developer Tools"],
-      "topics": ["sendmux", "email", "agent-inbox", "triage", "drafts", "mcp"]
+      "description": "Use when an AI agent needs read-only triage of an existing Qubrics inbox or unsent reply text from its messages. Trigger for bounded inbox reviews, unread invoice or support searches, and draft-only replies, including agent inbox requests without the Qubrics name. Mailbox mutations and sending are outside this workflow.",
+      "categories": [
+        "Communication",
+        "Automation",
+        "Developer Tools"
+      ],
+      "topics": [
+        "qubrics",
+        "email",
+        "agent-inbox",
+        "triage",
+        "drafts",
+        "mcp"
+      ]
     },
-    "email-for-ai-agents": {
+    "qubrics-email-for-ai-agents": {
       "displayName": "Email for AI Agents",
-      "description": "Use when an AI agent needs to send one outbound email through Sendmux with human approval, including a status notification or delegated agent send. Trigger when preparing the exact message for approval, executing an approved send, or reconciling an uncertain retry. Use only for a single-message workflow; bulk and batch sends are outside its scope.",
-      "categories": ["Communication", "Automation", "Developer Tools"],
-      "topics": ["sendmux", "email", "outbound-email", "human-approval", "idempotency", "mcp"]
+      "description": "Use when an AI agent needs to send one outbound email through Qubrics with human approval, including a status notification or delegated agent send. Trigger when preparing the exact message for approval, executing an approved send, or reconciling an uncertain retry. Use only for a single-message workflow; bulk and batch sends are outside its scope.",
+      "categories": [
+        "Communication",
+        "Automation",
+        "Developer Tools"
+      ],
+      "topics": [
+        "qubrics",
+        "email",
+        "outbound-email",
+        "human-approval",
+        "idempotency",
+        "mcp"
+      ]
     }
   }
 }

@@ -1,11 +1,11 @@
-# Sendmux Skills Agent Guide
+# Qubrics Skills Agent Guide
 
-Build only public Sendmux agent skills in this repository.
+Build only public Qubrics agent skills in this repository.
 
 ## Rules
 
-- Teach only public Sendmux surfaces: API endpoints, SDK packages, the `sendmux` CLI, and Sendmux MCP servers.
-- Do not expose Sendmux backend, hosting, datastore, service, vendor, or implementation details.
+- Teach only public Qubrics surfaces: API endpoints, SDK packages, the `qubrics` CLI, and Qubrics MCP servers.
+- Do not expose Qubrics backend, hosting, datastore, service, vendor, or implementation details.
 - Verify every endpoint, command, tool, package name, and key prefix from source before writing it into a skill.
 - Keep `SKILL.md` bodies under 500 lines when possible. Move detail to one-level `references/` files.
 - Use only canonical skill resource directories: `references/`, `scripts/`, and `assets/`.
@@ -27,7 +27,7 @@ skills/
 
 ## Publish Boundary
 
-Canonical GitHub repo: `Sendmux/skills`, with `main` as the default branch. Keep public examples on `npx skills add Sendmux/skills`.
+Canonical GitHub repo: `qubrics/skills`, with `main` as the default branch. Keep public examples on `npx skills add qubrics/skills`.
 
 Do not publish a new release, register/update skills.sh metadata, or publish docs without explicit approval.
 

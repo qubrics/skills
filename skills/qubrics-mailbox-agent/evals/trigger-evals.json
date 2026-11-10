@@ -1,0 +1,26 @@
+[
+  {
+    "query": "Find unread invoices in my Qubrics mailbox without reading every message.",
+    "should_trigger": true
+  },
+  {
+    "query": "In one batch, mark Qubrics message IDs msg_01, msg_02, and msg_03 as read and add the agent_triaged label.",
+    "should_trigger": true
+  },
+  {
+    "query": "Resume my Qubrics mailbox sync from the previous state token.",
+    "should_trigger": true
+  },
+  {
+    "query": "Save a threaded reply to this Qubrics mailbox message so I can edit it tomorrow, then send only the revision I approve.",
+    "should_trigger": true
+  },
+  {
+    "query": "Create a new Qubrics mailbox and API key.",
+    "should_trigger": false
+  },
+  {
+    "query": "Send a marketing campaign to 500 recipients.",
+    "should_trigger": false
+  }
+]

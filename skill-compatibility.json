@@ -853,6 +853,1780 @@
         ]
       }
     },
+    "qubrics-agent-email-inbox": {
+      "app": [
+        "mailboxBatchGetMessages",
+        "mailboxCountMessages",
+        "mailboxGetConnection",
+        "mailboxGetIdentity",
+        "mailboxListGrantedMailboxes",
+        "mailboxListMessages",
+        "mailboxSearchMessageSnippets"
+      ],
+      "mcp": [
+        "mailbox_batch_get_messages",
+        "mailbox_count_messages",
+        "mailbox_get_connection",
+        "mailbox_get_identity",
+        "mailbox_list_granted_mailboxes",
+        "mailbox_list_messages",
+        "mailbox_search_message_snippets"
+      ],
+      "cli": [
+        "mailbox:batch-get-messages",
+        "mailbox:get-connection",
+        "mailbox:messages:list",
+        "mailbox:search-message-snippets"
+      ],
+      "mcpSetup": true,
+      "public": {
+        "packages/ts/cli/src/base-command.ts": [
+          "SendmuxCommand"
+        ],
+        "packages/ts/cli/src/key-kind.ts": [
+          "inferApiKeyKind",
+          "isApiKeyCompatibleWithKind"
+        ],
+        "packages/ts/cli/src/profiles.ts": [
+          "isActiveAgentProfile",
+          "isAgentProfile",
+          "isOAuthProfile",
+          "readCliConfig"
+        ],
+        "packages/ts/cli/src/operation-flags.ts": [
+          "addHeaderFlag",
+          "operationFlags",
+          "parseBody",
+          "parseOperationOptions",
+          "parseParameterPairs",
+          "parseParameterValue"
+        ],
+        "packages/ts/cli/src/operation-runner.ts": [
+          "rawResponseData",
+          "runSdkOperation"
+        ],
+        "packages/ts/cli/src/oauth-profile.ts": [
+          "refreshReservedProfile",
+          "resolveOAuthToken"
+        ],
+        "packages/ts/cli/src/oauth-http.ts": [
+          "OAUTH_RESOURCE",
+          "oauthTokenFields"
+        ],
+        "packages/ts/mailbox/src/generated/sdk.gen.ts": [
+          "mailboxBatchGetMessages",
+          "mailboxGetConnection",
+          "mailboxListMessages",
+          "mailboxSearchMessageSnippets"
+        ],
+        "packages/ts/core/src/generated-client.ts": [
+          "configureGeneratedClient"
+        ],
+        "packages/ts/core/src/auth.ts": [
+          "assertApiKeyKind",
+          "authToken"
+        ]
+      },
+      "packageJson": {
+        "packages/ts/cli/package.json": [
+          "/name",
+          "/bin/sendmux",
+          "/bin/qubrics"
+        ]
+      }
+    },
+    "qubrics-email-for-ai-agents": {
+      "sending": [
+        "sendingCompleteAttachmentUpload",
+        "sendingCreateAttachmentUpload",
+        "sendingGetConnection",
+        "sendingSendEmail",
+        "sendingUploadAttachment"
+      ],
+      "mcp": [
+        "sending_create_attachment_upload",
+        "sending_get_connection",
+        "sending_send_email"
+      ],
+      "cli": [
+        "sending:get-connection",
+        "sending:send"
+      ],
+      "public": {
+        "packages/ts/cli/src/base-command.ts": [
+          "SendmuxCommand"
+        ],
+        "packages/ts/cli/src/key-kind.ts": [
+          "inferApiKeyKind",
+          "isApiKeyCompatibleWithKind"
+        ],
+        "packages/ts/cli/src/profiles.ts": [
+          "isActiveAgentProfile",
+          "isAgentProfile",
+          "isOAuthProfile",
+          "readCliConfig"
+        ],
+        "packages/ts/cli/src/operation-flags.ts": [
+          "addHeaderFlag",
+          "fileSuppliedQueryParams",
+          "fileSuppliesBody",
+          "operationFlags",
+          "parseBody",
+          "parseOperationOptions",
+          "parseParameterPairs",
+          "parseParameterValue"
+        ],
+        "packages/ts/cli/src/operation-runner.ts": [
+          "MAX_SENDING_ATTACHMENTS",
+          "MAX_SENDING_ATTACHMENT_BYTES",
+          "inferContentType",
+          "rawResponseData",
+          "readAttachmentFile",
+          "runSdkOperation",
+          "validateAttachmentConvenienceFlags",
+          "withAttachedFiles"
+        ],
+        "packages/ts/cli/src/oauth-profile.ts": [
+          "refreshReservedProfile",
+          "resolveOAuthToken"
+        ],
+        "packages/ts/cli/src/oauth-http.ts": [
+          "OAUTH_RESOURCE",
+          "oauthTokenFields"
+        ],
+        "packages/ts/cli/src/agent-auth.ts": [
+          "ACCESS_TOKEN_TYPE",
+          "SENDING_API_RESOURCE",
+          "SENDING_TOKEN_SKEW_MS",
+          "TOKEN_EXCHANGE_GRANT_TYPE",
+          "resolveAgentSendingToken"
+        ],
+        "packages/ts/sending/src/generated/sdk.gen.ts": [
+          "sendingGetConnection",
+          "sendingSendEmail"
+        ],
+        "packages/ts/core/src/generated-client.ts": [
+          "configureGeneratedClient"
+        ],
+        "packages/ts/core/src/auth.ts": [
+          "assertApiKeyKind",
+          "authToken"
+        ]
+      },
+      "mcpSetup": true,
+      "appPolicy": [
+        "delegated-sending"
+      ],
+      "sendingPolicy": [
+        "delegated-sending"
+      ],
+      "packageJson": {
+        "packages/ts/cli/package.json": [
+          "/name",
+          "/bin/sendmux",
+          "/bin/qubrics"
+        ]
+      }
+    },
+    "qubrics-attachments": {
+      "app": [
+        "mailboxCreateAttachmentUpload",
+        "mailboxGetMessage",
+        "mailboxGetMessageAttachment",
+        "mailboxSendMessage",
+        "mailboxUploadAttachment"
+      ],
+      "sending": [
+        "sendingCompleteAttachmentUpload",
+        "sendingCreateAttachmentUpload",
+        "sendingGetAttachment",
+        "sendingSendEmail",
+        "sendingSendEmailBatch",
+        "sendingUploadAttachment"
+      ],
+      "mcp": [
+        "mailbox_get_attachment",
+        "mailbox_read_attachment",
+        "mailbox_send_message",
+        "mailbox_upload_attachment",
+        "sending_create_attachment_upload",
+        "sending_get_attachment",
+        "sending_send_email",
+        "sending_send_email_batch",
+        "sending_upload_attachment"
+      ],
+      "cli": [
+        "mailbox:create-attachment-upload",
+        "mailbox:send-message",
+        "mailbox:upload-attachment",
+        "sending:send",
+        "sending:upload-attachment"
+      ],
+      "public": {
+        "packages/ts/mailbox/src/index.ts": [
+          "DEFAULT_BASE_URL",
+          "createMailboxClient"
+        ],
+        "packages/ts/sending/src/index.ts": [
+          "DEFAULT_BASE_URL",
+          "createSendingClient"
+        ],
+        "packages/ts/cli/src/base-command.ts": [
+          "SendmuxCommand"
+        ],
+        "packages/ts/cli/src/key-kind.ts": [
+          "inferApiKeyKind",
+          "isApiKeyCompatibleWithKind"
+        ],
+        "packages/ts/cli/src/profiles.ts": [
+          "isActiveAgentProfile",
+          "isAgentProfile",
+          "isOAuthProfile",
+          "readCliConfig"
+        ],
+        "packages/ts/cli/src/operation-flags.ts": [
+          "addHeaderFlag",
+          "fileSuppliedQueryParams",
+          "fileSuppliesBody",
+          "operationFlags",
+          "parseBody",
+          "parseOperationOptions",
+          "parseParameterPairs",
+          "parseParameterValue"
+        ],
+        "packages/ts/cli/src/operation-runner.ts": [
+          "MAX_SENDING_ATTACHMENTS",
+          "MAX_SENDING_ATTACHMENT_BYTES",
+          "createMailboxAttachmentUploadFromFile",
+          "inferContentType",
+          "rawResponseData",
+          "readAttachmentFile",
+          "runSdkOperation",
+          "uploadMailboxAttachmentFromFile",
+          "validateAttachmentConvenienceFlags",
+          "withAttachedFiles"
+        ],
+        "packages/ts/mailbox/src/node.ts": [
+          "downloadMailboxAttachmentToBuffer",
+          "mailboxUploadQuery",
+          "readAttachmentFile",
+          "readMailboxTextAttachment",
+          "sendMailboxMessageWithFiles",
+          "uploadMailboxAttachmentFromFile"
+        ],
+        "packages/ts/sending/src/node.ts": [
+          "MAX_SENDING_ATTACHMENTS",
+          "MAX_SENDING_ATTACHMENT_BYTES",
+          "readAttachmentFile",
+          "sendEmailWithFiles",
+          "uploadAttachmentFromFile"
+        ],
+        "packages/python/mailbox/sendmux_mailbox/attachments.py": [
+          "_read_attachment_file",
+          "_send_mailbox_message_body",
+          "download_mailbox_attachment",
+          "read_mailbox_text_attachment",
+          "send_mailbox_message_with_files",
+          "upload_mailbox_attachment_from_file"
+        ],
+        "packages/python/sending/sendmux_sending/attachments.py": [
+          "_MAX_SENDING_ATTACHMENTS",
+          "_MAX_SENDING_ATTACHMENT_BYTES",
+          "_email_send_request",
+          "_read_attachment_file",
+          "send_email_with_files",
+          "upload_attachment_from_file"
+        ],
+        "packages/python/mailbox/sendmux_mailbox/client.py": [
+          "DEFAULT_BASE_URL",
+          "create_mailbox_client"
+        ],
+        "packages/python/sending/sendmux_sending/client.py": [
+          "DEFAULT_BASE_URL",
+          "create_sending_client"
+        ],
+        "packages/python/core/sendmux_core/auth.py": [
+          "configure_auth",
+          "validate_api_key",
+          "validate_auth"
+        ],
+        "packages/ts/mailbox/src/generated/sdk.gen.ts": [
+          "mailboxCreateAttachmentUpload",
+          "mailboxSendMessage",
+          "mailboxUploadAttachment"
+        ],
+        "packages/ts/sending/src/generated/sdk.gen.ts": [
+          "sendingSendEmail",
+          "sendingUploadAttachment"
+        ],
+        "packages/ts/core/src/generated-client.ts": [
+          "configureGeneratedClient"
+        ],
+        "packages/ts/core/src/auth.ts": [
+          "assertApiKeyKind",
+          "authToken"
+        ]
+      },
+      "mcpSetup": true,
+      "packageJson": {
+        "packages/ts/mailbox/package.json": [
+          "/name",
+          "/exports/.",
+          "/exports/.~1node"
+        ],
+        "packages/ts/sending/package.json": [
+          "/name",
+          "/exports/.",
+          "/exports/.~1node"
+        ],
+        "packages/ts/sdk/package.json": [
+          "/name",
+          "/exports/.~1node"
+        ],
+        "packages/ts/cli/package.json": [
+          "/name",
+          "/bin/sendmux",
+          "/bin/qubrics"
+        ]
+      }
+    },
+    "qubrics-cli": {
+      "app": [
+        "mailboxBatchGetMessages",
+        "mailboxCreateAttachmentUpload",
+        "mailboxGetConnection",
+        "mailboxGetMe",
+        "mailboxListGrantedMailboxes",
+        "mailboxListMessages",
+        "mailboxQueryMessageChanges",
+        "mailboxSearchMessageSnippets",
+        "mailboxSendMessage",
+        "mailboxUploadAttachment",
+        "managementCreateDomain",
+        "managementCreateMailbox",
+        "managementCreateWebhook",
+        "managementGetConnection",
+        "managementGetDomainZoneFile",
+        "managementGetEmailLog",
+        "managementGetSpendSummary",
+        "managementListDomains"
+      ],
+      "sending": [
+        "sendingCompleteAttachmentUpload",
+        "sendingCreateAttachmentUpload",
+        "sendingGetAttachment",
+        "sendingGetConnection",
+        "sendingGetOpenApiSpec",
+        "sendingSendEmail",
+        "sendingSendEmailBatch",
+        "sendingUploadAttachment"
+      ],
+      "cli": [
+        "agent:invite-owner",
+        "agent:register",
+        "auth:login",
+        "auth:logout",
+        "mailbox:batch-get-messages",
+        "mailbox:get-connection",
+        "mailbox:list-granted-mailboxes",
+        "mailbox:messages:list",
+        "mailbox:query-message-changes",
+        "mailbox:search-message-snippets",
+        "mailbox:send-message",
+        "mailbox:upload-attachment",
+        "management:create-domain",
+        "management:create-mailbox",
+        "management:create-webhook",
+        "management:domains:list",
+        "management:get-connection",
+        "management:get-domain-zone-file",
+        "management:get-email-log",
+        "management:get-spend-summary",
+        "profiles:list",
+        "profiles:set",
+        "profiles:show",
+        "sending:complete-attachment-upload",
+        "sending:create-attachment-upload",
+        "sending:get-attachment",
+        "sending:get-connection",
+        "sending:get-open-api-spec",
+        "sending:send",
+        "sending:send:batch",
+        "sending:upload-attachment"
+      ],
+      "public": {
+        "packages/ts/cli/src/base-command.ts": [
+          "SendmuxCommand"
+        ],
+        "packages/ts/cli/src/key-kind.ts": [
+          "inferApiKeyKind",
+          "isApiKeyCompatibleWithKind",
+          "maskApiKey"
+        ],
+        "packages/ts/cli/src/profiles.ts": [
+          "CONFIG_FILE",
+          "configPath",
+          "isActiveAgentProfile",
+          "isAgentProfile",
+          "isOAuthProfile",
+          "readCliConfig",
+          "reserveAgentRegistrationIntent",
+          "updateCliConfig",
+          "writeCliConfigFile"
+        ],
+        "packages/ts/cli/src/operation-flags.ts": [
+          "addHeaderFlag",
+          "fileSuppliedQueryParams",
+          "fileSuppliesBody",
+          "operationFlags",
+          "parseBody",
+          "parseOperationOptions",
+          "parseParameterPairs",
+          "parseParameterValue"
+        ],
+        "packages/ts/cli/src/operation-runner.ts": [
+          "MAX_SENDING_ATTACHMENTS",
+          "MAX_SENDING_ATTACHMENT_BYTES",
+          "createMailboxAttachmentUploadFromFile",
+          "inferContentType",
+          "rawResponseData",
+          "readAttachmentFile",
+          "runSdkOperation",
+          "uploadMailboxAttachmentFromFile",
+          "validateAttachmentConvenienceFlags",
+          "withAttachedFiles"
+        ],
+        "packages/ts/cli/src/oauth-profile.ts": [
+          "logoutOAuth",
+          "refreshReservedProfile",
+          "resolveOAuthToken"
+        ],
+        "packages/ts/cli/src/oauth-http.ts": [
+          "DEFAULT_OAUTH_ISSUER",
+          "OAUTH_RESOURCE",
+          "discoverOAuth",
+          "oauthTokenFields"
+        ],
+        "packages/ts/cli/src/agent-auth.ts": [
+          "ACCESS_TOKEN_TYPE",
+          "READINESS_TIMEOUT_MS",
+          "SENDING_API_RESOURCE",
+          "SENDING_TOKEN_SKEW_MS",
+          "TOKEN_EXCHANGE_GRANT_TYPE",
+          "inviteAgentOwner",
+          "registerAgent",
+          "registrationIntent",
+          "resolveAgentSendingToken",
+          "waitForMailbox"
+        ],
+        "packages/ts/cli/src/commands/agent/register.ts": [
+          "AgentRegister"
+        ],
+        "packages/ts/cli/src/commands/agent/invite-owner.ts": [
+          "AgentInviteOwner"
+        ],
+        "packages/ts/cli/src/commands/profiles/set.ts": [
+          "ProfilesSet"
+        ],
+        "packages/ts/cli/src/commands/profiles/list.ts": [
+          "ProfilesList"
+        ],
+        "packages/ts/cli/src/commands/profiles/show.ts": [
+          "ProfilesShow"
+        ],
+        "packages/ts/cli/src/commands/auth/login.ts": [
+          "AuthLogin"
+        ],
+        "packages/ts/cli/src/commands/auth/logout.ts": [
+          "AuthLogout"
+        ],
+        "packages/ts/cli/src/oauth-login.ts": [
+          "loginOAuth",
+          "loopbackCallback",
+          "openBrowser"
+        ],
+        "packages/ts/mailbox/src/generated/sdk.gen.ts": [
+          "mailboxBatchGetMessages",
+          "mailboxGetConnection",
+          "mailboxListGrantedMailboxes",
+          "mailboxListMessages",
+          "mailboxQueryMessageChanges",
+          "mailboxSearchMessageSnippets",
+          "mailboxSendMessage",
+          "mailboxUploadAttachment"
+        ],
+        "packages/ts/management/src/generated/sdk.gen.ts": [
+          "managementCreateDomain",
+          "managementCreateMailbox",
+          "managementCreateWebhook",
+          "managementGetConnection",
+          "managementGetDomainZoneFile",
+          "managementGetEmailLog",
+          "managementGetSpendSummary",
+          "managementListDomains"
+        ],
+        "packages/ts/sending/src/generated/sdk.gen.ts": [
+          "sendingCompleteAttachmentUpload",
+          "sendingCreateAttachmentUpload",
+          "sendingGetAttachment",
+          "sendingGetConnection",
+          "sendingGetOpenApiSpec",
+          "sendingSendEmail",
+          "sendingSendEmailBatch",
+          "sendingUploadAttachment"
+        ],
+        "packages/ts/core/src/generated-client.ts": [
+          "configureGeneratedClient"
+        ],
+        "packages/ts/core/src/auth.ts": [
+          "assertApiKeyKind",
+          "authToken"
+        ]
+      },
+      "cliCatalog": true,
+      "appPolicy": [
+        "agent-registration",
+        "durable-mailbox-read",
+        "mailbox-storage",
+        "delegated-sending"
+      ],
+      "sendingPolicy": [
+        "delegated-sending"
+      ],
+      "packageJson": {
+        "packages/ts/cli/package.json": [
+          "/name",
+          "/bin/sendmux",
+          "/bin/qubrics"
+        ]
+      }
+    },
+    "qubrics-email-for-agents": {
+      "app": [
+        "mailboxBatchGetMessages",
+        "mailboxBatchUpdateMessages",
+        "mailboxControlDraftSchedule",
+        "mailboxCountMessages",
+        "mailboxCreateAttachmentUpload",
+        "mailboxCreateDraft",
+        "mailboxGetAttachmentText",
+        "mailboxGetChanges",
+        "mailboxGetConnection",
+        "mailboxGetDraft",
+        "mailboxGetMe",
+        "mailboxRequestAttachmentText",
+        "mailboxSearchMessageSnippets",
+        "mailboxSendDraft",
+        "mailboxSendMessage",
+        "mailboxUpdateDraft",
+        "mailboxUploadAttachment",
+        "managementGetConnection"
+      ],
+      "sending": [
+        "sendingCreateAttachmentUpload",
+        "sendingGetConnection",
+        "sendingSendEmail",
+        "sendingSendEmailBatch",
+        "sendingUploadAttachment"
+      ],
+      "mcp": [
+        "mailbox_batch_get_messages",
+        "mailbox_batch_update_messages",
+        "mailbox_count_messages",
+        "mailbox_get_changes",
+        "mailbox_get_connection",
+        "mailbox_search_message_snippets",
+        "mailbox_send_message",
+        "mailbox_upload_attachment",
+        "management_get_connection",
+        "sending_create_attachment_upload",
+        "sending_get_connection",
+        "sending_send_email",
+        "sending_send_email_batch"
+      ],
+      "cli": [
+        "agent:invite-owner",
+        "agent:register",
+        "mailbox:get-connection",
+        "management:get-connection",
+        "sending:get-connection",
+        "sending:send",
+        "sending:send:batch"
+      ],
+      "public": {
+        "packages/ts/cli/src/base-command.ts": [
+          "SendmuxCommand"
+        ],
+        "packages/ts/cli/src/key-kind.ts": [
+          "inferApiKeyKind",
+          "isApiKeyCompatibleWithKind"
+        ],
+        "packages/ts/cli/src/profiles.ts": [
+          "CONFIG_FILE",
+          "configPath",
+          "isActiveAgentProfile",
+          "isAgentProfile",
+          "isOAuthProfile",
+          "readCliConfig",
+          "reserveAgentRegistrationIntent",
+          "updateCliConfig",
+          "writeCliConfigFile"
+        ],
+        "packages/ts/cli/src/operation-flags.ts": [
+          "addHeaderFlag",
+          "fileSuppliedQueryParams",
+          "fileSuppliesBody",
+          "operationFlags",
+          "parseBody",
+          "parseOperationOptions",
+          "parseParameterPairs",
+          "parseParameterValue"
+        ],
+        "packages/ts/cli/src/operation-runner.ts": [
+          "MAX_SENDING_ATTACHMENTS",
+          "MAX_SENDING_ATTACHMENT_BYTES",
+          "inferContentType",
+          "rawResponseData",
+          "readAttachmentFile",
+          "runSdkOperation",
+          "validateAttachmentConvenienceFlags",
+          "withAttachedFiles"
+        ],
+        "packages/ts/cli/src/oauth-profile.ts": [
+          "refreshReservedProfile",
+          "resolveOAuthToken"
+        ],
+        "packages/ts/cli/src/oauth-http.ts": [
+          "OAUTH_RESOURCE",
+          "oauthTokenFields"
+        ],
+        "packages/ts/cli/src/agent-auth.ts": [
+          "ACCESS_TOKEN_TYPE",
+          "READINESS_TIMEOUT_MS",
+          "SENDING_API_RESOURCE",
+          "SENDING_TOKEN_SKEW_MS",
+          "TOKEN_EXCHANGE_GRANT_TYPE",
+          "inviteAgentOwner",
+          "registerAgent",
+          "registrationIntent",
+          "resolveAgentSendingToken",
+          "waitForMailbox"
+        ],
+        "packages/ts/cli/src/commands/agent/register.ts": [
+          "AgentRegister"
+        ],
+        "packages/ts/cli/src/commands/agent/invite-owner.ts": [
+          "AgentInviteOwner"
+        ],
+        "packages/ts/mailbox/src/generated/sdk.gen.ts": [
+          "mailboxGetConnection"
+        ],
+        "packages/ts/management/src/generated/sdk.gen.ts": [
+          "managementGetConnection"
+        ],
+        "packages/ts/sending/src/generated/sdk.gen.ts": [
+          "sendingGetConnection",
+          "sendingSendEmail",
+          "sendingSendEmailBatch"
+        ],
+        "packages/ts/core/src/generated-client.ts": [
+          "configureGeneratedClient"
+        ],
+        "packages/ts/core/src/auth.ts": [
+          "assertApiKeyKind",
+          "authToken"
+        ]
+      },
+      "mcpSetup": true,
+      "appPolicy": [
+        "agent-registration",
+        "durable-mailbox-read",
+        "mailbox-storage",
+        "delegated-sending"
+      ],
+      "sendingPolicy": [
+        "delegated-sending"
+      ],
+      "packageJson": {
+        "packages/ts/cli/package.json": [
+          "/name",
+          "/bin/sendmux",
+          "/bin/qubrics"
+        ]
+      }
+    },
+    "qubrics-getting-started": {
+      "app": [
+        "mailboxGetConnection",
+        "mailboxGetMe",
+        "managementGetConnection",
+        "managementListMailboxes"
+      ],
+      "sending": [
+        "sendingGetConnection",
+        "sendingGetOpenApiSpec"
+      ],
+      "cli": [
+        "agent:invite-owner",
+        "agent:register",
+        "mailbox:get-connection",
+        "mailbox:me:get",
+        "management:get-connection",
+        "management:mailboxes:list",
+        "profiles:set",
+        "sending:get-connection",
+        "sending:get-open-api-spec"
+      ],
+      "public": {
+        "packages/ts/mailbox/src/index.ts": [
+          "DEFAULT_BASE_URL",
+          "createMailboxClient"
+        ],
+        "packages/ts/management/src/index.ts": [
+          "DEFAULT_BASE_URL",
+          "createManagementClient"
+        ],
+        "packages/ts/sending/src/index.ts": [
+          "DEFAULT_BASE_URL",
+          "createSendingClient"
+        ],
+        "packages/ts/cli/src/base-command.ts": [
+          "SendmuxCommand"
+        ],
+        "packages/ts/cli/src/key-kind.ts": [
+          "inferApiKeyKind",
+          "isApiKeyCompatibleWithKind"
+        ],
+        "packages/ts/cli/src/profiles.ts": [
+          "CONFIG_FILE",
+          "configPath",
+          "isActiveAgentProfile",
+          "isAgentProfile",
+          "isOAuthProfile",
+          "readCliConfig",
+          "reserveAgentRegistrationIntent",
+          "updateCliConfig",
+          "writeCliConfigFile"
+        ],
+        "packages/ts/cli/src/operation-flags.ts": [
+          "addHeaderFlag",
+          "operationFlags",
+          "parseBody",
+          "parseOperationOptions",
+          "parseParameterPairs",
+          "parseParameterValue"
+        ],
+        "packages/ts/cli/src/operation-runner.ts": [
+          "rawResponseData",
+          "runSdkOperation"
+        ],
+        "packages/ts/cli/src/oauth-profile.ts": [
+          "refreshReservedProfile",
+          "resolveOAuthToken"
+        ],
+        "packages/ts/cli/src/oauth-http.ts": [
+          "OAUTH_RESOURCE",
+          "oauthTokenFields"
+        ],
+        "packages/ts/cli/src/agent-auth.ts": [
+          "ACCESS_TOKEN_TYPE",
+          "READINESS_TIMEOUT_MS",
+          "SENDING_API_RESOURCE",
+          "SENDING_TOKEN_SKEW_MS",
+          "TOKEN_EXCHANGE_GRANT_TYPE",
+          "inviteAgentOwner",
+          "registerAgent",
+          "registrationIntent",
+          "resolveAgentSendingToken",
+          "waitForMailbox"
+        ],
+        "packages/ts/cli/src/commands/agent/register.ts": [
+          "AgentRegister"
+        ],
+        "packages/ts/cli/src/commands/agent/invite-owner.ts": [
+          "AgentInviteOwner"
+        ],
+        "packages/ts/cli/src/commands/profiles/set.ts": [
+          "ProfilesSet"
+        ],
+        "packages/ts/mailbox/src/generated/sdk.gen.ts": [
+          "mailboxGetConnection",
+          "mailboxGetMe"
+        ],
+        "packages/ts/management/src/generated/sdk.gen.ts": [
+          "managementGetConnection",
+          "managementListMailboxes"
+        ],
+        "packages/ts/sending/src/generated/sdk.gen.ts": [
+          "sendingGetConnection",
+          "sendingGetOpenApiSpec"
+        ],
+        "packages/ts/core/src/generated-client.ts": [
+          "configureGeneratedClient"
+        ],
+        "packages/ts/core/src/auth.ts": [
+          "assertApiKeyKind",
+          "authToken"
+        ]
+      },
+      "mcp": [
+        "mailbox_get_connection",
+        "mailbox_get_me",
+        "management_get_connection",
+        "management_list_mailboxes",
+        "sending_get_connection"
+      ],
+      "mcpSetup": true,
+      "appPolicy": [
+        "agent-registration",
+        "durable-mailbox-read",
+        "mailbox-storage",
+        "delegated-sending"
+      ],
+      "sendingPolicy": [
+        "delegated-sending"
+      ],
+      "packageJson": {
+        "packages/ts/mailbox/package.json": [
+          "/name",
+          "/exports/."
+        ],
+        "packages/ts/management/package.json": [
+          "/name",
+          "/exports/."
+        ],
+        "packages/ts/sending/package.json": [
+          "/name",
+          "/exports/."
+        ],
+        "packages/ts/cli/package.json": [
+          "/name",
+          "/bin/sendmux",
+          "/bin/qubrics"
+        ]
+      },
+      "pythonScripts": {
+        "packages/python/mcp/pyproject.toml": [
+          "sendmux-mcp"
+        ]
+      }
+    },
+    "qubrics-mailbox-agent": {
+      "app": [
+        "mailboxBatchDeleteMessages",
+        "mailboxBatchGetMessages",
+        "mailboxBatchUpdateMessages",
+        "mailboxControlDraftSchedule",
+        "mailboxCountMessages",
+        "mailboxCreateAttachmentUpload",
+        "mailboxCreateDraft",
+        "mailboxGetAttachmentText",
+        "mailboxGetChanges",
+        "mailboxGetConnection",
+        "mailboxGetDraft",
+        "mailboxGetIdentity",
+        "mailboxGetMe",
+        "mailboxGetMessage",
+        "mailboxGetThread",
+        "mailboxListFolders",
+        "mailboxListThreadMessages",
+        "mailboxListThreads",
+        "mailboxQueryMessageChanges",
+        "mailboxRequestAttachmentText",
+        "mailboxSearchMessageSnippets",
+        "mailboxSendDraft",
+        "mailboxSendMessage",
+        "mailboxStreamEvents",
+        "mailboxUpdateDraft",
+        "mailboxUploadAttachment"
+      ],
+      "mcp": [
+        "mailbox_batch_delete_messages",
+        "mailbox_batch_get_messages",
+        "mailbox_batch_update_messages",
+        "mailbox_control_draft_schedule",
+        "mailbox_count_messages",
+        "mailbox_create_draft",
+        "mailbox_get_attachment",
+        "mailbox_get_attachment_text",
+        "mailbox_get_changes",
+        "mailbox_get_draft",
+        "mailbox_get_identity",
+        "mailbox_get_me",
+        "mailbox_get_thread",
+        "mailbox_list_folders",
+        "mailbox_list_thread_messages",
+        "mailbox_list_threads",
+        "mailbox_request_attachment_text",
+        "mailbox_search_message_snippets",
+        "mailbox_send_draft",
+        "mailbox_send_message",
+        "mailbox_update_draft",
+        "mailbox_upload_attachment"
+      ],
+      "cli": [
+        "mailbox:batch-delete-messages",
+        "mailbox:batch-get-messages",
+        "mailbox:batch-update-messages",
+        "mailbox:control-draft-schedule",
+        "mailbox:count-messages",
+        "mailbox:create-draft",
+        "mailbox:folders:list",
+        "mailbox:get-attachment-text",
+        "mailbox:get-changes",
+        "mailbox:get-connection",
+        "mailbox:get-draft",
+        "mailbox:list-thread-messages",
+        "mailbox:list-threads",
+        "mailbox:me:get",
+        "mailbox:query-message-changes",
+        "mailbox:request-attachment-text",
+        "mailbox:search-message-snippets",
+        "mailbox:send-draft",
+        "mailbox:send-message",
+        "mailbox:stream-events",
+        "mailbox:update-draft"
+      ],
+      "public": {
+        "packages/ts/mailbox/src/index.ts": [
+          "DEFAULT_BASE_URL",
+          "createMailboxClient"
+        ],
+        "packages/ts/cli/src/base-command.ts": [
+          "SendmuxCommand"
+        ],
+        "packages/ts/cli/src/key-kind.ts": [
+          "inferApiKeyKind",
+          "isApiKeyCompatibleWithKind"
+        ],
+        "packages/ts/cli/src/profiles.ts": [
+          "isActiveAgentProfile",
+          "isAgentProfile",
+          "isOAuthProfile",
+          "readCliConfig"
+        ],
+        "packages/ts/cli/src/operation-flags.ts": [
+          "addHeaderFlag",
+          "fileSuppliedQueryParams",
+          "fileSuppliesBody",
+          "operationFlags",
+          "parseBody",
+          "parseOperationOptions",
+          "parseParameterPairs",
+          "parseParameterValue"
+        ],
+        "packages/ts/cli/src/operation-runner.ts": [
+          "MAX_SENDING_ATTACHMENTS",
+          "MAX_SENDING_ATTACHMENT_BYTES",
+          "inferContentType",
+          "rawResponseData",
+          "readAttachmentFile",
+          "runSdkOperation",
+          "validateAttachmentConvenienceFlags",
+          "withAttachedFiles"
+        ],
+        "packages/ts/cli/src/oauth-profile.ts": [
+          "refreshReservedProfile",
+          "resolveOAuthToken"
+        ],
+        "packages/ts/cli/src/oauth-http.ts": [
+          "OAUTH_RESOURCE",
+          "oauthTokenFields"
+        ],
+        "packages/ts/cli/src/agent-auth.ts": [
+          "ACCESS_TOKEN_TYPE",
+          "SENDING_API_RESOURCE",
+          "SENDING_TOKEN_SKEW_MS",
+          "TOKEN_EXCHANGE_GRANT_TYPE",
+          "resolveAgentSendingToken"
+        ],
+        "packages/ts/mailbox/src/generated/sdk.gen.ts": [
+          "mailboxBatchDeleteMessages",
+          "mailboxBatchGetMessages",
+          "mailboxBatchUpdateMessages",
+          "mailboxControlDraftSchedule",
+          "mailboxCountMessages",
+          "mailboxCreateDraft",
+          "mailboxGetAttachmentText",
+          "mailboxGetChanges",
+          "mailboxGetConnection",
+          "mailboxGetDraft",
+          "mailboxGetMe",
+          "mailboxListFolders",
+          "mailboxListThreadMessages",
+          "mailboxListThreads",
+          "mailboxQueryMessageChanges",
+          "mailboxRequestAttachmentText",
+          "mailboxSearchMessageSnippets",
+          "mailboxSendDraft",
+          "mailboxSendMessage",
+          "mailboxStreamEvents",
+          "mailboxUpdateDraft"
+        ],
+        "packages/ts/core/src/generated-client.ts": [
+          "configureGeneratedClient"
+        ],
+        "packages/ts/core/src/auth.ts": [
+          "assertApiKeyKind",
+          "authToken"
+        ]
+      },
+      "mcpSetup": true,
+      "mcpCatalog": true,
+      "appPolicy": [
+        "durable-mailbox-read",
+        "mailbox-storage",
+        "delegated-sending"
+      ],
+      "sendingPolicy": [
+        "delegated-sending"
+      ],
+      "packageJson": {
+        "packages/ts/mailbox/package.json": [
+          "/name",
+          "/exports/."
+        ],
+        "packages/ts/cli/package.json": [
+          "/name",
+          "/bin/sendmux",
+          "/bin/qubrics"
+        ]
+      }
+    },
+    "qubrics-management": {
+      "app": [
+        "mailboxGetMe",
+        "managementActivateProvider",
+        "managementCreateDomain",
+        "managementCreateMailbox",
+        "managementCreateMailboxKey",
+        "managementCreateProvider",
+        "managementCreateWebhook",
+        "managementDeactivateProvider",
+        "managementDeleteMailboxKey",
+        "managementDeleteWebhook",
+        "managementGetConnection",
+        "managementGetDeliveryPayload",
+        "managementGetDomain",
+        "managementGetDomainZoneFile",
+        "managementGetEmailLog",
+        "managementGetEmailMetrics",
+        "managementGetInboxLog",
+        "managementGetMailbox",
+        "managementGetProvider",
+        "managementGetProviderLimits",
+        "managementGetProviderStats",
+        "managementGetProviderUsage",
+        "managementGetSpendSummary",
+        "managementGetWebhook",
+        "managementListBalance",
+        "managementListDelivery",
+        "managementListDomains",
+        "managementListEmailLogs",
+        "managementListInboxLogs",
+        "managementListMailboxes",
+        "managementListProviders",
+        "managementListTransactions",
+        "managementListWebhooks",
+        "managementResumeMailbox",
+        "managementRotateWebhookSecret",
+        "managementSuspendMailbox",
+        "managementTestProvider",
+        "managementTestWebhook",
+        "managementUpdateDomain",
+        "managementUpdateMailbox",
+        "managementUpdateProvider",
+        "managementUpdateWebhook",
+        "managementVerifyDomain"
+      ],
+      "mcp": [
+        "management_create_domain",
+        "management_create_mailbox",
+        "management_create_mailbox_key",
+        "management_create_webhook",
+        "management_delete_mailbox_key",
+        "management_get_domain",
+        "management_get_domain_zone_file",
+        "management_get_email_log",
+        "management_get_email_metrics",
+        "management_get_mailbox",
+        "management_get_spend_summary",
+        "management_list_domains",
+        "management_list_email_logs",
+        "management_list_mailboxes",
+        "management_list_webhooks",
+        "management_resume_mailbox",
+        "management_suspend_mailbox",
+        "management_test_webhook",
+        "management_update_mailbox",
+        "management_verify_domain"
+      ],
+      "cli": [
+        "agent:register",
+        "management:activate-provider",
+        "management:create-domain",
+        "management:create-mailbox",
+        "management:create-mailbox-key",
+        "management:create-provider",
+        "management:deactivate-provider",
+        "management:delete-webhook",
+        "management:get-connection",
+        "management:get-delivery-payload",
+        "management:get-domain-zone-file",
+        "management:get-email-log",
+        "management:get-email-metrics",
+        "management:get-inbox-log",
+        "management:get-provider",
+        "management:get-provider-limits",
+        "management:get-provider-stats",
+        "management:get-provider-usage",
+        "management:get-spend-summary",
+        "management:get-webhook",
+        "management:list-balance",
+        "management:list-delivery",
+        "management:list-email-logs",
+        "management:list-inbox-logs",
+        "management:list-transactions",
+        "management:providers:list",
+        "management:rotate-webhook-secret",
+        "management:test-provider",
+        "management:update-domain",
+        "management:update-provider",
+        "management:update-webhook",
+        "management:verify-domain"
+      ],
+      "public": {
+        "packages/ts/management/src/index.ts": [
+          "DEFAULT_BASE_URL",
+          "createManagementClient"
+        ],
+        "packages/ts/cli/src/base-command.ts": [
+          "SendmuxCommand"
+        ],
+        "packages/ts/cli/src/key-kind.ts": [
+          "inferApiKeyKind",
+          "isApiKeyCompatibleWithKind"
+        ],
+        "packages/ts/cli/src/profiles.ts": [
+          "CONFIG_FILE",
+          "configPath",
+          "isActiveAgentProfile",
+          "isAgentProfile",
+          "isOAuthProfile",
+          "readCliConfig",
+          "reserveAgentRegistrationIntent",
+          "updateCliConfig",
+          "writeCliConfigFile"
+        ],
+        "packages/ts/cli/src/operation-flags.ts": [
+          "addHeaderFlag",
+          "operationFlags",
+          "parseBody",
+          "parseOperationOptions",
+          "parseParameterPairs",
+          "parseParameterValue"
+        ],
+        "packages/ts/cli/src/operation-runner.ts": [
+          "rawResponseData",
+          "runSdkOperation"
+        ],
+        "packages/ts/cli/src/oauth-profile.ts": [
+          "refreshReservedProfile",
+          "resolveOAuthToken"
+        ],
+        "packages/ts/cli/src/oauth-http.ts": [
+          "OAUTH_RESOURCE",
+          "oauthTokenFields"
+        ],
+        "packages/ts/cli/src/agent-auth.ts": [
+          "ACCESS_TOKEN_TYPE",
+          "READINESS_TIMEOUT_MS",
+          "SENDING_API_RESOURCE",
+          "SENDING_TOKEN_SKEW_MS",
+          "TOKEN_EXCHANGE_GRANT_TYPE",
+          "inviteAgentOwner",
+          "registerAgent",
+          "registrationIntent",
+          "resolveAgentSendingToken",
+          "waitForMailbox"
+        ],
+        "packages/ts/cli/src/commands/agent/register.ts": [
+          "AgentRegister"
+        ],
+        "packages/ts/cli/src/commands/agent/invite-owner.ts": [
+          "AgentInviteOwner"
+        ],
+        "packages/ts/management/src/generated/sdk.gen.ts": [
+          "managementActivateProvider",
+          "managementCreateDomain",
+          "managementCreateMailbox",
+          "managementCreateMailboxKey",
+          "managementCreateProvider",
+          "managementDeactivateProvider",
+          "managementDeleteWebhook",
+          "managementGetConnection",
+          "managementGetDeliveryPayload",
+          "managementGetDomainZoneFile",
+          "managementGetEmailLog",
+          "managementGetEmailMetrics",
+          "managementGetInboxLog",
+          "managementGetProvider",
+          "managementGetProviderLimits",
+          "managementGetProviderStats",
+          "managementGetProviderUsage",
+          "managementGetSpendSummary",
+          "managementGetWebhook",
+          "managementListBalance",
+          "managementListDelivery",
+          "managementListEmailLogs",
+          "managementListInboxLogs",
+          "managementListProviders",
+          "managementListTransactions",
+          "managementRotateWebhookSecret",
+          "managementTestProvider",
+          "managementUpdateDomain",
+          "managementUpdateProvider",
+          "managementUpdateWebhook",
+          "managementVerifyDomain"
+        ],
+        "packages/ts/core/src/generated-client.ts": [
+          "configureGeneratedClient"
+        ],
+        "packages/ts/core/src/auth.ts": [
+          "assertApiKeyKind",
+          "authToken"
+        ]
+      },
+      "mcpCatalog": true,
+      "appPolicy": [
+        "agent-registration",
+        "durable-mailbox-read"
+      ],
+      "packageJson": {
+        "packages/ts/management/package.json": [
+          "/name",
+          "/exports/."
+        ],
+        "packages/ts/cli/package.json": [
+          "/name",
+          "/bin/sendmux",
+          "/bin/qubrics"
+        ]
+      },
+      "appCatalog": [
+        "managementDeleteDomain",
+        "managementGetDomainFilters",
+        "managementSetDomainFilters",
+        "managementDeleteMailbox",
+        "managementGetMailboxFilters",
+        "managementSetMailboxFilters",
+        "managementDeleteProvider"
+      ]
+    },
+    "qubrics-mcp-setup": {
+      "app": [
+        "mailboxCreateAttachmentUpload",
+        "mailboxGetConnection",
+        "mailboxGetMe",
+        "mailboxGetMessage",
+        "mailboxListGrantedMailboxes",
+        "mailboxListMessages",
+        "mailboxSearchMessageSnippets",
+        "managementCreateDomain",
+        "managementCreateMailbox",
+        "managementCreateMailboxKey",
+        "managementCreateWebhook",
+        "managementGetConnection",
+        "managementGetSpendSummary"
+      ],
+      "sending": [
+        "sendingCreateAttachmentUpload",
+        "sendingGetAttachment",
+        "sendingGetConnection",
+        "sendingSendEmail",
+        "sendingSendEmailBatch",
+        "sendingUploadAttachment",
+        "sendingCompleteAttachmentUpload"
+      ],
+      "mcp": [
+        "mailbox_get_attachment",
+        "mailbox_get_connection",
+        "mailbox_list_granted_mailboxes",
+        "mailbox_search_message_snippets",
+        "mailbox_upload_attachment",
+        "mailbox_wait_for_message",
+        "management_create_domain",
+        "management_create_mailbox",
+        "management_create_mailbox_key",
+        "management_create_webhook",
+        "management_get_connection",
+        "management_get_spend_summary",
+        "sending_create_attachment_upload",
+        "sending_get_attachment",
+        "sending_get_connection",
+        "sending_send_email",
+        "sending_send_email_batch",
+        "sending_upload_attachment"
+      ],
+      "cli": [
+        "agent:register"
+      ],
+      "mcpSetup": true,
+      "public": {
+        "packages/ts/cli/src/base-command.ts": [
+          "SendmuxCommand"
+        ],
+        "packages/ts/cli/src/key-kind.ts": [
+          "inferApiKeyKind",
+          "isApiKeyCompatibleWithKind"
+        ],
+        "packages/ts/cli/src/profiles.ts": [
+          "CONFIG_FILE",
+          "configPath",
+          "isActiveAgentProfile",
+          "isAgentProfile",
+          "isOAuthProfile",
+          "readCliConfig",
+          "reserveAgentRegistrationIntent",
+          "updateCliConfig",
+          "writeCliConfigFile"
+        ],
+        "packages/ts/cli/src/agent-auth.ts": [
+          "READINESS_TIMEOUT_MS",
+          "inviteAgentOwner",
+          "registerAgent",
+          "registrationIntent",
+          "waitForMailbox"
+        ],
+        "packages/ts/cli/src/commands/agent/register.ts": [
+          "AgentRegister"
+        ],
+        "packages/ts/cli/src/commands/agent/invite-owner.ts": [
+          "AgentInviteOwner"
+        ],
+        "packages/python/mcp/sendmux_mcp/config.py": [
+          "ServerConfig",
+          "config_from_env",
+          "normalise_surfaces",
+          "normalise_transport",
+          "surface_api_keys_from_env"
+        ],
+        "packages/python/mcp/sendmux_mcp/cli.py": [
+          "config_from_args",
+          "main",
+          "main_mailbox",
+          "main_management",
+          "main_sending",
+          "parser",
+          "surface_api_keys_from_args",
+          "surfaces_from_args"
+        ],
+        "packages/python/core/sendmux_core/auth.py": [
+          "validate_api_key"
+        ]
+      },
+      "mcpCatalog": true,
+      "appPolicy": [
+        "delegated-sending"
+      ],
+      "sendingPolicy": [
+        "delegated-sending"
+      ],
+      "packageJson": {
+        "packages/ts/cli/package.json": [
+          "/name",
+          "/bin/sendmux",
+          "/bin/qubrics"
+        ]
+      },
+      "pythonScripts": {
+        "packages/python/mcp/pyproject.toml": [
+          "sendmux-mcp",
+          "sendmux-mcp-mailbox",
+          "sendmux-mcp-management",
+          "sendmux-mcp-sending",
+          "sendmux-mcp-hosted"
+        ]
+      }
+    },
+    "qubrics-send-email": {
+      "sending": [
+        "sendingCompleteAttachmentUpload",
+        "sendingCreateAttachmentUpload",
+        "sendingGetAttachment",
+        "sendingGetConnection",
+        "sendingSendEmail",
+        "sendingSendEmailBatch",
+        "sendingUploadAttachment"
+      ],
+      "mcp": [
+        "sending_create_attachment_upload",
+        "sending_get_attachment",
+        "sending_send_email",
+        "sending_send_email_batch",
+        "sending_upload_attachment"
+      ],
+      "cli": [
+        "sending:get-connection",
+        "sending:send",
+        "sending:send:batch"
+      ],
+      "public": {
+        "packages/ts/sending/src/index.ts": [
+          "DEFAULT_BASE_URL",
+          "createSendingClient"
+        ],
+        "packages/ts/cli/src/base-command.ts": [
+          "SendmuxCommand"
+        ],
+        "packages/ts/cli/src/key-kind.ts": [
+          "inferApiKeyKind",
+          "isApiKeyCompatibleWithKind"
+        ],
+        "packages/ts/cli/src/profiles.ts": [
+          "isActiveAgentProfile",
+          "isAgentProfile",
+          "isOAuthProfile",
+          "readCliConfig"
+        ],
+        "packages/ts/cli/src/operation-flags.ts": [
+          "addHeaderFlag",
+          "fileSuppliedQueryParams",
+          "fileSuppliesBody",
+          "operationFlags",
+          "parseBody",
+          "parseOperationOptions",
+          "parseParameterPairs",
+          "parseParameterValue"
+        ],
+        "packages/ts/cli/src/operation-runner.ts": [
+          "MAX_SENDING_ATTACHMENTS",
+          "MAX_SENDING_ATTACHMENT_BYTES",
+          "inferContentType",
+          "rawResponseData",
+          "readAttachmentFile",
+          "runSdkOperation",
+          "validateAttachmentConvenienceFlags",
+          "withAttachedFiles"
+        ],
+        "packages/ts/cli/src/oauth-profile.ts": [
+          "refreshReservedProfile",
+          "resolveOAuthToken"
+        ],
+        "packages/ts/cli/src/oauth-http.ts": [
+          "OAUTH_RESOURCE",
+          "oauthTokenFields"
+        ],
+        "packages/ts/cli/src/agent-auth.ts": [
+          "ACCESS_TOKEN_TYPE",
+          "SENDING_API_RESOURCE",
+          "SENDING_TOKEN_SKEW_MS",
+          "TOKEN_EXCHANGE_GRANT_TYPE",
+          "resolveAgentSendingToken"
+        ],
+        "packages/ts/sending/src/generated/sdk.gen.ts": [
+          "sendingGetConnection",
+          "sendingSendEmail",
+          "sendingSendEmailBatch"
+        ],
+        "packages/ts/core/src/generated-client.ts": [
+          "configureGeneratedClient"
+        ],
+        "packages/ts/core/src/auth.ts": [
+          "assertApiKeyKind",
+          "authToken"
+        ]
+      },
+      "mcpSetup": true,
+      "appPolicy": [
+        "mailbox-storage",
+        "delegated-sending"
+      ],
+      "sendingPolicy": [
+        "delegated-sending"
+      ],
+      "packageJson": {
+        "packages/ts/sending/package.json": [
+          "/name",
+          "/exports/."
+        ],
+        "packages/ts/cli/package.json": [
+          "/name",
+          "/bin/sendmux",
+          "/bin/qubrics"
+        ]
+      }
+    },
+    "qubrics-token-efficient-usage": {
+      "app": [
+        "mailboxBatchGetMessages",
+        "mailboxBatchUpdateMessages",
+        "mailboxCountMessages",
+        "mailboxCreateAttachmentUpload",
+        "mailboxGetChanges",
+        "mailboxGetConnection",
+        "mailboxGetMe",
+        "mailboxQueryMessageChanges",
+        "mailboxSearchMessageSnippets",
+        "mailboxSendMessage",
+        "mailboxStreamEvents",
+        "mailboxUploadAttachment",
+        "managementGetConnection",
+        "managementGetEmailLog",
+        "managementListEmailLogs",
+        "managementUpdateMailbox"
+      ],
+      "sending": [
+        "sendingCompleteAttachmentUpload",
+        "sendingCreateAttachmentUpload",
+        "sendingGetConnection",
+        "sendingSendEmail",
+        "sendingSendEmailBatch",
+        "sendingUploadAttachment"
+      ],
+      "mcp": [
+        "mailbox_batch_get_messages",
+        "mailbox_count_messages",
+        "mailbox_get_changes",
+        "mailbox_get_connection",
+        "mailbox_search_message_snippets",
+        "mailbox_upload_attachment",
+        "management_get_connection",
+        "sending_create_attachment_upload",
+        "sending_get_connection",
+        "sending_send_email",
+        "sending_send_email_batch"
+      ],
+      "cli": [
+        "agent:invite-owner",
+        "agent:register",
+        "mailbox:batch-get-messages",
+        "mailbox:batch-update-messages",
+        "mailbox:count-messages",
+        "mailbox:get-changes",
+        "mailbox:get-connection",
+        "mailbox:me:get",
+        "mailbox:query-message-changes",
+        "mailbox:search-message-snippets",
+        "mailbox:send-message",
+        "mailbox:stream-events",
+        "management:get-connection",
+        "management:get-email-log",
+        "management:list-email-logs",
+        "management:update-mailbox",
+        "sending:get-connection",
+        "sending:send",
+        "sending:send:batch"
+      ],
+      "public": {
+        "packages/ts/management/src/index.ts": [
+          "DEFAULT_BASE_URL",
+          "createManagementClient"
+        ],
+        "packages/ts/cli/src/base-command.ts": [
+          "SendmuxCommand"
+        ],
+        "packages/ts/cli/src/key-kind.ts": [
+          "inferApiKeyKind",
+          "isApiKeyCompatibleWithKind"
+        ],
+        "packages/ts/cli/src/profiles.ts": [
+          "CONFIG_FILE",
+          "configPath",
+          "isActiveAgentProfile",
+          "isAgentProfile",
+          "isOAuthProfile",
+          "readCliConfig",
+          "reserveAgentRegistrationIntent",
+          "updateCliConfig",
+          "writeCliConfigFile"
+        ],
+        "packages/ts/cli/src/operation-flags.ts": [
+          "addHeaderFlag",
+          "fileSuppliedQueryParams",
+          "fileSuppliesBody",
+          "operationFlags",
+          "parseBody",
+          "parseOperationOptions",
+          "parseParameterPairs",
+          "parseParameterValue"
+        ],
+        "packages/ts/cli/src/operation-runner.ts": [
+          "MAX_SENDING_ATTACHMENTS",
+          "MAX_SENDING_ATTACHMENT_BYTES",
+          "inferContentType",
+          "rawResponseData",
+          "readAttachmentFile",
+          "runSdkOperation",
+          "validateAttachmentConvenienceFlags",
+          "withAttachedFiles"
+        ],
+        "packages/ts/cli/src/oauth-profile.ts": [
+          "refreshReservedProfile",
+          "resolveOAuthToken"
+        ],
+        "packages/ts/cli/src/oauth-http.ts": [
+          "OAUTH_RESOURCE",
+          "oauthTokenFields"
+        ],
+        "packages/ts/cli/src/agent-auth.ts": [
+          "ACCESS_TOKEN_TYPE",
+          "READINESS_TIMEOUT_MS",
+          "SENDING_API_RESOURCE",
+          "SENDING_TOKEN_SKEW_MS",
+          "TOKEN_EXCHANGE_GRANT_TYPE",
+          "inviteAgentOwner",
+          "registerAgent",
+          "registrationIntent",
+          "resolveAgentSendingToken",
+          "waitForMailbox"
+        ],
+        "packages/ts/cli/src/commands/agent/register.ts": [
+          "AgentRegister"
+        ],
+        "packages/ts/cli/src/commands/agent/invite-owner.ts": [
+          "AgentInviteOwner"
+        ],
+        "packages/ts/mailbox/src/node.ts": [
+          "readAttachmentFile",
+          "uploadMailboxAttachmentFromFile"
+        ],
+        "packages/ts/sending/src/node.ts": [
+          "MAX_SENDING_ATTACHMENTS",
+          "MAX_SENDING_ATTACHMENT_BYTES",
+          "readAttachmentFile",
+          "sendEmailWithFiles",
+          "uploadAttachmentFromFile"
+        ],
+        "packages/ts/core/src/headers.ts": [
+          "conditionalHeaders",
+          "idempotencyHeaders",
+          "responseEtag"
+        ],
+        "packages/ts/core/src/pagination.ts": [
+          "paginate"
+        ],
+        "packages/ts/core/src/retry.ts": [
+          "createRetryingFetch",
+          "isRetryableRequest",
+          "isRetryableStatus",
+          "shouldRetryResponse"
+        ],
+        "packages/ts/mailbox/src/generated/sdk.gen.ts": [
+          "mailboxBatchGetMessages",
+          "mailboxBatchUpdateMessages",
+          "mailboxCountMessages",
+          "mailboxGetChanges",
+          "mailboxGetConnection",
+          "mailboxGetMe",
+          "mailboxQueryMessageChanges",
+          "mailboxSearchMessageSnippets",
+          "mailboxSendMessage",
+          "mailboxStreamEvents"
+        ],
+        "packages/ts/management/src/generated/sdk.gen.ts": [
+          "managementGetConnection",
+          "managementGetEmailLog",
+          "managementListEmailLogs",
+          "managementUpdateMailbox"
+        ],
+        "packages/ts/sending/src/generated/sdk.gen.ts": [
+          "sendingGetConnection",
+          "sendingSendEmail",
+          "sendingSendEmailBatch"
+        ],
+        "packages/ts/core/src/generated-client.ts": [
+          "configureGeneratedClient"
+        ],
+        "packages/ts/core/src/auth.ts": [
+          "assertApiKeyKind",
+          "authToken"
+        ]
+      },
+      "mcpSetup": true,
+      "mcpCatalog": true,
+      "appPolicy": [
+        "agent-registration",
+        "durable-mailbox-read",
+        "mailbox-storage",
+        "delegated-sending"
+      ],
+      "sendingPolicy": [
+        "delegated-sending"
+      ],
+      "packageJson": {
+        "packages/ts/sending/package.json": [
+          "/name",
+          "/exports/.~1node"
+        ],
+        "packages/ts/mailbox/package.json": [
+          "/name",
+          "/exports/.~1node"
+        ],
+        "packages/ts/core/package.json": [
+          "/name",
+          "/exports/."
+        ],
+        "packages/ts/management/package.json": [
+          "/name",
+          "/exports/."
+        ],
+        "packages/ts/cli/package.json": [
+          "/name",
+          "/bin/sendmux",
+          "/bin/qubrics"
+        ]
+      },
+      "appCatalog": [
+        "managementDeleteDomain",
+        "managementGetDomainFilters",
+        "managementSetDomainFilters",
+        "managementDeleteMailbox",
+        "managementGetMailboxFilters",
+        "managementSetMailboxFilters",
+        "managementDeleteProvider",
+        "managementListDomains",
+        "managementCreateDomain",
+        "managementGetDomain",
+        "managementUpdateDomain",
+        "managementVerifyDomain",
+        "managementGetDomainZoneFile",
+        "managementListMailboxes",
+        "managementCreateMailbox",
+        "managementGetMailbox",
+        "managementCreateMailboxKey",
+        "managementDeleteMailboxKey",
+        "managementResumeMailbox",
+        "managementSuspendMailbox",
+        "managementListProviders",
+        "managementCreateProvider",
+        "managementGetProvider",
+        "managementUpdateProvider",
+        "managementActivateProvider",
+        "managementDeactivateProvider",
+        "managementTestProvider",
+        "managementGetProviderLimits",
+        "managementGetProviderStats",
+        "managementGetProviderUsage",
+        "managementListWebhooks",
+        "managementCreateWebhook",
+        "managementGetWebhook",
+        "managementUpdateWebhook",
+        "managementDeleteWebhook",
+        "managementTestWebhook",
+        "managementRotateWebhookSecret",
+        "managementListDelivery",
+        "managementGetDeliveryPayload",
+        "managementGetSpendSummary",
+        "managementListBalance",
+        "managementListTransactions",
+        "managementGetEmailMetrics",
+        "mailboxListThreads",
+        "mailboxGetThread",
+        "mailboxGetThreadContent",
+        "mailboxListThreadMessages"
+      ]
+    },
     "sendmux-mailbox-agent": {
       "app": [
         "mailboxBatchDeleteMessages",
@@ -2489,8 +4263,8 @@
     }
   ],
   "releaseInputs": {
-    "publishedRevision": "edc201aa0608a795f0aeddc14be25b6a641d57e8",
-    "sdkRevision": "3eb0997b379d94b99659112d3c263ae59db7b14c",
+    "publishedRevision": "9d8059b10111943ce08860217a27222f43507686",
+    "sdkRevision": "8d3d7492dc83852906c163d0ce0c30cfdd0bc06f",
     "app": {
       "revision": "87ce115810ebcfa91655295603c27af52fcff96f",
       "openapi": "evidence/skill-compatibility/contracts/calendar-20261030/app-openapi.json",

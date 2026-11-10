@@ -1,0 +1,4 @@
+interface:
+  display_name: "Qubrics Token Efficiency"
+  short_description: "Choose low-token Qubrics calls."
+  default_prompt: "Use $qubrics-token-efficient-usage to choose the cheapest correct Qubrics surface and call."

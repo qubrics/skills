@@ -1,0 +1,34 @@
+[
+  {
+    "query": "Attach a local PDF to a Qubrics email without base64 in context.",
+    "should_trigger": true
+  },
+  {
+    "query": "How should a hosted MCP agent upload a Qubrics attachment with curl?",
+    "should_trigger": true
+  },
+  {
+    "query": "A hosted MCP agent needs to attach a PDF through the Qubrics Sending API without base64.",
+    "should_trigger": true
+  },
+  {
+    "query": "Read a markdown attachment from a Qubrics mailbox message.",
+    "should_trigger": true
+  },
+  {
+    "query": "Search unread Qubrics messages for invoices.",
+    "should_trigger": false
+  },
+  {
+    "query": "Create a Qubrics domain and mailbox key.",
+    "should_trigger": false
+  },
+  {
+    "query": "Our local Qubrics MCP config used `file_path` to attach PDFs. What should we migrate it to now?",
+    "should_trigger": true
+  },
+  {
+    "query": "My agent generated a tiny text attachment in memory. Can it send that through Qubrics MCP inline, and where is the size boundary?",
+    "should_trigger": true
+  }
+]
