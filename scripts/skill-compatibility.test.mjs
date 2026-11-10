@@ -41,6 +41,7 @@ function fixture(t) {
   const mcp = { tools: { by_surface: { mailbox: [{ name: "mailbox_list", description: "List email", input_schema: { type: "object" }, output_schema: { type: "object" }, annotations: { read_only_hint: true } }] } }, provenance: { sources: { "server.py": hash("server") } } };
   json(join(sdk, "packages/python/mcp/sendmux_mcp/mcp-contract.json"), mcp);
   writeFileSync(join(sdk, "packages/python/mcp/sendmux_mcp/server.py"), "server");
+  writeFileSync(join(sdk, "packages/python/mcp/pyproject.toml"), '[project]\nname = "sendmux-mcp"\n');
   const operation = { command: "mailbox:list", description: "List email", method: "get", path: "/mailbox/messages", requiredKeyKind: "mailbox", responseKind: "json", surface: "mailbox" };
   const operationsFile = join(sdk, "packages/ts/cli/src/generated/operations.ts");
   mkdirSync(dirname(operationsFile), { recursive: true });
@@ -125,6 +126,41 @@ test("a Qubrics release receipt retains reviewed legacy skills and verifies rena
   assert.ok(receipt.results.filter((row) => row.lane === "proposed").every((row) => row.name.startsWith("qubrics-")));
   const verified = f.run("--verify-skills-receipt", f.receipt, "--skills-root", f.skills, "--revision", f.descriptor.skills.proposedRevision);
   assert.equal(verified.status, 0, verified.stderr);
+});
+
+test("MCP namespace follows the project identity in the pinned SDK revision", (t) => {
+  const f = fixture(t);
+  const legacy = f.inspect();
+  const mcp = join(f.sdk, "packages/python/mcp");
+  renameSync(join(mcp, "sendmux_mcp"), join(mcp, "qubrics_mcp"));
+  writeFileSync(join(mcp, "pyproject.toml"), '[tool.fixture]\nname = "sendmux-mcp"\n[project]\nname = "qubrics-mcp"\n');
+  f.descriptor.sources.sdk.revision = f.commit(f.sdk); f.save();
+  writeFileSync(join(mcp, "pyproject.toml"), '[project]\nname = "sendmux-mcp"\n');
+  const renamed = f.inspect();
+  assert.equal(renamed.sourceRevisions.sdk, f.descriptor.sources.sdk.revision);
+  assert.deepEqual(renamed.sources.sdk.snapshots, legacy.sources.sdk.snapshots);
+  assert.deepEqual(renamed.skills.proposed.entries, legacy.skills.proposed.entries);
+  f.review();
+  const accepted = f.run("--candidate", f.candidate, "--receipt", f.receipt);
+  assert.equal(accepted.status, 0, accepted.stderr);
+  assert.equal(JSON.parse(readFileSync(f.receipt)).results.length, 22);
+  writeFileSync(join(mcp, "pyproject.toml"), '[project]\nname = "qubrics-mcp"\n');
+  writeFileSync(join(mcp, "qubrics_mcp/server.py"), "changed server");
+  f.descriptor.sources.sdk.revision = f.commit(f.sdk); f.save();
+  const stale = f.run("--inspect-candidate", f.candidate);
+  assert.notEqual(stale.status, 0);
+  assert.match(stale.stderr, /Stale MCP contract provenance: server.py/);
+});
+
+test("MCP namespace selection rejects missing or unsupported project identity", (t) => {
+  const f = fixture(t);
+  for (const project of ['[project]\nname = "other-mcp"\n', '[tool.fixture]\nname = "qubrics-mcp"\n[project]\nversion = "1"\n']) {
+    writeFileSync(join(f.sdk, "packages/python/mcp/pyproject.toml"), project);
+    f.descriptor.sources.sdk.revision = f.commit(f.sdk); f.save();
+    const result = f.run("--inspect-candidate", f.candidate);
+    assert.notEqual(result.status, 0);
+    assert.match(result.stderr, /Unsupported MCP project.name/);
+  }
 });
 
 test("a changed API limit blocks a hash-only refresh", (t) => {
@@ -244,7 +280,7 @@ test("documented package exports and Python console scripts require review when 
   let result = f.run("--candidate", f.candidate, "--receipt", f.receipt);
   assert.notEqual(result.status, 0); assert.match(result.stderr, /compatibility review or workflow evidence/);
   pkg.exports["."] = "./dist/index.js"; json(join(f.sdk, manifest), pkg);
-  writeFileSync(join(f.sdk, pyproject), '[project.scripts]\nsendmux-mcp = "sendmux_mcp.other:main"\n');
+  writeFileSync(join(f.sdk, pyproject), '[project]\nname = "sendmux-mcp"\n[project.scripts]\nsendmux-mcp = "sendmux_mcp.other:main"\n');
   f.descriptor.sources.sdk.revision = f.commit(f.sdk); f.save();
   result = f.run("--candidate", f.candidate, "--receipt", f.receipt);
   assert.notEqual(result.status, 0); assert.match(result.stderr, /compatibility review or workflow evidence/);

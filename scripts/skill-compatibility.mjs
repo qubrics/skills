@@ -7,7 +7,6 @@ import { fileURLToPath } from "node:url";
 
 const self = fileURLToPath(import.meta.url);
 const policyPath = "skill-compatibility.json";
-const mcpRoot = "packages/python/mcp/sendmux_mcp";
 const cliRoot = "packages/ts/cli/src";
 const requiredSkills = ["agent-email-inbox", "email-for-ai-agents", "sendmux-attachments", "sendmux-cli", "sendmux-email-for-agents", "sendmux-getting-started", "sendmux-mailbox-agent", "sendmux-management", "sendmux-mcp-setup", "sendmux-send-email", "sendmux-token-efficient-usage"];
 const qubricsSkills = requiredSkills.map((name) => name.startsWith("sendmux-") ? name.replace("sendmux-", "qubrics-") : `qubrics-${name}`);
@@ -98,6 +97,10 @@ function producerContract(name, source, base) {
 function sdkContracts(source, base) {
   assert(source?.root, "Missing SDK source");
   const sdk = committed(resolve(base, source.root), source.revision);
+  const project = sdk.read("packages/python/mcp/pyproject.toml").split(/^\[project\][ \t]*$/m)[1]?.split(/^\[/m)[0];
+  const packageName = project?.match(/^name[ \t]*=[ \t]*["'](sendmux-mcp|qubrics-mcp)["']/m)?.[1];
+  assert(packageName, "Unsupported MCP project.name: expected sendmux-mcp or qubrics-mcp");
+  const mcpRoot = `packages/python/mcp/${packageName.replaceAll("-", "_")}`;
   const mcp = JSON.parse(sdk.read(`${mcpRoot}/mcp-contract.json`));
   assert(Object.keys(mcp.tools?.by_surface ?? {}).length > 0, "Missing MCP tool contract");
   assert(Object.keys(mcp.provenance?.sources ?? {}).length > 0, "Missing MCP contract provenance");
