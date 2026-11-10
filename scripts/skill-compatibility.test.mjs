@@ -128,11 +128,12 @@ test("a Qubrics release receipt retains reviewed legacy skills and verifies rena
   assert.equal(verified.status, 0, verified.stderr);
 });
 
-test("MCP namespace follows the project identity in the pinned SDK revision", (t) => {
+test("MCP namespace follows the pinned project identity into canonical qubrics/mcp", (t) => {
   const f = fixture(t);
   const legacy = f.inspect();
   const mcp = join(f.sdk, "packages/python/mcp");
-  renameSync(join(mcp, "sendmux_mcp"), join(mcp, "qubrics_mcp"));
+  mkdirSync(join(mcp, "qubrics"));
+  renameSync(join(mcp, "sendmux_mcp"), join(mcp, "qubrics/mcp"));
   writeFileSync(join(mcp, "pyproject.toml"), '[tool.fixture]\nname = "sendmux-mcp"\n[project]\nname = "qubrics-mcp"\n');
   f.descriptor.sources.sdk.revision = f.commit(f.sdk); f.save();
   writeFileSync(join(mcp, "pyproject.toml"), '[project]\nname = "sendmux-mcp"\n');
@@ -145,7 +146,7 @@ test("MCP namespace follows the project identity in the pinned SDK revision", (t
   assert.equal(accepted.status, 0, accepted.stderr);
   assert.equal(JSON.parse(readFileSync(f.receipt)).results.length, 22);
   writeFileSync(join(mcp, "pyproject.toml"), '[project]\nname = "qubrics-mcp"\n');
-  writeFileSync(join(mcp, "qubrics_mcp/server.py"), "changed server");
+  writeFileSync(join(mcp, "qubrics/mcp/server.py"), "changed server");
   f.descriptor.sources.sdk.revision = f.commit(f.sdk); f.save();
   const stale = f.run("--inspect-candidate", f.candidate);
   assert.notEqual(stale.status, 0);
