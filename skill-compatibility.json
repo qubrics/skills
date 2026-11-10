@@ -4337,6 +4337,20 @@
       "contractDigest": "e48605fdb8e7392c6948afbedcae6c4abddff61b6dc9d0e38b518aebcc86385d",
       "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-skills34-phase2/qubrics-token-efficient-usage.json",
       "sha256": "7ce5eeae4817edb0f23a7c7cc60bf554e7cfedb0e40f411a171bc5ad9fb8f167"
+    },
+    {
+      "skill": "qubrics-mcp-setup",
+      "skillDigest": "a0ee94408114640c0782c227014dbec5261921185a6c144aaaedbdf912199279",
+      "contractDigest": "cd35b4e6c688898e4fa5b85c6a1fc6778232f74ca19948c204ad7551b7c14966",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-skills34-phase2/qubrics-mcp-setup-review-correction.json",
+      "sha256": "edf618ccf781a80b773b5569dfcb4025b168999e8e59d31b54355546577d074c"
+    },
+    {
+      "skill": "qubrics-send-email",
+      "skillDigest": "4ffab36dcec098252982995431fccb2bcb6a343481f30822d5d6831e8b5616cf",
+      "contractDigest": "0eb646a55a2445b0b4a42e0c13544242b9e74600d590a429bebcea6bc1a0ed01",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-skills34-phase2/qubrics-send-email-review-correction.json",
+      "sha256": "99bf8dffba0e9439030ed59561a4c57d0ff9d10a25b9c63314cced994503a260"
     }
   ],
   "releaseInputs": {
