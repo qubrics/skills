@@ -1,10 +1,16 @@
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/qubrics-logo-horizontal-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="assets/qubrics-logo-horizontal-light.svg">
+  <img alt="Qubrics" src="assets/qubrics-logo-horizontal-light.svg" width="450">
+</picture>
+
 # Qubrics Agent Skills
 
-Official Qubrics skills for AI coding agents.
+Official Qubrics skills for AI coding agents. See the [Qubrics Agent Skills guide](https://qubrics.com/docs/guides/agent-skills) for setup and usage.
 
 ## Marketplace install
 
-This repository contains Qubrics plugin bundles for Cursor, Claude, and Codex. The operator has submitted the Cursor plugin for marketplace review. Installation through `/add-plugin` requires marketplace approval.
+This repository contains Qubrics plugin bundles for Cursor, Claude, and Codex. Cursor installation through `/add-plugin` requires marketplace approval.
 
 Cursor (after marketplace publication):
 
