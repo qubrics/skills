@@ -1,6 +1,6 @@
 {
   "name": "sendmux",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "description": "Deprecated: install the qubrics plugin from the qubrics marketplace. This compatibility entry includes the same Qubrics skills.",
   "author": {
     "name": "Qubrics",

@@ -1724,8 +1724,15 @@
         "mailboxControlDraftSchedule",
         "mailboxCountMessages",
         "mailboxCreateAttachmentUpload",
+        "mailboxCreateCalendar",
+        "mailboxCreateCalendarEvent",
         "mailboxCreateDraft",
+        "mailboxDeleteCalendar",
+        "mailboxDeleteCalendarEvent",
         "mailboxGetAttachmentText",
+        "mailboxGetCalendar",
+        "mailboxGetCalendarEvent",
+        "mailboxGetCalendarEventChanges",
         "mailboxGetChanges",
         "mailboxGetConnection",
         "mailboxGetDraft",
@@ -1734,6 +1741,8 @@
         "mailboxGetMessage",
         "mailboxGetThread",
         "mailboxListFolders",
+        "mailboxListCalendarEvents",
+        "mailboxListCalendars",
         "mailboxListThreadMessages",
         "mailboxListThreads",
         "mailboxQueryMessageChanges",
@@ -1742,6 +1751,7 @@
         "mailboxSendDraft",
         "mailboxSendMessage",
         "mailboxStreamEvents",
+        "mailboxUpdateCalendarEvent",
         "mailboxUpdateDraft",
         "mailboxUploadAttachment"
       ],
@@ -1751,21 +1761,31 @@
         "mailbox_batch_update_messages",
         "mailbox_control_draft_schedule",
         "mailbox_count_messages",
+        "mailbox_create_calendar",
+        "mailbox_create_calendar_event",
         "mailbox_create_draft",
+        "mailbox_delete_calendar",
+        "mailbox_delete_calendar_event",
         "mailbox_get_attachment",
         "mailbox_get_attachment_text",
+        "mailbox_get_calendar",
+        "mailbox_get_calendar_event",
+        "mailbox_get_calendar_event_changes",
         "mailbox_get_changes",
         "mailbox_get_draft",
         "mailbox_get_identity",
         "mailbox_get_me",
         "mailbox_get_thread",
         "mailbox_list_folders",
+        "mailbox_list_calendar_events",
+        "mailbox_list_calendars",
         "mailbox_list_thread_messages",
         "mailbox_list_threads",
         "mailbox_request_attachment_text",
         "mailbox_search_message_snippets",
         "mailbox_send_draft",
         "mailbox_send_message",
+        "mailbox_update_calendar_event",
         "mailbox_update_draft",
         "mailbox_upload_attachment"
       ],
@@ -1775,14 +1795,23 @@
         "mailbox:batch-update-messages",
         "mailbox:control-draft-schedule",
         "mailbox:count-messages",
+        "mailbox:create-calendar",
+        "mailbox:create-calendar-event",
         "mailbox:create-draft",
+        "mailbox:delete-calendar",
+        "mailbox:delete-calendar-event",
         "mailbox:folders:list",
         "mailbox:get-attachment-text",
+        "mailbox:get-calendar",
+        "mailbox:get-calendar-event",
+        "mailbox:get-calendar-event-changes",
         "mailbox:get-changes",
         "mailbox:get-connection",
         "mailbox:get-draft",
         "mailbox:list-thread-messages",
         "mailbox:list-threads",
+        "mailbox:list-calendar-events",
+        "mailbox:list-calendars",
         "mailbox:me:get",
         "mailbox:query-message-changes",
         "mailbox:request-attachment-text",
@@ -1790,6 +1819,7 @@
         "mailbox:send-draft",
         "mailbox:send-message",
         "mailbox:stream-events",
+        "mailbox:update-calendar-event",
         "mailbox:update-draft"
       ],
       "public": {
@@ -1851,13 +1881,22 @@
           "mailboxBatchUpdateMessages",
           "mailboxControlDraftSchedule",
           "mailboxCountMessages",
+          "mailboxCreateCalendar",
+          "mailboxCreateCalendarEvent",
           "mailboxCreateDraft",
+          "mailboxDeleteCalendar",
+          "mailboxDeleteCalendarEvent",
           "mailboxGetAttachmentText",
+          "mailboxGetCalendar",
+          "mailboxGetCalendarEvent",
+          "mailboxGetCalendarEventChanges",
           "mailboxGetChanges",
           "mailboxGetConnection",
           "mailboxGetDraft",
           "mailboxGetMe",
           "mailboxListFolders",
+          "mailboxListCalendarEvents",
+          "mailboxListCalendars",
           "mailboxListThreadMessages",
           "mailboxListThreads",
           "mailboxQueryMessageChanges",
@@ -1866,6 +1905,7 @@
           "mailboxSendDraft",
           "mailboxSendMessage",
           "mailboxStreamEvents",
+          "mailboxUpdateCalendarEvent",
           "mailboxUpdateDraft"
         ],
         "packages/ts/core/src/generated-client.ts": [
@@ -4461,16 +4501,170 @@
       "contractDigest": "0eb646a55a2445b0b4a42e0c13544242b9e74600d590a429bebcea6bc1a0ed01",
       "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-skills34-phase2/qubrics-send-email-review-correction.json",
       "sha256": "99bf8dffba0e9439030ed59561a4c57d0ff9d10a25b9c63314cced994503a260"
+    },
+    {
+      "skill": "qubrics-agent-email-inbox",
+      "skillDigest": "4a72427ac606f9ad94b4760e039d49ad7918b3f92d3b1d70ae8dfe87ac83ac86",
+      "contractDigest": "65aa1ff0b8fa3fcd65d84d0ee12c16dc9e6708f9f461e22afb1636306e8d08c9",
+      "record": "evidence/skill-compatibility/reviews/calendar-api-20261111/qubrics-agent-email-inbox.json",
+      "sha256": "4aa3cec286c77d61a74513c24fc3f0eb5be14616355d2b291d920ae7f69cb4b5"
+    },
+    {
+      "skill": "qubrics-attachments",
+      "skillDigest": "10ae2e30c7e7c4db49f444f7c749774072fb84caa6c76345c885a99834ea8bc5",
+      "contractDigest": "e99a25bef146b48efb4cd1e354f7e3da065511ba48aef9a09b688a56bb0ae2a8",
+      "record": "evidence/skill-compatibility/reviews/calendar-api-20261111/qubrics-attachments.json",
+      "sha256": "efd034f57c5883094d1e0709774f71c450ffbf290d4da0da5424dd14a1cffc63"
+    },
+    {
+      "skill": "qubrics-cli",
+      "skillDigest": "c7b4ac5db8aef06326e3209d37f7116619cc4778ea5964ca0ac041de09799107",
+      "contractDigest": "b4b7b32979554d3b89ada2b16c1849293de168e2f411be5dc95be099c5b31d56",
+      "record": "evidence/skill-compatibility/reviews/calendar-api-20261111/qubrics-cli.json",
+      "sha256": "8c881bf49685bed684fbff24c4823872e1ad7bce8b9a4f774ed1f2c185cc1bd7"
+    },
+    {
+      "skill": "qubrics-email-for-agents",
+      "skillDigest": "70dc5a8f04dca687b17929ac59d553be893235413271a4e99399fff30c70f0a6",
+      "contractDigest": "2834dbf0443e5815908732a2c48a7664b25a898228965f14db7b1d33adfa932e",
+      "record": "evidence/skill-compatibility/reviews/calendar-api-20261111/qubrics-email-for-agents.json",
+      "sha256": "6b584c1aee5c1b8eb21ec5e7d4c612da7231d94bd3ed318997ec1ea56142cab6"
+    },
+    {
+      "skill": "qubrics-email-for-ai-agents",
+      "skillDigest": "bb7c1d2dececb3955dc5c7c446e5bebb84b329643678791cae4c0147bc6769ac",
+      "contractDigest": "23e8fb24bcbead58dc0a5fd106347f462edcc1042fe8351c5fe31f5e5f77d651",
+      "record": "evidence/skill-compatibility/reviews/calendar-api-20261111/qubrics-email-for-ai-agents.json",
+      "sha256": "41325c23cef63e1d2ba0d13b45cd1dd5499dc94888293efe75b04c2554d3f24b"
+    },
+    {
+      "skill": "qubrics-getting-started",
+      "skillDigest": "226820de7247bd3e2453b938ff62ae0d993e3012fc8b5489872094a4fb45f9c5",
+      "contractDigest": "b9b4720484f0281292765b08939ac566b7e30aa9c70a9c586e0e866b16e89216",
+      "record": "evidence/skill-compatibility/reviews/calendar-api-20261111/qubrics-getting-started.json",
+      "sha256": "361768a96d8d3167fd3c106200ae63029423ce7fc16fc093031a2d99500308a9"
+    },
+    {
+      "skill": "qubrics-mailbox-agent",
+      "skillDigest": "b942b756114eff2eb3e7ccfcc0ed1e6a80dd0f32de8601dc8ded6a069fb686b7",
+      "contractDigest": "a9a5125cad51f81336b3289c583a2859ffc2e43a168f198b91704ee8b69cead6",
+      "record": "evidence/skill-compatibility/reviews/calendar-api-20261111/qubrics-mailbox-agent.json",
+      "sha256": "261bdbb7c69fc5a30cbb10b76215b38d9b14d21143821e5fc023d67aa5b0cdd9"
+    },
+    {
+      "skill": "qubrics-management",
+      "skillDigest": "ec55108500cd59654717c8d8102088d495e8b923525e8b391e76650a66b00103",
+      "contractDigest": "69bb289834d75cb1770306d68384770a12622c140bd25828dd6d34052a270e4c",
+      "record": "evidence/skill-compatibility/reviews/calendar-api-20261111/qubrics-management.json",
+      "sha256": "7e95e0d50c9264f06b86a3f560a7388fa99426dabb0162c3088bbdeeecfc5d08"
+    },
+    {
+      "skill": "qubrics-mcp-setup",
+      "skillDigest": "4ea84f54ef9294fd2e8083aecac923f29a875e26d000b4513e4a2a49e5dbe927",
+      "contractDigest": "461684ddaa7706069d9d868be388215c783b5e58492c428d4d6db3f510f6a385",
+      "record": "evidence/skill-compatibility/reviews/calendar-api-20261111/qubrics-mcp-setup.json",
+      "sha256": "3a3195b7daa5943430b9553c9d62fc309460101587db49e2cd51dc5a2a9091aa"
+    },
+    {
+      "skill": "qubrics-send-email",
+      "skillDigest": "4ffab36dcec098252982995431fccb2bcb6a343481f30822d5d6831e8b5616cf",
+      "contractDigest": "92b8624f66e1cfd94f62c418444b06b2486354cede6d9289d43c5b4bc923a2ae",
+      "record": "evidence/skill-compatibility/reviews/calendar-api-20261111/qubrics-send-email.json",
+      "sha256": "a0a011ba98c5094a1686160762ebad66d9c9df52d9467f293c8683f5ae549a3b"
+    },
+    {
+      "skill": "qubrics-token-efficient-usage",
+      "skillDigest": "7c4d1d3ac670ed25ba71248e12b5e77cdd6ab15c6aab6ed747f0bbc9071a6eeb",
+      "contractDigest": "f991affe6476e5d6d6c1324de965765d2834befc244b1e3c2a433dc82675de02",
+      "record": "evidence/skill-compatibility/reviews/calendar-api-20261111/qubrics-token-efficient-usage.json",
+      "sha256": "aea4b0c29c864f7a538c3dd34bc7ef0a0da97ee262ea821fc5119e3a12e5cce0"
+    },
+    {
+      "skill": "agent-email-inbox",
+      "skillDigest": "956a19a3f81906299d19f35afa0a8dba4a5bd1f1275a45d02ba1d407579f0347",
+      "contractDigest": "904682fa0f85cdb1fdf07b03501f7ea251e8a6885a7abfd3bc61801ca2150b2f",
+      "record": "evidence/skill-compatibility/reviews/calendar-api-20261111/published-agent-email-inbox.json",
+      "sha256": "2e3bc3636f9c32d6a173bb5d1b67238339a29f6a1669477d50114ae72110793f"
+    },
+    {
+      "skill": "email-for-ai-agents",
+      "skillDigest": "6f2c0908457404bb6aacc4cdcf18ce49b9054cbd873939b7b3e417224fd4d1d9",
+      "contractDigest": "d4be23440cec72b53fee9f06f872a7350b54a009c0c0f53b91369e4ce1202fea",
+      "record": "evidence/skill-compatibility/reviews/calendar-api-20261111/published-email-for-ai-agents.json",
+      "sha256": "6cffcfb0db9f3755e94bf06579a8b5c55163c7efbd68209ff2d0cb5ceba96e3e"
+    },
+    {
+      "skill": "sendmux-attachments",
+      "skillDigest": "f06e0579bf0f3ee52dcffcc23393b323c5fe9050b939e2694b28731d30ca9a5e",
+      "contractDigest": "2d99f6075eb552f2e4dd0aebce8b944eca28fde30f3dac080d14a829473af1be",
+      "record": "evidence/skill-compatibility/reviews/calendar-api-20261111/published-sendmux-attachments.json",
+      "sha256": "650c6ba93ef068ee4cd25e299c5d5768ea05f56addf549578da7f0b38a7f17ec"
+    },
+    {
+      "skill": "sendmux-cli",
+      "skillDigest": "79f22216d882af6ffa0c246f01204e4f4537065368e15027f7a9f08c931db929",
+      "contractDigest": "c29016b195e1ff04cd8da8debd913359223054598a5f70daf77c226840feb89d",
+      "record": "evidence/skill-compatibility/reviews/calendar-api-20261111/published-sendmux-cli.json",
+      "sha256": "ac6ee9d140e1d82544c7a39fe6a5b3caebf74d34b663ce3324e26e9b76781200"
+    },
+    {
+      "skill": "sendmux-email-for-agents",
+      "skillDigest": "411f7cc5d798a8e0abc7f48dd3561adc64bf5a71435c8c9283d0943f269a6cec",
+      "contractDigest": "33a314257cc1f63f0bc29a304af38a5fb3d21a84c61cbe1739df9d8f9370c6fb",
+      "record": "evidence/skill-compatibility/reviews/calendar-api-20261111/published-sendmux-email-for-agents.json",
+      "sha256": "8633ff748aa19b9457a096e4a502d5af6b334e20c5cd8b4dcc265c01ae9746f8"
+    },
+    {
+      "skill": "sendmux-getting-started",
+      "skillDigest": "aec42bf3c8c21038749fbef5d3753bd689bf74edfcabd79c56b500ea6bf2e21b",
+      "contractDigest": "40683c527e2aa13764171e14b49565f07d478c3117e892e3aee055da2ce4571b",
+      "record": "evidence/skill-compatibility/reviews/calendar-api-20261111/published-sendmux-getting-started.json",
+      "sha256": "a021d57d0dea418334371a03b2cf1ea0ba57218c639e34187642b495bb194e54"
+    },
+    {
+      "skill": "sendmux-mailbox-agent",
+      "skillDigest": "a3e2ba98b2f049335b02ebb3f3ea25b44e4c1c93878160273250222bb693a08a",
+      "contractDigest": "8be2dc7d86a2647af5f9d949cabf60f048ebf08d0a95aa3c0df613eeddd46998",
+      "record": "evidence/skill-compatibility/reviews/calendar-api-20261111/published-sendmux-mailbox-agent.json",
+      "sha256": "7d1c40fd9f087b1526dbb4f521e85bcf08d50aa0e5a85cadec08d740751c43d3"
+    },
+    {
+      "skill": "sendmux-management",
+      "skillDigest": "a82945bdb1521932eef71cfe05264e006ebffd52fde7859c0cc4cfedef72abea",
+      "contractDigest": "39316ecd6a836379d395f8478ec36a154145255397f97a6b774b1502b806429f",
+      "record": "evidence/skill-compatibility/reviews/calendar-api-20261111/published-sendmux-management.json",
+      "sha256": "e86e70d60f65428c29527196c9dc21545c807f92ca630578d6e63c0e839de3f4"
+    },
+    {
+      "skill": "sendmux-mcp-setup",
+      "skillDigest": "cabb71c6b068c8223d53e0ea5e0a39c788e1bff606b5fdfb48b141e6c530c224",
+      "contractDigest": "ee4e6c0f8ba39792be4b05aadb5ab4f17afde35c76e92f3515cecb94dfbfcc85",
+      "record": "evidence/skill-compatibility/reviews/calendar-api-20261111/published-sendmux-mcp-setup.json",
+      "sha256": "5a68383b729975a8dd611d665d03e1bce8b7bba9a722dd4027364ad4fffe8760"
+    },
+    {
+      "skill": "sendmux-send-email",
+      "skillDigest": "853bac285313fe319a7bf94bf67636793a818e7d616a8938bb81b33ef460ccb3",
+      "contractDigest": "de0925ebab3efe95d0217d997c78f95a3deb187e3a9961a5cb4ebe0b851a477e",
+      "record": "evidence/skill-compatibility/reviews/calendar-api-20261111/published-sendmux-send-email.json",
+      "sha256": "a9c63d37cd7b04a57da76dd663acba1d03a7aadde0cb5516839fa23a881e83a5"
+    },
+    {
+      "skill": "sendmux-token-efficient-usage",
+      "skillDigest": "ece1d30c9a91b3b24376c0ab41d991741b60f9314064da63b0f74da35104a3cb",
+      "contractDigest": "d1baea82aeb272bfe95196312fe347464afb9f788351672a11a37adb3fdc07b3",
+      "record": "evidence/skill-compatibility/reviews/calendar-api-20261111/published-sendmux-token-efficient-usage.json",
+      "sha256": "6a024ce8c8173cb3a39be672b16caa6f60571b16bd87d4aca51f12ecbe4c0760"
     }
   ],
   "releaseInputs": {
     "publishedRevision": "9d8059b10111943ce08860217a27222f43507686",
     "sdkRevision": "a326bc923fff448470d908bb527afaaa35f6d739",
     "app": {
-      "revision": "87ce115810ebcfa91655295603c27af52fcff96f",
-      "openapi": "evidence/skill-compatibility/contracts/calendar-20261030/app-openapi.json",
-      "policy": "evidence/skill-compatibility/contracts/calendar-20261030/app-policy.json",
-      "exportReceipt": "evidence/skill-compatibility/contracts/calendar-20261030/app-export.json"
+      "revision": "06a1d50eeb483e8a4c6aeb8da64832c5d3dc5a7e",
+      "openapi": "evidence/skill-compatibility/contracts/calendar-api-20261111/app-openapi.json",
+      "policy": "evidence/skill-compatibility/contracts/calendar-api-20261111/app-policy.json",
+      "exportReceipt": "evidence/skill-compatibility/contracts/calendar-api-20261111/app-export.json"
     },
     "sending": {
       "revision": "2f4226655efc05f109b5feda50ed2ca1570aea91",

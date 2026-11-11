@@ -1,6 +1,6 @@
 ---
 name: qubrics-mailbox-agent
-description: "Operate inside an already-existing Qubrics mailbox on behalf of an AI agent: read, search, count, sync, triage, file, delete, thread, save or edit a reply draft, or send a message using an API key, scoped agent token, or authorised OAuth profile. Trigger when the user wants an agent to inspect an inbox, find or mark messages, resume a prior sync state, prepare a human-editable draft, or send from that mailbox's identity. Do NOT use this for creating, provisioning, or administering mailboxes, domains, or API keys themselves — that setup and admin work belongs to qubrics-management, not this skill."
+description: "Operate inside an already-existing Qubrics mailbox on behalf of an AI agent: read, search, count, sync, triage, file, delete, thread, manage private calendars and non-sending events, save or edit a reply draft, or send a message using an API key, scoped agent token, or authorised OAuth profile. Trigger when the user wants an agent to inspect an inbox, find or mark messages, resume a prior sync state, work with private calendars or events, prepare a human-editable draft, or send from that mailbox's identity. Do NOT use this for creating, provisioning, or administering mailboxes, domains, or API keys themselves — that setup and admin work belongs to qubrics-management, not this skill."
 license: Apache-2.0
 metadata:
   author: qubrics
@@ -54,6 +54,7 @@ When recommending mailbox calls, name the usable credential (`smx_mbx_` key, sco
 | Broad sync                         | `mailbox_get_changes`, CLI `mailbox:get-changes`, SDK `mailboxGetChanges`.                                    |
 | Filtered message sync              | CLI/SDK `mailbox:query-message-changes` / `mailboxQueryMessageChanges`. MCP does not curate this yet.         |
 | Live mailbox events                | CLI/SDK `mailbox:stream-events` / `mailboxStreamEvents`. MCP does not curate this yet.                        |
+| Calendars and events               | Calendar operations below; use `calendar.read` for reads and `calendar.write` for writes.                    |
 
 ## Search before reading
 
@@ -274,6 +275,40 @@ qubrics mailbox:list-threads --query q=renewal --query limit=10 --json
 qubrics mailbox:list-thread-messages --path thread_id=thr_abc --query limit=20 --json
 qubrics mailbox:folders:list --query limit=100 --json
 ```
+
+## Calendars and events
+
+Calendar events are private, non-sending records. They do not support participants, recurrence, alerts, invitations, or scheduling messages. Do not simulate recurrence by creating guessed copies.
+
+| Action | MCP | CLI | TypeScript SDK |
+| --- | --- | --- | --- |
+| List calendars | `mailbox_list_calendars` | `mailbox:list-calendars` | `mailboxListCalendars` |
+| Create calendar | `mailbox_create_calendar` | `mailbox:create-calendar` | `mailboxCreateCalendar` |
+| Read calendar | `mailbox_get_calendar` | `mailbox:get-calendar` | `mailboxGetCalendar` |
+| Delete calendar | `mailbox_delete_calendar` | `mailbox:delete-calendar` | `mailboxDeleteCalendar` |
+| List events | `mailbox_list_calendar_events` | `mailbox:list-calendar-events` | `mailboxListCalendarEvents` |
+| Create event | `mailbox_create_calendar_event` | `mailbox:create-calendar-event` | `mailboxCreateCalendarEvent` |
+| Read event | `mailbox_get_calendar_event` | `mailbox:get-calendar-event` | `mailboxGetCalendarEvent` |
+| Update event | `mailbox_update_calendar_event` | `mailbox:update-calendar-event` | `mailboxUpdateCalendarEvent` |
+| Delete event | `mailbox_delete_calendar_event` | `mailbox:delete-calendar-event` | `mailboxDeleteCalendarEvent` |
+| Read event changes | `mailbox_get_calendar_event_changes` | `mailbox:get-calendar-event-changes` | `mailboxGetCalendarEventChanges` |
+
+Before any Calendar call, validate the connection and select an authorised mailbox using the existing boundary above. Reads require `calendar.read`; creates, updates, and deletes require `calendar.write`.
+
+Retain one stable `Idempotency-Key` for each exact calendar or event create. For an event create, also retain its `uid` before dispatch. After an uncertain event create, reconcile with `mailbox_list_calendar_events` using the exact UID. UID lookup is eventually consistent, so an empty immediate result never authorises another create.
+
+Create a non-sending event with the CLI:
+
+```bash
+qubrics mailbox:create-calendar-event \
+  --idempotency-key appointment-2026-11-20-v1 \
+  --body '{"calendar_id":"calendar_123","uid":"appointment-2026-11-20@example.com","title":"Appointment","start":"2026-11-20T10:00:00","time_zone":"Australia/Melbourne","duration":"PT1H"}' \
+  --json
+```
+
+Read an event immediately before changing or deleting it. Keep its current `etag` and send that exact value as `If-Match`; wildcards are rejected. A `409 conflict` requires a fresh read and review, not a blind retry. Delete an event or calendar only after explicit user confirmation. Event deletion sends no cancellation email. Before deleting an empty calendar, read it, retain its current `etag`, and send that exact value as `If-Match`.
+
+For a local event index, call changes without `since_state`, retain the baseline `new_state`, list every event page with unchanged filters, then consume changes from that baseline to cover concurrent edits. Apply created and updated IDs by reading them, remove destroyed IDs, and continue through each `new_state` while `has_more` is true. Persist a state only after applying its batch. `sync_required`, a missing state, or an expired state requires a new baseline and full list. The feed is coalesced sync data, not an activity history.
 
 ## Sync
 

@@ -1,7 +1,7 @@
 {
   "name": "qubrics",
   "displayName": "Qubrics",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "description": "Official Qubrics Agent Skills for email, mailbox, MCP, CLI, and SDK workflows.",
   "author": {
     "name": "Qubrics",
