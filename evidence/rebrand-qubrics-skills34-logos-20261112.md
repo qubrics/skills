@@ -22,13 +22,15 @@ README uses horizontal `<picture>` with dark/light media sources, light fallback
 
 Legacy `assets/sendmux-mark.svg`, manifests, generator, skills and runtime commands are unchanged. The Cursor operator **Logotype URL field** will use `assets/qubrics-emblem.svg` pinned to this PR's actual merge SHA. No manifest regeneration, new release acceptance or distribution version is implied by this documentation/asset PR.
 
-Cursor Description remains `Official Qubrics Agent Skills for email, mailbox, MCP, CLI, and SDK workflows.` Website remains `https://qubrics.com/docs/guides/agent-skills`. Both match `.cursor-plugin/plugin.json`. Live Website verification returned HTTP522 from Cloudflare, as did `https://qubrics.com/`: site availability, not an observed wrong-path404. Therefore the configured Website value is confirmed; live availability is not. No website source or infrastructure was changed.
+Cursor Description remains `Official Qubrics Agent Skills for email, mailbox, MCP, CLI, and SDK workflows.` Website remains `https://qubrics.com/docs/guides/agent-skills`. Both match `.cursor-plugin/plugin.json`. Live Website verification returned HTTP522, as did `https://qubrics.com/`: site availability, not an observed wrong-path404. Therefore the configured Website value is confirmed; live availability is not. No website source or infrastructure was changed.
 
 ## Validation and review
 
 Local checks: `node scripts/check-plugin-bundles.mjs` exit0; `git diff --check` exit0. XML parse, unchanged README fenced commands and unchanged legacy logo assertions passed. No unit tests added for static SVG/documentation changes; existing CI owns the plugin/workflow regression suite.
 
 Protected copy: Qubrics, Cursor, Claude, Codex, `/add-plugin`, all fenced commands, repository identifiers and link destinations stay exact. Technical documentation review and one polish pass apply only to changed prose. No broader README rewrite.
+
+Two-axis independent review: Spec0 findings; Standards1 public-evidence vendor attribution removed, no heuristic findings. Fresh-reader copy critique found no issue. One humanize pass retained the short technical prose; protected names, command and URL tokens checked unchanged. No additional product claim or copy rewrite.
 
 ClawHub workflow306493143 read back `disabled_manually`. This diff changes only README, new assets and this evidence: no `skills/**`, publisher config, release/tag or workflow mutation. Notify SITE triggers only on `skills/**`; ClawHub workflow path filters do not match these changed paths. Plugin bundles CI does match README/assets.
 
