@@ -133,7 +133,7 @@
     },
     "qubrics-mailbox-agent": {
       "displayName": "Qubrics Mailbox Agent",
-      "description": "Let an OpenClaw agent read, search, count, sync, triage, file, delete, thread, and reply from one Qubrics mailbox efficiently.",
+      "description": "Let an OpenClaw agent read, search, count, sync, triage, file, delete, thread, manage private calendars and non-sending events, and reply from one Qubrics mailbox efficiently.",
       "categories": [
         "Communication",
         "Automation",
