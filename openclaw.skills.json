@@ -2,7 +2,7 @@
   "owner": "sendmux.ai",
   "outputRoot": "dist/clawhub/skills",
   "homepage": "https://github.com/qubrics/skills",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "releaseTags": [
     "latest"
   ],
