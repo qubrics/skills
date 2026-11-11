@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "kind": "compatibility",
+  "skill": "sendmux-mailbox-agent",
+  "skillDigest": "a3e2ba98b2f049335b02ebb3f3ea25b44e4c1c93878160273250222bb693a08a",
+  "contractDigest": "8be2dc7d86a2647af5f9d949cabf60f048ebf08d0a95aa3c0df613eeddd46998",
+  "sourceRevisions": {
+    "app": "06a1d50eeb483e8a4c6aeb8da64832c5d3dc5a7e",
+    "sending": "2f4226655efc05f109b5feda50ed2ca1570aea91",
+    "sdk": "a326bc923fff448470d908bb527afaaa35f6d739"
+  },
+  "reviewer": "Independent AI source reviewer /root/pr48_compat_review_default; coordinating reviewer /root",
+  "rationale": "Independent delta review classified this unchanged published legacy skill as a no-impact renewal under the exact retained-alias source tuple.",
+  "evidence": [
+    { "path": "skills/sendmux-mailbox-agent/SKILL.md", "sha256": "368ef6d17bfe8a6c2e6947795f91ff472f6119a903750540af18b47688378923" },
+    { "path": "evidence/skill-compatibility/reviews/calendar-api-20261111/source-review.md", "sha256": "e25e270546575192df5aad8eb4464cc89e950702309d7a4643dbfdd3170cb4c1" }
+  ]
+}
