@@ -1,6 +1,6 @@
 # SDK Mailbox successor compatibility renewal
 
-Goal: qualify immutable SDK Mailbox candidate `7fe071f96bc23e52e8c0bb56d673d8c6a24aea7c` through the existing Skills compatibility mechanism for issue34/A13. This PR changes review evidence and the SDK input pin. Merge requires green CI and Ops approval. Any later Skills release/tag requires a separate ASK.
+Goal: qualify immutable SDK Mailbox candidate `7fe071f96bc23e52e8c0bb56d673d8c6a24aea7c` through the existing Skills compatibility mechanism for issue34/A13. This PR changes review evidence, the SDK input pin and the static drift checker's Ruby filename selection needed by that pin. Merge requires green CI and Ops approval. Any later Skills release/tag requires a separate ASK.
 
 ## Measured failure and origin
 
@@ -45,6 +45,18 @@ node scripts/skill-compatibility.mjs --prepare-candidate /Users/rj/Desktop/GIT-R
 node scripts/skill-compatibility.mjs --candidate /Users/rj/Desktop/GIT-REPOS/sendmux-skills/.claude/artifacts/rebrand-qubrics-skills34/mailbox-sdk344-20261112/reviewed-candidate.json --receipt /Users/rj/Desktop/GIT-REPOS/sendmux-skills/.claude/artifacts/rebrand-qubrics-skills34/mailbox-sdk344-20261112/reviewed-acceptance.json --source sdk --revision 7fe071f96bc23e52e8c0bb56d673d8c6a24aea7c
 ```
 
-The command's own `reviewed-exact-candidate.log` and unmodified `reviewed-acceptance.json` have identical SHA-256 `18216fb21841b58f769635b86a665c43db7199f28ad89d40305fc1c64dd36208`. No acceptance file was hand-authored. The 16 new map entries preserve all 153 historical entries, every dependency/rename and both producer inputs. `git diff --check` and JSON/evidence-hash checks passed. The checker, tests and existing evaluation bytes are unchanged.
+The command's own `reviewed-exact-candidate.log` and unmodified `reviewed-acceptance.json` have identical SHA-256 `18216fb21841b58f769635b86a665c43db7199f28ad89d40305fc1c64dd36208`. No acceptance file was hand-authored. The 16 new map entries preserve all 153 historical entries, every dependency/rename and both producer inputs. `git diff --check` and JSON/evidence-hash checks passed. The compatibility checker, its 25 controls and existing evaluation bytes are unchanged.
+
+At final review-record head `e6d60b6fab8bec6267cb8259be9fc264cac479f3`, the same official commands accepted the exact SDK again: 16 reviewed, two superseded, four no-impact, candidate digest `a0cf84b26b090556ad2bd4421ee1e7d3eeb711ac41a923457f2b241edab213ec`. Unmodified `final-acceptance.json` and `final-exact-candidate.log` share SHA-256 `bc088a823dc05d8cd5404870f00b5c5d7c1fc2293a62c9747bc2cf7ba9847d61`.
+
+## Static Ruby source-path prerequisite
+
+PR50's first [Skill drift run 43191165737](https://github.com/qubrics/skills/actions/runs/43191165737) passed 35 tests and failed 21. All failures share four stale `packages/ruby/<component>/sendmux-<component>.gemspec` paths in `scripts/check-skill-drift.mjs:136` and its test fixture. Nineteen fail while copying missing fixture inputs. Two reach the static checker and report the same four missing files/names. The compatibility controls themselves pass. No threshold or rerun can create those removed paths.
+
+Canonical per rebrand spec A18: Ruby gems move to `qubrics-*`. Immutable SDK `57435acb` contains `qubrics-sdk.gemspec`, `qubrics-sending.gemspec`, `qubrics-mailbox.gemspec` and `qubrics-management.gemspec`, with matching declared names. The static checker and fixture now select those files when present and retain the old source layout. The expected declared name remains exact for the selected filename. The compatibility acceptance algorithm is unchanged.
+
+The added public-CLI regression `accepts legacy and Qubrics Ruby gemspec filenames only with matching package names` failed before the static checker fix with `Missing file: .../packages/ruby/sdk/sendmux-sdk.gemspec`, then passed. It covers all four files in both layouts and rejects a mismatched declared gem name in each layout. No existing assertion changed or disappeared. Existing static controls then passed **23/23, zero skipped**, and the standalone static checker exited 0 against source files exported directly from immutable SDK `57435acb`. Raw logs: `ruby-identity-pinned-red.log`, `ruby-identity-pinned-green.log`, `static-controls-green.log`, `static-cli-green.log`.
+
+An initial local fixture probe used the advancing SDK working checkout (`2805d172`) and failed before the Ruby seam on a missing CLI registration source. That environment mismatch was corrected in flight by exporting the actual pinned `57435acb` files with `git archive`. This archive was used only by static tests, never as an acceptance source, and is removed after the proof. The exact compatibility checks always use immutable Git revisions in the SDK object database. No SDK file, ref or workflow was changed.
 
 Raw preparation, inspection, PASS and control receipts remain under MAIN `.claude/artifacts/rebrand-qubrics-skills34/mailbox-sdk344-20261112/`. Final-head exact acceptance and PR/main CI are separate remaining gates. No merge, release or tag is claimed.
