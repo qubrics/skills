@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "kind": "compatibility",
+  "skill": "qubrics-send-email",
+  "skillDigest": "4ffab36dcec098252982995431fccb2bcb6a343481f30822d5d6831e8b5616cf",
+  "contractDigest": "b354dfe370c080a76f49eec2dc3ce409b5fd78d9101f33765e5823298aa5ccd7",
+  "sourceRevisions": {
+    "app": "06a1d50eeb483e8a4c6aeb8da64832c5d3dc5a7e",
+    "sending": "2f4226655efc05f109b5feda50ed2ca1570aea91",
+    "sdk": "7fe071f96bc23e52e8c0bb56d673d8c6a24aea7c"
+  },
+  "reviewer": "Independent AI source reviewer /root/mailbox_compat_source_review; coordinating reviewer /root",
+  "rationale": "Immutable whole-body and SDK delta review supports this exact pair. The saved profile and owner-approved short-lived exchange remain required. Failed or unfinished exchanges grant no sending authority or permission to reuse an uncertain action with a new key. Source review supplies the per-pair findings and limits; no runtime or publication claim.",
+  "evidence": [
+    {
+      "path": "skills/qubrics-send-email/SKILL.md",
+      "sha256": "87ba709fd3eaea23814c5ab4c7e2ac5cd93f347b0b5e40f646330da7c72fef63"
+    },
+    {
+      "path": "evidence/skill-compatibility/reviews/mailbox-sdk344-20261112/source-review.md",
+      "sha256": "49bed5e4b6febf3d60f3eb6e18a83b749b2416395bd406f88a095ce6a3d9da8d"
+    }
+  ]
+}
