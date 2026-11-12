@@ -34,4 +34,17 @@ Latest remains v2.0.3 at `ed0e59a35755980f7f78f81488b324af9878ac00`, asset 73145
 
 No `skills/**`, plugin/marketplace version, generated bundle, workflow or release/tag changes. Evidence/policy paths trigger existing Skill drift CI. Notify SITE only matches `skills/**`, and ClawHub workflow 306493143 remains `disabled_manually`. No marketplace publication follows from this PR. Cursor review remains held for the 13 Nov 09:00 Melbourne read-only check.
 
-Raw preparation, inspection and control receipts are retained under MAIN `.claude/artifacts/rebrand-qubrics-skills34/mailbox-sdk344-20261112/`. Exact-candidate PASS, final commit and PR/main CI are pending and are not claimed in this pre-merge evidence.
+## Measured exact-candidate PASS
+
+The unchanged checker exited 0 at committed Skills `996f2f600b15e42edb2692839b74ed560474102c`, using the same origin App and Sending inputs and exact SDK `7fe071f96bc23e52e8c0bb56d673d8c6a24aea7c`. Its genuine receipt reports `accepted: true`, 16 reviewed results, two tested legacy supersessions and four unchanged no-impact results. Candidate digest: `fa2812616bc34abc86c1d14ea6057c2afa4cd47af6a61b5780b85f036737cdbe`.
+
+Commands, run from the named Skills sibling:
+
+```sh
+node scripts/skill-compatibility.mjs --prepare-candidate /Users/rj/Desktop/GIT-REPOS/sendmux-skills/.claude/artifacts/rebrand-qubrics-skills34/mailbox-sdk344-20261112/reviewed-candidate.json --skills-root /Users/rj/Desktop/GIT-REPOS/sendmux-skills-rebrand-qubrics-skills34 --revision 996f2f600b15e42edb2692839b74ed560474102c --sdk-root /Users/rj/Desktop/GIT-REPOS/sendmux-sdk --sdk-revision 7fe071f96bc23e52e8c0bb56d673d8c6a24aea7c
+node scripts/skill-compatibility.mjs --candidate /Users/rj/Desktop/GIT-REPOS/sendmux-skills/.claude/artifacts/rebrand-qubrics-skills34/mailbox-sdk344-20261112/reviewed-candidate.json --receipt /Users/rj/Desktop/GIT-REPOS/sendmux-skills/.claude/artifacts/rebrand-qubrics-skills34/mailbox-sdk344-20261112/reviewed-acceptance.json --source sdk --revision 7fe071f96bc23e52e8c0bb56d673d8c6a24aea7c
+```
+
+The command's own `reviewed-exact-candidate.log` and unmodified `reviewed-acceptance.json` have identical SHA-256 `18216fb21841b58f769635b86a665c43db7199f28ad89d40305fc1c64dd36208`. No acceptance file was hand-authored. The 16 new map entries preserve all 153 historical entries, every dependency/rename and both producer inputs. `git diff --check` and JSON/evidence-hash checks passed. The checker, tests and existing evaluation bytes are unchanged.
+
+Raw preparation, inspection, PASS and control receipts remain under MAIN `.claude/artifacts/rebrand-qubrics-skills34/mailbox-sdk344-20261112/`. Final-head exact acceptance and PR/main CI are separate remaining gates. No merge, release or tag is claimed.
