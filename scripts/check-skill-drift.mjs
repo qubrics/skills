@@ -133,12 +133,14 @@ const pythonPackages = {
   "packages/python/mcp/pyproject.toml": ["sendmux-mcp", "qubrics-mcp"],
 };
 
-const rubyPackages = {
-  "packages/ruby/sdk/sendmux-sdk.gemspec": "sendmux-sdk",
-  "packages/ruby/sending/sendmux-sending.gemspec": "sendmux-sending",
-  "packages/ruby/mailbox/sendmux-mailbox.gemspec": "sendmux-mailbox",
-  "packages/ruby/management/sendmux-management.gemspec": "sendmux-management",
-};
+const rubyPackages = Object.fromEntries(
+  ["sdk", "sending", "mailbox", "management"].map((component) => {
+    const directory = `packages/ruby/${component}`;
+    const name = existsSync(fullPath(sdkRoot, `${directory}/qubrics-${component}.gemspec`))
+      ? `qubrics-${component}` : `sendmux-${component}`;
+    return [`${directory}/${name}.gemspec`, name];
+  }),
+);
 
 const requiredCorpusTokens = [
   ["root key prefix", /smx_root_/],

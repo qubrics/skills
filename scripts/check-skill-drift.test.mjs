@@ -73,10 +73,12 @@ const minimalSdkFiles = [
   `${sourceMcpRoot}/hosted.py`,
   `${sourceMcpRoot}/mcp-contract.json`,
   "packages/python/mcp/README.md",
-  "packages/ruby/sdk/sendmux-sdk.gemspec",
-  "packages/ruby/sending/sendmux-sending.gemspec",
-  "packages/ruby/mailbox/sendmux-mailbox.gemspec",
-  "packages/ruby/management/sendmux-management.gemspec",
+  ...["sdk", "sending", "mailbox", "management"].map((component) => {
+    const directory = `packages/ruby/${component}`;
+    const name = existsSync(path.join(sdkRoot, `${directory}/qubrics-${component}.gemspec`))
+      ? `qubrics-${component}` : `sendmux-${component}`;
+    return `${directory}/${name}.gemspec`;
+  }),
   "go/go.mod",
 ];
 
@@ -279,6 +281,29 @@ test("MCP Python roots follow exact project identities and reject unknown names 
   result = runFixtureChecker(fixture);
   assert.equal(result.status, 1);
   assert.match(result.stderr, /Unsupported MCP project.name/);
+});
+
+test("accepts legacy and Qubrics Ruby gemspec filenames only with matching package names", (t) => {
+  const fixture = makeContractFixture(t);
+  for (const prefix of ["qubrics", "sendmux"]) {
+    for (const component of ["sdk", "sending", "mailbox", "management"]) {
+      const directory = path.join(fixture.sdkRoot, `packages/ruby/${component}`);
+      const files = readdirSync(directory).filter((file) => file.endsWith(".gemspec"));
+      assert.equal(files.length, 1);
+      const original = path.join(directory, files[0]);
+      const target = path.join(directory, `${prefix}-${component}.gemspec`);
+      writeFileSync(original, readFileSync(original, "utf8").replace(/spec\.name\s*=\s*["'][^"']+["']/, `spec.name = "${prefix}-${component}"`));
+      if (original !== target) renameSync(original, target);
+    }
+    let result = runFixtureChecker(fixture);
+    assert.equal(result.status, 0, result.stderr);
+    const sdkSpec = path.join(fixture.sdkRoot, `packages/ruby/sdk/${prefix}-sdk.gemspec`);
+    replaceFixtureText(sdkSpec, `${prefix}-sdk`, "unrelated-sdk");
+    result = runFixtureChecker(fixture);
+    assert.equal(result.status, 1);
+    assert.match(result.stderr, new RegExp(`expected name ${prefix}-sdk, found unrelated-sdk`));
+    replaceFixtureText(sdkSpec, "unrelated-sdk", `${prefix}-sdk`);
+  }
 });
 
 test("rejects a bogus surface API key even when SDK prose mentions it", (t) => {
