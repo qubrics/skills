@@ -1,0 +1,13 @@
+{
+  "eval_id": 1,
+  "eval_name": "ambient-certification-limit",
+  "prompt": "Synthetic read-only preparation: intended mbx_support credential is supplied as SENDMUX_API_KEY, but parent has a different QUBRICS_API_KEY and QUBRICS_MAILBOX_API_KEY. Explain how to safely prepare local Mailbox and combined MCP examples and clients, including per-surface versus generic keys, HTTP bearer and base URL isolation, and no credentials in arguments/output. Also state protocol versus released/candidate versions, released and candidate counts per surface, aliases, catalogue versus grant subset and legacy-primary versus candidate-canonical resource/audience. Explicitly explain the client-certification limit: what do documented examples establish, what remains to verify for the chosen client, and what can this preparation prove about live compatibility or publication? No actual calls, keys, live state or publication.",
+  "assertions": [
+    "Isolates local server/client processes, clearing both namespaces of inherited generic and per-surface credentials, bearer and API base URLs.",
+    "Explains per-surface credential precedence over a generic key and loads only intended surface-specific secrets without argv or output exposure.",
+    "States released54 tools26/22/6 and candidate150 names92/46/12, representing75 unprefixed tools and75 aliases.",
+    "Distinguishes protocol/package versions, credential-visible subset, client certification and publication limits.",
+    "Keeps legacy hosted URL primary and candidate canonical resource distinct, with exact audience/resource binding and no live calls."
+  ],
+  "fixture": {"kind": "synthetic guide-only evaluation", "live_credentials": false, "live_calls": false}
+}

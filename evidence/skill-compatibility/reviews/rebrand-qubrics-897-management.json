@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "kind": "compatibility",
+  "skill": "sendmux-management",
+  "skillDigest": "497f5468ad5a842c9d26e2580851df58e25a24a4465f08a0ddac1b4b3cc6c30f",
+  "contractDigest": "321ab22736f5e977ceb61a6bc6b9a943f30fa5b0953525ea10ba87b1c0903caa",
+  "sourceRevisions": {
+    "app": "e0462ea3569e381218fb402eadca1acd824bd020",
+    "sending": "2f4226655efc05f109b5feda50ed2ca1570aea91",
+    "sdk": "1812300f1f30102ed0e624bc92cd92224cdf867d"
+  },
+  "reviewer": "Codex coordinating source reviewer for rebrand-qubrics-897",
+  "rationale": "The unchanged management instructions remain compatible. All 43 selected operation objects are unchanged; the two existing webhook payload variants are now named schemas with an explicit discriminator mapping for exactly the same nine event types. Selected policy fingerprints and runtime values are unchanged, and Calendar DELETE and GET etag are outside this skill's selectors. Prior review limitations remain.",
+  "evidence": [
+    {
+      "path": "skills/sendmux-management/SKILL.md",
+      "sha256": "04719fe232f6f06a2bea78bac953f4b3fb1738776e1928e5142065e9d430a080"
+    },
+    {
+      "path": "evidence/skill-compatibility/reviews/rebrand-qubrics-896/sendmux-management.json",
+      "sha256": "8a055f1b4ead0bab8f309c1875da26f1969bb80e805d698d8b1c0b137d96ccbf"
+    },
+    {
+      "path": "evidence/rebrand-qubrics-897-management-compat-20261103.md",
+      "sha256": "84bfcab3125045e6544dee526685877991977e7f38f6fa0358b00d4c5eab94fe"
+    }
+  ]
+}

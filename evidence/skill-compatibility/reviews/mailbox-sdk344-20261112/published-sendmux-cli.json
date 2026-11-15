@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "kind": "compatibility",
+  "skill": "sendmux-cli",
+  "skillDigest": "79f22216d882af6ffa0c246f01204e4f4537065368e15027f7a9f08c931db929",
+  "contractDigest": "4b942f8c64f1b75c7a8d8333eb0253a682b45d538282f3649c38ee972b0083af",
+  "sourceRevisions": {
+    "app": "06a1d50eeb483e8a4c6aeb8da64832c5d3dc5a7e",
+    "sending": "2f4226655efc05f109b5feda50ed2ca1570aea91",
+    "sdk": "7fe071f96bc23e52e8c0bb56d673d8c6a24aea7c"
+  },
+  "reviewer": "Independent AI source reviewer /root/mailbox_compat_source_review; coordinating reviewer /root",
+  "rationale": "Immutable whole-body and SDK delta review supports this exact pair. Registration still persists intent and the active profile before bounded readiness, and Sending still uses the saved profile and approved token exchange. Source review supplies the per-pair findings and limits; no runtime or publication claim.",
+  "evidence": [
+    {
+      "path": "skills/sendmux-cli/SKILL.md",
+      "sha256": "7cd602f71a2dd19ae3ac33053490e3b01308cc25347a6c7fee7385573ec55400"
+    },
+    {
+      "path": "evidence/skill-compatibility/reviews/mailbox-sdk344-20261112/source-review.md",
+      "sha256": "49bed5e4b6febf3d60f3eb6e18a83b749b2416395bd406f88a095ce6a3d9da8d"
+    }
+  ]
+}

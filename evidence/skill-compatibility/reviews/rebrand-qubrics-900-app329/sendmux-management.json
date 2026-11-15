@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "kind": "compatibility",
+  "skill": "sendmux-management",
+  "skillDigest": "497f5468ad5a842c9d26e2580851df58e25a24a4465f08a0ddac1b4b3cc6c30f",
+  "contractDigest": "54729c7ce638342661318f69655045858bf6fcd5d21d1b3c103f7c2a5cc7af5f",
+  "sourceRevisions": {
+    "app": "a7b11f3d980720f973b7ee615e7662f03e2a3ad7",
+    "sending": "2f4226655efc05f109b5feda50ed2ca1570aea91",
+    "sdk": "1812300f1f30102ed0e624bc92cd92224cdf867d"
+  },
+  "reviewer": "Independent App329 source-policy and complete-body reviewers; Codex coordinating reviewer adopting both reviews",
+  "rationale": "Complete unchanged body remains compatible on documented existing/default-host workflows after review of all nine OpenAPI leaves and eight changed policy declarations, including initiating-host metadata. Legacy aliases preserve existing flows; explicit Qubrics issuer migration with SDK1812300f is excluded. Retain prior limitations and historical evidence, not fresh App329 evaluations. See the attached source review.",
+  "evidence": [
+    {
+      "path": "skills/sendmux-management/SKILL.md",
+      "sha256": "04719fe232f6f06a2bea78bac953f4b3fb1738776e1928e5142065e9d430a080"
+    },
+    {
+      "path": "evidence/skill-compatibility/reviews/rebrand-qubrics-897-management.json",
+      "sha256": "c920ffb7b0973a8624108d710b48ebd474d4a9d9200ee3c2413597b2751aa200"
+    },
+    {
+      "path": "evidence/rebrand-qubrics-904-skill-compat-20261103.md",
+      "sha256": "daf876e7a8b1defe79df7cd65d287544c7851258ca506a5df128e96a7db0c390"
+    },
+    {
+      "path": "evidence/skill-compatibility/reviews/rebrand-qubrics-904/sendmux-management.json",
+      "sha256": "90fdb3aa4fed0070f2a39088e8610ed5500e5984870776670c37ebc99cd8e69b"
+    },
+    {
+      "path": "evidence/rebrand-qubrics-900-app329-compat-20261104.md",
+      "sha256": "72acb2730a31ba265494ded3dbc313b3ac3a5879aecf7881bc1e4113f5eee554"
+    }
+  ]
+}

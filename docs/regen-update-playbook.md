@@ -1,6 +1,6 @@
 # Regeneration and Drift-Check Playbook
 
-Use this playbook before publishing the pack, and whenever the Sendmux OpenAPI, SDK, CLI, or MCP surface changes.
+Use this playbook before publishing the pack, and whenever the Qubrics OpenAPI, SDK, CLI, or MCP surface changes.
 
 ## Source Repos
 
@@ -28,10 +28,10 @@ The script checks that:
 
 - Sending OpenAPI still exposes `POST /emails/send` and `POST /emails/send/batch`.
 - Mailbox OpenAPI still exposes batch, count, snippet, changes, event, and query-changes endpoints.
-- CLI metadata still exposes the `sendmux` binary and `mailbox`, `management`, `profiles`, and `sending` topics.
+- CLI metadata still exposes the `qubrics` and compatibility `sendmux` binaries and `mailbox`, `management`, `profiles`, and `sending` topics.
 - MCP curation still contains the low-token mailbox, management, and sending tools taught by the skills.
 - SDK package manifests still use the names referenced by the skills.
-- The pack still contains all eight expected skill folders and catalogue entries.
+- The pack still contains all 11 expected skill folders and catalogue entries.
 - The skill corpus still teaches key prefixes, idempotency, conditional requests, cursor pagination, MCP servers, and efficient tool aliases.
 
 If the script fails, treat the error as a source-to-skill drift signal. Update the affected skill text, evals, README, or metadata, then rerun the script.
@@ -48,11 +48,11 @@ If the script fails, treat the error as a source-to-skill drift signal. Update t
 
 2. Identify affected skills:
 
-   - Sending API or `@sendmux/sending`: `sendmux-send-email`, `sendmux-token-efficient-usage`, `sendmux-email-for-agents`.
-   - Mailbox API or `@sendmux/mailbox`: `sendmux-mailbox-agent`, `sendmux-token-efficient-usage`, `sendmux-email-for-agents`.
-   - Management API or `@sendmux/management`: `sendmux-management`, `sendmux-token-efficient-usage`, `sendmux-email-for-agents`.
-   - CLI package: `sendmux-cli`, plus task skills that include CLI examples.
-   - MCP package: `sendmux-mcp-setup`, plus task skills that name MCP tools.
+   - Sending API or `@qubrics/sending`: `qubrics-send-email`, `qubrics-token-efficient-usage`, `qubrics-email-for-agents`.
+   - Mailbox API or `@qubrics/mailbox`: `qubrics-mailbox-agent`, `qubrics-token-efficient-usage`, `qubrics-email-for-agents`.
+   - Management API or `@qubrics/management`: `qubrics-management`, `qubrics-token-efficient-usage`, `qubrics-email-for-agents`.
+   - CLI package: `qubrics-cli`, plus task skills that include CLI examples.
+   - MCP package: `qubrics-mcp-setup`, plus task skills that name MCP tools.
    - Install or catalogue metadata: `README.md`, `skills.sh.json`, and affected `agents/openai.yaml` files.
 
 3. Update affected files surgically:

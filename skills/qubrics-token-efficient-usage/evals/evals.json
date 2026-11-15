@@ -1,0 +1,96 @@
+{
+  "skill_name": "qubrics-token-efficient-usage",
+  "evals": [
+    {
+      "id": 0,
+      "prompt": "I need my Qubrics agent to send 12 outbound emails and be safe if the process retries. Which surface and call should it choose?",
+      "expected_output": "The answer chooses batch sending, names an MCP/CLI/SDK batch call, uses a send-capable smx_mbx_ key or owner-approved Sending-resource smx_agent_ token, includes Idempotency-Key, and says to inspect per-message batch results.",
+      "files": [],
+      "expectations": [
+        "The output chooses a batch send rather than repeated single sends.",
+        "The output names sending_send_email_batch, sending:send:batch, sendingSendEmailBatch, or /emails/send/batch.",
+        "The output uses or mentions a send-capable smx_mbx_ key or owner-approved Sending-resource smx_agent_ token.",
+        "The output includes Idempotency-Key or --idempotency-key for retry safety.",
+        "The output says batch results can have per-message outcomes or must be inspected per message."
+      ]
+    },
+    {
+      "id": 1,
+      "prompt": "I need to find unread invoice-related mail in one Qubrics mailbox, count matches, and read only the two most relevant messages. What calls should I use?",
+      "expected_output": "The answer counts first, searches snippets with a small limit, then batch-gets selected message IDs with clean content options instead of listing or reading every message.",
+      "files": [],
+      "expectations": [
+        "The output uses mailbox_count_messages, mailbox:count-messages, mailboxCountMessages, or /mailbox/messages/count.",
+        "The output uses mailbox_search_message_snippets, mailbox:search-message-snippets, mailboxSearchMessageSnippets, or /mailbox/messages/search-snippets.",
+        "The output uses a small limit for search/list calls.",
+        "The output uses mailbox_batch_get_messages, mailbox:batch-get-messages, mailboxBatchGetMessages, or /mailbox/messages:batch-get for selected IDs.",
+        "The output avoids fetching all message bodies or every mailbox message."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Design a low-token Qubrics polling loop that supports both full-mailbox sync and a filtered message view, plus one outbound delivery log that I may read repeatedly. Explain which sync route to use for each mode.",
+      "expected_output": "The answer uses mailbox_get_changes for full-mailbox delta sync and query-message-changes for filtered message sync, stores and reuses the appropriate state tokens, uses the selected resource's returned has_more and new_state for delta continuation while preserving filters and keeping next_cursor out of delta-sync requests, and uses ETag/If-None-Match for the repeated log read.",
+      "files": [],
+      "expectations": [
+        "The output uses mailbox_get_changes, mailbox:get-changes, mailboxGetChanges, or /mailbox/changes for broad sync.",
+        "The output mentions query-message-changes or mailboxQueryMessageChanges for filtered message sync.",
+        "The output stores and reuses a state token such as since_state or since_query_state.",
+        "The output uses the selected resource's returned has_more and new_state for delta continuation, preserving filters and keeping next_cursor out of delta-sync requests.",
+        "The output uses ETag with If-None-Match or --if-none-match for the repeated delivery log read."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "My agent has no key and needs a low-token way to create one inbox, keep reading it over time, and occasionally send after owner approval. Which Qubrics path avoids repeated setup and token handling?",
+      "expected_output": "The answer uses one CLI agent profile: agent:register persists a durable read credential with a 500 MiB inbox, mailbox commands reuse that profile across processes, agent:invite-owner establishes the approval path, and sending approval raises storage to at least 5 GiB before Sending commands automatically exchange and cache a one-hour delegated token. It avoids repeated registration, manual token copying, and direct protocol calls.",
+      "files": [],
+      "expectations": [
+        "The output uses qubrics agent:register once with a named profile.",
+        "The output reuses the durable profile for mailbox reads across processes.",
+        "The output uses --owner-email or qubrics agent:invite-owner.",
+        "The output states that storage is capped at 500 MiB before owner approval and raised to at least 5 GiB with sending approval.",
+        "The output says sending waits for owner acceptance and approval.",
+        "The output says Sending commands automatically exchange and cache a one-hour delegated token.",
+        "The output avoids manual token copying and repeated registration."
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "What is the smallest Qubrics check for an existing OAuth profile without listing domains, opening messages or sending an email?",
+      "expected_output": "Choose the selected surface get-connection operation. Do not use public OpenAPI discovery as credential verification. Do not list customer resources or send email for the connection check. Keep OAuth restricted to its approved surface, scopes and mailboxes.",
+      "files": [],
+      "expectations": [
+        "Choose the selected surface get-connection operation.",
+        "Do not use public OpenAPI discovery as credential verification.",
+        "Do not list customer resources or send email for the connection check.",
+        "Keep OAuth restricted to its approved surface, scopes and mailboxes."
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "I need to send one local PDF in a one-off terminal task. Qubrics MCP is connected, the `qubrics` CLI is installed, and the application also has a Qubrics SDK. Which route uses the least model context? Compare MCP with CLI/SDK briefly, including how the file bytes are transferred, which upload limits apply, and where to find the detailed attachment procedure. Tell me whether the uploaded identifier changes if this is a mailbox reply instead of a Sending API message. Do not send anything.",
+      "expected_output": "The answer recommends the local CLI file helper for this one-off terminal task, keeps the SDK helper as the application-code route, and explains that connected MCP remains low-context through a presigned external transfer. It keeps all real file bytes outside model context and distinguishes Sending from Mailbox identifiers.",
+      "files": [],
+      "expectations": [
+        "The output routes attachment mechanics to qubrics-attachments and recommends CLI --attach for this one-off terminal task, with an SDK file helper as the application-code alternative.",
+        "The output explains that the connected MCP alternative uses a presigned upload and transfers the PDF outside model context rather than using MCP file_path or real-file base64.",
+        "The output says a Sending MCP presign must obey the upload intent response's max_size_bytes rather than a guessed global bound.",
+        "The output preserves attachment_id for Sending sends and blob_id for Mailbox sends and does not interchange them.",
+        "The output does not claim that any upload or send was performed."
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "My script examines paginated Qubrics delivery-log summaries and stops after two matches to a local rule. The first page gave one match and says more pages are available. Describe the next request and the stopping conditions; keep the same filters, avoid message bodies, and don't run anything.",
+      "expected_output": "Continue the delivery-log list with its returned cursor, preserve filters and a small page size, stop when two matches are found or no more pages remain, and perform no requests.",
+      "files": [],
+      "expectations": [
+        "The output reads the returned pagination.next_cursor and passes it as cursor to the next delivery-log list request, rather than inventing an offset or using a delta state token.",
+        "The output preserves the same filters and uses a small bounded page size.",
+        "The output stops once two matches are found, including before the end of a page if enough matches are found, or when pagination.has_more is false; it does not fetch every page unnecessarily.",
+        "The output avoids message-body reads and does not claim any request was performed."
+      ]
+    }
+  ]
+}

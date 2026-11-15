@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "kind": "compatibility",
+  "skill": "qubrics-mcp-setup",
+  "skillDigest": "4ea84f54ef9294fd2e8083aecac923f29a875e26d000b4513e4a2a49e5dbe927",
+  "contractDigest": "461684ddaa7706069d9d868be388215c783b5e58492c428d4d6db3f510f6a385",
+  "sourceRevisions": {
+    "app": "06a1d50eeb483e8a4c6aeb8da64832c5d3dc5a7e",
+    "sending": "2f4226655efc05f109b5feda50ed2ca1570aea91",
+    "sdk": "a326bc923fff448470d908bb527afaaa35f6d739"
+  },
+  "reviewer": "Independent AI source reviewer /root/pr48_compat_review_default; coordinating reviewer /root",
+  "rationale": "Independent delta review classified this skill as a no-impact renewal under the exact merged App, Sending and SDK source tuple.",
+  "evidence": [
+    { "path": "skills/qubrics-mcp-setup/SKILL.md", "sha256": "110d439b90f9174b6d616c02cda5188d2f0a568c1eb2a8081c140b8fd741625d" },
+    { "path": "evidence/skill-compatibility/reviews/calendar-api-20261111/source-review.md", "sha256": "e25e270546575192df5aad8eb4464cc89e950702309d7a4643dbfdd3170cb4c1" }
+  ]
+}

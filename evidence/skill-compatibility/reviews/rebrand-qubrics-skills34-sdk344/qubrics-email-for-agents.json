@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "kind": "compatibility",
+  "skill": "qubrics-email-for-agents",
+  "skillDigest": "70dc5a8f04dca687b17929ac59d553be893235413271a4e99399fff30c70f0a6",
+  "contractDigest": "7632a317f39ecfffe6de64f1700cd5b885d678f8f4da4e822d0616cb3a1f6b60",
+  "sourceRevisions": {
+    "app": "87ce115810ebcfa91655295603c27af52fcff96f",
+    "sending": "2f4226655efc05f109b5feda50ed2ca1570aea91",
+    "sdk": "a326bc923fff448470d908bb527afaaa35f6d739"
+  },
+  "reviewer": "Independent source reviewer /root/phase2_contract_review; coordinating reviewer /root",
+  "rationale": "CLI-first registration, durable read access, owner-gated sending, surface authority and routing retain their source contracts. Whole-body review found no removed Python import or executable taught directly; setup/helper handoffs use the tested A13 replacements. TS is unchanged, MCP tools/snapshots equal; package/setup changes explicitly assessed in the bound sixteen-row review. No live parity/publication claim.",
+  "evidence": [
+    {
+      "path": "skills/qubrics-email-for-agents/SKILL.md",
+      "sha256": "8ca44ee32dba3bd66edd2543341f79999fdcbecab19e8181466ad39ffb4365a9"
+    },
+    {
+      "path": "evidence/skill-compatibility/reviews/rebrand-qubrics-skills34-sdk344/source-review.md",
+      "sha256": "104d51a596dc7130decf8e8dac1f2fc49909933b9878c4d4e05bf2c82ea266be"
+    }
+  ]
+}

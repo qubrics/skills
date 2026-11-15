@@ -1,0 +1,27 @@
+{
+  "arm": "with_skill",
+  "skill": "sendmux-mcp-setup",
+  "skill_sha256": "3023a1da7f040b5a68a560de958b35de295709ec7829aee165156c13304ab1e2",
+  "prompt_sha256": "572b19420411f8f2cb30fa44ad6acb0cf9636fc69b75bb47fccc01b747ea35b8",
+  "response_sha256": "673b287a38c1e23a2cfe3d8d447b8f4021214ef3dc7ce8df4af00bd4d918d417",
+  "response_bytes": 7942,
+  "native_task": "/root/skills_released_eval_batch",
+  "execution": "one_batch",
+  "batch_cases": 4,
+  "answer_attempt": 1,
+  "agent_id": null,
+  "model": null,
+  "tokens": null,
+  "timing": null,
+  "external_actions": false,
+  "commands_from_skill_executed": false,
+  "assertions_read": false,
+  "prior_answers_grades_or_reviews_read": false,
+  "sdk_source_read": false,
+  "self_graded": false,
+  "limits": [
+    "Four sequential explanations in one shared native task; not four independent native runs.",
+    "One answer attempt per case, without refinement or self-grading.",
+    "Guide-only synthetic preparation; no live identity, compatibility, publication or delivery certification."
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "expectations": [
+    {
+      "text": "Uses an isolated child process and clears inherited credential, profile and base-URL overrides from both QUBRICS and SENDMUX families.",
+      "passed": true,
+      "evidence": "“Plan an isolated child that clears QUBRICS_API_KEY, SENDMUX_API_KEY, QUBRICS_ACCESS_TOKEN, SENDMUX_ACCESS_TOKEN, QUBRICS_PROFILE, SENDMUX_PROFILE, QUBRICS_BASE_URL and SENDMUX_BASE_URL before loading an intended credential.”"
+    },
+    {
+      "text": "Uses only the intended secret-store credential or authorised selected profile; profile-based calls leave direct credentials unset.",
+      "passed": true,
+      "evidence": "“For the raw-key path, load SENDMUX_MBX_KEY or SENDMUX_ROOT_KEY only from the user's intended secret store into that child's environment.” “For subsequent profile calls, clear direct API keys and access tokens under both prefixes again; select only --profile mailbox or --profile root.”"
+    },
+    {
+      "text": "Explains precedence without expanding secrets into arguments, printing credentials or modifying the parent environment.",
+      "passed": true,
+      "evidence": "“QUBRICS values outrank SENDMUX fallbacks, and direct credentials outrank profiles; merely assigning SENDMUX_API_KEY or adding --profile is insufficient in the contaminated parent.” “Keep secret values out of arguments, output, tracing, chat and repository files.” The planned clearing and loading occur only in the child."
+    },
+    {
+      "text": "Prepares only; performs no real commands, credential access, reads of live data, writes or sends.",
+      "passed": true,
+      "evidence": "“Preparation only: do not create profiles, retrieve secrets or call APIs.” “Profile creation itself remains unexecuted.”"
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 0,
+    "total": 4,
+    "pass_rate": 1
+  },
+  "evaluation_method": "Reviewer compared each unchanged assertion with the retained verbatim response. Explanation quality only: no live credentials, API calls, sends, publication or client certification. The historical guide hash does not qualify subsequent edits."
+}

@@ -1,0 +1,10 @@
+{
+  "eval_id": 0,
+  "prompt": "I need to choose between a durable agent inbox and local MCP for source migration to SDK candidate a326bc923fff448470d908bb527afaaa35f6d739. Using this getting-started skill, explain the CLI-first inbox path, the Python MCP distribution and executable identities for this source, and whether I can assume the renamed Python package is published. I already have authorised credentials; do not ask me to paste them, extract them from a CLI profile, run registration or send anything.",
+  "assertions": [
+    "Uses the live qubrics CLI path for durable agent inbox registration and owner-approved sending.",
+    "Identifies the source MCP distribution as qubrics-mcp and uses only qubrics-mcp executable names for it.",
+    "Distinguishes source migration from publication and does not claim the renamed Python distribution is live.",
+    "Does not request secrets, extract a CLI profile credential, register an inbox or perform a send."
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "eval_id": 0,
+  "eval_name": "settled-credential-selection",
+  "prompt": "Synthetic guide-only preparation; run no commands, access no real credentials, make no API calls, read no mailbox content, mutate nothing and send nothing. Intended account A uses authorised existing profile work or a user-secret-store key as appropriate to this guide. Parent has QUBRICS_API_KEY for account B, competing SENDMUX_ACCESS_TOKEN, and unapproved QUBRICS_BASE_URL and SENDMUX_BASE_URL. Explain this guide's applicable process/credential/endpoint preconditions, profile-versus-direct-key selection and returned-identity gate. An unisolated connection grants permission but identifies B; explain stop behaviour before content or mutation. Where the guide teaches SDK examples, explain protection when explicit apiKey is supplied but inherited base URL differs, without inventing implementation code. Synthetic preparation: intended mbx_support secret source is SENDMUX_API_KEY, but parent also has a different QUBRICS_MAILBOX_API_KEY. Prepare Mailbox-only and combined servers/clients, per-surface versus generic credentials, HTTP bearer, API base URL, transport and surface-selection isolation, all accepted explicit or environment surface selectors, and returned identity check before task tools. State protocol versus released/candidate versions, counts per surface, aliases, catalogue versus grant subset and legacy-primary versus candidate-canonical resource/audience. Explicitly state what documented client examples certify, what chosen-client verification remains separate, and what this explanation proves about live compatibility/publication.",
+  "assertions": [
+    "Isolates local server/client processes, clearing both namespaces of inherited generic and per-surface credentials, bearer and API base URLs.",
+    "Explains per-surface credential precedence over a generic key and loads only intended surface-specific secrets without argv or output exposure.",
+    "States released54 tools26/22/6 and candidate150 names92/46/12, representing75 unprefixed tools and75 aliases.",
+    "Distinguishes protocol/package versions, credential-visible subset, client certification and publication limits.",
+    "Keeps legacy hosted URL primary and candidate canonical resource distinct, with exact audience/resource binding and no live calls."
+  ],
+  "fixture": {
+    "kind": "synthetic guide-only evaluation",
+    "live_credentials": false,
+    "live_calls": false
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "kind": "compatibility",
+  "skill": "sendmux-mailbox-agent",
+  "skillDigest": "a3e2ba98b2f049335b02ebb3f3ea25b44e4c1c93878160273250222bb693a08a",
+  "contractDigest": "4cfb01940f2b13e58e1796743940455716f5b9a7b5a944ceaec67aa1be232f3f",
+  "sourceRevisions": {
+    "app": "06a1d50eeb483e8a4c6aeb8da64832c5d3dc5a7e",
+    "sending": "2f4226655efc05f109b5feda50ed2ca1570aea91",
+    "sdk": "7fe071f96bc23e52e8c0bb56d673d8c6a24aea7c"
+  },
+  "reviewer": "Independent AI source reviewer /root/mailbox_compat_source_review; coordinating reviewer /root",
+  "rationale": "Immutable whole-body and SDK delta review supports this exact pair. Delegated Sending remains separate from Mailbox send authority. Mailbox selection, draft approval and uncertainty handling remain unchanged. Source review supplies the per-pair findings and limits; no runtime or publication claim.",
+  "evidence": [
+    {
+      "path": "skills/sendmux-mailbox-agent/SKILL.md",
+      "sha256": "368ef6d17bfe8a6c2e6947795f91ff472f6119a903750540af18b47688378923"
+    },
+    {
+      "path": "evidence/skill-compatibility/reviews/mailbox-sdk344-20261112/source-review.md",
+      "sha256": "49bed5e4b6febf3d60f3eb6e18a83b749b2416395bd406f88a095ce6a3d9da8d"
+    }
+  ]
+}

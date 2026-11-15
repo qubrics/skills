@@ -1,0 +1,12 @@
+{
+  "arm": "with_skill",
+  "skill_sha256": "110d439b90f9174b6d616c02cda5188d2f0a568c1eb2a8081c140b8fd741625d",
+  "prompt_sha256": "4118ef9f899b8710ba35963d3ee8bebb0989efeb9b44f6d561f0ce9d0a2556ee",
+  "evaluator": "/root/sdk344_genuine_workflows",
+  "tools": [
+    "functions.exec/tools.exec_command: local guide/prompt reads and SHA-256 computation",
+    "functions.exec/tools.apply_patch: local evaluation artifact writes"
+  ],
+  "mcp_servers": [],
+  "external_actions": false
+}

@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "kind": "compatibility",
+  "skill": "qubrics-management",
+  "skillDigest": "ec55108500cd59654717c8d8102088d495e8b923525e8b391e76650a66b00103",
+  "contractDigest": "9549291c4892f98757cf5ad01bdd7f9bddab2474c48e428d7c09f9326ca3a68d",
+  "sourceRevisions": {
+    "app": "87ce115810ebcfa91655295603c27af52fcff96f",
+    "sending": "2f4226655efc05f109b5feda50ed2ca1570aea91",
+    "sdk": "8d3d7492dc83852906c163d0ce0c30cfdd0bc06f"
+  },
+  "reviewer": "Independent AI source reviewer /root/phase2_contract_review; coordinating reviewer /root",
+  "rationale": "Root authority, factories, scoped operations, mutation payloads and conditional reads match the selected Management contracts. All eleven whole-body and selected-source reviews are recorded in the bound source review. Source compatibility only; no fresh workflow evaluation, live URL equivalence or publication is claimed.",
+  "evidence": [
+    {
+      "path": "skills/qubrics-management/SKILL.md",
+      "sha256": "286e400c7e6a43e687fa4814dc4a79a45659a4b4d7357a45126c278b6bbfc522"
+    },
+    {
+      "path": "evidence/skill-compatibility/reviews/rebrand-qubrics-skills34-phase2/source-review.md",
+      "sha256": "ac34ec03e2f74dc6fe187353b670407d32290426ff079b3d2fd54cddf3e5158e"
+    }
+  ]
+}

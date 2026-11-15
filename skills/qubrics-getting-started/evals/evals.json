@@ -1,0 +1,72 @@
+{
+  "skill_name": "qubrics-getting-started",
+  "evals": [
+    {
+      "id": 0,
+      "prompt": "I have an smx_mbx_ Qubrics key or smx_agent_ token and want my coding agent to make a harmless first mailbox call. What should it do?",
+      "expected_output": "The answer chooses the mailbox surface, refuses to request the raw key in chat, explains smx_agent_ is scope-limited, and recommends mailbox_get_me or qubrics mailbox:me:get --json as the first call.",
+      "files": [],
+      "expectations": [
+        "The output says smx_mbx_ or scoped smx_agent_ works for mailbox work.",
+        "The output does not ask the user to paste the API key.",
+        "The output names mailbox_get_me or qubrics mailbox:me:get --json.",
+        "The output does not recommend a root key for mailbox work."
+      ]
+    },
+    {
+      "id": 1,
+      "prompt": "I have an smx_root_ key and need to check that Qubrics management access works without creating anything.",
+      "expected_output": "The answer chooses the management surface and recommends a small read-only list call such as management_list_mailboxes or qubrics management:mailboxes:list --query limit=1 --json.",
+      "files": [],
+      "expectations": [
+        "The output says smx_root_ is the key prefix for management work.",
+        "The output recommends a read-only management first call.",
+        "The output includes management_list_mailboxes or qubrics management:mailboxes:list --query limit=1 --json.",
+        "The output avoids create, update, delete, or send operations."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "When should I use Qubrics MCP, the qubrics CLI, or a Qubrics SDK for setup?",
+      "expected_output": "The answer prioritises MCP for connected agents with curated tools, CLI for one-shot terminal work, and SDKs for application code.",
+      "files": [],
+      "expectations": [
+        "The output recommends MCP first when a relevant server is connected and the tool is curated.",
+        "The output recommends the qubrics CLI with --json for one-shot terminal work.",
+        "The output recommends SDKs for application code.",
+        "The output does not claim MCP covers every Qubrics operation."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "My coding agent has no Qubrics key. How does it register itself and invite me as the owner?",
+      "expected_output": "The answer uses the installed Qubrics skill as the workflow authority, installs @qubrics/cli when needed, runs qubrics agent:register <profile> with optional mailbox and owner flags, explains that the CLI saves the durable read credential without printing it and waits for readiness, reads with the saved profile for as long as the registration remains active, and uses agent:invite-owner when needed. It states the 500 MiB pre-owner storage cap and the at least 5 GiB floor applied with owner-approved sending. Sending remains unavailable until the owner accepts and approves it, after which Sending CLI commands automatically exchange and cache a one-hour delegated token.",
+      "files": [],
+      "expectations": [
+        "The output treats the installed Qubrics skill and CLI help as the workflow authority instead of fetching and executing runtime instructions.",
+        "The output installs @qubrics/cli when the qubrics binary is unavailable.",
+        "The output runs qubrics agent:register with a profile name and may include --mailbox-local-part, --client-name, --owner-email, or --default.",
+        "The output says registration does not require an existing account, API key, challenge, or proof of work step.",
+        "The output says the CLI persists the credential securely and does not print it.",
+        "The output says the saved profile can read and receive mail without an expiry date while the registration remains active.",
+        "The output uses qubrics agent:invite-owner when no owner was invited during registration.",
+        "The output states that storage is capped at 500 MiB before owner approval and raised to at least 5 GiB with sending approval.",
+        "The output says the owner must accept and approve sending before the agent can send.",
+        "The output says Sending CLI commands automatically exchange and cache a one-hour delegated email.send token after approval.",
+        "The output says a full registration revoke removes read access and delegated sending access."
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Check a Qubrics automation connection without sending mail or listing customer data. It may use an API key or a user-approved OAuth profile.",
+      "expected_output": "Chooses the Sending, Mailbox or Management get-connection operation for the selected surface. Uses data.label for the connection name and data.team.id for the stable team identifier. Distinguishes user-approved OAuth login from agent self-registration. Does not use public OpenAPI discovery as proof that credentials are valid.",
+      "files": [],
+      "expectations": [
+        "Chooses the Sending, Mailbox or Management get-connection operation for the selected surface.",
+        "Uses data.label for the connection name and data.team.id for the stable team identifier.",
+        "Distinguishes user-approved OAuth login from agent self-registration.",
+        "Does not use public OpenAPI discovery as proof that credentials are valid."
+      ]
+    }
+  ]
+}

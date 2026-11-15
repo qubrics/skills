@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "kind": "compatibility",
+  "skill": "qubrics-send-email",
+  "skillDigest": "4ffab36dcec098252982995431fccb2bcb6a343481f30822d5d6831e8b5616cf",
+  "contractDigest": "92b8624f66e1cfd94f62c418444b06b2486354cede6d9289d43c5b4bc923a2ae",
+  "sourceRevisions": {
+    "app": "06a1d50eeb483e8a4c6aeb8da64832c5d3dc5a7e",
+    "sending": "2f4226655efc05f109b5feda50ed2ca1570aea91",
+    "sdk": "a326bc923fff448470d908bb527afaaa35f6d739"
+  },
+  "reviewer": "Independent AI source reviewer /root/pr48_compat_review_default; coordinating reviewer /root",
+  "rationale": "Independent delta review classified this skill as a no-impact renewal under the exact merged App, Sending and SDK source tuple.",
+  "evidence": [
+    { "path": "skills/qubrics-send-email/SKILL.md", "sha256": "87ba709fd3eaea23814c5ab4c7e2ac5cd93f347b0b5e40f646330da7c72fef63" },
+    { "path": "evidence/skill-compatibility/reviews/calendar-api-20261111/source-review.md", "sha256": "e25e270546575192df5aad8eb4464cc89e950702309d7a4643dbfdd3170cb4c1" }
+  ]
+}

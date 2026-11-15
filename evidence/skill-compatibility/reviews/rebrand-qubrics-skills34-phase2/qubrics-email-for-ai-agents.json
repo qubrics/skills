@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "kind": "compatibility",
+  "skill": "qubrics-email-for-ai-agents",
+  "skillDigest": "bb7c1d2dececb3955dc5c7c446e5bebb84b329643678791cae4c0147bc6769ac",
+  "contractDigest": "750bfc66fc19fceaf1bec351c364f6aa510577f7f097f145746371082180b059",
+  "sourceRevisions": {
+    "app": "87ce115810ebcfa91655295603c27af52fcff96f",
+    "sending": "2f4226655efc05f109b5feda50ed2ca1570aea91",
+    "sdk": "8d3d7492dc83852906c163d0ce0c30cfdd0bc06f"
+  },
+  "reviewer": "Independent AI source reviewer /root/phase2_contract_review; coordinating reviewer /root",
+  "rationale": "Delegated Sending authority, address payloads, idempotency and retry metadata match the selected CLI and Sending SDK paths. All eleven whole-body and selected-source reviews are recorded in the bound source review. Source compatibility only; no fresh workflow evaluation, live URL equivalence or publication is claimed.",
+  "evidence": [
+    {
+      "path": "skills/qubrics-email-for-ai-agents/SKILL.md",
+      "sha256": "e6be67e17f165a773e3b01677bd38435249cf83c975f2bbb40c896b10de46c3b"
+    },
+    {
+      "path": "evidence/skill-compatibility/reviews/rebrand-qubrics-skills34-phase2/source-review.md",
+      "sha256": "ac34ec03e2f74dc6fe187353b670407d32290426ff079b3d2fd54cddf3e5158e"
+    }
+  ]
+}

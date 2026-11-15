@@ -1,0 +1,22 @@
+[
+  {
+    "query": "Send a Qubrics email to one recipient with an idempotency key.",
+    "should_trigger": true
+  },
+  {
+    "query": "I need to email 40 users through Qubrics. Should I batch it?",
+    "should_trigger": true
+  },
+  {
+    "query": "Add a PDF attachment to a Qubrics Sending API request.",
+    "should_trigger": true
+  },
+  {
+    "query": "Set up my first Qubrics API key without sending anything.",
+    "should_trigger": false
+  },
+  {
+    "query": "Triage unread messages in a Qubrics inbox.",
+    "should_trigger": false
+  }
+]

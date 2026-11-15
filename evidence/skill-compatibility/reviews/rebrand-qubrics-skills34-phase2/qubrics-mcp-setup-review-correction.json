@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "kind": "compatibility",
+  "skill": "qubrics-mcp-setup",
+  "skillDigest": "a0ee94408114640c0782c227014dbec5261921185a6c144aaaedbdf912199279",
+  "contractDigest": "cd35b4e6c688898e4fa5b85c6a1fc6778232f74ca19948c204ad7551b7c14966",
+  "sourceRevisions": {
+    "app": "87ce115810ebcfa91655295603c27af52fcff96f",
+    "sending": "2f4226655efc05f109b5feda50ed2ca1570aea91",
+    "sdk": "8d3d7492dc83852906c163d0ce0c30cfdd0bc06f"
+  },
+  "reviewer": "Independent AI source reviewer /root/phase2_contract_review; coordinating reviewer /root",
+  "rationale": "Public connected-server discovery gates candidate tool use while preserving the exact released-wheel and unpublished-source distinction. The independent correction review binds the changed body below. Source compatibility only; no runtime permissions, product call, fresh workflow evaluation or publication is claimed.",
+  "evidence": [
+    {
+      "path": "skills/qubrics-mcp-setup/SKILL.md",
+      "sha256": "1d34e7a8b14a6f39256fc3e90039c667883a5a9f35ee54941d79c03f41d6cc6d"
+    },
+    {
+      "path": "evidence/skill-compatibility/reviews/rebrand-qubrics-skills34-phase2/review-addendum.md",
+      "sha256": "a526d171c0b9040fed8a23b6f896b0e0e1ddaa548afdd66e58671b0c909db23f"
+    }
+  ]
+}

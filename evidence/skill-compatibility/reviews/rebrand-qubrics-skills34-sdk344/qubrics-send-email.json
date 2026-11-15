@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "kind": "compatibility",
+  "skill": "qubrics-send-email",
+  "skillDigest": "4ffab36dcec098252982995431fccb2bcb6a343481f30822d5d6831e8b5616cf",
+  "contractDigest": "f11071ec3f5673d92a5de532642d90b457f1c0b55bd90e8ade203a6cbd9280f5",
+  "sourceRevisions": {
+    "app": "87ce115810ebcfa91655295603c27af52fcff96f",
+    "sending": "2f4226655efc05f109b5feda50ed2ca1570aea91",
+    "sdk": "a326bc923fff448470d908bb527afaaa35f6d739"
+  },
+  "reviewer": "Independent source reviewer /root/phase2_contract_review; coordinating reviewer /root",
+  "rationale": "Single/batch Sending payloads, private body-file guidance, attachment references, token ownership and per-message result checks retain their source contracts. Whole-body review found no removed Python import or executable taught directly; setup/helper handoffs use the tested A13 replacements. TS is unchanged, MCP tools/snapshots equal; package/setup changes explicitly assessed in the bound sixteen-row review. No live parity/publication claim.",
+  "evidence": [
+    {
+      "path": "skills/qubrics-send-email/SKILL.md",
+      "sha256": "87ba709fd3eaea23814c5ab4c7e2ac5cd93f347b0b5e40f646330da7c72fef63"
+    },
+    {
+      "path": "evidence/skill-compatibility/reviews/rebrand-qubrics-skills34-sdk344/source-review.md",
+      "sha256": "104d51a596dc7130decf8e8dac1f2fc49909933b9878c4d4e05bf2c82ea266be"
+    }
+  ]
+}

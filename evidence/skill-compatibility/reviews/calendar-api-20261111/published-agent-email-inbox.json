@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "kind": "compatibility",
+  "skill": "agent-email-inbox",
+  "skillDigest": "956a19a3f81906299d19f35afa0a8dba4a5bd1f1275a45d02ba1d407579f0347",
+  "contractDigest": "904682fa0f85cdb1fdf07b03501f7ea251e8a6885a7abfd3bc61801ca2150b2f",
+  "sourceRevisions": {
+    "app": "06a1d50eeb483e8a4c6aeb8da64832c5d3dc5a7e",
+    "sending": "2f4226655efc05f109b5feda50ed2ca1570aea91",
+    "sdk": "a326bc923fff448470d908bb527afaaa35f6d739"
+  },
+  "reviewer": "Independent AI source reviewer /root/pr48_compat_review_default; coordinating reviewer /root",
+  "rationale": "Independent delta review classified this unchanged published legacy skill as a no-impact renewal under the exact retained-alias source tuple.",
+  "evidence": [
+    { "path": "skills/agent-email-inbox/SKILL.md", "sha256": "aff85abdf458918838825a148de9bd1be3b4bc4aa36f61bced81646de3064da0" },
+    { "path": "evidence/skill-compatibility/reviews/calendar-api-20261111/source-review.md", "sha256": "e25e270546575192df5aad8eb4464cc89e950702309d7a4643dbfdd3170cb4c1" }
+  ]
+}

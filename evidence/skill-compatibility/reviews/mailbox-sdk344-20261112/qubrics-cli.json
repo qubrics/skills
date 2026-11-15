@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "kind": "compatibility",
+  "skill": "qubrics-cli",
+  "skillDigest": "c7b4ac5db8aef06326e3209d37f7116619cc4778ea5964ca0ac041de09799107",
+  "contractDigest": "19c847f58c6b9346f942cc93d1d08c73f637841fa84ae59c3ab035b381b92f93",
+  "sourceRevisions": {
+    "app": "06a1d50eeb483e8a4c6aeb8da64832c5d3dc5a7e",
+    "sending": "2f4226655efc05f109b5feda50ed2ca1570aea91",
+    "sdk": "7fe071f96bc23e52e8c0bb56d673d8c6a24aea7c"
+  },
+  "reviewer": "Independent AI source reviewer /root/mailbox_compat_source_review; coordinating reviewer /root",
+  "rationale": "Immutable whole-body and SDK delta review supports this exact pair. Registration still persists intent and the active profile before bounded readiness, and Sending still uses the saved profile and approved token exchange. Source review supplies the per-pair findings and limits; no runtime or publication claim.",
+  "evidence": [
+    {
+      "path": "skills/qubrics-cli/SKILL.md",
+      "sha256": "d326db6f4c3981c71839f828489c54ef1931d62869db237babee65aac844a572"
+    },
+    {
+      "path": "evidence/skill-compatibility/reviews/mailbox-sdk344-20261112/source-review.md",
+      "sha256": "49bed5e4b6febf3d60f3eb6e18a83b749b2416395bd406f88a095ce6a3d9da8d"
+    }
+  ]
+}

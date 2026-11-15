@@ -1,8 +1,8 @@
 {
   "mcpServers": {
-    "sendmux": {
+    "qubrics": {
       "type": "http",
-      "url": "https://mcp.sendmux.ai/mcp"
+      "url": "https://mcp.qubrics.com/mcp"
     }
   }
 }

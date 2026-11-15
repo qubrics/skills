@@ -1,0 +1,77 @@
+{
+  "skill_name": "qubrics-cli",
+  "evals": [
+    {
+      "id": 0,
+      "prompt": "Show me how to install the Qubrics CLI, configure separate root/mailbox profiles, and explain what happens if I use the wrong key type.",
+      "expected_output": "The answer installs @qubrics/cli, creates root and mailbox or sending profiles with profiles:set using secret-backed QUBRICS_API_KEY environment input rather than shell-expanded --api-key values, uses --json, explains smx_root_ for Management, smx_mbx_ or owner-approved Sending-resource smx_agent_ for Sending, smx_mbx_/scoped smx_agent_ for Mailbox, and says mismatched command/key prefixes fail before the request.",
+      "files": [],
+      "expectations": [
+        "The output installs @qubrics/cli or exposes the qubrics binary.",
+        "The output creates a root profile with profiles:set and an smx_root_ key.",
+        "The output creates a sending profile with a send-capable smx_mbx_ key or owner-approved Sending-resource smx_agent_ token, and creates a mailbox profile with smx_mbx_ or explains scoped smx_agent_ is mailbox-compatible.",
+        "The output uses --json for machine-readable output.",
+        "The output says wrong key types are rejected before a network request.",
+        "Profile setup uses supported secret-backed environment input and never expands an API key into process arguments or asks for a key in chat."
+      ]
+    },
+    {
+      "id": 1,
+      "prompt": "Give Qubrics CLI examples for creating a domain, fetching its DNS records, and searching unread invoice snippets in a mailbox.",
+      "expected_output": "The answer uses management:create-domain with root profile and Idempotency-Key, management:get-domain-zone-file with --path public_id=..., and mailbox:search-message-snippets with mailbox profile plus repeatable --query filters.",
+      "files": [],
+      "expectations": [
+        "The output uses management:create-domain.",
+        "The output includes --idempotency-key for domain creation.",
+        "The output uses management:get-domain-zone-file with --path public_id=...",
+        "The output uses mailbox:search-message-snippets.",
+        "The output uses repeatable --query filters such as q, is_unread, or limit."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "For an automation script, which Qubrics CLI commands and flags should I use to send a batch, batch-read known mailbox messages, and poll one delivery log with caching?",
+      "expected_output": "The answer uses sending:send:batch with --body-file and Idempotency-Key, mailbox:batch-get-messages with --body, and management:get-email-log with --path plus --if-none-match; all commands use --json.",
+      "files": [],
+      "expectations": [
+        "The output uses sending:send:batch.",
+        "The output includes --body-file and --idempotency-key for batch send.",
+        "The output uses mailbox:batch-get-messages with a JSON body.",
+        "The output uses management:get-email-log with --path public_id=...",
+        "The output includes --if-none-match or If-None-Match for caching.",
+        "The output uses --json on commands.",
+        "If the output compares command surfaces, profiles, or key kinds, it distinguishes the three Management/Mailbox/Sending surfaces from the CLI's two API-key kinds and does not claim Mailbox and Sending always need different key kinds."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "My agent has no Qubrics account or key. Show the CLI-only path to create an inbox, read it from later processes, invite an owner, and send after approval without exposing credentials.",
+      "expected_output": "The answer installs @qubrics/cli, runs qubrics agent:register <profile> with --default and optional --owner-email, explains that the durable read credential is stored in the local profile and never printed, reads with --profile, uses agent:invite-owner if needed, states the 500 MiB pre-owner cap and at least 5 GiB owner-approved storage floor, and says Sending commands automatically exchange and cache a one-hour delegated token only after owner acceptance and sending approval.",
+      "files": [],
+      "expectations": [
+        "The output uses qubrics agent:register with a named profile.",
+        "The output says no existing account or API key is required.",
+        "The output says the durable read credential is persisted locally without being printed.",
+        "The output reads through a later qubrics mailbox command using --profile.",
+        "The output uses qubrics agent:invite-owner or --owner-email.",
+        "The output states that storage is capped at 500 MiB before owner approval and raised to at least 5 GiB with sending approval.",
+        "The output says sending is blocked until owner acceptance and approval.",
+        "The output says Sending commands automatically exchange and cache a one-hour delegated token after approval."
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "I already have a Qubrics account. Connect the CLI with browser consent, validate the connection, and explain refresh failures and logout.",
+      "expected_output": "Uses auth:login with a new named profile and explicit --scope values. Uses the surface get-connection command with --profile and --json without sending email. Explains protected local token storage, automatic refresh and a new login after an uncertain refresh. Uses auth:logout and keeps a failed revocation retryable. Does not request tokens in chat or imply OAuth tokens work with SMTP.",
+      "files": [],
+      "expectations": [
+        "Uses auth:login with a new named profile and explicit --scope values.",
+        "Uses the surface get-connection command with --profile and --json without sending email.",
+        "Explains protected local token storage, automatic refresh and a new login after an uncertain refresh.",
+        "Uses auth:logout and keeps a failed revocation retryable.",
+        "Does not request tokens in chat or imply OAuth tokens work with SMTP.",
+        "If the output recommends --no-browser or discusses headless or remote use, it says --no-browser only suppresses automatic browser launch and the OAuth callback still requires the browser flow on the CLI host; it does not claim the flag alone enables remote-machine authentication."
+      ]
+    }
+  ]
+}

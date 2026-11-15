@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "kind": "compatibility",
+  "skill": "qubrics-attachments",
+  "skillDigest": "12d114d48cbb7f1a264a8bc5ba5d4adb1bbf7b377c3506e9d06564de9f5aa53b",
+  "contractDigest": "29b51e124ba68723ee54ea85dd5669cc3ef99a6b6ed11a9069a4f147e39a0334",
+  "sourceRevisions": {
+    "app": "87ce115810ebcfa91655295603c27af52fcff96f",
+    "sending": "2f4226655efc05f109b5feda50ed2ca1570aea91",
+    "sdk": "8d3d7492dc83852906c163d0ce0c30cfdd0bc06f"
+  },
+  "reviewer": "Independent AI source reviewer /root/phase2_contract_review; coordinating reviewer /root",
+  "rationale": "Upload headers, presigned transfers and distinct Sending/Mailbox identifiers match selected helpers; published Python imports remain unchanged. All eleven whole-body and selected-source reviews are recorded in the bound source review. Source compatibility only; no fresh workflow evaluation, live URL equivalence or publication is claimed.",
+  "evidence": [
+    {
+      "path": "skills/qubrics-attachments/SKILL.md",
+      "sha256": "63425e91dd05c372e1625324c9d07f26290d283b84dae776ee8fe264c3dccc01"
+    },
+    {
+      "path": "evidence/skill-compatibility/reviews/rebrand-qubrics-skills34-phase2/source-review.md",
+      "sha256": "ac34ec03e2f74dc6fe187353b670407d32290426ff079b3d2fd54cddf3e5158e"
+    }
+  ]
+}

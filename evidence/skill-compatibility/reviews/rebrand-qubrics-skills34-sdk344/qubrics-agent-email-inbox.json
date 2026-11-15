@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "kind": "compatibility",
+  "skill": "qubrics-agent-email-inbox",
+  "skillDigest": "4a72427ac606f9ad94b4760e039d49ad7918b3f92d3b1d70ae8dfe87ac83ac86",
+  "contractDigest": "4a68ba31b697ff03f9e0f859f62507478d532280d58192b1d5f0ae54b8277a84",
+  "sourceRevisions": {
+    "app": "87ce115810ebcfa91655295603c27af52fcff96f",
+    "sending": "2f4226655efc05f109b5feda50ed2ca1570aea91",
+    "sdk": "a326bc923fff448470d908bb527afaaa35f6d739"
+  },
+  "reviewer": "Independent source reviewer /root/phase2_contract_review; coordinating reviewer /root",
+  "rationale": "Bounded read-only triage, connection identity, snippet/batch reads and draft boundaries retain their CLI/MCP schemas. Whole-body review found no removed Python import or executable taught directly; setup/helper handoffs use the tested A13 replacements. TS is unchanged, MCP tools/snapshots equal; package/setup changes explicitly assessed in the bound sixteen-row review. No live parity/publication claim.",
+  "evidence": [
+    {
+      "path": "skills/qubrics-agent-email-inbox/SKILL.md",
+      "sha256": "ab96059b7bdde094db1b9c0e2b935b92ed0fe0ce9884578a8f037eaa69cf0dc3"
+    },
+    {
+      "path": "evidence/skill-compatibility/reviews/rebrand-qubrics-skills34-sdk344/source-review.md",
+      "sha256": "104d51a596dc7130decf8e8dac1f2fc49909933b9878c4d4e05bf2c82ea266be"
+    }
+  ]
+}

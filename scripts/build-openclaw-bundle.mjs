@@ -76,15 +76,15 @@ function readYamlScalar(frontmatter, key) {
   return raw;
 }
 
-function referencedSendmuxEnvVars(text) {
-  return [...new Set(text.match(/\bSENDMUX_[A-Z0-9_]+\b/g) ?? [])].sort();
+function referencedEnvVars(text) {
+  return [...new Set(text.match(/\b(?:QUBRICS|SENDMUX)_[A-Z0-9_]+\b/g) ?? [])].sort();
 }
 
 function openclawNote() {
   return [
     "## ClawHub account note",
     "",
-    "This ClawHub skill connects OpenClaw agents to Sendmux. Some workflows require a Sendmux account and an appropriate Sendmux API key or agent token. Sendmux account usage is external to ClawHub; do not ask users to paste secrets into chat.",
+    "This ClawHub skill connects OpenClaw agents to Qubrics. Some workflows require a Qubrics account and an appropriate Qubrics API key or agent token. Qubrics account usage is external to ClawHub; do not ask users to paste secrets into chat.",
   ].join("\n");
 }
 
@@ -155,7 +155,7 @@ function toYaml(value, indent = 0) {
 
 function buildFrontmatter(slug, source) {
   const skillConfig = config.skills[slug];
-  const bodyEnvVars = referencedSendmuxEnvVars(source.body);
+  const bodyEnvVars = referencedEnvVars(source.body);
   const envVars = bodyEnvVars.map((name) => {
     const description = config.envVars[name];
     if (!description) {
@@ -169,7 +169,9 @@ function buildFrontmatter(slug, source) {
     homepage: config.homepage,
   };
 
-  if (bodyEnvVars.includes("SENDMUX_API_KEY")) {
+  if (bodyEnvVars.includes("QUBRICS_API_KEY")) {
+    openclaw.primaryEnv = "QUBRICS_API_KEY";
+  } else if (bodyEnvVars.includes("SENDMUX_API_KEY")) {
     openclaw.primaryEnv = "SENDMUX_API_KEY";
   }
   if (envVars.length > 0) {

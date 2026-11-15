@@ -1,0 +1,84 @@
+{
+  "skill_name": "qubrics-send-email",
+  "evals": [
+    {
+      "id": 0,
+      "prompt": "I need to send welcome emails to Alice and Bob through Qubrics. Which API call should my agent use and what JSON shape should it send?",
+      "expected_output": "The answer chooses batch send, uses smx_mbx_ credentials or an owner-approved Sending-resource smx_agent_ token, names /emails/send/batch or sending_send_email_batch, includes messages[], and tells the user to inspect per-message results.",
+      "files": [],
+      "expectations": [
+        "The output chooses batch send for more than one message.",
+        "The output names /emails/send/batch, sending_send_email_batch, sending:send:batch, or sendingSendEmailBatch.",
+        "The output uses smx_mbx_ credentials or an owner-approved Sending-resource smx_agent_ token.",
+        "The output uses a JSON body with messages[].",
+        "The output says to inspect per-message batch results."
+      ]
+    },
+    {
+      "id": 1,
+      "prompt": "Show a Qubrics CLI example for sending one email with an attachment and safe retry behaviour.",
+      "expected_output": "The answer uses qubrics sending:send with --attach for the local file, a send-capable smx_mbx_ key or owner-approved Sending-resource smx_agent_ token, Idempotency-Key, --body or --body-file, and says the CLI uploads bytes first and injects an attachment_id ref rather than base64.",
+      "files": [],
+      "expectations": [
+        "The output uses the CLI command qubrics sending:send.",
+        "The output uses a send-capable smx_mbx_ key or owner-approved Sending-resource smx_agent_ token.",
+        "The output includes an Idempotency-Key or --idempotency-key.",
+        "The output uses --attach for the local file.",
+        "The output says the CLI uploads bytes first and uses an attachment_id reference.",
+        "The output avoids manual base64 encoding."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "For a new Qubrics integration, should I use HTTP or SMTP to send email?",
+      "expected_output": "The answer recommends the HTTP Sending API for new integrations, batch sending, structured JSON, and retry-safe requests; SMTP is only for existing SMTP-only tools.",
+      "files": [],
+      "expectations": [
+        "The output recommends HTTP Sending API for new integrations.",
+        "The output says HTTP supports batch sending.",
+        "The output mentions idempotency or retry-safe requests.",
+        "The output limits SMTP to existing SMTP-only tools or explicit user choice."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "My Qubrics CLI agent profile can already read its inbox. What happens if it tries sending before and after I approve sending as the owner?",
+      "expected_output": "The answer says the durable profile credential permits email reads and reception but does not itself authorise sending, its inbox is capped at 500 MiB, and Sending commands fail closed before owner acceptance and sending approval. The approval raises inbox storage to at least 5 GiB. After approval, qubrics sending commands automatically exchange the durable credential for a one-hour email.send token, cache it with an expiry skew, and use an Idempotency-Key for the send; the durable credential itself is never treated as send-capable.",
+      "files": [],
+      "expectations": [
+        "The output says the durable agent credential is for read and receive and does not itself grant sending.",
+        "The output says sending is unavailable before owner acceptance and approval.",
+        "The output states that storage is capped at 500 MiB before owner approval and raised to at least 5 GiB with sending approval.",
+        "The output says qubrics Sending CLI commands automatically exchange for a one-hour email.send token after approval.",
+        "The output says the delegated token is cached only until near expiry.",
+        "The output includes Idempotency-Key or --idempotency-key for the send."
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "I have a REST OAuth token with email.send. Can I validate it without sending and use it as my SMTP password?",
+      "expected_output": "Uses the Sending connection endpoint or sending:get-connection as the non-sending validation step. Accepts REST OAuth for the Sending HTTP API with email.send. States OAuth access tokens cannot be used as SMTP or IMAP passwords. Preserves explicit approval and message details before any actual send.",
+      "files": [],
+      "expectations": [
+        "Uses the Sending connection endpoint or sending:get-connection as the non-sending validation step.",
+        "Accepts REST OAuth for the Sending HTTP API with email.send.",
+        "States OAuth access tokens cannot be used as SMTP or IMAP passwords.",
+        "Preserves explicit approval and message details before any actual send."
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "My Qubrics MCP Sending connection is already set up. I have confirmed this email: from `releases@example.com` to `pat@example.net`, subject `Renewal summary`, HTML body `<p>Attached is the renewal summary.</p>`, and local PDF `./renewal-summary.pdf`; its exact byte size is available locally. I approve sending this one message. Which MCP calls and attachment flow should the agent use?",
+      "expected_output": "The answer uses the approved Sending presign flow for the real local PDF, safely transfers bytes outside model context, and sends the confirmed message with the resulting attachment_id and a stable idempotency key.",
+      "files": [],
+      "expectations": [
+        "The output calls sending_create_attachment_upload with the PDF's filename, content_type, and exact local size_bytes.",
+        "The output checks the response's max_size_bytes before transfer and does not replace it with a universal Sending presign limit.",
+        "The output transfers the PDF outside model context using the exact returned method, URL, and headers, without a Qubrics API bearer and without placing signed URL/header secrets in literal process arguments or retained output.",
+        "The output passes the successful upload's attachment_id to sending_send_email, not its upload_id or a Mailbox blob_id.",
+        "The output does not use MCP file_path or inline the real PDF as base64.",
+        "The output uses the confirmed sender, recipient, subject, body, and attachment without inventing message details, and includes one stable Idempotency-Key for the logical send."
+      ]
+    }
+  ]
+}

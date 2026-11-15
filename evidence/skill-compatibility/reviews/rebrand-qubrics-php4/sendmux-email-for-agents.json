@@ -1,0 +1,77 @@
+{
+  "schemaVersion": 1,
+  "kind": "workflow",
+  "skill": "sendmux-email-for-agents",
+  "previousSkillDigest": "b954dac79d49b818d65b2dc4e6218427777292fc48328453fe5101fb8f3895b6",
+  "skillDigest": "411f7cc5d798a8e0abc7f48dd3561adc64bf5a71435c8c9283d0943f269a6cec",
+  "contractDigest": "475b9081066eaedabb492b2a4a6a1c04c9e42c8033b01636684bfe8089d95d2c",
+  "sourceRevisions": {
+    "app": "87ce115810ebcfa91655295603c27af52fcff96f",
+    "sending": "2f4226655efc05f109b5feda50ed2ca1570aea91",
+    "sdk": "73bedb8b0005e96e580e39cca4aac6bd030753a5"
+  },
+  "reviewer": "Fresh independent /root/skills_bootstrap_whole_review whole-body verdict; independent /root/skills_bootstrap_grade; coordinating reviewer binds exact hashes",
+  "rationale": "Fresh independent whole-body review finds these exact instructions compatible with App87ce/Sending2f42/SDK73bed. One genuine guide-only explanation tests competing existing credentials and the documented keyless bootstrap before a profile exists, followed by identity verification before task access. All retained assertions plus the new ordering assertion pass. Static source and explanation compatibility only under historical runtime policy; no live certification, publication or guard qualification.",
+  "evidence": [
+    {
+      "path": "skills/sendmux-email-for-agents/SKILL.md",
+      "sha256": "24b28b74515ea9f63221fad9739e9927baef1a34b4e414aae0df94bce9ec0f7f"
+    },
+    {
+      "path": "evidence/skill-compatibility/rebrand-qubrics-php4-source-review.md",
+      "sha256": "c75f2d402c49ca9af1ee0d7747e33be5412bf6abe5992e4d62731260bfaecdb2"
+    },
+    {
+      "path": "evidence/skill-compatibility/reviews/rebrand-qubrics-php4/fresh-body-review-inventory.md",
+      "sha256": "ddee66e7432e60adf506f293004c4e76f155ab34d7db6608e43af76974305f96"
+    },
+    {
+      "path": "evidence/skill-compatibility/contracts/calendar-20261030/app-openapi.json",
+      "sha256": "4e4fbc8024eaad195169a18cc096856d1653a3c01fb4f66d0313e67cb0b2e705"
+    },
+    {
+      "path": "evidence/skill-compatibility/contracts/calendar-20261030/app-policy.json",
+      "sha256": "d4159fc4ad2a7b1927c294303fbc11533f8dab9f5a9b3cc73b2139c7354e71bf"
+    },
+    {
+      "path": "evidence/skill-compatibility/contracts/calendar-20261030/app-export.json",
+      "sha256": "29cde33eda5fb6777c9544e722a3165edeb2c689da8ac2c9f3953f85c3872d0b"
+    },
+    {
+      "path": "evidence/skill-compatibility/contracts/row07-actualtuple-20261012/sending-openapi.json",
+      "sha256": "eb69dc0ca27e5f42cd9da70e90e2b1a386dfe588b743e47a8d91f3b7928a75e5"
+    },
+    {
+      "path": "evidence/skill-compatibility/contracts/row07-actualtuple-20261012/sending-policy.json",
+      "sha256": "64b2ab07617f084045921f7078100372c3175712cecc117a799109a2c2546fd3"
+    },
+    {
+      "path": "evidence/skill-compatibility/contracts/row07-actualtuple-20261012/sending-export.json",
+      "sha256": "e1e2eef9923f7154363efa55d4508f8b32a3c07229116b05c08bfba1b6674b8f"
+    },
+    {
+      "path": "evidence/skill-compatibility/reviews/rebrand-qubrics-php4/bootstrap-order-fresh-review.md",
+      "sha256": "5f8fca8510f0cf55e988a7724588b86b9f358f9c3ed7e8ef18a074ba259afcb9"
+    },
+    {
+      "path": "evidence/skill-compatibility/evaluations/rebrand-qubrics-php4/bootstrap-order/sendmux-email-for-agents/eval-0-bootstrap-order/eval_metadata.json",
+      "sha256": "e212e7d2fc2e7800b77de3150ec36f4326aa8887e2fcba4848d367c08bf9ebbe"
+    },
+    {
+      "path": "evidence/skill-compatibility/evaluations/rebrand-qubrics-php4/bootstrap-order/sendmux-email-for-agents/eval-0-bootstrap-order/with_skill/run-1/receipt.json",
+      "sha256": "aa570bf39997c9d5600756a2c1d2cbc9595358ac7ceb71988c48f77f5161792b"
+    },
+    {
+      "path": "evidence/skill-compatibility/evaluations/rebrand-qubrics-php4/bootstrap-order/sendmux-email-for-agents/eval-0-bootstrap-order/with_skill/run-1/outputs/response.md",
+      "sha256": "d765edf2a602a7631fa1441a630bf7388b929bbf714a3974b0d55834edaa5865"
+    },
+    {
+      "path": "evidence/skill-compatibility/evaluations/rebrand-qubrics-php4/bootstrap-order/sendmux-email-for-agents/eval-0-bootstrap-order/with_skill/run-1/grading.json",
+      "sha256": "f73051af7a4d3d38cba52006cd0c498f6a849d8547a17890c08dfc0079097c48"
+    },
+    {
+      "path": "evidence/skill-compatibility/evaluations/rebrand-qubrics-php4/bootstrap-order/sendmux-email-for-agents/benchmark.json",
+      "sha256": "3689d03dda53ab0b2a86af009ce9de89756af7553ee1c62446cf076d1e639a28"
+    }
+  ]
+}

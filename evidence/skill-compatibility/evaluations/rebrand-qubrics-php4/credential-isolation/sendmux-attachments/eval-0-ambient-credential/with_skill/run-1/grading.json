@@ -1,0 +1,31 @@
+{
+  "expectations": [
+    {
+      "text": "Uses an isolated child process and clears inherited credential, profile and base-URL overrides from both QUBRICS and SENDMUX families.",
+      "passed": true,
+      "evidence": "“Prepare a separate child environment, clearing QUBRICS_API_KEY, SENDMUX_API_KEY, QUBRICS_ACCESS_TOKEN, SENDMUX_ACCESS_TOKEN, QUBRICS_PROFILE, SENDMUX_PROFILE, QUBRICS_BASE_URL and SENDMUX_BASE_URL before loading only the intended Mailbox/Sending key from the user's secret store.”"
+    },
+    {
+      "text": "Uses only the intended secret-store credential or authorised selected profile; profile-based calls leave direct credentials unset.",
+      "passed": true,
+      "evidence": "“Use the intended secret-store value as the child's SENDMUX_API_KEY; do not place the raw key in --api-key or other arguments.” “For an authorised existing profile instead, leave both prefixes' API-key and access-token variables unset and explicitly select --profile <profile>; do not combine the profile with a direct credential assignment.”"
+    },
+    {
+      "text": "Explains precedence without expanding secrets into arguments, printing credentials or modifying the parent environment.",
+      "passed": true,
+      "evidence": "“An explicit SENDMUX_API_KEY=\"$SENDMUX_MBX_KEY\" example does not defeat an inherited QUBRICS_API_KEY.” “QUBRICS values take precedence over SENDMUX fallbacks.” “Keep keys and capability-bearing results out of tracing, stdout, stderr, chat and persistent files.” The clearing is confined to a separate child environment."
+    },
+    {
+      "text": "Prepares only; performs no real commands, credential access, reads of live data, writes or sends.",
+      "passed": true,
+      "evidence": "“Keep this preparation-only: no upload, upload-intent mint, download, send or other API call.” “None of those capabilities is minted or accessed here.”"
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 0,
+    "total": 4,
+    "pass_rate": 1
+  },
+  "evaluation_method": "Reviewer compared each unchanged assertion with the retained verbatim response. Explanation quality only: no live credentials, API calls, sends, publication or client certification. The historical guide hash does not qualify subsequent edits."
+}

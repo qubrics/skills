@@ -31,17 +31,17 @@ const sendingOpenApi =
   path.join(docsRoot, "openapi-sending.json");
 
 const expectedSkills = [
-  "agent-email-inbox",
-  "email-for-ai-agents",
-  "sendmux-cli",
-  "sendmux-attachments",
-  "sendmux-email-for-agents",
-  "sendmux-getting-started",
-  "sendmux-mailbox-agent",
-  "sendmux-management",
-  "sendmux-mcp-setup",
-  "sendmux-send-email",
-  "sendmux-token-efficient-usage",
+  "qubrics-agent-email-inbox",
+  "qubrics-email-for-ai-agents",
+  "qubrics-cli",
+  "qubrics-attachments",
+  "qubrics-email-for-agents",
+  "qubrics-getting-started",
+  "qubrics-mailbox-agent",
+  "qubrics-management",
+  "qubrics-mcp-setup",
+  "qubrics-send-email",
+  "qubrics-token-efficient-usage",
 ];
 
 const requiredSendingPaths = [
@@ -107,38 +107,40 @@ const requiredMcpEnv = [
   "SENDMUX_MCP_HTTP_BEARER_TOKEN",
 ];
 
-const allowedSkillOnlyEnv = new Set(["SENDMUX_ROOT_KEY", "SENDMUX_MBX_KEY"]);
+const allowedSkillOnlyEnv = new Set(["QUBRICS_ROOT_KEY", "QUBRICS_MBX_KEY", "SENDMUX_ROOT_KEY", "SENDMUX_MBX_KEY"]);
 const allowedUnderscoreIdentifiers = new Set(["mailbox_id"]);
 
 const tsPackages = {
-  "packages/ts/sdk/package.json": "@sendmux/sdk",
-  "packages/ts/sending/package.json": "@sendmux/sending",
-  "packages/ts/mailbox/package.json": "@sendmux/mailbox",
-  "packages/ts/management/package.json": "@sendmux/management",
-  "packages/ts/cli/package.json": "@sendmux/cli",
+  "packages/ts/sdk/package.json": ["@sendmux/sdk", "@qubrics/sdk"],
+  "packages/ts/sending/package.json": ["@sendmux/sending", "@qubrics/sending"],
+  "packages/ts/mailbox/package.json": ["@sendmux/mailbox", "@qubrics/mailbox"],
+  "packages/ts/management/package.json": ["@sendmux/management", "@qubrics/management"],
+  "packages/ts/cli/package.json": ["@sendmux/cli", "@qubrics/cli"],
 };
 
 const phpPackages = {
-  "packages/php/sdk/composer.json": "sendmux/sdk",
-  "packages/php/sending/composer.json": "sendmux/sending",
-  "packages/php/mailbox/composer.json": "sendmux/mailbox",
-  "packages/php/management/composer.json": "sendmux/management",
+  "packages/php/sdk/composer.json": "qubrics/sdk",
+  "packages/php/sending/composer.json": "qubrics/sending",
+  "packages/php/mailbox/composer.json": "qubrics/mailbox",
+  "packages/php/management/composer.json": "qubrics/management",
 };
 
 const pythonPackages = {
-  "packages/python/sdk/pyproject.toml": "sendmux-sdk",
-  "packages/python/sending/pyproject.toml": "sendmux-sending",
-  "packages/python/mailbox/pyproject.toml": "sendmux-mailbox",
-  "packages/python/management/pyproject.toml": "sendmux-management",
-  "packages/python/mcp/pyproject.toml": "sendmux-mcp",
+  "packages/python/sdk/pyproject.toml": ["sendmux-sdk", "qubrics-sdk"],
+  "packages/python/sending/pyproject.toml": ["sendmux-sending", "qubrics-sending"],
+  "packages/python/mailbox/pyproject.toml": ["sendmux-mailbox", "qubrics-mailbox"],
+  "packages/python/management/pyproject.toml": ["sendmux-management", "qubrics-management"],
+  "packages/python/mcp/pyproject.toml": ["sendmux-mcp", "qubrics-mcp"],
 };
 
-const rubyPackages = {
-  "packages/ruby/sdk/sendmux-sdk.gemspec": "sendmux-sdk",
-  "packages/ruby/sending/sendmux-sending.gemspec": "sendmux-sending",
-  "packages/ruby/mailbox/sendmux-mailbox.gemspec": "sendmux-mailbox",
-  "packages/ruby/management/sendmux-management.gemspec": "sendmux-management",
-};
+const rubyPackages = Object.fromEntries(
+  ["sdk", "sending", "mailbox", "management"].map((component) => {
+    const directory = `packages/ruby/${component}`;
+    const name = existsSync(fullPath(sdkRoot, `${directory}/qubrics-${component}.gemspec`))
+      ? `qubrics-${component}` : `sendmux-${component}`;
+    return [`${directory}/${name}.gemspec`, name];
+  }),
+);
 
 const requiredCorpusTokens = [
   ["root key prefix", /smx_root_/],
@@ -148,26 +150,26 @@ const requiredCorpusTokens = [
   ["If-None-Match header", /If-None-Match/],
   ["ETag header", /ETag/],
   ["cursor pagination", /pagination\.next_cursor|cursor pagination|next_cursor/],
-  ["CLI package", /@sendmux\/cli/],
-  ["CLI binary", /\bsendmux\b/],
+  ["CLI package", /@qubrics\/cli/],
+  ["CLI binary", /\bqubrics\b/],
   ["agent registration command", /agent:register/],
   ["agent owner invite command", /agent:invite-owner/],
   ["durable agent read access", /durable[^\n.]*read|read[^\n.]*without an expiry/i],
   ["owner-gated agent sending", /owner[^\n.]*approv[^\n.]*(?:send|sending)|send[^\n.]*owner[^\n.]*approv/i],
-  ["Sending TS package", /@sendmux\/sending/],
-  ["Mailbox TS package", /@sendmux\/mailbox/],
-  ["Management TS package", /@sendmux\/management/],
-  ["MCP package", /sendmux-mcp/],
-  ["mailbox MCP server", /sendmux-mcp-mailbox/],
-  ["management MCP server", /sendmux-mcp-management/],
-  ["sending MCP server", /sendmux-mcp-sending/],
+  ["Sending TS package", /@qubrics\/sending/],
+  ["Mailbox TS package", /@qubrics\/mailbox/],
+  ["Management TS package", /@qubrics\/management/],
+  ["MCP package", /qubrics-mcp/],
+  ["mailbox MCP server", /qubrics-mcp-mailbox/],
+  ["management MCP server", /qubrics-mcp-management/],
+  ["sending MCP server", /qubrics-mcp-sending/],
   ["MCP HTTP bearer token env", /SENDMUX_MCP_HTTP_BEARER_TOKEN/],
   ["batch send MCP tool", /sending_send_email_batch/],
   ["mailbox count MCP tool", /mailbox_count_messages/],
   ["mailbox snippets MCP tool", /mailbox_search_message_snippets/],
   ["mailbox batch-get MCP tool", /mailbox_batch_get_messages/],
   ["mailbox changes MCP tool", /mailbox_get_changes/],
-  ["attachment skill", /sendmux-attachments/],
+  ["attachment skill", /qubrics-attachments/],
   ["mailbox upload attachment MCP tool", /mailbox_upload_attachment/],
   ["mailbox attachment metadata MCP tool", /mailbox_get_attachment/],
   ["mailbox read attachment MCP tool", /mailbox_read_attachment/],
@@ -199,6 +201,14 @@ const forbiddenAgentOnboardingPatterns = [
 ];
 
 const failures = [];
+const mcpRoot = readMcpRoot();
+
+function readMcpRoot() {
+  const name = tomlProjectName(fullPath(sdkRoot, "packages/python/mcp/pyproject.toml"));
+  if (name === "sendmux-mcp") return "packages/python/mcp/sendmux_mcp";
+  if (name === "qubrics-mcp") return "packages/python/mcp/qubrics/mcp";
+  throw new Error(`Unsupported MCP project.name: ${name}`);
+}
 
 function fail(message) {
   failures.push(message);
@@ -244,7 +254,7 @@ function readMcpContractFacts() {
   const initialFailureCount = failures.length;
   const contractPath = fullPath(
     sdkRoot,
-    "packages/python/mcp/sendmux_mcp/mcp-contract.json",
+    `${mcpRoot}/mcp-contract.json`,
   );
   const contract = readJson(contractPath);
   if (!isObject(contract)) {
@@ -427,11 +437,11 @@ function assertMcpContractPublishing(facts) {
   if (!facts) return;
 
   const setupText = readText(
-    fullPath(skillsRoot, "skills/sendmux-mcp-setup/SKILL.md"),
+    fullPath(skillsRoot, "skills/qubrics-mcp-setup/SKILL.md"),
   );
   const setupEvalsPath = fullPath(
     skillsRoot,
-    "skills/sendmux-mcp-setup/evals/evals.json",
+    "skills/qubrics-mcp-setup/evals/evals.json",
   );
   const setupEvals = readJson(setupEvalsPath);
   const evalList = Array.isArray(setupEvals) ? setupEvals : setupEvals?.evals;
@@ -442,18 +452,21 @@ function assertMcpContractPublishing(facts) {
   const compatibilityExpectations = Array.isArray(compatibilityEval?.expectations)
     ? compatibilityEval.expectations.join("\n")
     : "";
+  const candidatePackage = facts.packageIdentity === "qubrics-mcp";
   const installLine = setupText
     .split("\n")
-    .find((line) => line.startsWith("This guide targets ")) || "";
+    .find((line) => line.startsWith(candidatePackage ? "The candidate " : "This guide targets ")) || "";
 
   const packageValues = [facts.packageIdentity, facts.packageVersion];
   const packageGuidanceValid =
     containsInOrder(installLine, packageValues) &&
-    /^This guide targets the released\b/i.test(installLine) &&
+    (candidatePackage
+      ? /^The candidate\b/i.test(installLine) && /\bsource is unpublished\b/i.test(installLine)
+      : /^This guide targets the released\b/i.test(installLine)) &&
     containsInOrder(compatibilityExpected, packageValues) &&
-    /\bdistinguishes the released\b/i.test(compatibilityExpected) &&
+    (candidatePackage ? /\bunpublished\b/i : /\bdistinguishes the released\b/i).test(compatibilityExpected) &&
     containsInOrder(compatibilityExpectations, packageValues) &&
-    /\bdistinguishes the released\b/i.test(compatibilityExpectations);
+    (candidatePackage ? /\bunpublished\b/i : /\bdistinguishes the released\b/i).test(compatibilityExpectations);
   if (!packageGuidanceValid) {
     fail("MCP package identity/version guidance drift");
   }
@@ -478,6 +491,9 @@ function assertMcpContractPublishing(facts) {
     ]),
   );
   const total = Object.values(counts).reduce((sum, count) => sum + count, 0);
+  const catalogueLine = candidatePackage
+    ? setupText.split("\n").find((line) => line.startsWith("Its catalogue contains ")) || ""
+    : installLine;
   const countValues = [
     total,
     counts.mailbox,
@@ -494,7 +510,7 @@ function assertMcpContractPublishing(facts) {
     ),
   );
   if (
-    !containsInOrder(installLine, countValues) ||
+    !containsInOrder(catalogueLine, countValues) ||
     !tableHasCounts ||
     !containsInOrder(compatibilityExpected, countValues) ||
     !containsInOrder(compatibilityExpectations, countValues) ||
@@ -519,11 +535,11 @@ function assertMcpContractPublishing(facts) {
   }
 
   const attachmentTexts = [
-    "sendmux-mcp-setup",
-    "sendmux-attachments",
-    "sendmux-mailbox-agent",
-    "sendmux-send-email",
-    "sendmux-token-efficient-usage",
+    "qubrics-mcp-setup",
+    "qubrics-attachments",
+    "qubrics-mailbox-agent",
+    "qubrics-send-email",
+    "qubrics-token-efficient-usage",
   ].map((skillName) =>
     readText(fullPath(skillsRoot, `skills/${skillName}/SKILL.md`)),
   );
@@ -579,10 +595,10 @@ function assertMcpContractPublishing(facts) {
   }
 
   const sendingAuthorityPublishingGuidance = [
-    ["sendmux-mcp-setup", attachmentTexts[0]],
-    ["sendmux-attachments", attachmentTexts[1]],
-    ["sendmux-send-email", attachmentTexts[3]],
-    ["sendmux-token-efficient-usage", attachmentTexts[4]],
+    ["qubrics-mcp-setup", attachmentTexts[0]],
+    ["qubrics-attachments", attachmentTexts[1]],
+    ["qubrics-send-email", attachmentTexts[3]],
+    ["qubrics-token-efficient-usage", attachmentTexts[4]],
   ];
   const sendingGuidance = sendingAuthorityPublishingGuidance
     .map(([, text]) => text)
@@ -630,23 +646,23 @@ function assertMcpFilePathGuidance(facts) {
 
   const guidance = [
     [
-      "sendmux-attachments",
+      "qubrics-attachments",
       /MCP tools do not accept `file_path` or read shared filesystem roots/i,
     ],
     [
-      "sendmux-mcp-setup",
+      "qubrics-mcp-setup",
       /Local and hosted MCP do not accept `file_path` or shared filesystem roots/i,
     ],
     [
-      "sendmux-mailbox-agent",
+      "qubrics-mailbox-agent",
       /Do not give MCP a local `file_path`[^\n]*CLI[^\n]*SDK file helpers/i,
     ],
     [
-      "sendmux-send-email",
+      "qubrics-send-email",
       /MCP does not receive a local `file_path`/i,
     ],
     [
-      "sendmux-token-efficient-usage",
+      "qubrics-token-efficient-usage",
       /Never use MCP `file_path`/i,
     ],
   ].map(([skillName, negativePattern]) => ({
@@ -693,7 +709,7 @@ function textBetween(text, start, end) {
 
 function assertSyncGuidance() {
   const text = readText(
-    fullPath(skillsRoot, "skills/sendmux-token-efficient-usage/SKILL.md"),
+    fullPath(skillsRoot, "skills/qubrics-token-efficient-usage/SKILL.md"),
   );
   const broad = textBetween(
     text,
@@ -701,7 +717,7 @@ function assertSyncGuidance() {
     "For a message-only continuation",
   );
   if (
-    !/```bash[\s\S]*?sendmux mailbox:get-changes[\s\S]*?--query types=messages,folders,threads/.test(
+    !/```bash[\s\S]*?qubrics mailbox:get-changes[\s\S]*?--query types=messages,folders,threads/.test(
       broad,
     ) ||
     !containsInOrder(broad, [
@@ -753,10 +769,10 @@ function assertSyncGuidance() {
 
 function assertSdkExampleGuidance() {
   const sendingText = readText(
-    fullPath(skillsRoot, "skills/sendmux-send-email/SKILL.md"),
+    fullPath(skillsRoot, "skills/qubrics-send-email/SKILL.md"),
   );
   const gettingStartedText = readText(
-    fullPath(skillsRoot, "skills/sendmux-getting-started/SKILL.md"),
+    fullPath(skillsRoot, "skills/qubrics-getting-started/SKILL.md"),
   );
   const sdkSection = textBetween(
     sendingText,
@@ -801,7 +817,7 @@ function assertRecipientBounds() {
   const combinedMaximum = Number(combinedMatches[0]?.[1]);
   const batchMaximum = batchRequest?.properties?.messages?.maxItems;
   const sendEmailText = readText(
-    fullPath(skillsRoot, "skills/sendmux-send-email/SKILL.md"),
+    fullPath(skillsRoot, "skills/qubrics-send-email/SKILL.md"),
   );
 
   if (
@@ -844,10 +860,10 @@ function assertManagementCreateMailboxKeyBody() {
   }
 
   const managementText = readText(
-    fullPath(skillsRoot, "skills/sendmux-management/SKILL.md"),
+    fullPath(skillsRoot, "skills/qubrics-management/SKILL.md"),
   );
   const bodyText = managementText.match(
-    /sendmux management:create-mailbox-key[\s\S]{0,500}?--body\s+'([^']+)'/,
+    /qubrics management:create-mailbox-key[\s\S]{0,500}?--body\s+'([^']+)'/,
   )?.[1];
   let body;
   try {
@@ -881,7 +897,7 @@ function assertManagementCreateMailboxKeyBody() {
 
 function assertAdjacentSdkExamples() {
   const tokenEfficientText = readText(
-    fullPath(skillsRoot, "skills/sendmux-token-efficient-usage/SKILL.md"),
+    fullPath(skillsRoot, "skills/qubrics-token-efficient-usage/SKILL.md"),
   );
   const conditionalRead = textBetween(
     tokenEfficientText,
@@ -896,7 +912,7 @@ function assertAdjacentSdkExamples() {
   if (
     !conditionalRead.includes("createManagementClient") ||
     !conditionalRead.includes(
-      "createManagementClient({ apiKey: process.env.SENDMUX_API_KEY! })",
+      "createManagementClient({ apiKey: process.env.QUBRICS_API_KEY! })",
     ) ||
     !conditionalCall.includes("client,")
   ) {
@@ -914,7 +930,7 @@ function assertAdjacentSdkExamples() {
   }
 
   const mailboxAgentText = readText(
-    fullPath(skillsRoot, "skills/sendmux-mailbox-agent/SKILL.md"),
+    fullPath(skillsRoot, "skills/qubrics-mailbox-agent/SKILL.md"),
   );
   const mailboxSdk = textBetween(mailboxAgentText, "SDK:", "## Triage and mutation");
   const snippetsCall = textBetween(
@@ -976,8 +992,9 @@ function assertPackageNames(root, packages, readName) {
     const filePath = fullPath(root, relativePath);
     const actualName = readName(filePath);
     if (!actualName) continue;
-    if (actualName !== expectedName) {
-      fail(`${relativePath} expected name ${expectedName}, found ${actualName}`);
+    const expectedNames = [expectedName].flat();
+    if (!expectedNames.includes(actualName)) {
+      fail(`${relativePath} expected name ${expectedNames.join(" or ")}, found ${actualName}`);
     }
   }
 }
@@ -987,12 +1004,13 @@ function jsonPackageName(filePath) {
 }
 
 function tomlProjectName(filePath) {
-  const match = readText(filePath).match(/^name\s*=\s*["']([^"']+)["']/m);
+  const project = readText(filePath).split(/^\[project\][ \t]*$/m)[1]?.split(/^\[/m)[0];
+  const match = project?.match(/^name[ \t]*=[ \t]*(["'])([^"'\r\n]+)\1[ \t]*(?:#.*)?$/m);
   if (!match) {
     fail(`Missing project name in ${filePath}`);
     return null;
   }
-  return match[1];
+  return match[2];
 }
 
 function rubyGemspecName(filePath) {
@@ -1061,8 +1079,8 @@ function assertSkillsCatalogue() {
     }
 
     const skillText = readText(path.join(skillsDir, skillName, "SKILL.md"));
-    if (!/^metadata:\n\s+author:\s*sendmux\n\s+version:\s*["']1\.0["']/m.test(skillText)) {
-      fail(`${skillName} missing metadata.author sendmux and metadata.version "1.0"`);
+    if (!/^metadata:\n\s+author:\s*qubrics\n\s+version:\s*["']1\.0["']/m.test(skillText)) {
+      fail(`${skillName} missing metadata.author qubrics and metadata.version "1.0"`);
     }
   }
 }
@@ -1089,9 +1107,9 @@ function assertSkillCorpusTokens() {
 
 function assertUntrustedInboundContentBoundaries() {
   const targetedSkills = [
-    "sendmux-attachments",
-    "sendmux-email-for-agents",
-    "sendmux-mailbox-agent",
+    "qubrics-attachments",
+    "qubrics-email-for-agents",
+    "qubrics-mailbox-agent",
   ];
 
   for (const skillName of targetedSkills) {
@@ -1104,12 +1122,12 @@ function assertUntrustedInboundContentBoundaries() {
 
 function assertAgentStorageTransitions() {
   const targetedSkills = [
-    "sendmux-cli",
-    "sendmux-email-for-agents",
-    "sendmux-getting-started",
-    "sendmux-mailbox-agent",
-    "sendmux-send-email",
-    "sendmux-token-efficient-usage",
+    "qubrics-cli",
+    "qubrics-email-for-agents",
+    "qubrics-getting-started",
+    "qubrics-mailbox-agent",
+    "qubrics-send-email",
+    "qubrics-token-efficient-usage",
   ];
 
   for (const skillName of targetedSkills) {
@@ -1129,7 +1147,7 @@ function directUploadCurlEvidence(command, curlConfig) {
       command,
     );
   const argvHasPostAndEndpoint =
-    /(?:^|\s)(?:-X|--request)(?:=|\s+)["']?POST["']?\s+["']?https:\/\/smtp\.sendmux\.ai\/api\/v1\/emails\/attachments(?:\?[^"'\s\\]*)?["']?(?=\s|\\|$)/.test(
+    /(?:^|\s)(?:-X|--request)(?:=|\s+)["']?POST["']?\s+["']?https:\/\/smtp\.qubrics\.com\/api\/v1\/emails\/attachments(?:\?[^"'\s\\]*)?["']?(?=\s|\\|$)/.test(
       command,
     );
   const argvHasContentLength =
@@ -1138,7 +1156,7 @@ function directUploadCurlEvidence(command, curlConfig) {
     );
   const configHasPostAndEndpoint =
     /^\s*request\s*=\s*["']POST["']\s*$/m.test(curlConfig) &&
-    /^\s*url\s*=\s*["']https:\/\/smtp\.sendmux\.ai\/api\/v1\/emails\/attachments(?:\?[^"']*)?["']\s*$/m.test(
+    /^\s*url\s*=\s*["']https:\/\/smtp\.qubrics\.com\/api\/v1\/emails\/attachments(?:\?[^"']*)?["']\s*$/m.test(
       curlConfig,
     );
   const configHasContentLength =
@@ -1204,7 +1222,7 @@ function curlExamplesFromFencedShellBlocks(skillText) {
 function assertAttachmentSkillContentLengthGuidance() {
   const skillPath = fullPath(
     skillsRoot,
-    "skills/sendmux-attachments/SKILL.md",
+    "skills/qubrics-attachments/SKILL.md",
   );
   const skillText = readText(skillPath);
   const directUploadExamples = curlExamplesFromFencedShellBlocks(skillText);
@@ -1217,10 +1235,10 @@ function assertAttachmentSkillContentLengthGuidance() {
 
   if (missingOnlyContentLength && !completeExample) {
     fail(
-      "sendmux-attachments Direct HTTP Sending upload example must include Content-Length",
+      "qubrics-attachments Direct HTTP Sending upload example must include Content-Length",
     );
   } else if (!completeExample) {
-    fail("sendmux-attachments missing Direct HTTP Sending direct upload curl example");
+    fail("qubrics-attachments missing Direct HTTP Sending direct upload curl example");
   }
 
   if (
@@ -1228,7 +1246,7 @@ function assertAttachmentSkillContentLengthGuidance() {
       skillText,
     )
   ) {
-    fail("sendmux-attachments missing direct Sending Content-Length guidance");
+    fail("qubrics-attachments missing direct Sending Content-Length guidance");
   }
 }
 
@@ -1237,8 +1255,8 @@ function assertCliPackage() {
   const cliPackage = readJson(cliPackagePath);
   if (!cliPackage) return;
 
-  if (cliPackage.name !== "@sendmux/cli") {
-    fail(`CLI package expected @sendmux/cli, found ${cliPackage.name}`);
+  if (cliPackage.name === "@qubrics/cli" && !cliPackage.bin?.qubrics) {
+    fail(`CLI package missing bin.qubrics in ${cliPackagePath}`);
   }
   if (!cliPackage.bin?.sendmux) {
     fail(`CLI package missing bin.sendmux in ${cliPackagePath}`);
@@ -1319,7 +1337,7 @@ function assertCliCommandCounts() {
   const counts = readCliOperationCounts();
   if (!counts) return;
   const cliSkillText = readText(
-    fullPath(skillsRoot, "skills/sendmux-cli/SKILL.md"),
+    fullPath(skillsRoot, "skills/qubrics-cli/SKILL.md"),
   );
   for (const [surface, count] of Object.entries(counts)) {
     const label = `${surface[0].toUpperCase()}${surface.slice(1)}`;
@@ -1336,11 +1354,11 @@ function assertCliCommandCounts() {
 function assertMcpSources() {
   const curationPath = fullPath(
     sdkRoot,
-    "packages/python/mcp/sendmux_mcp/curation.py",
+    `${mcpRoot}/curation.py`,
   );
   const configPath = fullPath(
     sdkRoot,
-    "packages/python/mcp/sendmux_mcp/config.py",
+    `${mcpRoot}/config.py`,
   );
   const curation = readText(curationPath);
   const config = readText(configPath);
@@ -1362,7 +1380,7 @@ function assertMcpSources() {
 function allMcpToolNames() {
   const curationPath = fullPath(
     sdkRoot,
-    "packages/python/mcp/sendmux_mcp/curation.py",
+    `${mcpRoot}/curation.py`,
   );
   const curation = readText(curationPath);
   return new Set(
@@ -1389,9 +1407,19 @@ function assertClaimedMcpToolsExist() {
 }
 
 function assertOfficialSendmuxEnvOnly() {
+  const configText = readText(fullPath(sdkRoot, `${mcpRoot}/config.py`));
+  const surfacesDeclaration = configText.match(/^SURFACES:[^\n=]*=\s*\(([^)]*)\)/m)?.[1];
+  const surfaces = [...(surfacesDeclaration || "").matchAll(/["']([^"']+)["']/g)].map((match) => match[1]);
+  const keyTemplate = configText.match(/env_value\(f["']([^"']*\{surface\.upper\(\)\}[^"']*)["']\)/)?.[1];
+  const keyParts = keyTemplate?.split("{surface.upper()}") || [];
+  const qubricsAliases = configText.includes('name.replace("SENDMUX_", "QUBRICS_", 1)');
+  if (surfaces.length === 0 || keyParts.length !== 2) {
+    fail("SDK MCP per-surface environment declaration is missing or unusable");
+  }
+  const surfaceKeys = new Set(surfaces.map((surface) => keyTemplate?.replace("{surface.upper()}", surface.toUpperCase())));
   const sourceText = [
-    readText(fullPath(sdkRoot, "packages/python/mcp/sendmux_mcp/config.py")),
-    readText(fullPath(sdkRoot, "packages/python/mcp/sendmux_mcp/hosted.py")),
+    configText,
+    readText(fullPath(sdkRoot, `${mcpRoot}/hosted.py`)),
     readText(fullPath(sdkRoot, "packages/python/mcp/README.md")),
     readText(fullPath(sdkRoot, "packages/ts/cli/src/base-command.ts")),
     readText(fullPath(sdkRoot, "packages/ts/cli/src/profiles.ts")),
@@ -1401,10 +1429,16 @@ function assertOfficialSendmuxEnvOnly() {
 
   for (const filePath of corpusFiles) {
     const text = readText(filePath);
-    for (const match of text.matchAll(/\bSENDMUX_[A-Z0-9_]+\b/g)) {
+    for (const match of text.matchAll(/\b(?:QUBRICS|SENDMUX)_[A-Z0-9_]+\b/g)) {
       const envName = match[0];
       if (allowedSkillOnlyEnv.has(envName)) continue;
-      if (!sourceText.includes(envName)) {
+      const legacyName = envName.replace(/^QUBRICS_/, "SENDMUX_");
+      const isQubrics = envName.startsWith("QUBRICS_");
+      const isSurfaceKey = keyParts.length === 2 && legacyName.length > keyParts[0].length + keyParts[1].length && legacyName.startsWith(keyParts[0]) && legacyName.endsWith(keyParts[1]);
+      const documented = isSurfaceKey
+        ? surfaceKeys.has(legacyName) && (!isQubrics || qubricsAliases)
+        : sourceText.includes(envName) || (isQubrics && qubricsAliases && configText.includes(legacyName));
+      if (!documented) {
         fail(`${path.relative(skillsRoot, filePath)} uses undocumented env var ${envName}`);
       }
     }
@@ -1421,8 +1455,9 @@ function assertSdkPackages() {
   const goModule = readText(goModPath).match(/^module\s+(\S+)/m)?.[1];
   if (!goModule) {
     fail(`Missing Go module declaration in ${goModPath}`);
-  } else if (goModule !== "sendmux.ai/go/v3") {
-    fail(`Go module expected sendmux.ai/go/v3, found ${goModule}`);
+  } else {
+    const expectedModule = goModule.startsWith("qubrics.com/") ? "qubrics.com/go/v4" : "sendmux.ai/go/v3";
+    if (goModule !== expectedModule) fail(`Go module expected ${expectedModule}, found ${goModule}`);
   }
 }
 
@@ -1450,14 +1485,14 @@ assertManagementCreateMailboxKeyBody();
 assertAdjacentSdkExamples();
 
 if (failures.length > 0) {
-  console.error("Sendmux skill drift check failed:");
+  console.error("Qubrics skill drift check failed:");
   for (const failure of failures) {
     console.error(`- ${failure}`);
   }
   process.exit(1);
 }
 
-console.log("Sendmux skill drift check passed.");
+console.log("Qubrics skill drift check passed.");
 console.log(`Skills root: ${skillsRoot}`);
 console.log(`Docs root: ${docsRoot}`);
 console.log(`SDK root: ${sdkRoot}`);

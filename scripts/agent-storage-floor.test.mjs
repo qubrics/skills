@@ -3,12 +3,12 @@ import { readFile } from "node:fs/promises";
 import test from "node:test";
 
 const skillSlugs = [
-  "sendmux-cli",
-  "sendmux-email-for-agents",
-  "sendmux-getting-started",
-  "sendmux-mailbox-agent",
-  "sendmux-send-email",
-  "sendmux-token-efficient-usage",
+  "qubrics-cli",
+  "qubrics-email-for-agents",
+  "qubrics-getting-started",
+  "qubrics-mailbox-agent",
+  "qubrics-send-email",
+  "qubrics-token-efficient-usage",
 ];
 
 test("agent skills and evals describe 5 GiB as the owner-approved storage floor", async () => {
@@ -27,7 +27,7 @@ test("agent skills and evals describe 5 GiB as the owner-approved storage floor"
   }
 
   const mailboxAgentEvals = await readFile(
-    new URL("../skills/sendmux-mailbox-agent/evals/evals.json", import.meta.url),
+    new URL("../skills/qubrics-mailbox-agent/evals/evals.json", import.meta.url),
     "utf8",
   );
   assert.match(mailboxAgentEvals, /revocation itself does not change the current storage allocation/i);

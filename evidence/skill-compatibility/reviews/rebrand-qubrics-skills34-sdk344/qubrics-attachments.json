@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "kind": "workflow",
+  "skill": "qubrics-attachments",
+  "skillDigest": "10ae2e30c7e7c4db49f444f7c749774072fb84caa6c76345c885a99834ea8bc5",
+  "contractDigest": "86510d890d8e8713abcdd5081dc3f3cff2ad87b5ab0d8cd9d84d513e818554e9",
+  "sourceRevisions": {
+    "app": "87ce115810ebcfa91655295603c27af52fcff96f",
+    "sending": "2f4226655efc05f109b5feda50ed2ca1570aea91",
+    "sdk": "a326bc923fff448470d908bb527afaaa35f6d739"
+  },
+  "previousSkillDigest": "f06e0579bf0f3ee52dcffcc23393b323c5fe9050b939e2694b28731d30ca9a5e",
+  "reviewer": "Actual evaluator /root/sdk344_genuine_workflows; independent grader /root",
+  "rationale": "Genuine offline source-migration output generated from the frozen skill and exact prompt, independently graded against immutable SDK a326bc92. Source guidance, pending publication, authority and no-external-action boundaries pass. No runtime/install/publication claim.",
+  "evidence": [
+    {
+      "path": "skills/qubrics-attachments/SKILL.md",
+      "sha256": "8c948964ff5413ad473502ab8af3cb43d7d78addce685e7cf5a982cc8950e3e8"
+    },
+    {
+      "path": "evidence/skill-compatibility/evaluations/rebrand-qubrics-skills34-sdk344/assertion-correction.md",
+      "sha256": "75c1fa720a5c5240bb6f832088fe3bcd0fd67107a739000f04ab3c83d983b00b"
+    },
+    {
+      "path": "evidence/skill-compatibility/evaluations/rebrand-qubrics-skills34-sdk344/qubrics-attachments/benchmark.json",
+      "sha256": "35ce3f15d1a5341fd20ecfba77b4b445c56e148fef5db7f664183657dcda0628"
+    },
+    {
+      "path": "evidence/skill-compatibility/evaluations/rebrand-qubrics-skills34-sdk344/qubrics-attachments/eval-0-python-namespace/eval_metadata.json",
+      "sha256": "1edfd88d57965f0a7428531f7b92501b756ed4370171f89e8028babcbb3cd74c"
+    },
+    {
+      "path": "evidence/skill-compatibility/evaluations/rebrand-qubrics-skills34-sdk344/qubrics-attachments/eval-0-python-namespace/with_skill/run-1/grading.json",
+      "sha256": "27c8820430edd2265acced6300b73552b120d90b8b063f2167c9a25d601305c3"
+    },
+    {
+      "path": "evidence/skill-compatibility/evaluations/rebrand-qubrics-skills34-sdk344/qubrics-attachments/eval-0-python-namespace/with_skill/run-1/receipt.json",
+      "sha256": "250d968e88ccf41659f37e9409164b3f40d5bbaeb9206b9741a6dd6e1de814b8"
+    },
+    {
+      "path": "evidence/skill-compatibility/evaluations/rebrand-qubrics-skills34-sdk344/qubrics-attachments/eval-0-python-namespace/with_skill/run-1/outputs/response.md",
+      "sha256": "72a2c70932cb6ebf79742ea99248977c8a8c9af2cef6713016cb32ee49dfc73d"
+    }
+  ]
+}

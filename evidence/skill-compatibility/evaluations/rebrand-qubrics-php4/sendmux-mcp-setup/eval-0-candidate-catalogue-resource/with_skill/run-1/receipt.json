@@ -1,0 +1,12 @@
+{
+  "arm": "with_skill",
+  "skill_sha256": "d8779e3c5e31d0b13a42b1f8b5ecacd7dd4f41f09cad4d9407a91d1a9fc000b4",
+  "prompt_sha256": "7427300063d97f269fbc1b243ee9d24b1767459efcc46a9f461320089f757601",
+  "native_task": "/root/php4_changed_workflows",
+  "execution": "Fresh native host task with fork_turns none; read-only skill-guided explanations for both cases in one batch.",
+  "model_usage": null,
+  "timing": null,
+  "metadata_limit": "Exact model identity, timing and token metrics were not exposed by the native host.",
+  "external_actions": false,
+  "commands_from_skill_executed": false
+}

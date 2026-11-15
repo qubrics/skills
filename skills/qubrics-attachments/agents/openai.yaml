@@ -1,0 +1,4 @@
+interface:
+  display_name: "Qubrics Attachments"
+  short_description: "Use Qubrics attachments efficiently."
+  default_prompt: "Use $qubrics-attachments to upload, download, or send Qubrics email attachments without wasting context on base64."

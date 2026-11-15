@@ -138,6 +138,7 @@ function parseArgs(argv) {
     owner: config.owner,
     rateLimitBufferSeconds: 5,
     root: path.resolve(repoRoot, config.outputRoot),
+    version: config.version,
   };
 
   for (let index = 0; index < argv.length; index += 1) {
@@ -179,7 +180,16 @@ function parseArgs(argv) {
 }
 
 function commandForSkill(skillDir, options) {
-  const args = ["skill", "publish", skillDir, "--owner", options.owner, "--json"];
+  const args = [
+    "skill",
+    "publish",
+    skillDir,
+    "--owner",
+    options.owner,
+    "--version",
+    options.version,
+    "--json",
+  ];
   if (options.dryRun) args.push("--dry-run");
   return { command: options.clawhubBin, args };
 }

@@ -1,0 +1,29 @@
+{
+  "arm": "with_skill",
+  "skill": "email-for-ai-agents",
+  "skill_sha256": "b59efbce8f30add885202f70d03100821695cd5e6c40d91dc8958119dfb33fbf",
+  "prompt_sha256": "208f4f1731a73c4308865c5dc2d5ad4ab2f4063e3bb9a6e42b534278a897a30b",
+  "prompt_sha256_definition": "SHA256 of decoded metadata.prompt encoded as UTF-8, with no added newline",
+  "response_sha256": "1e13884d54b88f51c3d360682e2b8483a2d11c6bba08b6726999fef20048e672",
+  "response_bytes": 2527,
+  "native_task": "/root/skills_settled_final_batch",
+  "execution": "one_batch",
+  "batch_cases": 11,
+  "answer_attempt": 1,
+  "agent_id": null,
+  "model": null,
+  "tokens": null,
+  "timing": null,
+  "external_actions": false,
+  "commands_from_skill_executed": false,
+  "assertions_read": false,
+  "prior_answers_grades_or_reviews_read": false,
+  "sdk_source_read": false,
+  "self_graded": false,
+  "limits": [
+    "Hidden agent ID, model identity, token usage and timing were not exposed and remain null.",
+    "Eleven guide-only explanations were produced sequentially in one shared native-task context, one answer per guide with no output refinement.",
+    "Local prompt extraction, guide reads, hashing and apply_patch evidence writes only; no credential retrieval, API/MCP/network, mailbox reads, live writes, sends, publication, tests or CI.",
+    "Explanation evidence is not live compatibility or publication certification."
+  ]
+}

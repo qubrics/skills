@@ -1,0 +1,47 @@
+{
+  "metadata": {
+    "skill_name": "sendmux-send-email",
+    "evals_run": [
+      0
+    ],
+    "runs_per_configuration": 1,
+    "executor_model": null,
+    "analyzer": "Coordinating reviewer",
+    "limit": "One completed native guide-only explanation, retained without repeat; no timing/token metrics or live qualification."
+  },
+  "runs": [
+    {
+      "eval_id": 0,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "passed": 4,
+        "failed": 0,
+        "total": 4,
+        "pass_rate": 1
+      },
+      "expectations": [
+        {
+          "text": "Uses an isolated child process and clears inherited credential, profile and base-URL overrides from both QUBRICS and SENDMUX families.",
+          "passed": true,
+          "evidence": "“Start the planned CLI execution in an isolated child after clearing QUBRICS_API_KEY, SENDMUX_API_KEY, QUBRICS_ACCESS_TOKEN, SENDMUX_ACCESS_TOKEN, QUBRICS_PROFILE, SENDMUX_PROFILE, QUBRICS_BASE_URL and SENDMUX_BASE_URL.”"
+        },
+        {
+          "text": "Uses only the intended secret-store credential or authorised selected profile; profile-based calls leave direct credentials unset.",
+          "passed": true,
+          "evidence": "“At eventual execution, load only the intended send-capable SENDMUX_MBX_KEY from the user's secret store into the child's SENDMUX_API_KEY.” “With an authorised existing profile instead, keep direct API keys and access tokens unset under both prefixes and explicitly select --profile <profile>.”"
+        },
+        {
+          "text": "Explains precedence without expanding secrets into arguments, printing credentials or modifying the parent environment.",
+          "passed": true,
+          "evidence": "“QUBRICS values override SENDMUX fallbacks, so the explicit SENDMUX_API_KEY=\"$SENDMUX_MBX_KEY\" example is insufficient while the competing parent values remain.” “Keep the raw key out of command arguments, output, tracing, chat and repository files.” The proposed process is an isolated child."
+        },
+        {
+          "text": "Prepares only; performs no real commands, credential access, reads of live data, writes or sends.",
+          "passed": true,
+          "evidence": "“Prepare only: no connection request, attachment upload or send.” “No such action occurs in this fixture.”"
+        }
+      ]
+    }
+  ]
+}

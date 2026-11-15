@@ -1,0 +1,52 @@
+{
+  "metadata": {
+    "skill_name": "sendmux-mailbox-agent",
+    "evals_run": [
+      0
+    ],
+    "runs_per_configuration": 1,
+    "executor_model": null,
+    "analyzer": "Independent reviewer",
+    "limit": "One existing native guide-only explanation, no timing/token metrics or live qualification."
+  },
+  "runs": [
+    {
+      "eval_id": 0,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "passed": 5,
+        "failed": 0,
+        "total": 5,
+        "pass_rate": 1
+      },
+      "expectations": [
+        {
+          "text": "Clears inherited credentials, profile and endpoint overrides in an isolated child before loading only the intended source; profile calls leave direct credentials unset.",
+          "passed": true,
+          "evidence": "For each CLI or SDK branch, isolate the child process and clear inherited `QUBRICS_API_KEY`, `SENDMUX_API_KEY`, `QUBRICS_ACCESS_TOKEN`, `SENDMUX_ACCESS_TOKEN`, `QUBRICS_PROFILE`, `SENDMUX_PROFILE`, `QUBRICS_BASE_URL` and `SENDMUX_BASE_URL`. Use the authorised endpoint before transmitting credentials; keep secrets out of arguments, output and chat.\n\n- **Raw key:** only after isolation, load A's intended mailbox key from the user's secret store. The guide's `SENDMUX_API_KEY` examples are not permission to leave competing inherited credentials or base URLs in place. Validate the selected connection before any count/search/content work or mutation.\n- **Existing profile:** leave all direct credentials unset and plan `sendmux mailbox:get-connection --profile work --json` with no mailbox selector. Login/refresh help belongs to `sendmux-cli`; already configured login does not waive validation. Do not extract or print the profile's credential. Hosted MCP needs its own OAuth resource.\n- **SDK:** after the same isolation and key loading, the guide uses `createMailboxClient({ apiKey: process.env.SENDMUX_API_KEY! })` from `@sendmux/mailbox`. Explicit `apiKey` does not waive endpoint isolation: clear both inherited base-URL variables before constructing it, then use the authorised endpoint. The guide's count/snippet/batch example follows connection validation, not the other way round; no unprovided SDK validation implementation is invented here."
+        },
+        {
+          "text": "Establishes the authorised endpoint before transmitting credentials, and covers SDK ambient overrides when this guide teaches SDK examples.",
+          "passed": true,
+          "evidence": "For each CLI or SDK branch, isolate the child process and clear inherited `QUBRICS_API_KEY`, `SENDMUX_API_KEY`, `QUBRICS_ACCESS_TOKEN`, `SENDMUX_ACCESS_TOKEN`, `QUBRICS_PROFILE`, `SENDMUX_PROFILE`, `QUBRICS_BASE_URL` and `SENDMUX_BASE_URL`. Use the authorised endpoint before transmitting credentials; keep secrets out of arguments, output and chat.\n\n- **Raw key:** only after isolation, load A's intended mailbox key from the user's secret store. The guide's `SENDMUX_API_KEY` examples are not permission to leave competing inherited credentials or base URLs in place. Validate the selected connection before any count/search/content work or mutation.\n- **Existing profile:** leave all direct credentials unset and plan `sendmux mailbox:get-connection --profile work --json` with no mailbox selector. Login/refresh help belongs to `sendmux-cli`; already configured login does not waive validation. Do not extract or print the profile's credential. Hosted MCP needs its own OAuth resource.\n- **SDK:** after the same isolation and key loading, the guide uses `createMailboxClient({ apiKey: process.env.SENDMUX_API_KEY! })` from `@sendmux/mailbox`. Explicit `apiKey` does not waive endpoint isolation: clear both inherited base-URL variables before constructing it, then use the authorised endpoint. The guide's count/snippet/batch example follows connection validation, not the other way round; no unprovided SDK validation implementation is invented here."
+        },
+        {
+          "text": "Verifies returned identity against intended account and credential before task work, rejecting the account-B permission grant and stopping on mismatch or unverifiable identity.",
+          "passed": true,
+          "evidence": "On every surface, verify returned account/credential identity and the authorised mailbox selection against A and `mbx_support`. Permission alone is insufficient. The supplied unisolated connection identifying B must stop for user resolution before snippet searches, batch-content reads or mutations; selecting `mbx_support` cannot repair the wrong credential."
+        },
+        {
+          "text": "Remains guide-only preparation with no commands, real credentials, live calls, mailbox content, writes, sends or publication.",
+          "passed": true,
+          "evidence": "No commands, credentials, validation calls, mailbox content, writes or sends were used here."
+        },
+        {
+          "text": "Uses mailbox authority, verifies intended mailbox on raw-key/profile/SDK branches and preserves multi-mailbox selector rules without reads or mutations.",
+          "passed": true,
+          "evidence": "Use A's authorised Mailbox credential for `mbx_support`: an `smx_mbx_` key, scoped `smx_agent_` token or REST OAuth grant with Mailbox access and the required operation permissions. Do not substitute a root key, create another mailbox/key or use the ambient key for `mbx_sales`.\n\nFor each CLI or SDK branch, isolate the child process and clear inherited `QUBRICS_API_KEY`, `SENDMUX_API_KEY`, `QUBRICS_ACCESS_TOKEN`, `SENDMUX_ACCESS_TOKEN`, `QUBRICS_PROFILE`, `SENDMUX_PROFILE`, `QUBRICS_BASE_URL` and `SENDMUX_BASE_URL`. Use the authorised endpoint before transmitting credentials; keep secrets out of arguments, output and chat.\n\n- **Raw key:** only after isolation, load A's intended mailbox key from the user's secret store. The guide's `SENDMUX_API_KEY` examples are not permission to leave competing inherited credentials or base URLs in place. Validate the selected connection before any count/search/content work or mutation.\n- **Existing profile:** leave all direct credentials unset and plan `sendmux mailbox:get-connection --profile work --json` with no mailbox selector. Login/refresh help belongs to `sendmux-cli`; already configured login does not waive validation. Do not extract or print the profile's credential. Hosted MCP needs its own OAuth resource.\n- **SDK:** after the same isolation and key loading, the guide uses `createMailboxClient({ apiKey: process.env.SENDMUX_API_KEY! })` from `@sendmux/mailbox`. Explicit `apiKey` does not waive endpoint isolation: clear both inherited base-URL variables before constructing it, then use the authorised endpoint. The guide's count/snippet/batch example follows connection validation, not the other way round; no unprovided SDK validation implementation is invented here.\n\nOn every surface, verify returned account/credential identity and the authorised mailbox selection against A and `mbx_support`. Permission alone is insufficient. The supplied unisolated connection identifying B must stop for user resolution before snippet searches, batch-content reads or mutations; selecting `mbx_support` cannot repair the wrong credential.\n\nConnection validation has no mailbox selector. If the verified credential grants several mailboxes, choose `mbx_support` only from returned `data.mailboxes[].id`, then pass `mailbox_id` on subsequent operations. CLI uses `--query mailbox_id=<returned id>`; REST and SDK keep it in the query even when an operation also has a JSON body. MCP uses its declared top-level `mailbox_id`. Omit it for a single-mailbox credential."
+        }
+      ]
+    }
+  ]
+}

@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { spawnSync } from "node:child_process";
 import { readFileSync } from "node:fs";
 import test from "node:test";
 
@@ -7,6 +8,32 @@ import {
   parseRateLimitResetSeconds,
   planRateLimitRetry,
 } from "./publish-openclaw-bundle.mjs";
+
+for (const dryRun of [false, true]) {
+  test(`publisher forwards the configured version${dryRun ? " in dry-run mode" : ""}`, () => {
+    const { version } = JSON.parse(readFileSync("openclaw.skills.json", "utf8"));
+    const result = spawnSync(
+      process.execPath,
+      [
+        "scripts/publish-openclaw-bundle.mjs",
+        "--root",
+        "skills",
+        "--clawhub-bin",
+        "echo",
+        ...(dryRun ? ["--dry-run"] : []),
+      ],
+      { encoding: "utf8" },
+    );
+
+    assert.equal(result.status, 0, result.stderr);
+    const commands = result.stdout.split("\n").filter((line) => line.startsWith("skill publish "));
+    assert.ok(commands.length > 0);
+    for (const command of commands) {
+      assert.ok(command.includes(` --version ${version} `), command);
+      assert.equal(command.endsWith(" --dry-run"), dryRun);
+    }
+  });
+}
 
 test("detects ClawHub new-skill rate-limit failures", () => {
   const stderr = [

@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "kind": "workflow",
+  "skill": "qubrics-mcp-setup",
+  "skillDigest": "4ea84f54ef9294fd2e8083aecac923f29a875e26d000b4513e4a2a49e5dbe927",
+  "contractDigest": "5ae63c87c399784bebc44fc3891222f9dc9e42ea3a17b96e698a9f4ef169fde7",
+  "sourceRevisions": {
+    "app": "06a1d50eeb483e8a4c6aeb8da64832c5d3dc5a7e",
+    "sending": "2f4226655efc05f109b5feda50ed2ca1570aea91",
+    "sdk": "7fe071f96bc23e52e8c0bb56d673d8c6a24aea7c"
+  },
+  "previousSkillDigest": "cabb71c6b068c8223d53e0ea5e0a39c788e1bff606b5fdfb48b141e6c530c224",
+  "reviewer": "Actual evaluator /root/sdk344_genuine_workflows; independent grader /root; SDK delta source reviewer /root/mailbox_compat_source_review; coordinating reviewer /root",
+  "rationale": "Retains the original genuine offline evaluation and its previous-skill binding. Independent source review revalidated every assertion against SDK 7fe071f9 and the origin tuple. The CLI deadline delta and Python executable/configuration behaviours invalidate no assertion. This is no new workflow run or runtime/install/publication proof.",
+  "evidence": [
+    {
+      "path": "skills/qubrics-mcp-setup/SKILL.md",
+      "sha256": "110d439b90f9174b6d616c02cda5188d2f0a568c1eb2a8081c140b8fd741625d"
+    },
+    {
+      "path": "evidence/skill-compatibility/evaluations/rebrand-qubrics-skills34-sdk344/qubrics-mcp-setup/benchmark.json",
+      "sha256": "ec945f68686deec43220caf1190b905fbb80ec75dcc4facc6b0b569a2575f2a4"
+    },
+    {
+      "path": "evidence/skill-compatibility/evaluations/rebrand-qubrics-skills34-sdk344/qubrics-mcp-setup/eval-0-renamed-commands/eval_metadata.json",
+      "sha256": "a686231bfd45ebde7c12fdcc64350a83fd4e9af1d66774b0f4145d542ab1a9d7"
+    },
+    {
+      "path": "evidence/skill-compatibility/evaluations/rebrand-qubrics-skills34-sdk344/qubrics-mcp-setup/eval-0-renamed-commands/with_skill/run-1/grading.json",
+      "sha256": "9d179d50d5640541a73bcf97c55b1e4e1cf2b497041267ce00be75a0905faec2"
+    },
+    {
+      "path": "evidence/skill-compatibility/evaluations/rebrand-qubrics-skills34-sdk344/qubrics-mcp-setup/eval-0-renamed-commands/with_skill/run-1/receipt.json",
+      "sha256": "68c3090bd1aa7e134d5485f32c5eb379449066de6ffe994989d6d37fa45b25e2"
+    },
+    {
+      "path": "evidence/skill-compatibility/evaluations/rebrand-qubrics-skills34-sdk344/qubrics-mcp-setup/eval-0-renamed-commands/with_skill/run-1/outputs/response.md",
+      "sha256": "87b2aed662d9103b6efd992755af9b2acb96cc6e3e26ed32a4bbdbb27376cec2"
+    },
+    {
+      "path": "evidence/skill-compatibility/reviews/mailbox-sdk344-20261112/source-review.md",
+      "sha256": "49bed5e4b6febf3d60f3eb6e18a83b749b2416395bd406f88a095ce6a3d9da8d"
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "kind": "released CLI public-command behaviour",
+  "package": "@sendmux/cli",
+  "version": "1.7.2",
+  "artifact": "https://registry.npmjs.org/@sendmux/cli/-/cli-1.7.2.tgz",
+  "artifactSha256": "8081332265be59b562aaf92c3653cf5d6d058189e3f17fde9ce03d04bc9ffe19",
+  "command": [
+    "profiles:set",
+    "release-proof",
+    "--json"
+  ],
+  "fixture": "Synthetic smx_root_ credential; inherited credential/profile/endpoint overrides cleared; separate task-local SENDMUX_CONFIG_DIR for each case",
+  "red": {
+    "variable": "QUBRICS_API_KEY",
+    "processExit": 1,
+    "jsonOclifExit": 2,
+    "message": "Pass --api-key or set SENDMUX_API_KEY."
+  },
+  "green": {
+    "variable": "SENDMUX_API_KEY",
+    "processExit": 0,
+    "result": {
+      "ok": true,
+      "data": {
+        "default": true,
+        "key_kind": "root",
+        "name": "release-proof"
+      },
+      "meta": {}
+    }
+  },
+  "cause": "Published dist/commands/profiles/set.js:27 reads only SENDMUX_API_KEY after --api-key. Candidate73bed supports the same fallback. Oclif4.11.4 lib/command.js:201-205 sets process.exitCode to err.exitCode or1 before serialising JSON, explaining shell1 with error.oclif.exit2.",
+  "configIsolation": "Oclif4.11.4 lib/config/config.js:333 and568-588 derive SENDMUX_CONFIG_DIR from the sendmux binary name; normal HOME was not changed.",
+  "externalProductActions": false,
+  "realCredentials": false,
+  "mailboxReads": false,
+  "sends": false,
+  "publication": false,
+  "limits": "Actual local published command, one red and one green invocation. No permanent network-dependent test harness added. Registry fetch and local synthetic profile writes only. Candidate fallback additionally verified from pinned source; no candidate runtime command executed."
+}

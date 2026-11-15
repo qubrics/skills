@@ -13,6 +13,9 @@ on:
       - ".mcp.json"
       - "README.md"
       - "plugins/sendmux/**"
+      - "plugins/qubrics/**"
+      - "scripts/build-openclaw-bundle.mjs"
+      - "scripts/check-openclaw-bundle.mjs"
       - "scripts/build-plugin-bundles.mjs"
       - "scripts/check-plugin-bundles.mjs"
       - "scripts/build-plugin-bundles.test.mjs"
@@ -39,6 +42,9 @@ on:
       - ".mcp.json"
       - "README.md"
       - "plugins/sendmux/**"
+      - "plugins/qubrics/**"
+      - "scripts/build-openclaw-bundle.mjs"
+      - "scripts/check-openclaw-bundle.mjs"
       - "scripts/build-plugin-bundles.mjs"
       - "scripts/check-plugin-bundles.mjs"
       - "scripts/build-plugin-bundles.test.mjs"
@@ -67,6 +73,8 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
+        with:
+          persist-credentials: false
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
@@ -85,3 +93,8 @@ jobs:
 
       - name: Check generated plugin bundles
         run: node scripts/check-plugin-bundles.mjs
+
+      - name: Check generated ClawHub bundle
+        run: |
+          node scripts/build-openclaw-bundle.mjs
+          node scripts/check-openclaw-bundle.mjs

@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "kind": "compatibility",
+  "skill": "qubrics-mailbox-agent",
+  "skillDigest": "b942b756114eff2eb3e7ccfcc0ed1e6a80dd0f32de8601dc8ded6a069fb686b7",
+  "contractDigest": "a9a5125cad51f81336b3289c583a2859ffc2e43a168f198b91704ee8b69cead6",
+  "sourceRevisions": {
+    "app": "06a1d50eeb483e8a4c6aeb8da64832c5d3dc5a7e",
+    "sending": "2f4226655efc05f109b5feda50ed2ca1570aea91",
+    "sdk": "a326bc923fff448470d908bb527afaaa35f6d739"
+  },
+  "reviewer": "Independent AI source reviewer /root/pr48_compat_review_default; coordinating reviewer /root",
+  "rationale": "Independent delta review confirms the merged hosted MCP registry now exposes mailboxDeleteCalendar with calendar.write and preserves the reviewed empty-only, exact-ETag delete contract.",
+  "evidence": [
+    { "path": "skills/qubrics-mailbox-agent/SKILL.md", "sha256": "b2518d07b9512194b127c9f083b8452d9a1f9ad440af05f456d1b89447aa8fc2" },
+    { "path": "evidence/skill-compatibility/reviews/calendar-api-20261111/source-review.md", "sha256": "e25e270546575192df5aad8eb4464cc89e950702309d7a4643dbfdd3170cb4c1" }
+  ]
+}

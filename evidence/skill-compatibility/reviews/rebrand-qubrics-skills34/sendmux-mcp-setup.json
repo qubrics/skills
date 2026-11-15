@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "kind": "compatibility",
+  "skill": "sendmux-mcp-setup",
+  "skillDigest": "cabb71c6b068c8223d53e0ea5e0a39c788e1bff606b5fdfb48b141e6c530c224",
+  "contractDigest": "fb111c51163d41772dff1a6d370421a4b3aca91d489521dfbe1b5dcf53da4cd5",
+  "sourceRevisions": {
+    "app": "87ce115810ebcfa91655295603c27af52fcff96f",
+    "sending": "2f4226655efc05f109b5feda50ed2ca1570aea91",
+    "sdk": "3eb0997b379d94b99659112d3c263ae59db7b14c"
+  },
+  "reviewer": "Independent AI source reviewer /root/compatibility_review; coordinating reviewer /root",
+  "rationale": "Both environment namespaces, both hosted resources, local bearer protection and the explicitly qualified candidate catalogue are retained. Current installation examples continue to target released packages; they do not install candidate @qubrics bytes. The independent whole-body and selected-source review is bound below. Source compatibility only: no new runtime evaluation, live origin equivalence, publication or client certification is claimed.",
+  "evidence": [
+    {
+      "path": "skills/sendmux-mcp-setup/SKILL.md",
+      "sha256": "4d749ee80029bfd22ea4d76949bf28aaede1ffd30340a00ca4acba814b12d0c1"
+    },
+    {
+      "path": "evidence/skill-compatibility/reviews/rebrand-qubrics-skills34/source-review.md",
+      "sha256": "3189f361a839ca378ef33c6a5bfc2f711dfc731eeac8e5f3fd89fa57a2066364"
+    },
+    {
+      "path": "evidence/skill-compatibility/reviews/rebrand-qubrics-php4/sendmux-mcp-setup.json",
+      "sha256": "d0bc85f25c72d91ad42132f7bf724cf033c1e16504eecba648409d50a6acbd2e"
+    }
+  ]
+}
+

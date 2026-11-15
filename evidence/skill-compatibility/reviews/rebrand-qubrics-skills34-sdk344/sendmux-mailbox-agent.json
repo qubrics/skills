@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "kind": "compatibility",
+  "skill": "sendmux-mailbox-agent",
+  "skillDigest": "a3e2ba98b2f049335b02ebb3f3ea25b44e4c1c93878160273250222bb693a08a",
+  "contractDigest": "436834eaa65914da52d15e91ef22f4c4a26370134dc6af2e53e9f36566d76169",
+  "sourceRevisions": {
+    "app": "87ce115810ebcfa91655295603c27af52fcff96f",
+    "sending": "2f4226655efc05f109b5feda50ed2ca1570aea91",
+    "sdk": "a326bc923fff448470d908bb527afaaa35f6d739"
+  },
+  "reviewer": "Independent source reviewer /root/phase2_contract_review; coordinating reviewer /root",
+  "rationale": "Mailbox TypeScript operations, selected connection identity, draft revision/send gates and extraction outcomes retain their schemas and permissions. Whole-body review found no removed Python import or executable taught directly; setup/helper handoffs use the tested A13 replacements. TS is unchanged, MCP tools/snapshots equal; package/setup changes explicitly assessed in the bound sixteen-row review. No live parity/publication claim.",
+  "evidence": [
+    {
+      "path": "skills/sendmux-mailbox-agent/SKILL.md",
+      "sha256": "368ef6d17bfe8a6c2e6947795f91ff472f6119a903750540af18b47688378923"
+    },
+    {
+      "path": "evidence/skill-compatibility/reviews/rebrand-qubrics-skills34-sdk344/source-review.md",
+      "sha256": "104d51a596dc7130decf8e8dac1f2fc49909933b9878c4d4e05bf2c82ea266be"
+    }
+  ]
+}

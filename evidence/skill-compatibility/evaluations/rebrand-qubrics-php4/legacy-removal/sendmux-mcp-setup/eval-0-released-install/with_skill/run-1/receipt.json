@@ -1,0 +1,21 @@
+{
+  "arm": "with_skill",
+  "skill": "sendmux-mcp-setup",
+  "skill_sha256": "ed0e7e9cb20a1d4aa6a8e232baec5373fa78a1f89935ded70e8525e68b59ef70",
+  "prompt_sha256": "a47b6e2afe5ed65c4e5947de10ab30f0d0c040da2baa43834980bfb7a867181d",
+  "response_sha256": "c35092f3fdb26b1a21f4066a0326f1beafa637894413c415241423cfd09fde6e",
+  "response_bytes": 10072,
+  "native_task": "/root/mcp_legacy_removal_explanation",
+  "execution": "one_explanation",
+  "answer_attempt": 1,
+  "model": null,
+  "timing": null,
+  "tokens": null,
+  "agent_id": null,
+  "external_actions": false,
+  "commands_from_skill_executed": false,
+  "assertions_read": false,
+  "prior_answers_grades_or_reviews_read": false,
+  "sdk_source_read": false,
+  "self_graded": false
+}

@@ -1,5 +1,10 @@
 {
   "schemaVersion": 1,
+  "renames": {
+    "sendmux-attachments": "qubrics-attachments",
+    "sendmux-getting-started": "qubrics-getting-started",
+    "sendmux-mcp-setup": "qubrics-mcp-setup"
+  },
   "dependencies": {
     "agent-email-inbox": {
       "app": [
@@ -267,7 +272,7 @@
           "sendEmailWithFiles",
           "uploadAttachmentFromFile"
         ],
-        "packages/python/mailbox/sendmux_mailbox/attachments.py": [
+        "packages/python/mailbox/qubrics/mailbox/attachments.py": [
           "_read_attachment_file",
           "_send_mailbox_message_body",
           "download_mailbox_attachment",
@@ -275,7 +280,7 @@
           "send_mailbox_message_with_files",
           "upload_mailbox_attachment_from_file"
         ],
-        "packages/python/sending/sendmux_sending/attachments.py": [
+        "packages/python/sending/qubrics/sending/attachments.py": [
           "_MAX_SENDING_ATTACHMENTS",
           "_MAX_SENDING_ATTACHMENT_BYTES",
           "_email_send_request",
@@ -283,15 +288,15 @@
           "send_email_with_files",
           "upload_attachment_from_file"
         ],
-        "packages/python/mailbox/sendmux_mailbox/client.py": [
+        "packages/python/mailbox/qubrics/mailbox/client.py": [
           "DEFAULT_BASE_URL",
           "create_mailbox_client"
         ],
-        "packages/python/sending/sendmux_sending/client.py": [
+        "packages/python/sending/qubrics/sending/client.py": [
           "DEFAULT_BASE_URL",
           "create_sending_client"
         ],
-        "packages/python/core/sendmux_core/auth.py": [
+        "packages/python/core/qubrics/core/auth.py": [
           "configure_auth",
           "validate_api_key",
           "validate_auth"
@@ -849,9 +854,1823 @@
       },
       "pythonScripts": {
         "packages/python/mcp/pyproject.toml": [
-          "sendmux-mcp"
+          "qubrics-mcp"
         ]
       }
+    },
+    "qubrics-agent-email-inbox": {
+      "app": [
+        "mailboxBatchGetMessages",
+        "mailboxCountMessages",
+        "mailboxGetConnection",
+        "mailboxGetIdentity",
+        "mailboxListGrantedMailboxes",
+        "mailboxListMessages",
+        "mailboxSearchMessageSnippets"
+      ],
+      "mcp": [
+        "mailbox_batch_get_messages",
+        "mailbox_count_messages",
+        "mailbox_get_connection",
+        "mailbox_get_identity",
+        "mailbox_list_granted_mailboxes",
+        "mailbox_list_messages",
+        "mailbox_search_message_snippets"
+      ],
+      "cli": [
+        "mailbox:batch-get-messages",
+        "mailbox:get-connection",
+        "mailbox:messages:list",
+        "mailbox:search-message-snippets"
+      ],
+      "mcpSetup": true,
+      "public": {
+        "packages/ts/cli/src/base-command.ts": [
+          "SendmuxCommand"
+        ],
+        "packages/ts/cli/src/key-kind.ts": [
+          "inferApiKeyKind",
+          "isApiKeyCompatibleWithKind"
+        ],
+        "packages/ts/cli/src/profiles.ts": [
+          "isActiveAgentProfile",
+          "isAgentProfile",
+          "isOAuthProfile",
+          "readCliConfig"
+        ],
+        "packages/ts/cli/src/operation-flags.ts": [
+          "addHeaderFlag",
+          "operationFlags",
+          "parseBody",
+          "parseOperationOptions",
+          "parseParameterPairs",
+          "parseParameterValue"
+        ],
+        "packages/ts/cli/src/operation-runner.ts": [
+          "rawResponseData",
+          "runSdkOperation"
+        ],
+        "packages/ts/cli/src/oauth-profile.ts": [
+          "refreshReservedProfile",
+          "resolveOAuthToken"
+        ],
+        "packages/ts/cli/src/oauth-http.ts": [
+          "OAUTH_RESOURCE",
+          "oauthTokenFields"
+        ],
+        "packages/ts/mailbox/src/generated/sdk.gen.ts": [
+          "mailboxBatchGetMessages",
+          "mailboxGetConnection",
+          "mailboxListMessages",
+          "mailboxSearchMessageSnippets"
+        ],
+        "packages/ts/core/src/generated-client.ts": [
+          "configureGeneratedClient"
+        ],
+        "packages/ts/core/src/auth.ts": [
+          "assertApiKeyKind",
+          "authToken"
+        ]
+      },
+      "packageJson": {
+        "packages/ts/cli/package.json": [
+          "/name",
+          "/bin/sendmux",
+          "/bin/qubrics"
+        ]
+      }
+    },
+    "qubrics-email-for-ai-agents": {
+      "sending": [
+        "sendingCompleteAttachmentUpload",
+        "sendingCreateAttachmentUpload",
+        "sendingGetConnection",
+        "sendingSendEmail",
+        "sendingUploadAttachment"
+      ],
+      "mcp": [
+        "sending_create_attachment_upload",
+        "sending_get_connection",
+        "sending_send_email"
+      ],
+      "cli": [
+        "sending:get-connection",
+        "sending:send"
+      ],
+      "public": {
+        "packages/ts/cli/src/base-command.ts": [
+          "SendmuxCommand"
+        ],
+        "packages/ts/cli/src/key-kind.ts": [
+          "inferApiKeyKind",
+          "isApiKeyCompatibleWithKind"
+        ],
+        "packages/ts/cli/src/profiles.ts": [
+          "isActiveAgentProfile",
+          "isAgentProfile",
+          "isOAuthProfile",
+          "readCliConfig"
+        ],
+        "packages/ts/cli/src/operation-flags.ts": [
+          "addHeaderFlag",
+          "fileSuppliedQueryParams",
+          "fileSuppliesBody",
+          "operationFlags",
+          "parseBody",
+          "parseOperationOptions",
+          "parseParameterPairs",
+          "parseParameterValue"
+        ],
+        "packages/ts/cli/src/operation-runner.ts": [
+          "MAX_SENDING_ATTACHMENTS",
+          "MAX_SENDING_ATTACHMENT_BYTES",
+          "inferContentType",
+          "rawResponseData",
+          "readAttachmentFile",
+          "runSdkOperation",
+          "validateAttachmentConvenienceFlags",
+          "withAttachedFiles"
+        ],
+        "packages/ts/cli/src/oauth-profile.ts": [
+          "refreshReservedProfile",
+          "resolveOAuthToken"
+        ],
+        "packages/ts/cli/src/oauth-http.ts": [
+          "OAUTH_RESOURCE",
+          "oauthTokenFields"
+        ],
+        "packages/ts/cli/src/agent-auth.ts": [
+          "ACCESS_TOKEN_TYPE",
+          "SENDING_API_RESOURCE",
+          "SENDING_TOKEN_SKEW_MS",
+          "TOKEN_EXCHANGE_GRANT_TYPE",
+          "resolveAgentSendingToken"
+        ],
+        "packages/ts/sending/src/generated/sdk.gen.ts": [
+          "sendingGetConnection",
+          "sendingSendEmail"
+        ],
+        "packages/ts/core/src/generated-client.ts": [
+          "configureGeneratedClient"
+        ],
+        "packages/ts/core/src/auth.ts": [
+          "assertApiKeyKind",
+          "authToken"
+        ]
+      },
+      "mcpSetup": true,
+      "appPolicy": [
+        "delegated-sending"
+      ],
+      "sendingPolicy": [
+        "delegated-sending"
+      ],
+      "packageJson": {
+        "packages/ts/cli/package.json": [
+          "/name",
+          "/bin/sendmux",
+          "/bin/qubrics"
+        ]
+      }
+    },
+    "qubrics-attachments": {
+      "app": [
+        "mailboxCreateAttachmentUpload",
+        "mailboxGetMessage",
+        "mailboxGetMessageAttachment",
+        "mailboxSendMessage",
+        "mailboxUploadAttachment"
+      ],
+      "sending": [
+        "sendingCompleteAttachmentUpload",
+        "sendingCreateAttachmentUpload",
+        "sendingGetAttachment",
+        "sendingSendEmail",
+        "sendingSendEmailBatch",
+        "sendingUploadAttachment"
+      ],
+      "mcp": [
+        "mailbox_get_attachment",
+        "mailbox_read_attachment",
+        "mailbox_send_message",
+        "mailbox_upload_attachment",
+        "sending_create_attachment_upload",
+        "sending_get_attachment",
+        "sending_send_email",
+        "sending_send_email_batch",
+        "sending_upload_attachment"
+      ],
+      "cli": [
+        "mailbox:create-attachment-upload",
+        "mailbox:send-message",
+        "mailbox:upload-attachment",
+        "sending:send",
+        "sending:upload-attachment"
+      ],
+      "public": {
+        "packages/ts/mailbox/src/index.ts": [
+          "DEFAULT_BASE_URL",
+          "createMailboxClient"
+        ],
+        "packages/ts/sending/src/index.ts": [
+          "DEFAULT_BASE_URL",
+          "createSendingClient"
+        ],
+        "packages/ts/cli/src/base-command.ts": [
+          "SendmuxCommand"
+        ],
+        "packages/ts/cli/src/key-kind.ts": [
+          "inferApiKeyKind",
+          "isApiKeyCompatibleWithKind"
+        ],
+        "packages/ts/cli/src/profiles.ts": [
+          "isActiveAgentProfile",
+          "isAgentProfile",
+          "isOAuthProfile",
+          "readCliConfig"
+        ],
+        "packages/ts/cli/src/operation-flags.ts": [
+          "addHeaderFlag",
+          "fileSuppliedQueryParams",
+          "fileSuppliesBody",
+          "operationFlags",
+          "parseBody",
+          "parseOperationOptions",
+          "parseParameterPairs",
+          "parseParameterValue"
+        ],
+        "packages/ts/cli/src/operation-runner.ts": [
+          "MAX_SENDING_ATTACHMENTS",
+          "MAX_SENDING_ATTACHMENT_BYTES",
+          "createMailboxAttachmentUploadFromFile",
+          "inferContentType",
+          "rawResponseData",
+          "readAttachmentFile",
+          "runSdkOperation",
+          "uploadMailboxAttachmentFromFile",
+          "validateAttachmentConvenienceFlags",
+          "withAttachedFiles"
+        ],
+        "packages/ts/mailbox/src/node.ts": [
+          "downloadMailboxAttachmentToBuffer",
+          "mailboxUploadQuery",
+          "readAttachmentFile",
+          "readMailboxTextAttachment",
+          "sendMailboxMessageWithFiles",
+          "uploadMailboxAttachmentFromFile"
+        ],
+        "packages/ts/sending/src/node.ts": [
+          "MAX_SENDING_ATTACHMENTS",
+          "MAX_SENDING_ATTACHMENT_BYTES",
+          "readAttachmentFile",
+          "sendEmailWithFiles",
+          "uploadAttachmentFromFile"
+        ],
+        "packages/python/mailbox/qubrics/mailbox/attachments.py": [
+          "_read_attachment_file",
+          "_send_mailbox_message_body",
+          "download_mailbox_attachment",
+          "read_mailbox_text_attachment",
+          "send_mailbox_message_with_files",
+          "upload_mailbox_attachment_from_file"
+        ],
+        "packages/python/sending/qubrics/sending/attachments.py": [
+          "_MAX_SENDING_ATTACHMENTS",
+          "_MAX_SENDING_ATTACHMENT_BYTES",
+          "_email_send_request",
+          "_read_attachment_file",
+          "send_email_with_files",
+          "upload_attachment_from_file"
+        ],
+        "packages/python/mailbox/qubrics/mailbox/client.py": [
+          "DEFAULT_BASE_URL",
+          "create_mailbox_client"
+        ],
+        "packages/python/sending/qubrics/sending/client.py": [
+          "DEFAULT_BASE_URL",
+          "create_sending_client"
+        ],
+        "packages/python/core/qubrics/core/auth.py": [
+          "configure_auth",
+          "validate_api_key",
+          "validate_auth"
+        ],
+        "packages/ts/mailbox/src/generated/sdk.gen.ts": [
+          "mailboxCreateAttachmentUpload",
+          "mailboxSendMessage",
+          "mailboxUploadAttachment"
+        ],
+        "packages/ts/sending/src/generated/sdk.gen.ts": [
+          "sendingSendEmail",
+          "sendingUploadAttachment"
+        ],
+        "packages/ts/core/src/generated-client.ts": [
+          "configureGeneratedClient"
+        ],
+        "packages/ts/core/src/auth.ts": [
+          "assertApiKeyKind",
+          "authToken"
+        ]
+      },
+      "mcpSetup": true,
+      "packageJson": {
+        "packages/ts/mailbox/package.json": [
+          "/name",
+          "/exports/.",
+          "/exports/.~1node"
+        ],
+        "packages/ts/sending/package.json": [
+          "/name",
+          "/exports/.",
+          "/exports/.~1node"
+        ],
+        "packages/ts/sdk/package.json": [
+          "/name",
+          "/exports/.~1node"
+        ],
+        "packages/ts/cli/package.json": [
+          "/name",
+          "/bin/sendmux",
+          "/bin/qubrics"
+        ]
+      }
+    },
+    "qubrics-cli": {
+      "app": [
+        "mailboxBatchGetMessages",
+        "mailboxCreateAttachmentUpload",
+        "mailboxGetConnection",
+        "mailboxGetMe",
+        "mailboxListGrantedMailboxes",
+        "mailboxListMessages",
+        "mailboxQueryMessageChanges",
+        "mailboxSearchMessageSnippets",
+        "mailboxSendMessage",
+        "mailboxUploadAttachment",
+        "managementCreateDomain",
+        "managementCreateMailbox",
+        "managementCreateWebhook",
+        "managementGetConnection",
+        "managementGetDomainZoneFile",
+        "managementGetEmailLog",
+        "managementGetSpendSummary",
+        "managementListDomains"
+      ],
+      "sending": [
+        "sendingCompleteAttachmentUpload",
+        "sendingCreateAttachmentUpload",
+        "sendingGetAttachment",
+        "sendingGetConnection",
+        "sendingGetOpenApiSpec",
+        "sendingSendEmail",
+        "sendingSendEmailBatch",
+        "sendingUploadAttachment"
+      ],
+      "cli": [
+        "agent:invite-owner",
+        "agent:register",
+        "auth:login",
+        "auth:logout",
+        "mailbox:batch-get-messages",
+        "mailbox:get-connection",
+        "mailbox:list-granted-mailboxes",
+        "mailbox:messages:list",
+        "mailbox:query-message-changes",
+        "mailbox:search-message-snippets",
+        "mailbox:send-message",
+        "mailbox:upload-attachment",
+        "management:create-domain",
+        "management:create-mailbox",
+        "management:create-webhook",
+        "management:domains:list",
+        "management:get-connection",
+        "management:get-domain-zone-file",
+        "management:get-email-log",
+        "management:get-spend-summary",
+        "profiles:list",
+        "profiles:set",
+        "profiles:show",
+        "sending:complete-attachment-upload",
+        "sending:create-attachment-upload",
+        "sending:get-attachment",
+        "sending:get-connection",
+        "sending:get-open-api-spec",
+        "sending:send",
+        "sending:send:batch",
+        "sending:upload-attachment"
+      ],
+      "public": {
+        "packages/ts/cli/src/base-command.ts": [
+          "SendmuxCommand"
+        ],
+        "packages/ts/cli/src/key-kind.ts": [
+          "inferApiKeyKind",
+          "isApiKeyCompatibleWithKind",
+          "maskApiKey"
+        ],
+        "packages/ts/cli/src/profiles.ts": [
+          "CONFIG_FILE",
+          "configPath",
+          "isActiveAgentProfile",
+          "isAgentProfile",
+          "isOAuthProfile",
+          "readCliConfig",
+          "reserveAgentRegistrationIntent",
+          "updateCliConfig",
+          "writeCliConfigFile"
+        ],
+        "packages/ts/cli/src/operation-flags.ts": [
+          "addHeaderFlag",
+          "fileSuppliedQueryParams",
+          "fileSuppliesBody",
+          "operationFlags",
+          "parseBody",
+          "parseOperationOptions",
+          "parseParameterPairs",
+          "parseParameterValue"
+        ],
+        "packages/ts/cli/src/operation-runner.ts": [
+          "MAX_SENDING_ATTACHMENTS",
+          "MAX_SENDING_ATTACHMENT_BYTES",
+          "createMailboxAttachmentUploadFromFile",
+          "inferContentType",
+          "rawResponseData",
+          "readAttachmentFile",
+          "runSdkOperation",
+          "uploadMailboxAttachmentFromFile",
+          "validateAttachmentConvenienceFlags",
+          "withAttachedFiles"
+        ],
+        "packages/ts/cli/src/oauth-profile.ts": [
+          "logoutOAuth",
+          "refreshReservedProfile",
+          "resolveOAuthToken"
+        ],
+        "packages/ts/cli/src/oauth-http.ts": [
+          "DEFAULT_OAUTH_ISSUER",
+          "OAUTH_RESOURCE",
+          "discoverOAuth",
+          "oauthTokenFields"
+        ],
+        "packages/ts/cli/src/agent-auth.ts": [
+          "ACCESS_TOKEN_TYPE",
+          "READINESS_TIMEOUT_MS",
+          "SENDING_API_RESOURCE",
+          "SENDING_TOKEN_SKEW_MS",
+          "TOKEN_EXCHANGE_GRANT_TYPE",
+          "inviteAgentOwner",
+          "registerAgent",
+          "registrationIntent",
+          "resolveAgentSendingToken",
+          "waitForMailbox"
+        ],
+        "packages/ts/cli/src/commands/agent/register.ts": [
+          "AgentRegister"
+        ],
+        "packages/ts/cli/src/commands/agent/invite-owner.ts": [
+          "AgentInviteOwner"
+        ],
+        "packages/ts/cli/src/commands/profiles/set.ts": [
+          "ProfilesSet"
+        ],
+        "packages/ts/cli/src/commands/profiles/list.ts": [
+          "ProfilesList"
+        ],
+        "packages/ts/cli/src/commands/profiles/show.ts": [
+          "ProfilesShow"
+        ],
+        "packages/ts/cli/src/commands/auth/login.ts": [
+          "AuthLogin"
+        ],
+        "packages/ts/cli/src/commands/auth/logout.ts": [
+          "AuthLogout"
+        ],
+        "packages/ts/cli/src/oauth-login.ts": [
+          "loginOAuth",
+          "loopbackCallback",
+          "openBrowser"
+        ],
+        "packages/ts/mailbox/src/generated/sdk.gen.ts": [
+          "mailboxBatchGetMessages",
+          "mailboxGetConnection",
+          "mailboxListGrantedMailboxes",
+          "mailboxListMessages",
+          "mailboxQueryMessageChanges",
+          "mailboxSearchMessageSnippets",
+          "mailboxSendMessage",
+          "mailboxUploadAttachment"
+        ],
+        "packages/ts/management/src/generated/sdk.gen.ts": [
+          "managementCreateDomain",
+          "managementCreateMailbox",
+          "managementCreateWebhook",
+          "managementGetConnection",
+          "managementGetDomainZoneFile",
+          "managementGetEmailLog",
+          "managementGetSpendSummary",
+          "managementListDomains"
+        ],
+        "packages/ts/sending/src/generated/sdk.gen.ts": [
+          "sendingCompleteAttachmentUpload",
+          "sendingCreateAttachmentUpload",
+          "sendingGetAttachment",
+          "sendingGetConnection",
+          "sendingGetOpenApiSpec",
+          "sendingSendEmail",
+          "sendingSendEmailBatch",
+          "sendingUploadAttachment"
+        ],
+        "packages/ts/core/src/generated-client.ts": [
+          "configureGeneratedClient"
+        ],
+        "packages/ts/core/src/auth.ts": [
+          "assertApiKeyKind",
+          "authToken"
+        ]
+      },
+      "cliCatalog": true,
+      "appPolicy": [
+        "agent-registration",
+        "durable-mailbox-read",
+        "mailbox-storage",
+        "delegated-sending"
+      ],
+      "sendingPolicy": [
+        "delegated-sending"
+      ],
+      "packageJson": {
+        "packages/ts/cli/package.json": [
+          "/name",
+          "/bin/sendmux",
+          "/bin/qubrics"
+        ]
+      }
+    },
+    "qubrics-email-for-agents": {
+      "app": [
+        "mailboxBatchGetMessages",
+        "mailboxBatchUpdateMessages",
+        "mailboxControlDraftSchedule",
+        "mailboxCountMessages",
+        "mailboxCreateAttachmentUpload",
+        "mailboxCreateDraft",
+        "mailboxGetAttachmentText",
+        "mailboxGetChanges",
+        "mailboxGetConnection",
+        "mailboxGetDraft",
+        "mailboxGetMe",
+        "mailboxRequestAttachmentText",
+        "mailboxSearchMessageSnippets",
+        "mailboxSendDraft",
+        "mailboxSendMessage",
+        "mailboxUpdateDraft",
+        "mailboxUploadAttachment",
+        "managementGetConnection"
+      ],
+      "sending": [
+        "sendingCreateAttachmentUpload",
+        "sendingGetConnection",
+        "sendingSendEmail",
+        "sendingSendEmailBatch",
+        "sendingUploadAttachment"
+      ],
+      "mcp": [
+        "mailbox_batch_get_messages",
+        "mailbox_batch_update_messages",
+        "mailbox_count_messages",
+        "mailbox_get_changes",
+        "mailbox_get_connection",
+        "mailbox_search_message_snippets",
+        "mailbox_send_message",
+        "mailbox_upload_attachment",
+        "management_get_connection",
+        "sending_create_attachment_upload",
+        "sending_get_connection",
+        "sending_send_email",
+        "sending_send_email_batch"
+      ],
+      "cli": [
+        "agent:invite-owner",
+        "agent:register",
+        "mailbox:get-connection",
+        "management:get-connection",
+        "sending:get-connection",
+        "sending:send",
+        "sending:send:batch"
+      ],
+      "public": {
+        "packages/ts/cli/src/base-command.ts": [
+          "SendmuxCommand"
+        ],
+        "packages/ts/cli/src/key-kind.ts": [
+          "inferApiKeyKind",
+          "isApiKeyCompatibleWithKind"
+        ],
+        "packages/ts/cli/src/profiles.ts": [
+          "CONFIG_FILE",
+          "configPath",
+          "isActiveAgentProfile",
+          "isAgentProfile",
+          "isOAuthProfile",
+          "readCliConfig",
+          "reserveAgentRegistrationIntent",
+          "updateCliConfig",
+          "writeCliConfigFile"
+        ],
+        "packages/ts/cli/src/operation-flags.ts": [
+          "addHeaderFlag",
+          "fileSuppliedQueryParams",
+          "fileSuppliesBody",
+          "operationFlags",
+          "parseBody",
+          "parseOperationOptions",
+          "parseParameterPairs",
+          "parseParameterValue"
+        ],
+        "packages/ts/cli/src/operation-runner.ts": [
+          "MAX_SENDING_ATTACHMENTS",
+          "MAX_SENDING_ATTACHMENT_BYTES",
+          "inferContentType",
+          "rawResponseData",
+          "readAttachmentFile",
+          "runSdkOperation",
+          "validateAttachmentConvenienceFlags",
+          "withAttachedFiles"
+        ],
+        "packages/ts/cli/src/oauth-profile.ts": [
+          "refreshReservedProfile",
+          "resolveOAuthToken"
+        ],
+        "packages/ts/cli/src/oauth-http.ts": [
+          "OAUTH_RESOURCE",
+          "oauthTokenFields"
+        ],
+        "packages/ts/cli/src/agent-auth.ts": [
+          "ACCESS_TOKEN_TYPE",
+          "READINESS_TIMEOUT_MS",
+          "SENDING_API_RESOURCE",
+          "SENDING_TOKEN_SKEW_MS",
+          "TOKEN_EXCHANGE_GRANT_TYPE",
+          "inviteAgentOwner",
+          "registerAgent",
+          "registrationIntent",
+          "resolveAgentSendingToken",
+          "waitForMailbox"
+        ],
+        "packages/ts/cli/src/commands/agent/register.ts": [
+          "AgentRegister"
+        ],
+        "packages/ts/cli/src/commands/agent/invite-owner.ts": [
+          "AgentInviteOwner"
+        ],
+        "packages/ts/mailbox/src/generated/sdk.gen.ts": [
+          "mailboxGetConnection"
+        ],
+        "packages/ts/management/src/generated/sdk.gen.ts": [
+          "managementGetConnection"
+        ],
+        "packages/ts/sending/src/generated/sdk.gen.ts": [
+          "sendingGetConnection",
+          "sendingSendEmail",
+          "sendingSendEmailBatch"
+        ],
+        "packages/ts/core/src/generated-client.ts": [
+          "configureGeneratedClient"
+        ],
+        "packages/ts/core/src/auth.ts": [
+          "assertApiKeyKind",
+          "authToken"
+        ]
+      },
+      "mcpSetup": true,
+      "appPolicy": [
+        "agent-registration",
+        "durable-mailbox-read",
+        "mailbox-storage",
+        "delegated-sending"
+      ],
+      "sendingPolicy": [
+        "delegated-sending"
+      ],
+      "packageJson": {
+        "packages/ts/cli/package.json": [
+          "/name",
+          "/bin/sendmux",
+          "/bin/qubrics"
+        ]
+      }
+    },
+    "qubrics-getting-started": {
+      "app": [
+        "mailboxGetConnection",
+        "mailboxGetMe",
+        "managementGetConnection",
+        "managementListMailboxes"
+      ],
+      "sending": [
+        "sendingGetConnection",
+        "sendingGetOpenApiSpec"
+      ],
+      "cli": [
+        "agent:invite-owner",
+        "agent:register",
+        "mailbox:get-connection",
+        "mailbox:me:get",
+        "management:get-connection",
+        "management:mailboxes:list",
+        "profiles:set",
+        "sending:get-connection",
+        "sending:get-open-api-spec"
+      ],
+      "public": {
+        "packages/ts/mailbox/src/index.ts": [
+          "DEFAULT_BASE_URL",
+          "createMailboxClient"
+        ],
+        "packages/ts/management/src/index.ts": [
+          "DEFAULT_BASE_URL",
+          "createManagementClient"
+        ],
+        "packages/ts/sending/src/index.ts": [
+          "DEFAULT_BASE_URL",
+          "createSendingClient"
+        ],
+        "packages/ts/cli/src/base-command.ts": [
+          "SendmuxCommand"
+        ],
+        "packages/ts/cli/src/key-kind.ts": [
+          "inferApiKeyKind",
+          "isApiKeyCompatibleWithKind"
+        ],
+        "packages/ts/cli/src/profiles.ts": [
+          "CONFIG_FILE",
+          "configPath",
+          "isActiveAgentProfile",
+          "isAgentProfile",
+          "isOAuthProfile",
+          "readCliConfig",
+          "reserveAgentRegistrationIntent",
+          "updateCliConfig",
+          "writeCliConfigFile"
+        ],
+        "packages/ts/cli/src/operation-flags.ts": [
+          "addHeaderFlag",
+          "operationFlags",
+          "parseBody",
+          "parseOperationOptions",
+          "parseParameterPairs",
+          "parseParameterValue"
+        ],
+        "packages/ts/cli/src/operation-runner.ts": [
+          "rawResponseData",
+          "runSdkOperation"
+        ],
+        "packages/ts/cli/src/oauth-profile.ts": [
+          "refreshReservedProfile",
+          "resolveOAuthToken"
+        ],
+        "packages/ts/cli/src/oauth-http.ts": [
+          "OAUTH_RESOURCE",
+          "oauthTokenFields"
+        ],
+        "packages/ts/cli/src/agent-auth.ts": [
+          "ACCESS_TOKEN_TYPE",
+          "READINESS_TIMEOUT_MS",
+          "SENDING_API_RESOURCE",
+          "SENDING_TOKEN_SKEW_MS",
+          "TOKEN_EXCHANGE_GRANT_TYPE",
+          "inviteAgentOwner",
+          "registerAgent",
+          "registrationIntent",
+          "resolveAgentSendingToken",
+          "waitForMailbox"
+        ],
+        "packages/ts/cli/src/commands/agent/register.ts": [
+          "AgentRegister"
+        ],
+        "packages/ts/cli/src/commands/agent/invite-owner.ts": [
+          "AgentInviteOwner"
+        ],
+        "packages/ts/cli/src/commands/profiles/set.ts": [
+          "ProfilesSet"
+        ],
+        "packages/ts/mailbox/src/generated/sdk.gen.ts": [
+          "mailboxGetConnection",
+          "mailboxGetMe"
+        ],
+        "packages/ts/management/src/generated/sdk.gen.ts": [
+          "managementGetConnection",
+          "managementListMailboxes"
+        ],
+        "packages/ts/sending/src/generated/sdk.gen.ts": [
+          "sendingGetConnection",
+          "sendingGetOpenApiSpec"
+        ],
+        "packages/ts/core/src/generated-client.ts": [
+          "configureGeneratedClient"
+        ],
+        "packages/ts/core/src/auth.ts": [
+          "assertApiKeyKind",
+          "authToken"
+        ]
+      },
+      "mcp": [
+        "mailbox_get_connection",
+        "mailbox_get_me",
+        "management_get_connection",
+        "management_list_mailboxes",
+        "sending_get_connection"
+      ],
+      "mcpSetup": true,
+      "appPolicy": [
+        "agent-registration",
+        "durable-mailbox-read",
+        "mailbox-storage",
+        "delegated-sending"
+      ],
+      "sendingPolicy": [
+        "delegated-sending"
+      ],
+      "packageJson": {
+        "packages/ts/mailbox/package.json": [
+          "/name",
+          "/exports/."
+        ],
+        "packages/ts/management/package.json": [
+          "/name",
+          "/exports/."
+        ],
+        "packages/ts/sending/package.json": [
+          "/name",
+          "/exports/."
+        ],
+        "packages/ts/cli/package.json": [
+          "/name",
+          "/bin/sendmux",
+          "/bin/qubrics"
+        ]
+      },
+      "pythonScripts": {
+        "packages/python/mcp/pyproject.toml": [
+          "qubrics-mcp"
+        ]
+      }
+    },
+    "qubrics-mailbox-agent": {
+      "app": [
+        "mailboxBatchDeleteMessages",
+        "mailboxBatchGetMessages",
+        "mailboxBatchUpdateMessages",
+        "mailboxControlDraftSchedule",
+        "mailboxCountMessages",
+        "mailboxCreateAttachmentUpload",
+        "mailboxCreateCalendar",
+        "mailboxCreateCalendarEvent",
+        "mailboxCreateDraft",
+        "mailboxDeleteCalendar",
+        "mailboxDeleteCalendarEvent",
+        "mailboxGetAttachmentText",
+        "mailboxGetCalendar",
+        "mailboxGetCalendarEvent",
+        "mailboxGetCalendarEventChanges",
+        "mailboxGetChanges",
+        "mailboxGetConnection",
+        "mailboxGetDraft",
+        "mailboxGetIdentity",
+        "mailboxGetMe",
+        "mailboxGetMessage",
+        "mailboxGetThread",
+        "mailboxListFolders",
+        "mailboxListCalendarEvents",
+        "mailboxListCalendars",
+        "mailboxListThreadMessages",
+        "mailboxListThreads",
+        "mailboxQueryMessageChanges",
+        "mailboxRequestAttachmentText",
+        "mailboxSearchMessageSnippets",
+        "mailboxSendDraft",
+        "mailboxSendMessage",
+        "mailboxStreamEvents",
+        "mailboxUpdateCalendarEvent",
+        "mailboxUpdateDraft",
+        "mailboxUploadAttachment"
+      ],
+      "mcp": [
+        "mailbox_batch_delete_messages",
+        "mailbox_batch_get_messages",
+        "mailbox_batch_update_messages",
+        "mailbox_control_draft_schedule",
+        "mailbox_count_messages",
+        "mailbox_create_calendar",
+        "mailbox_create_calendar_event",
+        "mailbox_create_draft",
+        "mailbox_delete_calendar",
+        "mailbox_delete_calendar_event",
+        "mailbox_get_attachment",
+        "mailbox_get_attachment_text",
+        "mailbox_get_calendar",
+        "mailbox_get_calendar_event",
+        "mailbox_get_calendar_event_changes",
+        "mailbox_get_changes",
+        "mailbox_get_draft",
+        "mailbox_get_identity",
+        "mailbox_get_me",
+        "mailbox_get_thread",
+        "mailbox_list_folders",
+        "mailbox_list_calendar_events",
+        "mailbox_list_calendars",
+        "mailbox_list_thread_messages",
+        "mailbox_list_threads",
+        "mailbox_request_attachment_text",
+        "mailbox_search_message_snippets",
+        "mailbox_send_draft",
+        "mailbox_send_message",
+        "mailbox_update_calendar_event",
+        "mailbox_update_draft",
+        "mailbox_upload_attachment"
+      ],
+      "cli": [
+        "mailbox:batch-delete-messages",
+        "mailbox:batch-get-messages",
+        "mailbox:batch-update-messages",
+        "mailbox:control-draft-schedule",
+        "mailbox:count-messages",
+        "mailbox:create-calendar",
+        "mailbox:create-calendar-event",
+        "mailbox:create-draft",
+        "mailbox:delete-calendar",
+        "mailbox:delete-calendar-event",
+        "mailbox:folders:list",
+        "mailbox:get-attachment-text",
+        "mailbox:get-calendar",
+        "mailbox:get-calendar-event",
+        "mailbox:get-calendar-event-changes",
+        "mailbox:get-changes",
+        "mailbox:get-connection",
+        "mailbox:get-draft",
+        "mailbox:list-thread-messages",
+        "mailbox:list-threads",
+        "mailbox:list-calendar-events",
+        "mailbox:list-calendars",
+        "mailbox:me:get",
+        "mailbox:query-message-changes",
+        "mailbox:request-attachment-text",
+        "mailbox:search-message-snippets",
+        "mailbox:send-draft",
+        "mailbox:send-message",
+        "mailbox:stream-events",
+        "mailbox:update-calendar-event",
+        "mailbox:update-draft"
+      ],
+      "public": {
+        "packages/ts/mailbox/src/index.ts": [
+          "DEFAULT_BASE_URL",
+          "createMailboxClient"
+        ],
+        "packages/ts/cli/src/base-command.ts": [
+          "SendmuxCommand"
+        ],
+        "packages/ts/cli/src/key-kind.ts": [
+          "inferApiKeyKind",
+          "isApiKeyCompatibleWithKind"
+        ],
+        "packages/ts/cli/src/profiles.ts": [
+          "isActiveAgentProfile",
+          "isAgentProfile",
+          "isOAuthProfile",
+          "readCliConfig"
+        ],
+        "packages/ts/cli/src/operation-flags.ts": [
+          "addHeaderFlag",
+          "fileSuppliedQueryParams",
+          "fileSuppliesBody",
+          "operationFlags",
+          "parseBody",
+          "parseOperationOptions",
+          "parseParameterPairs",
+          "parseParameterValue"
+        ],
+        "packages/ts/cli/src/operation-runner.ts": [
+          "MAX_SENDING_ATTACHMENTS",
+          "MAX_SENDING_ATTACHMENT_BYTES",
+          "inferContentType",
+          "rawResponseData",
+          "readAttachmentFile",
+          "runSdkOperation",
+          "validateAttachmentConvenienceFlags",
+          "withAttachedFiles"
+        ],
+        "packages/ts/cli/src/oauth-profile.ts": [
+          "refreshReservedProfile",
+          "resolveOAuthToken"
+        ],
+        "packages/ts/cli/src/oauth-http.ts": [
+          "OAUTH_RESOURCE",
+          "oauthTokenFields"
+        ],
+        "packages/ts/cli/src/agent-auth.ts": [
+          "ACCESS_TOKEN_TYPE",
+          "SENDING_API_RESOURCE",
+          "SENDING_TOKEN_SKEW_MS",
+          "TOKEN_EXCHANGE_GRANT_TYPE",
+          "resolveAgentSendingToken"
+        ],
+        "packages/ts/mailbox/src/generated/sdk.gen.ts": [
+          "mailboxBatchDeleteMessages",
+          "mailboxBatchGetMessages",
+          "mailboxBatchUpdateMessages",
+          "mailboxControlDraftSchedule",
+          "mailboxCountMessages",
+          "mailboxCreateCalendar",
+          "mailboxCreateCalendarEvent",
+          "mailboxCreateDraft",
+          "mailboxDeleteCalendar",
+          "mailboxDeleteCalendarEvent",
+          "mailboxGetAttachmentText",
+          "mailboxGetCalendar",
+          "mailboxGetCalendarEvent",
+          "mailboxGetCalendarEventChanges",
+          "mailboxGetChanges",
+          "mailboxGetConnection",
+          "mailboxGetDraft",
+          "mailboxGetMe",
+          "mailboxListFolders",
+          "mailboxListCalendarEvents",
+          "mailboxListCalendars",
+          "mailboxListThreadMessages",
+          "mailboxListThreads",
+          "mailboxQueryMessageChanges",
+          "mailboxRequestAttachmentText",
+          "mailboxSearchMessageSnippets",
+          "mailboxSendDraft",
+          "mailboxSendMessage",
+          "mailboxStreamEvents",
+          "mailboxUpdateCalendarEvent",
+          "mailboxUpdateDraft"
+        ],
+        "packages/ts/core/src/generated-client.ts": [
+          "configureGeneratedClient"
+        ],
+        "packages/ts/core/src/auth.ts": [
+          "assertApiKeyKind",
+          "authToken"
+        ]
+      },
+      "mcpSetup": true,
+      "mcpCatalog": true,
+      "appPolicy": [
+        "durable-mailbox-read",
+        "mailbox-storage",
+        "delegated-sending"
+      ],
+      "sendingPolicy": [
+        "delegated-sending"
+      ],
+      "packageJson": {
+        "packages/ts/mailbox/package.json": [
+          "/name",
+          "/exports/."
+        ],
+        "packages/ts/cli/package.json": [
+          "/name",
+          "/bin/sendmux",
+          "/bin/qubrics"
+        ]
+      }
+    },
+    "qubrics-management": {
+      "app": [
+        "mailboxGetMe",
+        "managementActivateProvider",
+        "managementCreateDomain",
+        "managementCreateMailbox",
+        "managementCreateMailboxKey",
+        "managementCreateProvider",
+        "managementCreateWebhook",
+        "managementDeactivateProvider",
+        "managementDeleteMailboxKey",
+        "managementDeleteWebhook",
+        "managementGetConnection",
+        "managementGetDeliveryPayload",
+        "managementGetDomain",
+        "managementGetDomainZoneFile",
+        "managementGetEmailLog",
+        "managementGetEmailMetrics",
+        "managementGetInboxLog",
+        "managementGetMailbox",
+        "managementGetProvider",
+        "managementGetProviderLimits",
+        "managementGetProviderStats",
+        "managementGetProviderUsage",
+        "managementGetSpendSummary",
+        "managementGetWebhook",
+        "managementListBalance",
+        "managementListDelivery",
+        "managementListDomains",
+        "managementListEmailLogs",
+        "managementListInboxLogs",
+        "managementListMailboxes",
+        "managementListProviders",
+        "managementListTransactions",
+        "managementListWebhooks",
+        "managementResumeMailbox",
+        "managementRotateWebhookSecret",
+        "managementSuspendMailbox",
+        "managementTestProvider",
+        "managementTestWebhook",
+        "managementUpdateDomain",
+        "managementUpdateMailbox",
+        "managementUpdateProvider",
+        "managementUpdateWebhook",
+        "managementVerifyDomain"
+      ],
+      "mcp": [
+        "management_create_domain",
+        "management_create_mailbox",
+        "management_create_mailbox_key",
+        "management_create_webhook",
+        "management_delete_mailbox_key",
+        "management_get_domain",
+        "management_get_domain_zone_file",
+        "management_get_email_log",
+        "management_get_email_metrics",
+        "management_get_mailbox",
+        "management_get_spend_summary",
+        "management_list_domains",
+        "management_list_email_logs",
+        "management_list_mailboxes",
+        "management_list_webhooks",
+        "management_resume_mailbox",
+        "management_suspend_mailbox",
+        "management_test_webhook",
+        "management_update_mailbox",
+        "management_verify_domain"
+      ],
+      "cli": [
+        "agent:register",
+        "management:activate-provider",
+        "management:create-domain",
+        "management:create-mailbox",
+        "management:create-mailbox-key",
+        "management:create-provider",
+        "management:deactivate-provider",
+        "management:delete-webhook",
+        "management:get-connection",
+        "management:get-delivery-payload",
+        "management:get-domain-zone-file",
+        "management:get-email-log",
+        "management:get-email-metrics",
+        "management:get-inbox-log",
+        "management:get-provider",
+        "management:get-provider-limits",
+        "management:get-provider-stats",
+        "management:get-provider-usage",
+        "management:get-spend-summary",
+        "management:get-webhook",
+        "management:list-balance",
+        "management:list-delivery",
+        "management:list-email-logs",
+        "management:list-inbox-logs",
+        "management:list-transactions",
+        "management:providers:list",
+        "management:rotate-webhook-secret",
+        "management:test-provider",
+        "management:update-domain",
+        "management:update-provider",
+        "management:update-webhook",
+        "management:verify-domain"
+      ],
+      "public": {
+        "packages/ts/management/src/index.ts": [
+          "DEFAULT_BASE_URL",
+          "createManagementClient"
+        ],
+        "packages/ts/cli/src/base-command.ts": [
+          "SendmuxCommand"
+        ],
+        "packages/ts/cli/src/key-kind.ts": [
+          "inferApiKeyKind",
+          "isApiKeyCompatibleWithKind"
+        ],
+        "packages/ts/cli/src/profiles.ts": [
+          "CONFIG_FILE",
+          "configPath",
+          "isActiveAgentProfile",
+          "isAgentProfile",
+          "isOAuthProfile",
+          "readCliConfig",
+          "reserveAgentRegistrationIntent",
+          "updateCliConfig",
+          "writeCliConfigFile"
+        ],
+        "packages/ts/cli/src/operation-flags.ts": [
+          "addHeaderFlag",
+          "operationFlags",
+          "parseBody",
+          "parseOperationOptions",
+          "parseParameterPairs",
+          "parseParameterValue"
+        ],
+        "packages/ts/cli/src/operation-runner.ts": [
+          "rawResponseData",
+          "runSdkOperation"
+        ],
+        "packages/ts/cli/src/oauth-profile.ts": [
+          "refreshReservedProfile",
+          "resolveOAuthToken"
+        ],
+        "packages/ts/cli/src/oauth-http.ts": [
+          "OAUTH_RESOURCE",
+          "oauthTokenFields"
+        ],
+        "packages/ts/cli/src/agent-auth.ts": [
+          "ACCESS_TOKEN_TYPE",
+          "READINESS_TIMEOUT_MS",
+          "SENDING_API_RESOURCE",
+          "SENDING_TOKEN_SKEW_MS",
+          "TOKEN_EXCHANGE_GRANT_TYPE",
+          "inviteAgentOwner",
+          "registerAgent",
+          "registrationIntent",
+          "resolveAgentSendingToken",
+          "waitForMailbox"
+        ],
+        "packages/ts/cli/src/commands/agent/register.ts": [
+          "AgentRegister"
+        ],
+        "packages/ts/cli/src/commands/agent/invite-owner.ts": [
+          "AgentInviteOwner"
+        ],
+        "packages/ts/management/src/generated/sdk.gen.ts": [
+          "managementActivateProvider",
+          "managementCreateDomain",
+          "managementCreateMailbox",
+          "managementCreateMailboxKey",
+          "managementCreateProvider",
+          "managementDeactivateProvider",
+          "managementDeleteWebhook",
+          "managementGetConnection",
+          "managementGetDeliveryPayload",
+          "managementGetDomainZoneFile",
+          "managementGetEmailLog",
+          "managementGetEmailMetrics",
+          "managementGetInboxLog",
+          "managementGetProvider",
+          "managementGetProviderLimits",
+          "managementGetProviderStats",
+          "managementGetProviderUsage",
+          "managementGetSpendSummary",
+          "managementGetWebhook",
+          "managementListBalance",
+          "managementListDelivery",
+          "managementListEmailLogs",
+          "managementListInboxLogs",
+          "managementListProviders",
+          "managementListTransactions",
+          "managementRotateWebhookSecret",
+          "managementTestProvider",
+          "managementUpdateDomain",
+          "managementUpdateProvider",
+          "managementUpdateWebhook",
+          "managementVerifyDomain"
+        ],
+        "packages/ts/core/src/generated-client.ts": [
+          "configureGeneratedClient"
+        ],
+        "packages/ts/core/src/auth.ts": [
+          "assertApiKeyKind",
+          "authToken"
+        ]
+      },
+      "mcpCatalog": true,
+      "appPolicy": [
+        "agent-registration",
+        "durable-mailbox-read"
+      ],
+      "packageJson": {
+        "packages/ts/management/package.json": [
+          "/name",
+          "/exports/."
+        ],
+        "packages/ts/cli/package.json": [
+          "/name",
+          "/bin/sendmux",
+          "/bin/qubrics"
+        ]
+      },
+      "appCatalog": [
+        "managementDeleteDomain",
+        "managementGetDomainFilters",
+        "managementSetDomainFilters",
+        "managementDeleteMailbox",
+        "managementGetMailboxFilters",
+        "managementSetMailboxFilters",
+        "managementDeleteProvider"
+      ]
+    },
+    "qubrics-mcp-setup": {
+      "app": [
+        "mailboxCreateAttachmentUpload",
+        "mailboxGetConnection",
+        "mailboxGetMe",
+        "mailboxGetMessage",
+        "mailboxListGrantedMailboxes",
+        "mailboxListMessages",
+        "mailboxSearchMessageSnippets",
+        "managementCreateDomain",
+        "managementCreateMailbox",
+        "managementCreateMailboxKey",
+        "managementCreateWebhook",
+        "managementGetConnection",
+        "managementGetSpendSummary"
+      ],
+      "sending": [
+        "sendingCreateAttachmentUpload",
+        "sendingGetAttachment",
+        "sendingGetConnection",
+        "sendingSendEmail",
+        "sendingSendEmailBatch",
+        "sendingUploadAttachment",
+        "sendingCompleteAttachmentUpload"
+      ],
+      "mcp": [
+        "mailbox_get_attachment",
+        "mailbox_get_connection",
+        "mailbox_list_granted_mailboxes",
+        "mailbox_search_message_snippets",
+        "mailbox_upload_attachment",
+        "mailbox_wait_for_message",
+        "management_create_domain",
+        "management_create_mailbox",
+        "management_create_mailbox_key",
+        "management_create_webhook",
+        "management_get_connection",
+        "management_get_spend_summary",
+        "sending_create_attachment_upload",
+        "sending_get_attachment",
+        "sending_get_connection",
+        "sending_send_email",
+        "sending_send_email_batch",
+        "sending_upload_attachment"
+      ],
+      "cli": [
+        "agent:register"
+      ],
+      "mcpSetup": true,
+      "public": {
+        "packages/ts/cli/src/base-command.ts": [
+          "SendmuxCommand"
+        ],
+        "packages/ts/cli/src/key-kind.ts": [
+          "inferApiKeyKind",
+          "isApiKeyCompatibleWithKind"
+        ],
+        "packages/ts/cli/src/profiles.ts": [
+          "CONFIG_FILE",
+          "configPath",
+          "isActiveAgentProfile",
+          "isAgentProfile",
+          "isOAuthProfile",
+          "readCliConfig",
+          "reserveAgentRegistrationIntent",
+          "updateCliConfig",
+          "writeCliConfigFile"
+        ],
+        "packages/ts/cli/src/agent-auth.ts": [
+          "READINESS_TIMEOUT_MS",
+          "inviteAgentOwner",
+          "registerAgent",
+          "registrationIntent",
+          "waitForMailbox"
+        ],
+        "packages/ts/cli/src/commands/agent/register.ts": [
+          "AgentRegister"
+        ],
+        "packages/ts/cli/src/commands/agent/invite-owner.ts": [
+          "AgentInviteOwner"
+        ],
+        "packages/python/mcp/qubrics/mcp/config.py": [
+          "ServerConfig",
+          "config_from_env",
+          "normalise_surfaces",
+          "normalise_transport",
+          "surface_api_keys_from_env"
+        ],
+        "packages/python/mcp/qubrics/mcp/cli.py": [
+          "config_from_args",
+          "main",
+          "main_mailbox",
+          "main_management",
+          "main_sending",
+          "parser",
+          "surface_api_keys_from_args",
+          "surfaces_from_args"
+        ],
+        "packages/python/core/qubrics/core/auth.py": [
+          "validate_api_key"
+        ]
+      },
+      "mcpCatalog": true,
+      "appPolicy": [
+        "delegated-sending"
+      ],
+      "sendingPolicy": [
+        "delegated-sending"
+      ],
+      "packageJson": {
+        "packages/ts/cli/package.json": [
+          "/name",
+          "/bin/sendmux",
+          "/bin/qubrics"
+        ]
+      },
+      "pythonScripts": {
+        "packages/python/mcp/pyproject.toml": [
+          "qubrics-mcp",
+          "qubrics-mcp-mailbox",
+          "qubrics-mcp-management",
+          "qubrics-mcp-sending",
+          "qubrics-mcp-hosted"
+        ]
+      }
+    },
+    "qubrics-send-email": {
+      "sending": [
+        "sendingCompleteAttachmentUpload",
+        "sendingCreateAttachmentUpload",
+        "sendingGetAttachment",
+        "sendingGetConnection",
+        "sendingSendEmail",
+        "sendingSendEmailBatch",
+        "sendingUploadAttachment"
+      ],
+      "mcp": [
+        "sending_create_attachment_upload",
+        "sending_get_attachment",
+        "sending_send_email",
+        "sending_send_email_batch",
+        "sending_upload_attachment"
+      ],
+      "cli": [
+        "sending:get-connection",
+        "sending:send",
+        "sending:send:batch"
+      ],
+      "public": {
+        "packages/ts/sending/src/index.ts": [
+          "DEFAULT_BASE_URL",
+          "createSendingClient"
+        ],
+        "packages/ts/cli/src/base-command.ts": [
+          "SendmuxCommand"
+        ],
+        "packages/ts/cli/src/key-kind.ts": [
+          "inferApiKeyKind",
+          "isApiKeyCompatibleWithKind"
+        ],
+        "packages/ts/cli/src/profiles.ts": [
+          "isActiveAgentProfile",
+          "isAgentProfile",
+          "isOAuthProfile",
+          "readCliConfig"
+        ],
+        "packages/ts/cli/src/operation-flags.ts": [
+          "addHeaderFlag",
+          "fileSuppliedQueryParams",
+          "fileSuppliesBody",
+          "operationFlags",
+          "parseBody",
+          "parseOperationOptions",
+          "parseParameterPairs",
+          "parseParameterValue"
+        ],
+        "packages/ts/cli/src/operation-runner.ts": [
+          "MAX_SENDING_ATTACHMENTS",
+          "MAX_SENDING_ATTACHMENT_BYTES",
+          "inferContentType",
+          "rawResponseData",
+          "readAttachmentFile",
+          "runSdkOperation",
+          "validateAttachmentConvenienceFlags",
+          "withAttachedFiles"
+        ],
+        "packages/ts/cli/src/oauth-profile.ts": [
+          "refreshReservedProfile",
+          "resolveOAuthToken"
+        ],
+        "packages/ts/cli/src/oauth-http.ts": [
+          "OAUTH_RESOURCE",
+          "oauthTokenFields"
+        ],
+        "packages/ts/cli/src/agent-auth.ts": [
+          "ACCESS_TOKEN_TYPE",
+          "SENDING_API_RESOURCE",
+          "SENDING_TOKEN_SKEW_MS",
+          "TOKEN_EXCHANGE_GRANT_TYPE",
+          "resolveAgentSendingToken"
+        ],
+        "packages/ts/sending/src/generated/sdk.gen.ts": [
+          "sendingGetConnection",
+          "sendingSendEmail",
+          "sendingSendEmailBatch"
+        ],
+        "packages/ts/core/src/generated-client.ts": [
+          "configureGeneratedClient"
+        ],
+        "packages/ts/core/src/auth.ts": [
+          "assertApiKeyKind",
+          "authToken"
+        ]
+      },
+      "mcpSetup": true,
+      "appPolicy": [
+        "mailbox-storage",
+        "delegated-sending"
+      ],
+      "sendingPolicy": [
+        "delegated-sending"
+      ],
+      "packageJson": {
+        "packages/ts/sending/package.json": [
+          "/name",
+          "/exports/."
+        ],
+        "packages/ts/cli/package.json": [
+          "/name",
+          "/bin/sendmux",
+          "/bin/qubrics"
+        ]
+      }
+    },
+    "qubrics-token-efficient-usage": {
+      "app": [
+        "mailboxBatchGetMessages",
+        "mailboxBatchUpdateMessages",
+        "mailboxCountMessages",
+        "mailboxCreateAttachmentUpload",
+        "mailboxGetChanges",
+        "mailboxGetConnection",
+        "mailboxGetMe",
+        "mailboxQueryMessageChanges",
+        "mailboxSearchMessageSnippets",
+        "mailboxSendMessage",
+        "mailboxStreamEvents",
+        "mailboxUploadAttachment",
+        "managementGetConnection",
+        "managementGetEmailLog",
+        "managementListEmailLogs",
+        "managementUpdateMailbox"
+      ],
+      "sending": [
+        "sendingCompleteAttachmentUpload",
+        "sendingCreateAttachmentUpload",
+        "sendingGetConnection",
+        "sendingSendEmail",
+        "sendingSendEmailBatch",
+        "sendingUploadAttachment"
+      ],
+      "mcp": [
+        "mailbox_batch_get_messages",
+        "mailbox_count_messages",
+        "mailbox_get_changes",
+        "mailbox_get_connection",
+        "mailbox_search_message_snippets",
+        "mailbox_upload_attachment",
+        "management_get_connection",
+        "sending_create_attachment_upload",
+        "sending_get_connection",
+        "sending_send_email",
+        "sending_send_email_batch"
+      ],
+      "cli": [
+        "agent:invite-owner",
+        "agent:register",
+        "mailbox:batch-get-messages",
+        "mailbox:batch-update-messages",
+        "mailbox:count-messages",
+        "mailbox:get-changes",
+        "mailbox:get-connection",
+        "mailbox:me:get",
+        "mailbox:query-message-changes",
+        "mailbox:search-message-snippets",
+        "mailbox:send-message",
+        "mailbox:stream-events",
+        "management:get-connection",
+        "management:get-email-log",
+        "management:list-email-logs",
+        "management:update-mailbox",
+        "sending:get-connection",
+        "sending:send",
+        "sending:send:batch"
+      ],
+      "public": {
+        "packages/ts/management/src/index.ts": [
+          "DEFAULT_BASE_URL",
+          "createManagementClient"
+        ],
+        "packages/ts/cli/src/base-command.ts": [
+          "SendmuxCommand"
+        ],
+        "packages/ts/cli/src/key-kind.ts": [
+          "inferApiKeyKind",
+          "isApiKeyCompatibleWithKind"
+        ],
+        "packages/ts/cli/src/profiles.ts": [
+          "CONFIG_FILE",
+          "configPath",
+          "isActiveAgentProfile",
+          "isAgentProfile",
+          "isOAuthProfile",
+          "readCliConfig",
+          "reserveAgentRegistrationIntent",
+          "updateCliConfig",
+          "writeCliConfigFile"
+        ],
+        "packages/ts/cli/src/operation-flags.ts": [
+          "addHeaderFlag",
+          "fileSuppliedQueryParams",
+          "fileSuppliesBody",
+          "operationFlags",
+          "parseBody",
+          "parseOperationOptions",
+          "parseParameterPairs",
+          "parseParameterValue"
+        ],
+        "packages/ts/cli/src/operation-runner.ts": [
+          "MAX_SENDING_ATTACHMENTS",
+          "MAX_SENDING_ATTACHMENT_BYTES",
+          "inferContentType",
+          "rawResponseData",
+          "readAttachmentFile",
+          "runSdkOperation",
+          "validateAttachmentConvenienceFlags",
+          "withAttachedFiles"
+        ],
+        "packages/ts/cli/src/oauth-profile.ts": [
+          "refreshReservedProfile",
+          "resolveOAuthToken"
+        ],
+        "packages/ts/cli/src/oauth-http.ts": [
+          "OAUTH_RESOURCE",
+          "oauthTokenFields"
+        ],
+        "packages/ts/cli/src/agent-auth.ts": [
+          "ACCESS_TOKEN_TYPE",
+          "READINESS_TIMEOUT_MS",
+          "SENDING_API_RESOURCE",
+          "SENDING_TOKEN_SKEW_MS",
+          "TOKEN_EXCHANGE_GRANT_TYPE",
+          "inviteAgentOwner",
+          "registerAgent",
+          "registrationIntent",
+          "resolveAgentSendingToken",
+          "waitForMailbox"
+        ],
+        "packages/ts/cli/src/commands/agent/register.ts": [
+          "AgentRegister"
+        ],
+        "packages/ts/cli/src/commands/agent/invite-owner.ts": [
+          "AgentInviteOwner"
+        ],
+        "packages/ts/mailbox/src/node.ts": [
+          "readAttachmentFile",
+          "uploadMailboxAttachmentFromFile"
+        ],
+        "packages/ts/sending/src/node.ts": [
+          "MAX_SENDING_ATTACHMENTS",
+          "MAX_SENDING_ATTACHMENT_BYTES",
+          "readAttachmentFile",
+          "sendEmailWithFiles",
+          "uploadAttachmentFromFile"
+        ],
+        "packages/ts/core/src/headers.ts": [
+          "conditionalHeaders",
+          "idempotencyHeaders",
+          "responseEtag"
+        ],
+        "packages/ts/core/src/pagination.ts": [
+          "paginate"
+        ],
+        "packages/ts/core/src/retry.ts": [
+          "createRetryingFetch",
+          "isRetryableRequest",
+          "isRetryableStatus",
+          "shouldRetryResponse"
+        ],
+        "packages/ts/mailbox/src/generated/sdk.gen.ts": [
+          "mailboxBatchGetMessages",
+          "mailboxBatchUpdateMessages",
+          "mailboxCountMessages",
+          "mailboxGetChanges",
+          "mailboxGetConnection",
+          "mailboxGetMe",
+          "mailboxQueryMessageChanges",
+          "mailboxSearchMessageSnippets",
+          "mailboxSendMessage",
+          "mailboxStreamEvents"
+        ],
+        "packages/ts/management/src/generated/sdk.gen.ts": [
+          "managementGetConnection",
+          "managementGetEmailLog",
+          "managementListEmailLogs",
+          "managementUpdateMailbox"
+        ],
+        "packages/ts/sending/src/generated/sdk.gen.ts": [
+          "sendingGetConnection",
+          "sendingSendEmail",
+          "sendingSendEmailBatch"
+        ],
+        "packages/ts/core/src/generated-client.ts": [
+          "configureGeneratedClient"
+        ],
+        "packages/ts/core/src/auth.ts": [
+          "assertApiKeyKind",
+          "authToken"
+        ]
+      },
+      "mcpSetup": true,
+      "mcpCatalog": true,
+      "appPolicy": [
+        "agent-registration",
+        "durable-mailbox-read",
+        "mailbox-storage",
+        "delegated-sending"
+      ],
+      "sendingPolicy": [
+        "delegated-sending"
+      ],
+      "packageJson": {
+        "packages/ts/sending/package.json": [
+          "/name",
+          "/exports/.~1node"
+        ],
+        "packages/ts/mailbox/package.json": [
+          "/name",
+          "/exports/.~1node"
+        ],
+        "packages/ts/core/package.json": [
+          "/name",
+          "/exports/."
+        ],
+        "packages/ts/management/package.json": [
+          "/name",
+          "/exports/."
+        ],
+        "packages/ts/cli/package.json": [
+          "/name",
+          "/bin/sendmux",
+          "/bin/qubrics"
+        ]
+      },
+      "appCatalog": [
+        "managementDeleteDomain",
+        "managementGetDomainFilters",
+        "managementSetDomainFilters",
+        "managementDeleteMailbox",
+        "managementGetMailboxFilters",
+        "managementSetMailboxFilters",
+        "managementDeleteProvider",
+        "managementListDomains",
+        "managementCreateDomain",
+        "managementGetDomain",
+        "managementUpdateDomain",
+        "managementVerifyDomain",
+        "managementGetDomainZoneFile",
+        "managementListMailboxes",
+        "managementCreateMailbox",
+        "managementGetMailbox",
+        "managementCreateMailboxKey",
+        "managementDeleteMailboxKey",
+        "managementResumeMailbox",
+        "managementSuspendMailbox",
+        "managementListProviders",
+        "managementCreateProvider",
+        "managementGetProvider",
+        "managementUpdateProvider",
+        "managementActivateProvider",
+        "managementDeactivateProvider",
+        "managementTestProvider",
+        "managementGetProviderLimits",
+        "managementGetProviderStats",
+        "managementGetProviderUsage",
+        "managementListWebhooks",
+        "managementCreateWebhook",
+        "managementGetWebhook",
+        "managementUpdateWebhook",
+        "managementDeleteWebhook",
+        "managementTestWebhook",
+        "managementRotateWebhookSecret",
+        "managementListDelivery",
+        "managementGetDeliveryPayload",
+        "managementGetSpendSummary",
+        "managementListBalance",
+        "managementListTransactions",
+        "managementGetEmailMetrics",
+        "mailboxListThreads",
+        "mailboxGetThread",
+        "mailboxGetThreadContent",
+        "mailboxListThreadMessages"
+      ]
     },
     "sendmux-mailbox-agent": {
       "app": [
@@ -1344,14 +3163,14 @@
         "packages/ts/cli/src/commands/agent/invite-owner.ts": [
           "AgentInviteOwner"
         ],
-        "packages/python/mcp/sendmux_mcp/config.py": [
+        "packages/python/mcp/qubrics/mcp/config.py": [
           "ServerConfig",
           "config_from_env",
           "normalise_surfaces",
           "normalise_transport",
           "surface_api_keys_from_env"
         ],
-        "packages/python/mcp/sendmux_mcp/cli.py": [
+        "packages/python/mcp/qubrics/mcp/cli.py": [
           "config_from_args",
           "main",
           "main_mailbox",
@@ -1361,7 +3180,7 @@
           "surface_api_keys_from_args",
           "surfaces_from_args"
         ],
-        "packages/python/core/sendmux_core/auth.py": [
+        "packages/python/core/qubrics/core/auth.py": [
           "validate_api_key"
         ]
       },
@@ -1380,11 +3199,11 @@
       },
       "pythonScripts": {
         "packages/python/mcp/pyproject.toml": [
-          "sendmux-mcp",
-          "sendmux-mcp-mailbox",
-          "sendmux-mcp-management",
-          "sendmux-mcp-sending",
-          "sendmux-mcp-hosted"
+          "qubrics-mcp",
+          "qubrics-mcp-mailbox",
+          "qubrics-mcp-management",
+          "qubrics-mcp-sending",
+          "qubrics-mcp-hosted"
         ]
       }
     },
@@ -1782,6 +3601,223 @@
     },
     {
       "skill": "email-for-ai-agents",
+      "skillDigest": "6f2c0908457404bb6aacc4cdcf18ce49b9054cbd873939b7b3e417224fd4d1d9",
+      "contractDigest": "2d1da8064b5556b044d00e436ac2774eb8926bb3c12e82dc86995321fb997ea3",
+      "record": "evidence/skill-compatibility/reviews/mailbox-sdk344-20261112/published-email-for-ai-agents.json",
+      "sha256": "280efca04e0c7e2b1c7bb6a218a86641b10dd3a856840bfb0d46baea9b2d433e"
+    },
+    {
+      "skill": "sendmux-cli",
+      "skillDigest": "79f22216d882af6ffa0c246f01204e4f4537065368e15027f7a9f08c931db929",
+      "contractDigest": "4b942f8c64f1b75c7a8d8333eb0253a682b45d538282f3649c38ee972b0083af",
+      "record": "evidence/skill-compatibility/reviews/mailbox-sdk344-20261112/published-sendmux-cli.json",
+      "sha256": "1ad21b3347942ae0ccb19b221ce6ffb63ba0f39b98b31d7ec66291477b34e2ce"
+    },
+    {
+      "skill": "sendmux-email-for-agents",
+      "skillDigest": "411f7cc5d798a8e0abc7f48dd3561adc64bf5a71435c8c9283d0943f269a6cec",
+      "contractDigest": "4274f10c1096c55b25daf1a4558a0bf2c5c087dfe24b260fbb579b36b736c5c7",
+      "record": "evidence/skill-compatibility/reviews/mailbox-sdk344-20261112/published-sendmux-email-for-agents.json",
+      "sha256": "0b6d513aecd528615b3522afdde68d7e068788073c86c39aa9aa4a40ce6cf81d"
+    },
+    {
+      "skill": "sendmux-mailbox-agent",
+      "skillDigest": "a3e2ba98b2f049335b02ebb3f3ea25b44e4c1c93878160273250222bb693a08a",
+      "contractDigest": "4cfb01940f2b13e58e1796743940455716f5b9a7b5a944ceaec67aa1be232f3f",
+      "record": "evidence/skill-compatibility/reviews/mailbox-sdk344-20261112/published-sendmux-mailbox-agent.json",
+      "sha256": "0db214b4b0125bb86c5d73f23edaccf1d6d395f965a934dfa15e2c88b93a9120"
+    },
+    {
+      "skill": "sendmux-management",
+      "skillDigest": "a82945bdb1521932eef71cfe05264e006ebffd52fde7859c0cc4cfedef72abea",
+      "contractDigest": "210a1974acb5cbb26e33ee39decff3c5535a54c9ca2833d647a934dd2a3cfa4e",
+      "record": "evidence/skill-compatibility/reviews/mailbox-sdk344-20261112/published-sendmux-management.json",
+      "sha256": "eba509eb56f787f3acc75b9325da46f57e5fc822eba66908791349d7b0b132b9"
+    },
+    {
+      "skill": "sendmux-send-email",
+      "skillDigest": "853bac285313fe319a7bf94bf67636793a818e7d616a8938bb81b33ef460ccb3",
+      "contractDigest": "57977935263773a959babde6e8a3b7c3f289affd95f6245b77ce896ad545a422",
+      "record": "evidence/skill-compatibility/reviews/mailbox-sdk344-20261112/published-sendmux-send-email.json",
+      "sha256": "fca4e63845c53e4900d195e3f5e556a678143841fe6f30ca16b79a0024728c1a"
+    },
+    {
+      "skill": "sendmux-token-efficient-usage",
+      "skillDigest": "ece1d30c9a91b3b24376c0ab41d991741b60f9314064da63b0f74da35104a3cb",
+      "contractDigest": "77a6839507ee07f392f47028afff8f90eba51c5181520f7b764a9a0efb12543f",
+      "record": "evidence/skill-compatibility/reviews/mailbox-sdk344-20261112/published-sendmux-token-efficient-usage.json",
+      "sha256": "dff1dd7622ab09e68125da67ee5b85b96dc021c0ce40b95c293c78142e884368"
+    },
+    {
+      "skill": "qubrics-cli",
+      "skillDigest": "c7b4ac5db8aef06326e3209d37f7116619cc4778ea5964ca0ac041de09799107",
+      "contractDigest": "19c847f58c6b9346f942cc93d1d08c73f637841fa84ae59c3ab035b381b92f93",
+      "record": "evidence/skill-compatibility/reviews/mailbox-sdk344-20261112/qubrics-cli.json",
+      "sha256": "9fc321b617dd709c892e618b11a853a8e841d653c4334c050b52ea532fd0e84f"
+    },
+    {
+      "skill": "qubrics-email-for-agents",
+      "skillDigest": "70dc5a8f04dca687b17929ac59d553be893235413271a4e99399fff30c70f0a6",
+      "contractDigest": "250d0812652ea7dd1910006b3b070050ba9805143ce973fd6b1f4d559993d9a6",
+      "record": "evidence/skill-compatibility/reviews/mailbox-sdk344-20261112/qubrics-email-for-agents.json",
+      "sha256": "a5478e3abd94d67454a458159d284be9217f012b916a804306cc3857831816f3"
+    },
+    {
+      "skill": "qubrics-email-for-ai-agents",
+      "skillDigest": "bb7c1d2dececb3955dc5c7c446e5bebb84b329643678791cae4c0147bc6769ac",
+      "contractDigest": "fbba27cafbaf947d445c7a984a77d15c0f43b7a5151f3c9565b77b7165939298",
+      "record": "evidence/skill-compatibility/reviews/mailbox-sdk344-20261112/qubrics-email-for-ai-agents.json",
+      "sha256": "249ba98ab1b480732442082720920594d336f0876e72529e405c92f575083da6"
+    },
+    {
+      "skill": "qubrics-getting-started",
+      "skillDigest": "226820de7247bd3e2453b938ff62ae0d993e3012fc8b5489872094a4fb45f9c5",
+      "contractDigest": "5349bfeb2c52b15380a524399de6302ee693849866d8b80d000697a214bcbb03",
+      "record": "evidence/skill-compatibility/reviews/mailbox-sdk344-20261112/qubrics-getting-started.json",
+      "sha256": "123bcec51848e5f42662b28015a19b96355493362925969441313a394264e6c7"
+    },
+    {
+      "skill": "qubrics-mailbox-agent",
+      "skillDigest": "b942b756114eff2eb3e7ccfcc0ed1e6a80dd0f32de8601dc8ded6a069fb686b7",
+      "contractDigest": "6281dfdd2c940bfeb5521ba7635585099c9a28987400ce43a7aaa05cd8ecc3c6",
+      "record": "evidence/skill-compatibility/reviews/mailbox-sdk344-20261112/qubrics-mailbox-agent.json",
+      "sha256": "8ccc412e9efb7978b48f3f9f1c28f734f0fdcad2b1f1224944c48d446ea51993"
+    },
+    {
+      "skill": "qubrics-management",
+      "skillDigest": "ec55108500cd59654717c8d8102088d495e8b923525e8b391e76650a66b00103",
+      "contractDigest": "09824c7a20e8e1c719239dca8a10f902f8011bca08fdf139299690741926e56e",
+      "record": "evidence/skill-compatibility/reviews/mailbox-sdk344-20261112/qubrics-management.json",
+      "sha256": "9e5be62c951d87517a422e4ed2058a3703b5b436733b6ba3a2fd45dae2c23508"
+    },
+    {
+      "skill": "qubrics-mcp-setup",
+      "skillDigest": "4ea84f54ef9294fd2e8083aecac923f29a875e26d000b4513e4a2a49e5dbe927",
+      "contractDigest": "5ae63c87c399784bebc44fc3891222f9dc9e42ea3a17b96e698a9f4ef169fde7",
+      "record": "evidence/skill-compatibility/reviews/mailbox-sdk344-20261112/qubrics-mcp-setup.json",
+      "sha256": "16b0fa722d3c1b8df252ae27135016c55a1dbf77f282c99693cdc81230a377b5"
+    },
+    {
+      "skill": "qubrics-send-email",
+      "skillDigest": "4ffab36dcec098252982995431fccb2bcb6a343481f30822d5d6831e8b5616cf",
+      "contractDigest": "b354dfe370c080a76f49eec2dc3ce409b5fd78d9101f33765e5823298aa5ccd7",
+      "record": "evidence/skill-compatibility/reviews/mailbox-sdk344-20261112/qubrics-send-email.json",
+      "sha256": "74fb46871aecae8162a0643fc757e3161f3e3beb5871edef4ac3e99a268bdf4c"
+    },
+    {
+      "skill": "qubrics-token-efficient-usage",
+      "skillDigest": "7c4d1d3ac670ed25ba71248e12b5e77cdd6ab15c6aab6ed747f0bbc9071a6eeb",
+      "contractDigest": "ada0b9b1c14c1f905ce56062460930cd1619570280c7e6a09e00bdb399814f31",
+      "record": "evidence/skill-compatibility/reviews/mailbox-sdk344-20261112/qubrics-token-efficient-usage.json",
+      "sha256": "1eddc3abb74424bb27f33d344f0b518a6c2d87143e836735c28a9dbd1c9b30e4"
+    },
+    {
+      "skill": "agent-email-inbox",
+      "skillDigest": "956a19a3f81906299d19f35afa0a8dba4a5bd1f1275a45d02ba1d407579f0347",
+      "contractDigest": "72cf77a188092ca920524775efb225c953da93107e9b23a7cd41325a11f48ae7",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-skills34-sdk344/agent-email-inbox.json",
+      "sha256": "ddb9080af32623e8a15537e1877396e9f75faef89555266340a4d3026088a82c"
+    },
+    {
+      "skill": "email-for-ai-agents",
+      "skillDigest": "6f2c0908457404bb6aacc4cdcf18ce49b9054cbd873939b7b3e417224fd4d1d9",
+      "contractDigest": "d2a34a8d395f431e3aa0c67ab6705f14a4d077c95b88591fd188c6bb81f6fa8a",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-skills34-sdk344/email-for-ai-agents.json",
+      "sha256": "345862010aabe3e9318489af7b0992edeafef701ae63f2742505874ee31ccba5"
+    },
+    {
+      "skill": "sendmux-email-for-agents",
+      "skillDigest": "411f7cc5d798a8e0abc7f48dd3561adc64bf5a71435c8c9283d0943f269a6cec",
+      "contractDigest": "cd6384fad1bc9ea9a33969f7aabff17e627f7fb4383bd6f70e6b04d800a532b2",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-skills34-sdk344/sendmux-email-for-agents.json",
+      "sha256": "6e1eb4ddb50470901bc35a44851238af15e69f1b94c65a83a3942aa871d16bd1"
+    },
+    {
+      "skill": "sendmux-mailbox-agent",
+      "skillDigest": "a3e2ba98b2f049335b02ebb3f3ea25b44e4c1c93878160273250222bb693a08a",
+      "contractDigest": "436834eaa65914da52d15e91ef22f4c4a26370134dc6af2e53e9f36566d76169",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-skills34-sdk344/sendmux-mailbox-agent.json",
+      "sha256": "99968686b482f4a80e16447d28c10d7e0e21fe2ab54fed40efec3a9505b3d8ac"
+    },
+    {
+      "skill": "sendmux-send-email",
+      "skillDigest": "853bac285313fe319a7bf94bf67636793a818e7d616a8938bb81b33ef460ccb3",
+      "contractDigest": "e7d8d2212db0434894f5bbb84bb7ba0a17dbc6738c6b7e01e1b57fd55a341360",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-skills34-sdk344/sendmux-send-email.json",
+      "sha256": "8516a71390a9610f57ce72183eff2993ea3bb9152dff5d82ceb3bd52c8b59e0a"
+    },
+    {
+      "skill": "sendmux-token-efficient-usage",
+      "skillDigest": "ece1d30c9a91b3b24376c0ab41d991741b60f9314064da63b0f74da35104a3cb",
+      "contractDigest": "48f5f2c095febab65b4af225448694b14c0d8a8d35cf4165c9029d3b5294a8d6",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-skills34-sdk344/sendmux-token-efficient-usage.json",
+      "sha256": "ea3ab38eaedea8145c4986fad013ce62e0f35b174ceaca1dccf5fdcc73f112bc"
+    },
+    {
+      "skill": "qubrics-agent-email-inbox",
+      "skillDigest": "4a72427ac606f9ad94b4760e039d49ad7918b3f92d3b1d70ae8dfe87ac83ac86",
+      "contractDigest": "4a68ba31b697ff03f9e0f859f62507478d532280d58192b1d5f0ae54b8277a84",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-skills34-sdk344/qubrics-agent-email-inbox.json",
+      "sha256": "f7ec203fc5425ec430c37429862581fcf2f5fac84c437107863b4b3468e824c3"
+    },
+    {
+      "skill": "qubrics-attachments",
+      "skillDigest": "10ae2e30c7e7c4db49f444f7c749774072fb84caa6c76345c885a99834ea8bc5",
+      "contractDigest": "86510d890d8e8713abcdd5081dc3f3cff2ad87b5ab0d8cd9d84d513e818554e9",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-skills34-sdk344/qubrics-attachments.json",
+      "sha256": "1b60bfde36caa9d200382c376b1a76b4bbd936f01db06fdbbf884dc143c0fa4b"
+    },
+    {
+      "skill": "qubrics-email-for-agents",
+      "skillDigest": "70dc5a8f04dca687b17929ac59d553be893235413271a4e99399fff30c70f0a6",
+      "contractDigest": "7632a317f39ecfffe6de64f1700cd5b885d678f8f4da4e822d0616cb3a1f6b60",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-skills34-sdk344/qubrics-email-for-agents.json",
+      "sha256": "a323a78e3250a5dcd16545f5503ce43d4f954d470ff90384ce8636b5d0e9ebc8"
+    },
+    {
+      "skill": "qubrics-email-for-ai-agents",
+      "skillDigest": "bb7c1d2dececb3955dc5c7c446e5bebb84b329643678791cae4c0147bc6769ac",
+      "contractDigest": "baea754ca9017d9712eb167e7c33f338971c48a1671f824d5115454ccabe8990",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-skills34-sdk344/qubrics-email-for-ai-agents.json",
+      "sha256": "77e428d8c49d111295cd6cffd31e428ac45a27973cccef0754db6d7bf0654b72"
+    },
+    {
+      "skill": "qubrics-getting-started",
+      "skillDigest": "226820de7247bd3e2453b938ff62ae0d993e3012fc8b5489872094a4fb45f9c5",
+      "contractDigest": "fe75672141ce3eee578b18a20f44ace0b81a5f2326d7d0ef11f11b538bc65831",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-skills34-sdk344/qubrics-getting-started.json",
+      "sha256": "3eecd72ade7fa02185dd6003055f8ec40fb06a811aef0966fb749bc241f4fc92"
+    },
+    {
+      "skill": "qubrics-mailbox-agent",
+      "skillDigest": "1cdd58768ac528e492d6c00c877b3d5b3863db8a050ab978e9e6a780b9991478",
+      "contractDigest": "0067f329fe3397c410bf768b25e5424adf9be2c784c50349b514e83b8db29da8",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-skills34-sdk344/qubrics-mailbox-agent.json",
+      "sha256": "389f2c4841a32bb09ac78151928d275472ce68dec3b22ad4cc503b9b723931af"
+    },
+    {
+      "skill": "qubrics-mcp-setup",
+      "skillDigest": "4ea84f54ef9294fd2e8083aecac923f29a875e26d000b4513e4a2a49e5dbe927",
+      "contractDigest": "e4390252ea6aa92a6b7e51cf2ffad85fddc226769a245a89f1df6f8f9b20959b",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-skills34-sdk344/qubrics-mcp-setup.json",
+      "sha256": "c41c43d052b4bd8c18851b3326668dc81679e8e1efff1a7abf898638b43a3c91"
+    },
+    {
+      "skill": "qubrics-send-email",
+      "skillDigest": "4ffab36dcec098252982995431fccb2bcb6a343481f30822d5d6831e8b5616cf",
+      "contractDigest": "f11071ec3f5673d92a5de532642d90b457f1c0b55bd90e8ade203a6cbd9280f5",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-skills34-sdk344/qubrics-send-email.json",
+      "sha256": "a0c62daeafa93d87ed543df63ef8be7c52fa94110ae69e8319a4873024b8e7d1"
+    },
+    {
+      "skill": "qubrics-token-efficient-usage",
+      "skillDigest": "7c4d1d3ac670ed25ba71248e12b5e77cdd6ab15c6aab6ed747f0bbc9071a6eeb",
+      "contractDigest": "6515f8881e810c62e2adbd5a173ccc2e27897d0d79dbfe021143458fee2dba9e",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-skills34-sdk344/qubrics-token-efficient-usage.json",
+      "sha256": "4e63985b1d3c78910ad19b494071c5476805c4c9fc6e582baf63a3cc4515dfbd"
+    },
+    {
+      "skill": "email-for-ai-agents",
       "skillDigest": "eb668c43d4c594ea0e70a59e0c6fb8dc75bed7c3244d0ad706afd2ec770f3060",
       "contractDigest": "9ca326ae2fce8623b8882771d68bb3f7c39bfaa6e0b235e2e95502c1ad067171",
       "record": "evidence/skill-compatibility/reviews/posthog-847-848-email-for-ai-agents.json",
@@ -2171,16 +4207,590 @@
       "contractDigest": "8d3a9b0c1e10bbdc8855bc879ba7ac1f229ef2ed166e25f5f01cd319743eab7c",
       "record": "evidence/skill-compatibility/reviews/calendar-20261030/sendmux-token-efficient-usage.json",
       "sha256": "de02f15a4c9ee97b286e1177d1f846937c4f90dc7d3c0350730f0503952e150d"
+    },
+    {
+      "skill": "agent-email-inbox",
+      "skillDigest": "74d2bc70ac8f182249bd78caec0dbd213ef7f9357541cbdacdc17167219abbf7",
+      "contractDigest": "2340d4ea27464cd766ddd9a35e05b5d1c1d9a95b8b2bb549f677993fb24f97f9",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-896/agent-email-inbox.json",
+      "sha256": "b9f8ab71e6d2ab83b58ddb04a96d283987dc71666b128dca18de00f7421b4c9d"
+    },
+    {
+      "skill": "sendmux-attachments",
+      "skillDigest": "1683e3417d4184809ecf349175a16271bb8a8c942b7ada148b8831a1e2872af6",
+      "contractDigest": "cabe8715f6ef8825396dbf05477d428b9ab33cf908bf7d05d8d326e18a96b70f",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-896/sendmux-attachments.json",
+      "sha256": "e5037ed2f8ffd8eb75801b72c942cde1eb0b443f98cb5d25cf63addba5fa514b"
+    },
+    {
+      "skill": "sendmux-cli",
+      "skillDigest": "cfc14976eadcc9400db576073b29805de04cc8cf14af31e95399a84ddcd19b46",
+      "contractDigest": "8a0915ee3eedafa44a9e497b9379e2d96a7f92de578383f8ad84d645d3519c43",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-896/sendmux-cli.json",
+      "sha256": "82f6cb3803bc77c5109ce0a346c22439327783e3ef8ec4535fb35f50c0eaba5b"
+    },
+    {
+      "skill": "sendmux-email-for-agents",
+      "skillDigest": "ccf58181a42099d536bf3f07b8693ec6eec98b0942fdf3218ca93200d9b969bc",
+      "contractDigest": "45d8c1c6c9f353e3e85f3da34b21c70d79894682de25b303739c4d1ed28a92bb",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-896/sendmux-email-for-agents.json",
+      "sha256": "a9c1f8a80185b1c22c8ac4c5c708e80296015c25777240dabfc0eb0e1237b5c6"
+    },
+    {
+      "skill": "sendmux-getting-started",
+      "skillDigest": "731d5b14efe531eabad58b2bfdb8c0e96ad7120b4219f872f212ba997341d65b",
+      "contractDigest": "b972f440507a681e9466daf160539c5e79afd92bcd20eb370da0c9e79c8cfa09",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-896/sendmux-getting-started.json",
+      "sha256": "8162acd4905a467c98ffae358a39f905f0adc6a3700cc6bb6143e1a2e09c8b2c"
+    },
+    {
+      "skill": "sendmux-mailbox-agent",
+      "skillDigest": "8157b5cb5434f82eb7290c2cec374cf31d3c7f4d5f5265e8231d30d2e6334b7b",
+      "contractDigest": "19b94ea0d8d137cdeb39db4fe6c4ecda8c5372cd6b523ad60c4a7f1824016bef",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-896/sendmux-mailbox-agent.json",
+      "sha256": "247135f40be5834480e0dc197faba03476264c1c49f2cdf69a40625130e6fe7b"
+    },
+    {
+      "skill": "sendmux-management",
+      "skillDigest": "497f5468ad5a842c9d26e2580851df58e25a24a4465f08a0ddac1b4b3cc6c30f",
+      "contractDigest": "9eaed72398dc82ebdcbfa32a887a70255c38b7887c37585e56f3e9aea62aff7b",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-896/sendmux-management.json",
+      "sha256": "8a055f1b4ead0bab8f309c1875da26f1969bb80e805d698d8b1c0b137d96ccbf"
+    },
+    {
+      "skill": "sendmux-mcp-setup",
+      "skillDigest": "2864870cf48ad126fcab5153eb029cb2c5811ac03ccefddef75b32fee982ef1e",
+      "contractDigest": "5ceaf8fb34e8109e1adf386a880a212a313421216bc5e1e182fc9c2d0932d85a",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-896/sendmux-mcp-setup.json",
+      "sha256": "49d366ddb26de0804dd6b77680a5a2eb9796e3d93b5e3120ccc9680c4fd81e1a"
+    },
+    {
+      "skill": "sendmux-token-efficient-usage",
+      "skillDigest": "e074ad0de774f6c45c5ee9248ebc3443291b137224cf5f0a34a0133b860e32c3",
+      "contractDigest": "a1b0b26899a13af7d21a866ae80f5190707456f99c5e77e1961849ddfad51565",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-896/sendmux-token-efficient-usage.json",
+      "sha256": "0d7cdddb85326228d465f88444bbdd6b3733f9da7dce1d7dc15fb25b83b95838"
+    },
+    {
+      "skill": "sendmux-management",
+      "skillDigest": "497f5468ad5a842c9d26e2580851df58e25a24a4465f08a0ddac1b4b3cc6c30f",
+      "contractDigest": "321ab22736f5e977ceb61a6bc6b9a943f30fa5b0953525ea10ba87b1c0903caa",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-897-management.json",
+      "sha256": "c920ffb7b0973a8624108d710b48ebd474d4a9d9200ee3c2413597b2751aa200"
+    },
+    {
+      "skill": "sendmux-cli",
+      "skillDigest": "cfc14976eadcc9400db576073b29805de04cc8cf14af31e95399a84ddcd19b46",
+      "contractDigest": "16c749378304a289b72a3b8646262364fe92c4e6c45c4fc6a4f31eeb60b52793",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-904/sendmux-cli.json",
+      "sha256": "c21c2edcdaf98c891dad635893da2e34ac09917cbc322bf56a5715d4e735756d"
+    },
+    {
+      "skill": "sendmux-management",
+      "skillDigest": "497f5468ad5a842c9d26e2580851df58e25a24a4465f08a0ddac1b4b3cc6c30f",
+      "contractDigest": "aafeeb2bf4a15f17b8fb8d0892b52ae6192c3928f1737b4f451456b923b36ede",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-904/sendmux-management.json",
+      "sha256": "90fdb3aa4fed0070f2a39088e8610ed5500e5984870776670c37ebc99cd8e69b"
+    },
+    {
+      "skill": "sendmux-mcp-setup",
+      "skillDigest": "2864870cf48ad126fcab5153eb029cb2c5811ac03ccefddef75b32fee982ef1e",
+      "contractDigest": "275e07b02ca053a091826c40e3ba1e1152513e1a303034718d0dc8726c02c8ff",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-904/sendmux-mcp-setup.json",
+      "sha256": "2dd74ebf134224cd157f76994be0f7c36758d330143cedba18e88f943f0ad06e"
+    },
+    {
+      "skill": "agent-email-inbox",
+      "skillDigest": "74d2bc70ac8f182249bd78caec0dbd213ef7f9357541cbdacdc17167219abbf7",
+      "contractDigest": "0a8e457146fd0dc54d9d265e20235c1d70e06683480580660e7c749ed4d91a56",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-900-app329/agent-email-inbox.json",
+      "sha256": "043892ba4d91fc5da9d6d258e668b5b0751b44bfda2d948892eb7ae3548f1391"
+    },
+    {
+      "skill": "email-for-ai-agents",
+      "skillDigest": "eb668c43d4c594ea0e70a59e0c6fb8dc75bed7c3244d0ad706afd2ec770f3060",
+      "contractDigest": "472f8b3f194d0bcbae82ae08b751edce2ccd804f1cc4536c54c782d8436e9d8f",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-900-app329/email-for-ai-agents.json",
+      "sha256": "9b4735ba5546b5980ffeea5c95534adba82d3c4b999e76c27619b60973a36fb7"
+    },
+    {
+      "skill": "sendmux-attachments",
+      "skillDigest": "1683e3417d4184809ecf349175a16271bb8a8c942b7ada148b8831a1e2872af6",
+      "contractDigest": "10459338e8fe84ad96f88d1babbdb144642cb87485e17c89f17c5ed5b6592674",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-900-app329/sendmux-attachments.json",
+      "sha256": "fe1964a2f33714d8532c029c82b260dfc6718d1d9f3ed23eeb9636c9d41f1e17"
+    },
+    {
+      "skill": "sendmux-cli",
+      "skillDigest": "cfc14976eadcc9400db576073b29805de04cc8cf14af31e95399a84ddcd19b46",
+      "contractDigest": "44a2a16f404378847b6bbea0f81ba58337e809bc44a8dc4fbf46394565dbc824",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-900-app329/sendmux-cli.json",
+      "sha256": "ac71a908fafdee9555fbd24d14f396c45c43cfb145a69ab2da535ec78ce6b05b"
+    },
+    {
+      "skill": "sendmux-email-for-agents",
+      "skillDigest": "ccf58181a42099d536bf3f07b8693ec6eec98b0942fdf3218ca93200d9b969bc",
+      "contractDigest": "34703013b13a62443525e4df3393c50115789f047b38f9229449641706855cb9",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-900-app329/sendmux-email-for-agents.json",
+      "sha256": "e2f1aaa8e8f2f514edf19745c709698bdded331e37154d57960ce0610413cbf7"
+    },
+    {
+      "skill": "sendmux-getting-started",
+      "skillDigest": "731d5b14efe531eabad58b2bfdb8c0e96ad7120b4219f872f212ba997341d65b",
+      "contractDigest": "a14de53c1a7e3bda60a817730dd7bdd1d945b59d5aad7360560333d582f7cc31",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-900-app329/sendmux-getting-started.json",
+      "sha256": "b4cad8f86c31ea85f618eb8067010a1e502ef11a15f590b6683c6699f83d7889"
+    },
+    {
+      "skill": "sendmux-mailbox-agent",
+      "skillDigest": "8157b5cb5434f82eb7290c2cec374cf31d3c7f4d5f5265e8231d30d2e6334b7b",
+      "contractDigest": "19853aeb9c1d6065c9d83d3c962f7dda85d4811410730a8c271f745a3ad6222c",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-900-app329/sendmux-mailbox-agent.json",
+      "sha256": "ce1e93b6bee98f9f24ea64fed6208ad1fb94c691b8b722c1c6fb9134606653be"
+    },
+    {
+      "skill": "sendmux-management",
+      "skillDigest": "497f5468ad5a842c9d26e2580851df58e25a24a4465f08a0ddac1b4b3cc6c30f",
+      "contractDigest": "54729c7ce638342661318f69655045858bf6fcd5d21d1b3c103f7c2a5cc7af5f",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-900-app329/sendmux-management.json",
+      "sha256": "2b5d49983d40b9c92c2ff41b435f7cf3c731111c738fe1903d2c43560873c290"
+    },
+    {
+      "skill": "sendmux-mcp-setup",
+      "skillDigest": "2864870cf48ad126fcab5153eb029cb2c5811ac03ccefddef75b32fee982ef1e",
+      "contractDigest": "914a741550f293b030a8f41d1c2fc70a61b62d24942b704cf0b35708b55a38f9",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-900-app329/sendmux-mcp-setup.json",
+      "sha256": "3a202fd4a924999b13fa0e69b4d09e567fa3bd1f9310e7a5919240c79a697c6d"
+    },
+    {
+      "skill": "sendmux-send-email",
+      "skillDigest": "5c5a9e3d9768dd884b0eb51b8b42d26af27d1df8b106933cd332083d3bd60ef6",
+      "contractDigest": "21971537c4ec414b6452387f79e728d0bebd3a5ab628be6c977ef8b163e43b30",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-900-app329/sendmux-send-email.json",
+      "sha256": "62c96bbb818ea9cd9f6556e6456e31e4f1f78dbcc5ed02f572c3f1e151cfd609"
+    },
+    {
+      "skill": "sendmux-token-efficient-usage",
+      "skillDigest": "e074ad0de774f6c45c5ee9248ebc3443291b137224cf5f0a34a0133b860e32c3",
+      "contractDigest": "80c4b47fb9e202e70ea151c3f87945422c822c70cd4a280f0c9a00b3cb7eb3ee",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-900-app329/sendmux-token-efficient-usage.json",
+      "sha256": "627c9164925497967077f13cec448096f65d5483e7d898e97c59137e6b0b9a0b"
+    },
+    {
+      "skill": "agent-email-inbox",
+      "skillDigest": "956a19a3f81906299d19f35afa0a8dba4a5bd1f1275a45d02ba1d407579f0347",
+      "contractDigest": "ae3d8cdb5d2b9d4733e722442c1f2e2dd015fb6e565778f28a8fd3c261c24e53",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-php4/agent-email-inbox.json",
+      "sha256": "be75a958c11a0b6439ae15ccd805ee4fe798ef2b3026c8b20395df97aae4d667"
+    },
+    {
+      "skill": "email-for-ai-agents",
+      "skillDigest": "6f2c0908457404bb6aacc4cdcf18ce49b9054cbd873939b7b3e417224fd4d1d9",
+      "contractDigest": "3f3c4768f2009b9d15ce9dcde3605ad805e8b3ea0480d07fa5adb2f9facbe127",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-php4/email-for-ai-agents.json",
+      "sha256": "2f4c1948ce2d9233c2ad9cea6e9b1789c0e56bf747b0a8e422532db2cdc8ebaa"
+    },
+    {
+      "skill": "sendmux-attachments",
+      "skillDigest": "f06e0579bf0f3ee52dcffcc23393b323c5fe9050b939e2694b28731d30ca9a5e",
+      "contractDigest": "bff323d30dfed3f8c834487602f06688178ec7c12b49306490fc69a37c7532a1",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-php4/sendmux-attachments.json",
+      "sha256": "d46c9c3039640e13dcba7c1e7a0829f4dd5dc27186ee32306bd92bb309aee802"
+    },
+    {
+      "skill": "sendmux-cli",
+      "skillDigest": "79f22216d882af6ffa0c246f01204e4f4537065368e15027f7a9f08c931db929",
+      "contractDigest": "08dd58738d11bceffa87be97b644b5630d7e3af5d0827f7446ec374a7f5e17b9",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-php4/sendmux-cli.json",
+      "sha256": "2ea2e13f0fb2e2f3a4a75e81474337e3561d9d55c4198c6dd252b85829134d16"
+    },
+    {
+      "skill": "sendmux-email-for-agents",
+      "skillDigest": "411f7cc5d798a8e0abc7f48dd3561adc64bf5a71435c8c9283d0943f269a6cec",
+      "contractDigest": "475b9081066eaedabb492b2a4a6a1c04c9e42c8033b01636684bfe8089d95d2c",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-php4/sendmux-email-for-agents.json",
+      "sha256": "9f04d430843c4edbf10e6f3668e9f8ee455b8044335d965ad1a2ac4001bd544b"
+    },
+    {
+      "skill": "sendmux-getting-started",
+      "skillDigest": "aec42bf3c8c21038749fbef5d3753bd689bf74edfcabd79c56b500ea6bf2e21b",
+      "contractDigest": "ddf90191f6203daab79c7188810c3adcf0731b77a4016515872246ea64fec600",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-php4/sendmux-getting-started.json",
+      "sha256": "fbd5d7cdd11cded0b61b8ea8c08d1643da7165004cfe7600c4153dafd7059594"
+    },
+    {
+      "skill": "sendmux-mailbox-agent",
+      "skillDigest": "a3e2ba98b2f049335b02ebb3f3ea25b44e4c1c93878160273250222bb693a08a",
+      "contractDigest": "c0837bb63c94a94a0965887ef18b114bd3c97dd2491d7941e809991bc15782e8",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-php4/sendmux-mailbox-agent.json",
+      "sha256": "adcfbf6cf835305ece8c62bb303b4ce40f534f3078f79022dab12b5385f15a60"
+    },
+    {
+      "skill": "sendmux-management",
+      "skillDigest": "a82945bdb1521932eef71cfe05264e006ebffd52fde7859c0cc4cfedef72abea",
+      "contractDigest": "0ff3e0c0457a51a4ffbd5d87a194efcc4f9e507228fd2ca9913078656333aea3",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-php4/sendmux-management.json",
+      "sha256": "0599aa198758371cfc52bd53ad0d6be83db225b1f720c639b83a40dcd15704a3"
+    },
+    {
+      "skill": "sendmux-mcp-setup",
+      "skillDigest": "cabb71c6b068c8223d53e0ea5e0a39c788e1bff606b5fdfb48b141e6c530c224",
+      "contractDigest": "327728b6bb4e30b1fa536e19092d15267058539eacef5cd16bf8a0660521f3ca",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-php4/sendmux-mcp-setup.json",
+      "sha256": "d0bc85f25c72d91ad42132f7bf724cf033c1e16504eecba648409d50a6acbd2e"
+    },
+    {
+      "skill": "sendmux-send-email",
+      "skillDigest": "853bac285313fe319a7bf94bf67636793a818e7d616a8938bb81b33ef460ccb3",
+      "contractDigest": "ee4d5f414cd74bf4d7c5f92ea8f601abad6ab73008e7657deb3734a9c8c15523",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-php4/sendmux-send-email.json",
+      "sha256": "135a078adff1efbc5801049bf0d91d7162dbbcbd363f9acbff0a5c6bb3438411"
+    },
+    {
+      "skill": "sendmux-token-efficient-usage",
+      "skillDigest": "ece1d30c9a91b3b24376c0ab41d991741b60f9314064da63b0f74da35104a3cb",
+      "contractDigest": "e6ba1ed5f6a4b97e6ff90729c1d0f19fd5a80e2b624ba12b2e4a48a1b21738ec",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-php4/sendmux-token-efficient-usage.json",
+      "sha256": "90a1d0f7615a3e87d5600362e39724dd4603bfd8091ffe7988a7a1b9eda2bd55"
+    },
+    {
+      "skill": "agent-email-inbox",
+      "skillDigest": "956a19a3f81906299d19f35afa0a8dba4a5bd1f1275a45d02ba1d407579f0347",
+      "contractDigest": "a1888741fffcf3c8a3ff751f756f63ca950c5e81d3b58799b701e677f013e13f",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-php4/agent-email-inbox-app1485.json",
+      "sha256": "79d36e43277af3d986d0cfc58cb1639edc5e9b8644bf7af4f19555e4ff8fdc43"
+    },
+    {
+      "skill": "agent-email-inbox",
+      "skillDigest": "956a19a3f81906299d19f35afa0a8dba4a5bd1f1275a45d02ba1d407579f0347",
+      "contractDigest": "ff9bbe9c4e919ceac5310b94e501b49902514a69be84d7e96666628da315693b",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-skills34/agent-email-inbox.json",
+      "sha256": "cbc8ca50bcbf1f34be7b56b26e2a4e32e6332ace77619ff1b964e1c1038e557d"
+    },
+    {
+      "skill": "email-for-ai-agents",
+      "skillDigest": "6f2c0908457404bb6aacc4cdcf18ce49b9054cbd873939b7b3e417224fd4d1d9",
+      "contractDigest": "34abd6b8b1d1020b8f52f33749898bc6a0deda7ee7e0c75fc0e362e7217ca993",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-skills34/email-for-ai-agents.json",
+      "sha256": "905ddba7fc812ca698fb92478f86af5476d70e5dd7070317936238c8ded6b9a2"
+    },
+    {
+      "skill": "sendmux-attachments",
+      "skillDigest": "f06e0579bf0f3ee52dcffcc23393b323c5fe9050b939e2694b28731d30ca9a5e",
+      "contractDigest": "7408d16a218a8327fc1adac11c175e1dd7d902bacf09984af818f2b78f37c0d8",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-skills34/sendmux-attachments.json",
+      "sha256": "0f53edbf026d8c44179d719d937bf8e62853d9787931b55cb3c0bfa7069ba31a"
+    },
+    {
+      "skill": "sendmux-cli",
+      "skillDigest": "79f22216d882af6ffa0c246f01204e4f4537065368e15027f7a9f08c931db929",
+      "contractDigest": "cd2f5d905c533639d3adcebf71f480fcf47ee37f5c051aa52137ee6813191e77",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-skills34/sendmux-cli.json",
+      "sha256": "b1ba88165cf8cfe98b00b2fc740bc7f01a2b5c9052bebd0f414e08ea7a2969e5"
+    },
+    {
+      "skill": "sendmux-email-for-agents",
+      "skillDigest": "411f7cc5d798a8e0abc7f48dd3561adc64bf5a71435c8c9283d0943f269a6cec",
+      "contractDigest": "7264462de7365aa95d86ade75b83f2d01880de8f0ae97b5ae83642b8948c19f1",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-skills34/sendmux-email-for-agents.json",
+      "sha256": "c0aed66477576e78cde9aa3580df09cf87445cae3e1a9ae276809b70b425ef3a"
+    },
+    {
+      "skill": "sendmux-getting-started",
+      "skillDigest": "aec42bf3c8c21038749fbef5d3753bd689bf74edfcabd79c56b500ea6bf2e21b",
+      "contractDigest": "30aecf506069ce2fdab897e6af2da91f51de71a155fd27194ef3cd0cbc887b1b",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-skills34/sendmux-getting-started.json",
+      "sha256": "c13e01e17f5711d5067da224c06b43589b9de49288b013d4dcd0f2472a2f7b6b"
+    },
+    {
+      "skill": "sendmux-mailbox-agent",
+      "skillDigest": "a3e2ba98b2f049335b02ebb3f3ea25b44e4c1c93878160273250222bb693a08a",
+      "contractDigest": "99693eaa313cb4f5ab7e17c015abf490dcf23e9fdc25906fb86df57b5c79a5d1",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-skills34/sendmux-mailbox-agent.json",
+      "sha256": "fced619f41b969196b8210156e6a3cf27dbbd080713d39fa46b821a9237954f1"
+    },
+    {
+      "skill": "sendmux-management",
+      "skillDigest": "a82945bdb1521932eef71cfe05264e006ebffd52fde7859c0cc4cfedef72abea",
+      "contractDigest": "75ab7db219d7e1b42ba2e2c5bb6e5cdc501d5ec795d08a4b86ecee2f3cd4ddde",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-skills34/sendmux-management.json",
+      "sha256": "3103a7aab1cb6c8bb9271c3090284b3f2615d69933b2e386dbb4563df80d44dc"
+    },
+    {
+      "skill": "sendmux-mcp-setup",
+      "skillDigest": "cabb71c6b068c8223d53e0ea5e0a39c788e1bff606b5fdfb48b141e6c530c224",
+      "contractDigest": "fb111c51163d41772dff1a6d370421a4b3aca91d489521dfbe1b5dcf53da4cd5",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-skills34/sendmux-mcp-setup.json",
+      "sha256": "b1cafe70b1b3d730a21433dfe72ce68d26bf8006b44e4ce62749feca85ab9c6f"
+    },
+    {
+      "skill": "sendmux-send-email",
+      "skillDigest": "853bac285313fe319a7bf94bf67636793a818e7d616a8938bb81b33ef460ccb3",
+      "contractDigest": "ad42fc4c264f1f66abca1cef3db32ff1b22fb49f67748a210850ed5e07bf422a",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-skills34/sendmux-send-email.json",
+      "sha256": "7e71fed48826130c4cb8b2a3ac03a471b1c61cfaff1fb42bb61a22d71bd0fb60"
+    },
+    {
+      "skill": "sendmux-token-efficient-usage",
+      "skillDigest": "ece1d30c9a91b3b24376c0ab41d991741b60f9314064da63b0f74da35104a3cb",
+      "contractDigest": "52f8e4f095fad9f160997a895b837212b96a01feedb4d7994fc59b146fa1f392",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-skills34/sendmux-token-efficient-usage.json",
+      "sha256": "4c2001b048b65ad270ee437c903861d05a9521c187b506512a07d6b3b28775f8"
+    },
+    {
+      "skill": "qubrics-agent-email-inbox",
+      "skillDigest": "4a72427ac606f9ad94b4760e039d49ad7918b3f92d3b1d70ae8dfe87ac83ac86",
+      "contractDigest": "3f5f47694a28d42237b4cd733e05e0dd3d0e1bab7305420b23096495ac056d31",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-skills34-phase2/qubrics-agent-email-inbox.json",
+      "sha256": "17eb78400f9171169a3346146859f95bfad66e4cb947cab7c88c69031327f23d"
+    },
+    {
+      "skill": "qubrics-attachments",
+      "skillDigest": "12d114d48cbb7f1a264a8bc5ba5d4adb1bbf7b377c3506e9d06564de9f5aa53b",
+      "contractDigest": "29b51e124ba68723ee54ea85dd5669cc3ef99a6b6ed11a9069a4f147e39a0334",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-skills34-phase2/qubrics-attachments.json",
+      "sha256": "2a3b71cd30b0902201182db2f020dd36086628df7ad9118a0afc66fed38b00cf"
+    },
+    {
+      "skill": "qubrics-cli",
+      "skillDigest": "c7b4ac5db8aef06326e3209d37f7116619cc4778ea5964ca0ac041de09799107",
+      "contractDigest": "86884a59c07cbd32e7cc6d87882ad65549173f85d7b7095f79c23bdef179dca3",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-skills34-phase2/qubrics-cli.json",
+      "sha256": "63590b9f75a31c05aa5faa4441b62162a6c12e4e5a91fa38f58a46b2b4e0f7fc"
+    },
+    {
+      "skill": "qubrics-email-for-agents",
+      "skillDigest": "70dc5a8f04dca687b17929ac59d553be893235413271a4e99399fff30c70f0a6",
+      "contractDigest": "8b0c582a8c9ca5cbc4585a37936923c9c03c9ab2fdee980ee19cfa1644cc5c3c",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-skills34-phase2/qubrics-email-for-agents.json",
+      "sha256": "f86d696786a7ac69a1bf8d2bbc9412243ac21dd311baf79526b9da150de22818"
+    },
+    {
+      "skill": "qubrics-email-for-ai-agents",
+      "skillDigest": "bb7c1d2dececb3955dc5c7c446e5bebb84b329643678791cae4c0147bc6769ac",
+      "contractDigest": "750bfc66fc19fceaf1bec351c364f6aa510577f7f097f145746371082180b059",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-skills34-phase2/qubrics-email-for-ai-agents.json",
+      "sha256": "9d111202511250b5b939f19d1eecf4c99f8112054a6486c9d814c9b82b1dd5e0"
+    },
+    {
+      "skill": "qubrics-getting-started",
+      "skillDigest": "335408923d71bc790f64c9d24cfcc89657affb34adfb4a93411c3c27a041ba70",
+      "contractDigest": "fda4aaeb993327cfb41a5150ea064363448c3e3ed5284191310f11270efb7294",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-skills34-phase2/qubrics-getting-started.json",
+      "sha256": "a4c02f690e7100b86c6c771232012f62fb69cb0e2d8431c8ab8a0943c3de354c"
+    },
+    {
+      "skill": "qubrics-mailbox-agent",
+      "skillDigest": "1cdd58768ac528e492d6c00c877b3d5b3863db8a050ab978e9e6a780b9991478",
+      "contractDigest": "dd4115dc12b22767abaf705903f7071495247039c269b39a997f0d4384acfc04",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-skills34-phase2/qubrics-mailbox-agent.json",
+      "sha256": "bfe6cb52068cb65b4fa0b7875e1d89d703a1bfcef92de75b11c0920afbecd8de"
+    },
+    {
+      "skill": "qubrics-management",
+      "skillDigest": "ec55108500cd59654717c8d8102088d495e8b923525e8b391e76650a66b00103",
+      "contractDigest": "9549291c4892f98757cf5ad01bdd7f9bddab2474c48e428d7c09f9326ca3a68d",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-skills34-phase2/qubrics-management.json",
+      "sha256": "de5f046339f17ed7dd92ac8914b7b8bfb5d8708a78af7523958fde635e5ee084"
+    },
+    {
+      "skill": "qubrics-mcp-setup",
+      "skillDigest": "912686cadcf474a8f97ad5137dc3b7a31ff3e51fda8944f46ea53a31dd53d5f0",
+      "contractDigest": "cd35b4e6c688898e4fa5b85c6a1fc6778232f74ca19948c204ad7551b7c14966",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-skills34-phase2/qubrics-mcp-setup.json",
+      "sha256": "177304879d85476b0a337e507b7e1fb5cf024ac55b402fc4fc6acb60ece04b72"
+    },
+    {
+      "skill": "qubrics-send-email",
+      "skillDigest": "987f2c34ffc5c4e8960f325a8aaff7db374de7d722f8aca6e1cb21cfe2437d9f",
+      "contractDigest": "0eb646a55a2445b0b4a42e0c13544242b9e74600d590a429bebcea6bc1a0ed01",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-skills34-phase2/qubrics-send-email.json",
+      "sha256": "2a95ffa8c57c238c84b8a170f2c80466b33dd25edae1881ec57ad41f0cd0acba"
+    },
+    {
+      "skill": "qubrics-token-efficient-usage",
+      "skillDigest": "7c4d1d3ac670ed25ba71248e12b5e77cdd6ab15c6aab6ed747f0bbc9071a6eeb",
+      "contractDigest": "e48605fdb8e7392c6948afbedcae6c4abddff61b6dc9d0e38b518aebcc86385d",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-skills34-phase2/qubrics-token-efficient-usage.json",
+      "sha256": "7ce5eeae4817edb0f23a7c7cc60bf554e7cfedb0e40f411a171bc5ad9fb8f167"
+    },
+    {
+      "skill": "qubrics-mcp-setup",
+      "skillDigest": "a0ee94408114640c0782c227014dbec5261921185a6c144aaaedbdf912199279",
+      "contractDigest": "cd35b4e6c688898e4fa5b85c6a1fc6778232f74ca19948c204ad7551b7c14966",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-skills34-phase2/qubrics-mcp-setup-review-correction.json",
+      "sha256": "edf618ccf781a80b773b5569dfcb4025b168999e8e59d31b54355546577d074c"
+    },
+    {
+      "skill": "qubrics-send-email",
+      "skillDigest": "4ffab36dcec098252982995431fccb2bcb6a343481f30822d5d6831e8b5616cf",
+      "contractDigest": "0eb646a55a2445b0b4a42e0c13544242b9e74600d590a429bebcea6bc1a0ed01",
+      "record": "evidence/skill-compatibility/reviews/rebrand-qubrics-skills34-phase2/qubrics-send-email-review-correction.json",
+      "sha256": "99bf8dffba0e9439030ed59561a4c57d0ff9d10a25b9c63314cced994503a260"
+    },
+    {
+      "skill": "qubrics-agent-email-inbox",
+      "skillDigest": "4a72427ac606f9ad94b4760e039d49ad7918b3f92d3b1d70ae8dfe87ac83ac86",
+      "contractDigest": "65aa1ff0b8fa3fcd65d84d0ee12c16dc9e6708f9f461e22afb1636306e8d08c9",
+      "record": "evidence/skill-compatibility/reviews/calendar-api-20261111/qubrics-agent-email-inbox.json",
+      "sha256": "4aa3cec286c77d61a74513c24fc3f0eb5be14616355d2b291d920ae7f69cb4b5"
+    },
+    {
+      "skill": "qubrics-attachments",
+      "skillDigest": "10ae2e30c7e7c4db49f444f7c749774072fb84caa6c76345c885a99834ea8bc5",
+      "contractDigest": "e99a25bef146b48efb4cd1e354f7e3da065511ba48aef9a09b688a56bb0ae2a8",
+      "record": "evidence/skill-compatibility/reviews/calendar-api-20261111/qubrics-attachments.json",
+      "sha256": "efd034f57c5883094d1e0709774f71c450ffbf290d4da0da5424dd14a1cffc63"
+    },
+    {
+      "skill": "qubrics-cli",
+      "skillDigest": "c7b4ac5db8aef06326e3209d37f7116619cc4778ea5964ca0ac041de09799107",
+      "contractDigest": "b4b7b32979554d3b89ada2b16c1849293de168e2f411be5dc95be099c5b31d56",
+      "record": "evidence/skill-compatibility/reviews/calendar-api-20261111/qubrics-cli.json",
+      "sha256": "8c881bf49685bed684fbff24c4823872e1ad7bce8b9a4f774ed1f2c185cc1bd7"
+    },
+    {
+      "skill": "qubrics-email-for-agents",
+      "skillDigest": "70dc5a8f04dca687b17929ac59d553be893235413271a4e99399fff30c70f0a6",
+      "contractDigest": "2834dbf0443e5815908732a2c48a7664b25a898228965f14db7b1d33adfa932e",
+      "record": "evidence/skill-compatibility/reviews/calendar-api-20261111/qubrics-email-for-agents.json",
+      "sha256": "6b584c1aee5c1b8eb21ec5e7d4c612da7231d94bd3ed318997ec1ea56142cab6"
+    },
+    {
+      "skill": "qubrics-email-for-ai-agents",
+      "skillDigest": "bb7c1d2dececb3955dc5c7c446e5bebb84b329643678791cae4c0147bc6769ac",
+      "contractDigest": "23e8fb24bcbead58dc0a5fd106347f462edcc1042fe8351c5fe31f5e5f77d651",
+      "record": "evidence/skill-compatibility/reviews/calendar-api-20261111/qubrics-email-for-ai-agents.json",
+      "sha256": "41325c23cef63e1d2ba0d13b45cd1dd5499dc94888293efe75b04c2554d3f24b"
+    },
+    {
+      "skill": "qubrics-getting-started",
+      "skillDigest": "226820de7247bd3e2453b938ff62ae0d993e3012fc8b5489872094a4fb45f9c5",
+      "contractDigest": "b9b4720484f0281292765b08939ac566b7e30aa9c70a9c586e0e866b16e89216",
+      "record": "evidence/skill-compatibility/reviews/calendar-api-20261111/qubrics-getting-started.json",
+      "sha256": "361768a96d8d3167fd3c106200ae63029423ce7fc16fc093031a2d99500308a9"
+    },
+    {
+      "skill": "qubrics-mailbox-agent",
+      "skillDigest": "b942b756114eff2eb3e7ccfcc0ed1e6a80dd0f32de8601dc8ded6a069fb686b7",
+      "contractDigest": "a9a5125cad51f81336b3289c583a2859ffc2e43a168f198b91704ee8b69cead6",
+      "record": "evidence/skill-compatibility/reviews/calendar-api-20261111/qubrics-mailbox-agent.json",
+      "sha256": "261bdbb7c69fc5a30cbb10b76215b38d9b14d21143821e5fc023d67aa5b0cdd9"
+    },
+    {
+      "skill": "qubrics-management",
+      "skillDigest": "ec55108500cd59654717c8d8102088d495e8b923525e8b391e76650a66b00103",
+      "contractDigest": "69bb289834d75cb1770306d68384770a12622c140bd25828dd6d34052a270e4c",
+      "record": "evidence/skill-compatibility/reviews/calendar-api-20261111/qubrics-management.json",
+      "sha256": "7e95e0d50c9264f06b86a3f560a7388fa99426dabb0162c3088bbdeeecfc5d08"
+    },
+    {
+      "skill": "qubrics-mcp-setup",
+      "skillDigest": "4ea84f54ef9294fd2e8083aecac923f29a875e26d000b4513e4a2a49e5dbe927",
+      "contractDigest": "461684ddaa7706069d9d868be388215c783b5e58492c428d4d6db3f510f6a385",
+      "record": "evidence/skill-compatibility/reviews/calendar-api-20261111/qubrics-mcp-setup.json",
+      "sha256": "3a3195b7daa5943430b9553c9d62fc309460101587db49e2cd51dc5a2a9091aa"
+    },
+    {
+      "skill": "qubrics-send-email",
+      "skillDigest": "4ffab36dcec098252982995431fccb2bcb6a343481f30822d5d6831e8b5616cf",
+      "contractDigest": "92b8624f66e1cfd94f62c418444b06b2486354cede6d9289d43c5b4bc923a2ae",
+      "record": "evidence/skill-compatibility/reviews/calendar-api-20261111/qubrics-send-email.json",
+      "sha256": "a0a011ba98c5094a1686160762ebad66d9c9df52d9467f293c8683f5ae549a3b"
+    },
+    {
+      "skill": "qubrics-token-efficient-usage",
+      "skillDigest": "7c4d1d3ac670ed25ba71248e12b5e77cdd6ab15c6aab6ed747f0bbc9071a6eeb",
+      "contractDigest": "f991affe6476e5d6d6c1324de965765d2834befc244b1e3c2a433dc82675de02",
+      "record": "evidence/skill-compatibility/reviews/calendar-api-20261111/qubrics-token-efficient-usage.json",
+      "sha256": "aea4b0c29c864f7a538c3dd34bc7ef0a0da97ee262ea821fc5119e3a12e5cce0"
+    },
+    {
+      "skill": "agent-email-inbox",
+      "skillDigest": "956a19a3f81906299d19f35afa0a8dba4a5bd1f1275a45d02ba1d407579f0347",
+      "contractDigest": "904682fa0f85cdb1fdf07b03501f7ea251e8a6885a7abfd3bc61801ca2150b2f",
+      "record": "evidence/skill-compatibility/reviews/calendar-api-20261111/published-agent-email-inbox.json",
+      "sha256": "2e3bc3636f9c32d6a173bb5d1b67238339a29f6a1669477d50114ae72110793f"
+    },
+    {
+      "skill": "email-for-ai-agents",
+      "skillDigest": "6f2c0908457404bb6aacc4cdcf18ce49b9054cbd873939b7b3e417224fd4d1d9",
+      "contractDigest": "d4be23440cec72b53fee9f06f872a7350b54a009c0c0f53b91369e4ce1202fea",
+      "record": "evidence/skill-compatibility/reviews/calendar-api-20261111/published-email-for-ai-agents.json",
+      "sha256": "6cffcfb0db9f3755e94bf06579a8b5c55163c7efbd68209ff2d0cb5ceba96e3e"
+    },
+    {
+      "skill": "sendmux-attachments",
+      "skillDigest": "f06e0579bf0f3ee52dcffcc23393b323c5fe9050b939e2694b28731d30ca9a5e",
+      "contractDigest": "2d99f6075eb552f2e4dd0aebce8b944eca28fde30f3dac080d14a829473af1be",
+      "record": "evidence/skill-compatibility/reviews/calendar-api-20261111/published-sendmux-attachments.json",
+      "sha256": "650c6ba93ef068ee4cd25e299c5d5768ea05f56addf549578da7f0b38a7f17ec"
+    },
+    {
+      "skill": "sendmux-cli",
+      "skillDigest": "79f22216d882af6ffa0c246f01204e4f4537065368e15027f7a9f08c931db929",
+      "contractDigest": "c29016b195e1ff04cd8da8debd913359223054598a5f70daf77c226840feb89d",
+      "record": "evidence/skill-compatibility/reviews/calendar-api-20261111/published-sendmux-cli.json",
+      "sha256": "ac6ee9d140e1d82544c7a39fe6a5b3caebf74d34b663ce3324e26e9b76781200"
+    },
+    {
+      "skill": "sendmux-email-for-agents",
+      "skillDigest": "411f7cc5d798a8e0abc7f48dd3561adc64bf5a71435c8c9283d0943f269a6cec",
+      "contractDigest": "33a314257cc1f63f0bc29a304af38a5fb3d21a84c61cbe1739df9d8f9370c6fb",
+      "record": "evidence/skill-compatibility/reviews/calendar-api-20261111/published-sendmux-email-for-agents.json",
+      "sha256": "8633ff748aa19b9457a096e4a502d5af6b334e20c5cd8b4dcc265c01ae9746f8"
+    },
+    {
+      "skill": "sendmux-getting-started",
+      "skillDigest": "aec42bf3c8c21038749fbef5d3753bd689bf74edfcabd79c56b500ea6bf2e21b",
+      "contractDigest": "40683c527e2aa13764171e14b49565f07d478c3117e892e3aee055da2ce4571b",
+      "record": "evidence/skill-compatibility/reviews/calendar-api-20261111/published-sendmux-getting-started.json",
+      "sha256": "a021d57d0dea418334371a03b2cf1ea0ba57218c639e34187642b495bb194e54"
+    },
+    {
+      "skill": "sendmux-mailbox-agent",
+      "skillDigest": "a3e2ba98b2f049335b02ebb3f3ea25b44e4c1c93878160273250222bb693a08a",
+      "contractDigest": "8be2dc7d86a2647af5f9d949cabf60f048ebf08d0a95aa3c0df613eeddd46998",
+      "record": "evidence/skill-compatibility/reviews/calendar-api-20261111/published-sendmux-mailbox-agent.json",
+      "sha256": "7d1c40fd9f087b1526dbb4f521e85bcf08d50aa0e5a85cadec08d740751c43d3"
+    },
+    {
+      "skill": "sendmux-management",
+      "skillDigest": "a82945bdb1521932eef71cfe05264e006ebffd52fde7859c0cc4cfedef72abea",
+      "contractDigest": "39316ecd6a836379d395f8478ec36a154145255397f97a6b774b1502b806429f",
+      "record": "evidence/skill-compatibility/reviews/calendar-api-20261111/published-sendmux-management.json",
+      "sha256": "e86e70d60f65428c29527196c9dc21545c807f92ca630578d6e63c0e839de3f4"
+    },
+    {
+      "skill": "sendmux-mcp-setup",
+      "skillDigest": "cabb71c6b068c8223d53e0ea5e0a39c788e1bff606b5fdfb48b141e6c530c224",
+      "contractDigest": "ee4e6c0f8ba39792be4b05aadb5ab4f17afde35c76e92f3515cecb94dfbfcc85",
+      "record": "evidence/skill-compatibility/reviews/calendar-api-20261111/published-sendmux-mcp-setup.json",
+      "sha256": "5a68383b729975a8dd611d665d03e1bce8b7bba9a722dd4027364ad4fffe8760"
+    },
+    {
+      "skill": "sendmux-send-email",
+      "skillDigest": "853bac285313fe319a7bf94bf67636793a818e7d616a8938bb81b33ef460ccb3",
+      "contractDigest": "de0925ebab3efe95d0217d997c78f95a3deb187e3a9961a5cb4ebe0b851a477e",
+      "record": "evidence/skill-compatibility/reviews/calendar-api-20261111/published-sendmux-send-email.json",
+      "sha256": "a9c63d37cd7b04a57da76dd663acba1d03a7aadde0cb5516839fa23a881e83a5"
+    },
+    {
+      "skill": "sendmux-token-efficient-usage",
+      "skillDigest": "ece1d30c9a91b3b24376c0ab41d991741b60f9314064da63b0f74da35104a3cb",
+      "contractDigest": "d1baea82aeb272bfe95196312fe347464afb9f788351672a11a37adb3fdc07b3",
+      "record": "evidence/skill-compatibility/reviews/calendar-api-20261111/published-sendmux-token-efficient-usage.json",
+      "sha256": "6a024ce8c8173cb3a39be672b16caa6f60571b16bd87d4aca51f12ecbe4c0760"
     }
   ],
   "releaseInputs": {
-    "publishedRevision": "fc7c11647c3bb9f6ba80e0aa6679ad6895d94ce1",
-    "sdkRevision": "1812300f1f30102ed0e624bc92cd92224cdf867d",
+    "publishedRevision": "9d8059b10111943ce08860217a27222f43507686",
+    "sdkRevision": "57435acb6517ece3a78a3f1774f37dcce6985935",
     "app": {
-      "revision": "87ce115810ebcfa91655295603c27af52fcff96f",
-      "openapi": "evidence/skill-compatibility/contracts/calendar-20261030/app-openapi.json",
-      "policy": "evidence/skill-compatibility/contracts/calendar-20261030/app-policy.json",
-      "exportReceipt": "evidence/skill-compatibility/contracts/calendar-20261030/app-export.json"
+      "revision": "06a1d50eeb483e8a4c6aeb8da64832c5d3dc5a7e",
+      "openapi": "evidence/skill-compatibility/contracts/calendar-api-20261111/app-openapi.json",
+      "policy": "evidence/skill-compatibility/contracts/calendar-api-20261111/app-policy.json",
+      "exportReceipt": "evidence/skill-compatibility/contracts/calendar-api-20261111/app-export.json"
     },
     "sending": {
       "revision": "2f4226655efc05f109b5feda50ed2ca1570aea91",

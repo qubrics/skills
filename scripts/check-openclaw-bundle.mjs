@@ -64,8 +64,8 @@ function declaredEnvVars(frontmatter) {
   return vars;
 }
 
-function referencedSendmuxEnvVars(text) {
-  return [...new Set(text.match(/\bSENDMUX_[A-Z0-9_]+\b/g) ?? [])].sort();
+function referencedEnvVars(text) {
+  return [...new Set(text.match(/\b(?:QUBRICS|SENDMUX)_[A-Z0-9_]+\b/g) ?? [])].sort();
 }
 
 function walkFiles(root) {
@@ -152,34 +152,34 @@ for (const slug of outputSlugs) {
     fail(`${slug}: generated bundle must not contain Apache-2.0`);
   }
 
-  if (!/This ClawHub skill connects OpenClaw agents to Sendmux\./.test(text)) {
+  if (!/This ClawHub skill connects OpenClaw agents to Qubrics\./.test(text)) {
     fail(`${slug}: missing ClawHub external account note`);
   }
 
   const declared = declaredEnvVars(frontmatter);
-  for (const envName of referencedSendmuxEnvVars(text)) {
+  for (const envName of referencedEnvVars(text)) {
     if (!declared.has(envName)) {
       fail(`${slug}: references ${envName} but does not declare it in metadata.openclaw`);
     }
   }
 }
 
-const agentInboxPath = path.join(outputRoot, "sendmux-email-for-agents", "SKILL.md");
+const agentInboxPath = path.join(outputRoot, "qubrics-email-for-agents", "SKILL.md");
 if (existsSync(agentInboxPath)) {
   const text = readText(agentInboxPath);
   for (const term of ["inbox", "receive", "send", "route"]) {
     if (!new RegExp(term, "i").test(text)) {
-      fail(`sendmux-email-for-agents should frame Sendmux as an agent inbox that can ${term}`);
+      fail(`qubrics-email-for-agents should frame Qubrics as an agent inbox that can ${term}`);
     }
   }
 }
 
-if (!sourceSlugs.includes("sendmux-attachments")) {
-  fail("Source skills must include sendmux-attachments before publishing to OpenClaw");
+if (!sourceSlugs.includes("qubrics-attachments")) {
+  fail("Source skills must include qubrics-attachments before publishing to OpenClaw");
 }
 
-if (!outputSlugs.includes("sendmux-attachments")) {
-  fail("Generated OpenClaw bundle must include sendmux-attachments");
+if (!outputSlugs.includes("qubrics-attachments")) {
+  fail("Generated OpenClaw bundle must include qubrics-attachments");
 }
 
 if (failures.length > 0) {

@@ -1,0 +1,11 @@
+{
+  "eval_id": 0,
+  "prompt": "I am preparing a source migration to the exact SDK candidate a326bc923fff448470d908bb527afaaa35f6d739. Using this attachment skill, give Python import lines for the Mailbox client, text-attachment reader and send-with-files helper, plus the Sending client and send-with-files helper. Explain the Mailbox versus Sending attachment identifiers and the boundary for an untrusted download URL. Do not execute a send or network call, invent a result, or claim the new distributions are already published.",
+  "assertions": [
+    "Imports Mailbox helpers from qubrics.mailbox and Sending helpers from qubrics.sending, using exported helper names.",
+    "Does not teach sendmux_mailbox or sendmux_sending imports for the renamed candidate.",
+    "Keeps Mailbox outgoing blob_id separate from Sending attachment_id and uses message_id/attachment_id for Mailbox reads.",
+    "Treats returned download URLs as opaque and does not send an API bearer to their host.",
+    "Performs no send or external action and does not claim unpublished packages are available."
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "kind": "compatibility",
+  "skill": "qubrics-email-for-ai-agents",
+  "skillDigest": "bb7c1d2dececb3955dc5c7c446e5bebb84b329643678791cae4c0147bc6769ac",
+  "contractDigest": "baea754ca9017d9712eb167e7c33f338971c48a1671f824d5115454ccabe8990",
+  "sourceRevisions": {
+    "app": "87ce115810ebcfa91655295603c27af52fcff96f",
+    "sending": "2f4226655efc05f109b5feda50ed2ca1570aea91",
+    "sdk": "a326bc923fff448470d908bb527afaaa35f6d739"
+  },
+  "reviewer": "Independent source reviewer /root/phase2_contract_review; coordinating reviewer /root",
+  "rationale": "Approved single Sending operations, stable idempotency keys, owner authority and retry-result handling retain their TS/CLI/MCP contracts. Whole-body review found no removed Python import or executable taught directly; setup/helper handoffs use the tested A13 replacements. TS is unchanged, MCP tools/snapshots equal; package/setup changes explicitly assessed in the bound sixteen-row review. No live parity/publication claim.",
+  "evidence": [
+    {
+      "path": "skills/qubrics-email-for-ai-agents/SKILL.md",
+      "sha256": "e6be67e17f165a773e3b01677bd38435249cf83c975f2bbb40c896b10de46c3b"
+    },
+    {
+      "path": "evidence/skill-compatibility/reviews/rebrand-qubrics-skills34-sdk344/source-review.md",
+      "sha256": "104d51a596dc7130decf8e8dac1f2fc49909933b9878c4d4e05bf2c82ea266be"
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "kind": "compatibility",
+  "skill": "qubrics-token-efficient-usage",
+  "skillDigest": "7c4d1d3ac670ed25ba71248e12b5e77cdd6ab15c6aab6ed747f0bbc9071a6eeb",
+  "contractDigest": "e48605fdb8e7392c6948afbedcae6c4abddff61b6dc9d0e38b518aebcc86385d",
+  "sourceRevisions": {
+    "app": "87ce115810ebcfa91655295603c27af52fcff96f",
+    "sending": "2f4226655efc05f109b5feda50ed2ca1570aea91",
+    "sdk": "8d3d7492dc83852906c163d0ce0c30cfdd0bc06f"
+  },
+  "reviewer": "Independent AI source reviewer /root/phase2_contract_review; coordinating reviewer /root",
+  "rationale": "Credential ownership, attachment helpers, resource sync tokens, HTTP metadata and retry/pagination guidance match the selected contracts. All eleven whole-body and selected-source reviews are recorded in the bound source review. Source compatibility only; no fresh workflow evaluation, live URL equivalence or publication is claimed.",
+  "evidence": [
+    {
+      "path": "skills/qubrics-token-efficient-usage/SKILL.md",
+      "sha256": "763618dc196f35e58fa1deb165703f3e77cd47eeaf73ea5d036f1e6ff371472f"
+    },
+    {
+      "path": "evidence/skill-compatibility/reviews/rebrand-qubrics-skills34-phase2/source-review.md",
+      "sha256": "ac34ec03e2f74dc6fe187353b670407d32290426ff079b3d2fd54cddf3e5158e"
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "expectations": [
+    {
+      "text": "Uses the live qubrics CLI path for durable agent inbox registration and owner-approved sending.",
+      "passed": true,
+      "evidence": "Actual response names @qubrics/cli, qubrics agent:register and qubrics agent:invite-owner as explanations only; sending requires owner approval and a scoped one-hour token, matching the frozen guide."
+    },
+    {
+      "text": "Identifies the source MCP distribution as qubrics-mcp and uses only qubrics-mcp executable names for it.",
+      "passed": true,
+      "evidence": "Actual response identifies qubrics-mcp as source distribution/server identity and delegates surface-specific configuration to the corrected MCP setup guide, with no old executable instruction."
+    },
+    {
+      "text": "Distinguishes source migration from publication and does not claim the renamed Python distribution is live.",
+      "passed": true,
+      "evidence": "Actual response: 'Do not assume the renamed Python distribution is published' and requires an installed source build or verified intended release before pipx install."
+    },
+    {
+      "text": "Does not request secrets, extract a CLI profile credential, register an inbox or perform a send.",
+      "passed": true,
+      "evidence": "Actual response does not request or extract credentials and explicitly claims no registration, authentication, mailbox read or send. It says reuse existing authorised profile."
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 0,
+    "total": 4,
+    "pass_rate": 1
+  },
+  "grader": "Coordinating reviewer /root; reviewed actual /root/sdk344_genuine_workflows outputs against frozen skills and immutable SDK source."
+}

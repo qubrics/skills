@@ -1,0 +1,101 @@
+{
+  "published": [
+    {
+      "name": "agent-email-inbox",
+      "skillDigest": "74d2bc70ac8f182249bd78caec0dbd213ef7f9357541cbdacdc17167219abbf7",
+      "contractDigest": "2340d4ea27464cd766ddd9a35e05b5d1c1d9a95b8b2bb549f677993fb24f97f9"
+    },
+    {
+      "name": "sendmux-attachments",
+      "skillDigest": "1683e3417d4184809ecf349175a16271bb8a8c942b7ada148b8831a1e2872af6",
+      "contractDigest": "cabe8715f6ef8825396dbf05477d428b9ab33cf908bf7d05d8d326e18a96b70f"
+    },
+    {
+      "name": "sendmux-cli",
+      "skillDigest": "ba1e4cc36d503b7e4e0b58c30e91d08d30b420c261ec6b3f10e41e62c9420060",
+      "contractDigest": "8a0915ee3eedafa44a9e497b9379e2d96a7f92de578383f8ad84d645d3519c43"
+    },
+    {
+      "name": "sendmux-email-for-agents",
+      "skillDigest": "b954dac79d49b818d65b2dc4e6218427777292fc48328453fe5101fb8f3895b6",
+      "contractDigest": "45d8c1c6c9f353e3e85f3da34b21c70d79894682de25b303739c4d1ed28a92bb"
+    },
+    {
+      "name": "sendmux-getting-started",
+      "skillDigest": "5029bf05c88abc8c25680cbd4a1cb7e311668752478c295f984f491a4781d556",
+      "contractDigest": "b972f440507a681e9466daf160539c5e79afd92bcd20eb370da0c9e79c8cfa09"
+    },
+    {
+      "name": "sendmux-mailbox-agent",
+      "skillDigest": "7caa769e30408f23404ead3b3f427368ca715a09d8bc6c38d61e92ea23a2e3d3",
+      "contractDigest": "19b94ea0d8d137cdeb39db4fe6c4ecda8c5372cd6b523ad60c4a7f1824016bef"
+    },
+    {
+      "name": "sendmux-management",
+      "skillDigest": "497f5468ad5a842c9d26e2580851df58e25a24a4465f08a0ddac1b4b3cc6c30f",
+      "contractDigest": "9eaed72398dc82ebdcbfa32a887a70255c38b7887c37585e56f3e9aea62aff7b"
+    },
+    {
+      "name": "sendmux-mcp-setup",
+      "skillDigest": "330558950dc6569b802ab1c642b61927ca369d9fe3c151025a7643c0cfc9bf06",
+      "contractDigest": "5ceaf8fb34e8109e1adf386a880a212a313421216bc5e1e182fc9c2d0932d85a"
+    },
+    {
+      "name": "sendmux-send-email",
+      "skillDigest": "60fcef4c782addf56f3e67cc770e74a5e980aca007ab25b0bb3cab679776b6f7",
+      "contractDigest": "cf409fb9e9dfff6fdb67f8b9704aa38139f8e9b8c5e1e95edba290805ce3b225"
+    },
+    {
+      "name": "sendmux-token-efficient-usage",
+      "skillDigest": "e074ad0de774f6c45c5ee9248ebc3443291b137224cf5f0a34a0133b860e32c3",
+      "contractDigest": "a1b0b26899a13af7d21a866ae80f5190707456f99c5e77e1961849ddfad51565"
+    }
+  ],
+  "proposed": [
+    {
+      "name": "agent-email-inbox",
+      "skillDigest": "74d2bc70ac8f182249bd78caec0dbd213ef7f9357541cbdacdc17167219abbf7",
+      "contractDigest": "2340d4ea27464cd766ddd9a35e05b5d1c1d9a95b8b2bb549f677993fb24f97f9"
+    },
+    {
+      "name": "sendmux-attachments",
+      "skillDigest": "1683e3417d4184809ecf349175a16271bb8a8c942b7ada148b8831a1e2872af6",
+      "contractDigest": "cabe8715f6ef8825396dbf05477d428b9ab33cf908bf7d05d8d326e18a96b70f"
+    },
+    {
+      "name": "sendmux-cli",
+      "skillDigest": "cfc14976eadcc9400db576073b29805de04cc8cf14af31e95399a84ddcd19b46",
+      "contractDigest": "8a0915ee3eedafa44a9e497b9379e2d96a7f92de578383f8ad84d645d3519c43"
+    },
+    {
+      "name": "sendmux-email-for-agents",
+      "skillDigest": "ccf58181a42099d536bf3f07b8693ec6eec98b0942fdf3218ca93200d9b969bc",
+      "contractDigest": "45d8c1c6c9f353e3e85f3da34b21c70d79894682de25b303739c4d1ed28a92bb"
+    },
+    {
+      "name": "sendmux-getting-started",
+      "skillDigest": "731d5b14efe531eabad58b2bfdb8c0e96ad7120b4219f872f212ba997341d65b",
+      "contractDigest": "b972f440507a681e9466daf160539c5e79afd92bcd20eb370da0c9e79c8cfa09"
+    },
+    {
+      "name": "sendmux-mailbox-agent",
+      "skillDigest": "8157b5cb5434f82eb7290c2cec374cf31d3c7f4d5f5265e8231d30d2e6334b7b",
+      "contractDigest": "19b94ea0d8d137cdeb39db4fe6c4ecda8c5372cd6b523ad60c4a7f1824016bef"
+    },
+    {
+      "name": "sendmux-management",
+      "skillDigest": "497f5468ad5a842c9d26e2580851df58e25a24a4465f08a0ddac1b4b3cc6c30f",
+      "contractDigest": "9eaed72398dc82ebdcbfa32a887a70255c38b7887c37585e56f3e9aea62aff7b"
+    },
+    {
+      "name": "sendmux-mcp-setup",
+      "skillDigest": "2864870cf48ad126fcab5153eb029cb2c5811ac03ccefddef75b32fee982ef1e",
+      "contractDigest": "5ceaf8fb34e8109e1adf386a880a212a313421216bc5e1e182fc9c2d0932d85a"
+    },
+    {
+      "name": "sendmux-token-efficient-usage",
+      "skillDigest": "e074ad0de774f6c45c5ee9248ebc3443291b137224cf5f0a34a0133b860e32c3",
+      "contractDigest": "a1b0b26899a13af7d21a866ae80f5190707456f99c5e77e1961849ddfad51565"
+    }
+  ]
+}

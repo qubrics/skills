@@ -1,0 +1,4 @@
+interface:
+  display_name: "Qubrics CLI"
+  short_description: "Use the Qubrics terminal CLI."
+  default_prompt: "Use $qubrics-cli to choose and run the right Qubrics CLI command."

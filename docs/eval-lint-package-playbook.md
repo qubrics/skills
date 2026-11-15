@@ -1,6 +1,6 @@
 # Eval, Lint, Package Playbook
 
-Use this loop for every Sendmux skill. Run commands from the local `skill-creator` toolkit checkout unless a command says otherwise.
+Use this loop for every Qubrics skill. Run commands from the local `skill-creator` toolkit checkout unless a command says otherwise.
 
 ## Inputs
 

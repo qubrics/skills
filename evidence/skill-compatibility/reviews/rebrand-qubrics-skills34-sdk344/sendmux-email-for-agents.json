@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "kind": "compatibility",
+  "skill": "sendmux-email-for-agents",
+  "skillDigest": "411f7cc5d798a8e0abc7f48dd3561adc64bf5a71435c8c9283d0943f269a6cec",
+  "contractDigest": "cd6384fad1bc9ea9a33969f7aabff17e627f7fb4383bd6f70e6b04d800a532b2",
+  "sourceRevisions": {
+    "app": "87ce115810ebcfa91655295603c27af52fcff96f",
+    "sending": "2f4226655efc05f109b5feda50ed2ca1570aea91",
+    "sdk": "a326bc923fff448470d908bb527afaaa35f6d739"
+  },
+  "reviewer": "Independent source reviewer /root/phase2_contract_review; coordinating reviewer /root",
+  "rationale": "CLI-first registration, durable read access, owner-gated sending, surface authority and routing retain their source contracts. Whole-body review found no removed Python import or executable taught directly; setup/helper handoffs use the tested A13 replacements. TS is unchanged, MCP tools/snapshots equal; package/setup changes explicitly assessed in the bound sixteen-row review. No live parity/publication claim.",
+  "evidence": [
+    {
+      "path": "skills/sendmux-email-for-agents/SKILL.md",
+      "sha256": "24b28b74515ea9f63221fad9739e9927baef1a34b4e414aae0df94bce9ec0f7f"
+    },
+    {
+      "path": "evidence/skill-compatibility/reviews/rebrand-qubrics-skills34-sdk344/source-review.md",
+      "sha256": "104d51a596dc7130decf8e8dac1f2fc49909933b9878c4d4e05bf2c82ea266be"
+    }
+  ]
+}

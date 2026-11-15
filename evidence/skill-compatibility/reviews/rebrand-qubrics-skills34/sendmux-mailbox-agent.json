@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "kind": "compatibility",
+  "skill": "sendmux-mailbox-agent",
+  "skillDigest": "a3e2ba98b2f049335b02ebb3f3ea25b44e4c1c93878160273250222bb693a08a",
+  "contractDigest": "99693eaa313cb4f5ab7e17c015abf490dcf23e9fdc25906fb86df57b5c79a5d1",
+  "sourceRevisions": {
+    "app": "87ce115810ebcfa91655295603c27af52fcff96f",
+    "sending": "2f4226655efc05f109b5feda50ed2ca1570aea91",
+    "sdk": "3eb0997b379d94b99659112d3c263ae59db7b14c"
+  },
+  "reviewer": "Independent AI source reviewer /root/compatibility_review; coordinating reviewer /root",
+  "rationale": "Draft, schedule and extraction guidance remains candidate-qualified with installed-support checks; selected declarations and tools are unchanged. Current installation examples continue to target released packages; they do not install candidate @qubrics bytes. The independent whole-body and selected-source review is bound below. Source compatibility only: no new runtime evaluation, live origin equivalence, publication or client certification is claimed.",
+  "evidence": [
+    {
+      "path": "skills/sendmux-mailbox-agent/SKILL.md",
+      "sha256": "368ef6d17bfe8a6c2e6947795f91ff472f6119a903750540af18b47688378923"
+    },
+    {
+      "path": "evidence/skill-compatibility/reviews/rebrand-qubrics-skills34/source-review.md",
+      "sha256": "3189f361a839ca378ef33c6a5bfc2f711dfc731eeac8e5f3fd89fa57a2066364"
+    },
+    {
+      "path": "evidence/skill-compatibility/reviews/rebrand-qubrics-php4/sendmux-mailbox-agent.json",
+      "sha256": "adcfbf6cf835305ece8c62bb303b4ce40f534f3078f79022dab12b5385f15a60"
+    }
+  ]
+}
+

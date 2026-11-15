@@ -1,0 +1,121 @@
+{
+  "schemaVersion": 1,
+  "kind": "workflow",
+  "skill": "sendmux-email-for-agents",
+  "skillDigest": "ccf58181a42099d536bf3f07b8693ec6eec98b0942fdf3218ca93200d9b969bc",
+  "previousSkillDigest": "b954dac79d49b818d65b2dc4e6218427777292fc48328453fe5101fb8f3895b6",
+  "contractDigest": "34703013b13a62443525e4df3393c50115789f047b38f9229449641706855cb9",
+  "sourceRevisions": {
+    "app": "a7b11f3d980720f973b7ee615e7662f03e2a3ad7",
+    "sending": "2f4226655efc05f109b5feda50ed2ca1570aea91",
+    "sdk": "1812300f1f30102ed0e624bc92cd92224cdf867d"
+  },
+  "reviewer": "Independent App329 source-policy and complete-body reviewers; Codex coordinating reviewer adopting both reviews",
+  "rationale": "Complete unchanged body remains compatible on documented existing/default-host workflows after review of all nine OpenAPI leaves and eight changed policy declarations, including initiating-host metadata. Legacy aliases preserve existing flows; explicit Qubrics issuer migration with SDK1812300f is excluded. Retain prior limitations and historical evidence, not fresh App329 evaluations. See the attached source review.",
+  "evidence": [
+    {
+      "path": "skills/sendmux-email-for-agents/SKILL.md",
+      "sha256": "cacaac26bc0073f68b7ade778447864a9ad92294edbf624d2130128ee15aee2a"
+    },
+    {
+      "path": "evidence/skill-compatibility/reviews/posthog-847-848-sendmux-email-for-agents.json",
+      "sha256": "eca942767f98af538fa3d5dc9a0f6a52eaf476eed283e938afb06c5f6a1122ed"
+    },
+    {
+      "path": "evidence/skill-compatibility/calendar-source-review-20261030.md",
+      "sha256": "9da8b579dbe6e1db065dfac97e71c3cfda096678071e254030bbd20a2c978df3"
+    },
+    {
+      "path": "evidence/skill-compatibility/contracts/calendar-20261030/app-export.json",
+      "sha256": "29cde33eda5fb6777c9544e722a3165edeb2c689da8ac2c9f3953f85c3872d0b"
+    },
+    {
+      "path": "evidence/skill-compatibility/contracts/calendar-20261030/app-openapi.json",
+      "sha256": "4e4fbc8024eaad195169a18cc096856d1653a3c01fb4f66d0313e67cb0b2e705"
+    },
+    {
+      "path": "evidence/skill-compatibility/contracts/calendar-20261030/app-policy.json",
+      "sha256": "d4159fc4ad2a7b1927c294303fbc11533f8dab9f5a9b3cc73b2139c7354e71bf"
+    },
+    {
+      "path": "evidence/skill-compatibility/evaluations/calendar-20261030/sendmux-email-for-agents/benchmark.json",
+      "sha256": "5c423c975ded4453dc85958a48a31fc2a4e52baac41b2f9c2cb6add1fdd9e80f"
+    },
+    {
+      "path": "evidence/skill-compatibility/evaluations/calendar-20261030/sendmux-email-for-agents/benchmark.md",
+      "sha256": "0a5fd4ce4e717c466aec8e2dac2cbfa76a22a2f57c07947ddc8b15c2130575e6"
+    },
+    {
+      "path": "evidence/skill-compatibility/evaluations/calendar-20261030/sendmux-email-for-agents/eval-3-owner-approval/eval_metadata.json",
+      "sha256": "7718aa1eb65e796077fd20aaab77ff5790cf91f77dbc785117f4adc61dc5b95a"
+    },
+    {
+      "path": "evidence/skill-compatibility/evaluations/calendar-20261030/sendmux-email-for-agents/eval-3-owner-approval/old_skill/run-1/grading.json",
+      "sha256": "96fa74c7087003763dd9c0199011c5a312e89e96c494151642507613dac85805"
+    },
+    {
+      "path": "evidence/skill-compatibility/evaluations/calendar-20261030/sendmux-email-for-agents/eval-3-owner-approval/old_skill/run-1/outputs/response.md",
+      "sha256": "31f20f6b0b0458502ac29601c38974cf3e93bc5ce7d3e5ffc2449dfdf142ec77"
+    },
+    {
+      "path": "evidence/skill-compatibility/evaluations/calendar-20261030/sendmux-email-for-agents/eval-3-owner-approval/old_skill/run-1/receipt.json",
+      "sha256": "e9fb63f0b74907f3bd63b84289d03fe3babffc61e8a9ee4c16c6466818acb696"
+    },
+    {
+      "path": "evidence/skill-compatibility/evaluations/calendar-20261030/sendmux-email-for-agents/eval-3-owner-approval/with_skill/run-2/grading.json",
+      "sha256": "8d5aa883ebc43347962f7adf52c29a236da25efab7a897a271d128582e1ed174"
+    },
+    {
+      "path": "evidence/skill-compatibility/evaluations/calendar-20261030/sendmux-email-for-agents/eval-3-owner-approval/with_skill/run-2/outputs/response.md",
+      "sha256": "af715183229fa3549714f2405847d23e2c818219756ecc8451a158ffadf80498"
+    },
+    {
+      "path": "evidence/skill-compatibility/evaluations/calendar-20261030/sendmux-email-for-agents/eval-3-owner-approval/with_skill/run-2/receipt.json",
+      "sha256": "0174e861428ad37077163d0be2315f63e7f10ba5aa85bd9c691456302beec842"
+    },
+    {
+      "path": "evidence/skill-compatibility/reviews/calendar-20261030/sendmux-email-for-agents.json",
+      "sha256": "90067995cfde3336152b955fd2d546ceacf11659264396af13d7ebf9c540aee2"
+    },
+    {
+      "path": "evidence/skill-compatibility/rebrand-qubrics-896-source-review.md",
+      "sha256": "0b666cfc9f73a951742e96ffdd7135c89cb772136718c11eb5665569baa5aef5"
+    },
+    {
+      "path": "evidence/skill-compatibility/contracts/rebrand-qubrics-896/app-export.json",
+      "sha256": "d9a2914d94c24463fed9e0825bec12508b0e539182df8f39502fff240fdaaf2b"
+    },
+    {
+      "path": "evidence/skill-compatibility/contracts/rebrand-qubrics-896/app-openapi.json",
+      "sha256": "912ba441e940c7c043d02d69223a0fa478451fd6ac334299b468f0edf11214da"
+    },
+    {
+      "path": "evidence/skill-compatibility/contracts/rebrand-qubrics-896/app-policy.json",
+      "sha256": "1554a76a4273e34420c75f51a5052f67cd5e4032ec99a8a15f82bc8083c7d64b"
+    },
+    {
+      "path": "evidence/skill-compatibility/evaluations/rebrand-qubrics-896/release-skill-openapi-leaf-proof.json",
+      "sha256": "b59131612853a385c5270feacc25ae8694ef15c1ae3ed439a1488d8994cf506f"
+    },
+    {
+      "path": "evidence/skill-compatibility/evaluations/rebrand-qubrics-896/release-skill-policy-diff.json",
+      "sha256": "17c9c1848bc56a51ace5de94ace872e8623bb898d7a2549251574ddcc5c50e95"
+    },
+    {
+      "path": "evidence/skill-compatibility/evaluations/rebrand-qubrics-896/release-skill-contract-diff.json",
+      "sha256": "5beadc97a0ac505c7966423fb773293cd2b92a605a408a07d66e314bd9995e9e"
+    },
+    {
+      "path": "evidence/skill-compatibility/evaluations/rebrand-qubrics-896/release-skills-missing-reviews.json",
+      "sha256": "c4a73e24f9a40764625e833c016b66a40bfe832150c23265486f58abd64fa5e8"
+    },
+    {
+      "path": "evidence/skill-compatibility/reviews/rebrand-qubrics-896/sendmux-email-for-agents.json",
+      "sha256": "a9c1f8a80185b1c22c8ac4c5c708e80296015c25777240dabfc0eb0e1237b5c6"
+    },
+    {
+      "path": "evidence/rebrand-qubrics-900-app329-compat-20261104.md",
+      "sha256": "72acb2730a31ba265494ded3dbc313b3ac3a5879aecf7881bc1e4113f5eee554"
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "kind": "compatibility",
+  "skill": "qubrics-mailbox-agent",
+  "skillDigest": "b942b756114eff2eb3e7ccfcc0ed1e6a80dd0f32de8601dc8ded6a069fb686b7",
+  "contractDigest": "6281dfdd2c940bfeb5521ba7635585099c9a28987400ce43a7aaa05cd8ecc3c6",
+  "sourceRevisions": {
+    "app": "06a1d50eeb483e8a4c6aeb8da64832c5d3dc5a7e",
+    "sending": "2f4226655efc05f109b5feda50ed2ca1570aea91",
+    "sdk": "7fe071f96bc23e52e8c0bb56d673d8c6a24aea7c"
+  },
+  "reviewer": "Independent AI source reviewer /root/mailbox_compat_source_review; coordinating reviewer /root",
+  "rationale": "Immutable whole-body and SDK delta review supports this exact pair. Delegated Sending remains separate from Mailbox send authority. Mailbox selection, draft approval and uncertainty handling remain unchanged. Source review supplies the per-pair findings and limits; no runtime or publication claim.",
+  "evidence": [
+    {
+      "path": "skills/qubrics-mailbox-agent/SKILL.md",
+      "sha256": "b2518d07b9512194b127c9f083b8452d9a1f9ad440af05f456d1b89447aa8fc2"
+    },
+    {
+      "path": "evidence/skill-compatibility/reviews/mailbox-sdk344-20261112/source-review.md",
+      "sha256": "49bed5e4b6febf3d60f3eb6e18a83b749b2416395bd406f88a095ce6a3d9da8d"
+    }
+  ]
+}

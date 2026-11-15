@@ -1,0 +1,23 @@
+{
+  "arm": "with_skill",
+  "skill": "sendmux-token-efficient-usage",
+  "skill_sha256": "96e7760080559f8ce8ffd33aef85293400af1f70dbf00a6d2befb4a996b8cab2",
+  "prompt_sha256": "d22e974df07ae56cb4175f2ac507feecbefe1431ffb8386527b7d5747b368796",
+  "response_sha256": "613301864c1fdfc83765f67fe6f4b1221f6501cb0aa95570e97bc310e644f720",
+  "response_bytes": 6755,
+  "native_task": "/root/skills_bootstrap_eval_batch",
+  "execution": "one_batch",
+  "batch_cases": 5,
+  "answer_attempt": 1,
+  "agent_id": null,
+  "model": null,
+  "tokens": null,
+  "timing": null,
+  "external_actions": false,
+  "commands_from_skill_executed": false,
+  "assertions_read": false,
+  "prior_answers_grades_or_reviews_read": false,
+  "sdk_source_read": false,
+  "self_graded": false,
+  "limits": "Five explanations produced sequentially in one shared native-task context; no live certification."
+}

@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "kind": "compatibility",
+  "skill": "sendmux-token-efficient-usage",
+  "skillDigest": "ece1d30c9a91b3b24376c0ab41d991741b60f9314064da63b0f74da35104a3cb",
+  "contractDigest": "77a6839507ee07f392f47028afff8f90eba51c5181520f7b764a9a0efb12543f",
+  "sourceRevisions": {
+    "app": "06a1d50eeb483e8a4c6aeb8da64832c5d3dc5a7e",
+    "sending": "2f4226655efc05f109b5feda50ed2ca1570aea91",
+    "sdk": "7fe071f96bc23e52e8c0bb56d673d8c6a24aea7c"
+  },
+  "reviewer": "Independent AI source reviewer /root/mailbox_compat_source_review; coordinating reviewer /root",
+  "rationale": "Immutable whole-body and SDK delta review supports this exact pair. The durable profile retains SDK-owned exchange and both owner gates. Authentication deadlines do not justify a manual retry loop. Source review supplies the per-pair findings and limits; no runtime or publication claim.",
+  "evidence": [
+    {
+      "path": "skills/sendmux-token-efficient-usage/SKILL.md",
+      "sha256": "96e7760080559f8ce8ffd33aef85293400af1f70dbf00a6d2befb4a996b8cab2"
+    },
+    {
+      "path": "evidence/skill-compatibility/reviews/mailbox-sdk344-20261112/source-review.md",
+      "sha256": "49bed5e4b6febf3d60f3eb6e18a83b749b2416395bd406f88a095ce6a3d9da8d"
+    }
+  ]
+}
