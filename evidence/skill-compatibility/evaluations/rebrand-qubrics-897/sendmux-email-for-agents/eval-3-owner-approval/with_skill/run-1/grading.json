@@ -1,0 +1,56 @@
+{
+  "expectations": [
+    {
+      "text": "The output installs @sendmux/cli when needed.",
+      "passed": true,
+      "evidence": "The answer instructs: \"Install `@sendmux/cli` if `sendmux` is unavailable.\""
+    },
+    {
+      "text": "The output runs sendmux agent:register with a profile name and optionally --owner-email.",
+      "passed": true,
+      "evidence": "The answer prescribes: \"Register one durable profile with `sendmux agent:register my-agent --default --json`. Include `--owner-email` with your email address if known.\""
+    },
+    {
+      "text": "The output says no existing account, API key, challenge, or proof of work step is required.",
+      "passed": true,
+      "evidence": "The answer states: \"No existing Sendmux account or human-created API key is required. No challenge or proof of work is required.\""
+    },
+    {
+      "text": "The output says the CLI saves registration idempotency before the registration request, securely stores the returned durable credential in the local profile, and never prints the credential.",
+      "passed": true,
+      "evidence": "The answer states: \"Before the request, the CLI saves registration idempotency locally so a retry resumes the same registration. After the response, it securely stores the durable credential in the local profile without printing it.\""
+    },
+    {
+      "text": "The output says the profile can read and receive mail without an expiry date while the registration remains active.",
+      "passed": true,
+      "evidence": "The answer states: \"Read/receive access has no expiry date while registration remains active.\""
+    },
+    {
+      "text": "The output runs sendmux agent:invite-owner when an owner was not invited during registration.",
+      "passed": true,
+      "evidence": "The answer prescribes: \"Registration with `--owner-email` already sends the owner invitation. Otherwise, run `sendmux agent:invite-owner owner@example.com --profile my-agent --json`, replacing the example address with yours.\""
+    },
+    {
+      "text": "The output states that storage is capped at 500 MiB before owner approval and raised to at least 5 GiB with sending approval.",
+      "passed": true,
+      "evidence": "The answer states: \"The inbox is capped at 500 MiB before sending approval.\" It then instructs: \"Separately approve sending when ready. This enables sending and raises storage to at least 5 GiB.\""
+    },
+    {
+      "text": "The output waits for owner acceptance and sending approval.",
+      "passed": true,
+      "evidence": "The ordered plan states: \"Accept the invitation to link yourself as owner. Sending remains blocked at this stage.\" It follows with: \"Separately approve sending when ready.\" Step 7 begins: \"After approval\"."
+    },
+    {
+      "text": "The output says Sending CLI commands automatically exchange and cache a one-hour delegated token after approval.",
+      "passed": true,
+      "evidence": "The answer states: \"After approval, `sending:*` CLI commands automatically exchange and cache a one-hour delegated Sending token.\""
+    }
+  ],
+  "summary": {
+    "passed": 9,
+    "failed": 0,
+    "total": 9,
+    "pass_rate": 1
+  },
+  "evaluation_scope": "Source-only, planning-only comparison of the fresh skill-eval-router-response.md answer against all nine exact unchanged assertions in sendmux-email-for-agents/eval-3-owner-approval/eval_metadata.json. Assertions using installs, runs or waits are assessed as workflow instructions and ordering, not proof of execution. The answer explicitly states: Planning only: no registration, invitation, token exchange or send has been executed. No live installation, registration, owner invitation, mailbox operation, approval, token exchange or send was executed for this evaluation. These scores qualify answer content only, not runtime compatibility or live outcomes."
+}
