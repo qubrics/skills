@@ -76,8 +76,14 @@ pass 14/14 setup and 4/4 calendar-boundary assertions, versus historical
 supports six exact direct records and the new exact-body MCP workflow. Existing
 attachment and getting-started workflows retain their three-way legacy
 supersession path alongside MCP setup; historical records remain unchanged.
-Full CI and final
-acceptance are not yet claimed. No new test harness or dependency was added:
+The unchanged public checker accepts committed Skills
+`700917ed5fe586f78c9010af0c18f6fae5387ec4` against exact SDK `ff61155f`: 22/22
+pairs accepted (7 reviewed, 12 no-impact, 3 tested legacy supersessions), exit 0.
+The genuine descriptor, acceptance.json and command output are retained under
+MAIN `.claude/artifacts/rebrand-qubrics-skills34/calendar-free-20261120/` as
+`final-candidate.json`, `final-acceptance.json` and `final-acceptance.log`.
+Checker SHA256 remains `f1f80dcac75bdd3f0415db5b5744314ef06bcc23e680c6b886fbd3aaa73e9499`.
+Full CI is not yet claimed. No new test harness or dependency was added:
 the exact calendar-free CI pin makes the existing acceptance gate the permanent
 regression boundary. The checker and all its negative/security tests remain.
 
@@ -101,3 +107,12 @@ with only its unmodified actual-main acceptance.json artifact. No release/tag
 is authorised now. Selector rollback would mark v2.0.7 latest; source rollback
 is a normal revert PR. Neither recalls downloaded source or tags. ClawHub stays
 disabled; no marketplace, SDK, npm or live calendar action belongs to this PR.
+
+## Completion boundary
+
+Source correction and genuine exact-candidate acceptance are local and committed;
+PR checks and review remain the current slice's gate. Merge, main CI and release
+are separate Ops decisions. Current marketplace/package metadata stays at 2.0.4;
+the proposed GitHub acceptance release would not republish those distributions.
+No browser, provider process or new dependency was used. Task package cache was
+removed; the unmerged working sibling and cited evidence remain for review.
