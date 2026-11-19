@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "kind": "compatibility",
+  "kind": "workflow",
   "skill": "qubrics-mcp-setup",
   "skillDigest": "a7fff1672b889bf24f596f79c30b1498da7c0f5785ea630458d6064dfb677136",
   "contractDigest": "d13efb6edafdd6788d67cedc1fa44e24985396313f79601ffeeb24aa1d48878a",
@@ -9,16 +9,61 @@
     "sending": "2f4226655efc05f109b5feda50ed2ca1570aea91",
     "sdk": "c8549be2099e5a2f6947262bbeaf6f5e8b678801"
   },
-  "reviewer": "Source reviewer /root/ecosystem; independent Spec reviewer and fresh reader /root/docs",
-  "rationale": "Fresh candidate examples select the same supported environment values through the Qubrics-first lookup, with unchanged commands, transport, resource, authorisation and tool contracts. The actual configuration module validated Qubrics keys, legacy fallback, precedence and HTTP bearer; the released legacy bearer note was checked against its exact tag. Independent source review found no missing acceptance or changed API behaviour. Historical workflow records are preserved; no new evaluation execution or acceptance receipt is claimed.",
+  "reviewer": "Source reviewer /root/ecosystem; independent Spec reviewer /root/docs; genuine evaluators /root/skill_workflow_eval/with_skill_run and /root/skill_workflow_eval/old_skill_run; independent inline grader /root/skill_workflow_eval",
+  "rationale": "Genuine simultaneous offline runs used the existing renamed-commands prompt against the exact final skill and immutable published legacy baseline. Independent grading found 5/5 final assertions and 3/5 baseline assertions. Actual outputs, execution transcripts and receipts bind the prompt and evaluated bytes; the existing toolkit aggregated the benchmark. This workflow supersedes the original published instructions through the exact previous-skill digest. Source compatibility review remains valid under the unchanged producer tuple. No runtime, client certification, external action, publication or acceptance receipt is claimed.",
   "evidence": [
     {
       "path": "skills/qubrics-mcp-setup/SKILL.md",
       "sha256": "6014d9ad6754bac2e23cdfa47c55c570b817a27e03affeeb7dee2b947fe6af6b"
     },
     {
+      "path": "evidence/skill-compatibility/evaluations/rebrand-audit-mcp-examples-20261119/qubrics-mcp-setup/benchmark.json",
+      "sha256": "416dc01104cfc18f3845b3aa58dbd1b359d8518c3b83650b123cbc9b0b0e5c3c"
+    },
+    {
+      "path": "evidence/skill-compatibility/evaluations/rebrand-audit-mcp-examples-20261119/qubrics-mcp-setup/benchmark.md",
+      "sha256": "53c2dd514025e2c41fa0a15ded80eaefe0b5849b96bd08baaae79fecb190b0e4"
+    },
+    {
+      "path": "evidence/skill-compatibility/evaluations/rebrand-audit-mcp-examples-20261119/qubrics-mcp-setup/eval-0-renamed-commands/eval_metadata.json",
+      "sha256": "a686231bfd45ebde7c12fdcc64350a83fd4e9af1d66774b0f4145d542ab1a9d7"
+    },
+    {
+      "path": "evidence/skill-compatibility/evaluations/rebrand-audit-mcp-examples-20261119/qubrics-mcp-setup/eval-0-renamed-commands/old_skill/run-1/grading.json",
+      "sha256": "53611f517a2872923f07c3edbbddc675f7f4311b7336c5033c9c146ba98c5cbb"
+    },
+    {
+      "path": "evidence/skill-compatibility/evaluations/rebrand-audit-mcp-examples-20261119/qubrics-mcp-setup/eval-0-renamed-commands/old_skill/run-1/outputs/response.md",
+      "sha256": "aa7fa52c97988270688baf5395b98ebdc129373273a07ae1ca5dc669db8e30e7"
+    },
+    {
+      "path": "evidence/skill-compatibility/evaluations/rebrand-audit-mcp-examples-20261119/qubrics-mcp-setup/eval-0-renamed-commands/old_skill/run-1/receipt.json",
+      "sha256": "f678477054586fcbd4d09a389ad469f2627d61cac115752e5d95ab16e02eb9cb"
+    },
+    {
+      "path": "evidence/skill-compatibility/evaluations/rebrand-audit-mcp-examples-20261119/qubrics-mcp-setup/eval-0-renamed-commands/old_skill/run-1/transcript.md",
+      "sha256": "94773012fc3af378b48796520b53f359ce8226d486d2314ecb8c5bbe21ab5d4d"
+    },
+    {
+      "path": "evidence/skill-compatibility/evaluations/rebrand-audit-mcp-examples-20261119/qubrics-mcp-setup/eval-0-renamed-commands/with_skill/run-1/grading.json",
+      "sha256": "f45ae8c0e40d96a4e55dbd0a2ac98aa953f745271ee229267f67c56cb28da036"
+    },
+    {
+      "path": "evidence/skill-compatibility/evaluations/rebrand-audit-mcp-examples-20261119/qubrics-mcp-setup/eval-0-renamed-commands/with_skill/run-1/outputs/response.md",
+      "sha256": "9a27065b341ff173888cebd62abcb4f0b885faae0da664d10307a945ccb712c2"
+    },
+    {
+      "path": "evidence/skill-compatibility/evaluations/rebrand-audit-mcp-examples-20261119/qubrics-mcp-setup/eval-0-renamed-commands/with_skill/run-1/receipt.json",
+      "sha256": "6018082b626c9278dd4821bf1e56706399a7eb627bfe128e6faf92e14ec4d871"
+    },
+    {
+      "path": "evidence/skill-compatibility/evaluations/rebrand-audit-mcp-examples-20261119/qubrics-mcp-setup/eval-0-renamed-commands/with_skill/run-1/transcript.md",
+      "sha256": "7fbc3643f7961222bde2b5dadcef081427c77b58bd0f21710ce70d5c8f9bf340"
+    },
+    {
       "path": "evidence/skill-compatibility/reviews/rebrand-audit-mcp-examples-20261119/source-review.md",
-      "sha256": "481a0f1e85b19cc74a05f70364b7573783261e95d808dba23c59e3eba8c59fc0"
+      "sha256": "a89f25f175dd00e4673ac19fceab02c164c40fcfc6f390b075f13ec0a492a2b3"
     }
-  ]
+  ],
+  "previousSkillDigest": "cabb71c6b068c8223d53e0ea5e0a39c788e1bff606b5fdfb48b141e6c530c224"
 }

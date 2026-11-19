@@ -1,0 +1,25 @@
+{
+  "arm": "old_skill",
+  "baseline_revision": "9d8059b10111943ce08860217a27222f43507686",
+  "baseline_skill_path": "skills/sendmux-mcp-setup/SKILL.md",
+  "skill_sha256": "4d749ee80029bfd22ea4d76949bf28aaede1ffd30340a00ca4acba814b12d0c1",
+  "prompt_sha256": "4118ef9f899b8710ba35963d3ee8bebb0989efeb9b44f6d561f0ce9d0a2556ee",
+  "prompt_hash_encoding": "UTF-8 without trailing newline",
+  "evaluator": "/root/skill_workflow_eval/old_skill_run",
+  "tools_used": [
+    "functions.exec",
+    "tools.exec_command",
+    "tools.apply_patch"
+  ],
+  "mcp_servers": [],
+  "external_actions": false,
+  "total_tokens": "unavailable",
+  "duration_ms": "unavailable",
+  "response_path": "outputs/response.md",
+  "transcript_path": "transcript.md",
+  "limitations": [
+    "Historical skill documents candidate 73bedb8, not requested candidate a326bc923fff448470d908bb527afaaa35f6d739.",
+    "Exact-candidate compatibility and publication status were not independently checked.",
+    "No runtime, authentication or mailbox verification was performed."
+  ]
+}

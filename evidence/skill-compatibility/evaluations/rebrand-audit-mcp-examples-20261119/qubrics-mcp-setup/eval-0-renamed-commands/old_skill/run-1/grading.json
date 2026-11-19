@@ -1,0 +1,62 @@
+{
+  "grader": "/root/skill_workflow_eval",
+  "method": "Independent inline grading after reading the complete saved response and concise execution transcript, following skill-creator/agents/grader.md. Historical claims were checked against git show 9d8059b10111943ce08860217a27222f43507686:skills/sendmux-mcp-setup/SKILL.md.",
+  "expectations": [
+    {
+      "text": "Names qubrics-mcp, qubrics-mcp-hosted, qubrics-mcp-mailbox, qubrics-mcp-management and qubrics-mcp-sending without teaching old console executables.",
+      "passed": false,
+      "evidence": "Response lists the five sendmux-mcp executables and explicitly cannot verify names for requested candidate a326bc923fff448470d908bb527afaaa35f6d739 because the historical skill documents candidate 73bedb8. It does not supply the five required Qubrics commands."
+    },
+    {
+      "text": "Uses qubrics-mcp-mailbox for local Cursor mailbox-only setup and keeps the credential a placeholder in environment configuration.",
+      "passed": false,
+      "evidence": "Cursor JSON uses command sendmux-mcp-mailbox, rather than qubrics-mcp-mailbox. It correctly retains a literal ${env:SENDMUX_MBX_KEY} placeholder, but the required executable is absent."
+    },
+    {
+      "text": "Documents QUBRICS environment names with their retained SENDMUX compatibility fallbacks.",
+      "passed": true,
+      "evidence": "Response says the historical candidate adds canonical QUBRICS names before SENDMUX fallbacks, explicitly pairs QUBRICS_MCP_SURFACES with SENDMUX_MCP_SURFACES and preserves per-surface-key precedence and isolation. It limits those claims to its historical source."
+    },
+    {
+      "text": "Preserves existing MCP runtime tool names and explains their qubrics_ aliases without inventing renamed selectors.",
+      "passed": true,
+      "evidence": "Response preserves mailbox_get_connection, mailbox_search_message_snippets, management_create_domain and sending_send_email, pairs each with its qubrics_ alias and distinguishes tool aliases from executables. It does not invent selectors."
+    },
+    {
+      "text": "Keeps hosted MCP OAuth resource https://mcp.qubrics.com/mcp separate from REST tokens and claims no external action or unpublished package availability.",
+      "passed": true,
+      "evidence": "Response identifies https://mcp.qubrics.com/mcp as the historical candidate's canonical resource, forbids REST-token reuse and explains that alias URLs do not make token audiences interchangeable. It limits the legacy-resource instruction to its historical guide and claims no launch, authentication, mailbox access or verified publication."
+    }
+  ],
+  "summary": {
+    "passed": 3,
+    "failed": 2,
+    "total": 5,
+    "pass_rate": 0.6
+  },
+  "claims": [
+    {
+      "claim": "The historical skill documents candidate 73bedb8 rather than the requested candidate.",
+      "verified": true,
+      "evidence": "Immutable historical skill lines 16, 41, 45 and 73 identify 73bedb8, retain old console scripts and distinguish its source catalogue from the released wheel."
+    },
+    {
+      "claim": "The answer uses an immutable historical snapshot.",
+      "verified": true,
+      "evidence": "Receipt binds Git revision 9d8059b10111943ce08860217a27222f43507686 and body SHA256 4d749ee80029bfd22ea4d76949bf28aaede1ffd30340a00ca4acba814b12d0c1, matching the independently hashed Git blob."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [
+      "Historical skill cannot verify the exact requested candidate.",
+      "Host total-token and duration metrics were unavailable.",
+      "Runtime, authentication, mailbox verification and publication checks were outside this offline run."
+    ],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [],
+    "overall": "Security and compatibility assertions pass in both configurations. The observed difference is command and Cursor setup guidance, not a measured runtime or security improvement."
+  }
+}

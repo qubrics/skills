@@ -4871,7 +4871,7 @@
       "skillDigest": "a7fff1672b889bf24f596f79c30b1498da7c0f5785ea630458d6064dfb677136",
       "contractDigest": "d13efb6edafdd6788d67cedc1fa44e24985396313f79601ffeeb24aa1d48878a",
       "record": "evidence/skill-compatibility/reviews/rebrand-audit-mcp-examples-20261119/qubrics-mcp-setup.json",
-      "sha256": "63daa4c38c701a7ea84b54f618a6c8b8247effeb834e38ba2fd95cf4ae3a9be1"
+      "sha256": "60b1d9224f56ba444380702011c224d6cdedc87b79f369b8adf41f7b9e1db665"
     }
   ],
   "releaseInputs": {
