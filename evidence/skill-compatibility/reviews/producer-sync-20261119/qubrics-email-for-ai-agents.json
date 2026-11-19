@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "kind": "compatibility",
+  "skill": "qubrics-email-for-ai-agents",
+  "skillDigest": "bb7c1d2dececb3955dc5c7c446e5bebb84b329643678791cae4c0147bc6769ac",
+  "evidence": [
+    {
+      "path": "skills/qubrics-email-for-ai-agents/SKILL.md",
+      "sha256": "e6be67e17f165a773e3b01677bd38435249cf83c975f2bbb40c896b10de46c3b"
+    },
+    {
+      "path": "evidence/skill-compatibility/reviews/producer-sync-20261119/source-review.md",
+      "sha256": "763e30fcc15fd8e118beec48d0d433857e7d179a350d2419c496c073f4971aa1"
+    }
+  ],
+  "contractDigest": "e1b4e7c6e4d0b10febe16dcb176562d29b343e18248d9384bb9ce7689ff00717",
+  "sourceRevisions": {
+    "app": "06a1d50eeb483e8a4c6aeb8da64832c5d3dc5a7e",
+    "sending": "2f4226655efc05f109b5feda50ed2ca1570aea91",
+    "sdk": "c8549be2099e5a2f6947262bbeaf6f5e8b678801"
+  },
+  "reviewer": "Independent producer source reviewer /root/producer_compat_source_review; coordinating reviewer /root",
+  "rationale": "Independent whole-body and selected-source review of proposed/qubrics-email-for-ai-agents against exact SDK c8549be2 and b7dad6ca under the fixed origin producer tuple. The pair-by-pair source review finds changed MCP examples compatible with the existing instructions and preserves authority, secret, idempotency and uncertain-result boundaries. Historical package statements are not recertified as renamed-source installation guidance."
+}

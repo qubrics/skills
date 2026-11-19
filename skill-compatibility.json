@@ -4781,11 +4781,95 @@
       "contractDigest": "d1baea82aeb272bfe95196312fe347464afb9f788351672a11a37adb3fdc07b3",
       "record": "evidence/skill-compatibility/reviews/calendar-api-20261111/published-sendmux-token-efficient-usage.json",
       "sha256": "6a024ce8c8173cb3a39be672b16caa6f60571b16bd87d4aca51f12ecbe4c0760"
+    },
+    {
+      "skill": "email-for-ai-agents",
+      "skillDigest": "6f2c0908457404bb6aacc4cdcf18ce49b9054cbd873939b7b3e417224fd4d1d9",
+      "contractDigest": "f81288de22ec063dabed513a35ae2898641de1517a3ca321ab2eb02b0ce9b9f6",
+      "record": "evidence/skill-compatibility/reviews/producer-sync-20261119/published-email-for-ai-agents.json",
+      "sha256": "20d88b38e7d3d82ef737c2d8aaef73c0735d289d4204882b5bc6917849bbec07"
+    },
+    {
+      "skill": "sendmux-email-for-agents",
+      "skillDigest": "411f7cc5d798a8e0abc7f48dd3561adc64bf5a71435c8c9283d0943f269a6cec",
+      "contractDigest": "eb9946dac12feffa3045c5fcab808feb20236bbc42be7468268c321d2a89cec6",
+      "record": "evidence/skill-compatibility/reviews/producer-sync-20261119/published-sendmux-email-for-agents.json",
+      "sha256": "c7c79e7d66a5acb78f0892c6db85e0afbb035ddffca8ba5bfaceac888d12e975"
+    },
+    {
+      "skill": "sendmux-management",
+      "skillDigest": "a82945bdb1521932eef71cfe05264e006ebffd52fde7859c0cc4cfedef72abea",
+      "contractDigest": "c72d33e0fb78d1d8f630ea59f23d6a543ccc22c567be78983970a8c90ea8de93",
+      "record": "evidence/skill-compatibility/reviews/producer-sync-20261119/published-sendmux-management.json",
+      "sha256": "e40bdb4e07bb5530977b972ece2453e61c597b86a75b022d397f4f732efb5a89"
+    },
+    {
+      "skill": "sendmux-send-email",
+      "skillDigest": "853bac285313fe319a7bf94bf67636793a818e7d616a8938bb81b33ef460ccb3",
+      "contractDigest": "774a7898daa458884c74c07cc4422f6097a169cfc61eef8518b5a60c0e7fc680",
+      "record": "evidence/skill-compatibility/reviews/producer-sync-20261119/published-sendmux-send-email.json",
+      "sha256": "ec51a0cf2c454eb1e0264bbc3be4c8ca5184e38ce3ca47501ad4df5f3b9bed09"
+    },
+    {
+      "skill": "sendmux-token-efficient-usage",
+      "skillDigest": "ece1d30c9a91b3b24376c0ab41d991741b60f9314064da63b0f74da35104a3cb",
+      "contractDigest": "2576eafb5851ff8ebf2f0e4a7817eb6a630b3f2eac13b5501bf005f636733103",
+      "record": "evidence/skill-compatibility/reviews/producer-sync-20261119/published-sendmux-token-efficient-usage.json",
+      "sha256": "ab6f3ffed618e6f5349a654520f47a0f7795f86d3a45bd97de898fd634bdcb68"
+    },
+    {
+      "skill": "qubrics-attachments",
+      "skillDigest": "10ae2e30c7e7c4db49f444f7c749774072fb84caa6c76345c885a99834ea8bc5",
+      "contractDigest": "037117be5dc5114c7cc14de2bdbe09dfc0ee2011cc952ba014e5167a78dbcbb4",
+      "record": "evidence/skill-compatibility/reviews/producer-sync-20261119/qubrics-attachments.json",
+      "sha256": "514d066443a480723028f2d32c1b00482287d9b57efe1e2b8159051b2f5a0f13"
+    },
+    {
+      "skill": "qubrics-email-for-agents",
+      "skillDigest": "70dc5a8f04dca687b17929ac59d553be893235413271a4e99399fff30c70f0a6",
+      "contractDigest": "855571f063db676fbf329457e22fe5c22fd9100243065d877d85413a5d79e66f",
+      "record": "evidence/skill-compatibility/reviews/producer-sync-20261119/qubrics-email-for-agents.json",
+      "sha256": "b42f858562fc36c542bbc14e37b0efd38b37420571dcc12a983cfb16f630fe06"
+    },
+    {
+      "skill": "qubrics-email-for-ai-agents",
+      "skillDigest": "bb7c1d2dececb3955dc5c7c446e5bebb84b329643678791cae4c0147bc6769ac",
+      "contractDigest": "e1b4e7c6e4d0b10febe16dcb176562d29b343e18248d9384bb9ce7689ff00717",
+      "record": "evidence/skill-compatibility/reviews/producer-sync-20261119/qubrics-email-for-ai-agents.json",
+      "sha256": "82703ea8f6999b1e0a4bea7b3b537c3b9756746cdd5a6f771b7124f00e3e21f1"
+    },
+    {
+      "skill": "qubrics-management",
+      "skillDigest": "ec55108500cd59654717c8d8102088d495e8b923525e8b391e76650a66b00103",
+      "contractDigest": "fdd46e5252484e49913c26cba9ea09618fa5d04bdf7df9cacb88f7c59810c559",
+      "record": "evidence/skill-compatibility/reviews/producer-sync-20261119/qubrics-management.json",
+      "sha256": "1d98fb890cfe0663b751d1c816915ee2be1d21871465488549ee5b0a87485775"
+    },
+    {
+      "skill": "qubrics-mcp-setup",
+      "skillDigest": "4ea84f54ef9294fd2e8083aecac923f29a875e26d000b4513e4a2a49e5dbe927",
+      "contractDigest": "d13efb6edafdd6788d67cedc1fa44e24985396313f79601ffeeb24aa1d48878a",
+      "record": "evidence/skill-compatibility/reviews/producer-sync-20261119/qubrics-mcp-setup.json",
+      "sha256": "25a9fb785fbdfe6851d010ebf81013f8664e85f0d73a13be007d4115ca6093a8"
+    },
+    {
+      "skill": "qubrics-send-email",
+      "skillDigest": "4ffab36dcec098252982995431fccb2bcb6a343481f30822d5d6831e8b5616cf",
+      "contractDigest": "fd296c6fdf52f28d302da953eef83948d7e9bbdd29160f77ed4eef1358e8f488",
+      "record": "evidence/skill-compatibility/reviews/producer-sync-20261119/qubrics-send-email.json",
+      "sha256": "30838df38283724ed743ac5d2f3c193d2ab8ba2780187fd5afffccbc34308e6b"
+    },
+    {
+      "skill": "qubrics-token-efficient-usage",
+      "skillDigest": "7c4d1d3ac670ed25ba71248e12b5e77cdd6ab15c6aab6ed747f0bbc9071a6eeb",
+      "contractDigest": "611ff3bf01bd7f8332023be47650de598af6b87ec6e9aaee3d76ad113a17128b",
+      "record": "evidence/skill-compatibility/reviews/producer-sync-20261119/qubrics-token-efficient-usage.json",
+      "sha256": "28aa7992c4eb2c47867ffab75a017a1a7feb07a33f72a9660d6f91b8293c3fcf"
     }
   ],
   "releaseInputs": {
     "publishedRevision": "9d8059b10111943ce08860217a27222f43507686",
-    "sdkRevision": "57435acb6517ece3a78a3f1774f37dcce6985935",
+    "sdkRevision": "c8549be2099e5a2f6947262bbeaf6f5e8b678801",
     "app": {
       "revision": "06a1d50eeb483e8a4c6aeb8da64832c5d3dc5a7e",
       "openapi": "evidence/skill-compatibility/contracts/calendar-api-20261111/app-openapi.json",
