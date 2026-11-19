@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "kind": "compatibility",
+  "skill": "qubrics-token-efficient-usage",
+  "skillDigest": "7c4d1d3ac670ed25ba71248e12b5e77cdd6ab15c6aab6ed747f0bbc9071a6eeb",
+  "contractDigest": "bbf088b7af87f6b0cd57cb944879c24de61195169230ecaabd5626fa0c0ca935",
+  "sourceRevisions": {
+    "app": "06a1d50eeb483e8a4c6aeb8da64832c5d3dc5a7e",
+    "sending": "2f4226655efc05f109b5feda50ed2ca1570aea91",
+    "sdk": "ff61155fb25c77fa7794c68a4b9f3a6eaaba5577"
+  },
+  "reviewer": "Independent source reviewer /root/calendar_source_review; coordinating reviewer /root",
+  "rationale": "The retained narrow selectors, bounded cursors, ETags, 304 access and response limits are unchanged. Calendar removal and webhook-label enum changes do not alter the taught workflows or grant additional authority. Immutable source review preserves all read/write, resource-state and no-unbounded-polling boundaries.",
+  "evidence": [
+    {
+      "path": "skills/qubrics-token-efficient-usage/SKILL.md",
+      "sha256": "763618dc196f35e58fa1deb165703f3e77cd47eeaf73ea5d036f1e6ff371472f"
+    },
+    {
+      "path": "evidence/skill-compatibility/reviews/calendar-free-20261120/source-review.md",
+      "sha256": "67d7de77f0574ab67b6a7802180e291c42a3dcd4557bfad8098913617aff7a13"
+    }
+  ]
+}

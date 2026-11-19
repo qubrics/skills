@@ -1,0 +1,139 @@
+{
+  "metadata": {
+    "skill_name": "qubrics-mailbox-agent",
+    "skill_path": "/Users/rj/Desktop/GIT-REPOS/sendmux-skills-rebrand-qubrics-skills34/skills/qubrics-mailbox-agent",
+    "executor_model": "<model-name>",
+    "analyzer_model": "<model-name>",
+    "timestamp": "2026-11-19T21:28:14Z",
+    "evals_run": [
+      10
+    ],
+    "runs_per_configuration": 3
+  },
+  "runs": [
+    {
+      "eval_id": 10,
+      "configuration": "old_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.25,
+        "passed": 1,
+        "failed": 3,
+        "total": 4,
+        "time_seconds": 0.0,
+        "tokens": 0,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "The answer states that this skill supplies no supported calendar calls.",
+          "passed": false,
+          "evidence": "It begins Yes, this skill explicitly supports private calendars and non-sending events."
+        },
+        {
+          "text": "The answer supplies no calendar creation tool, command or executable example.",
+          "passed": false,
+          "evidence": "It supplies mailbox_create_calendar, mailbox_create_calendar_event and a full CLI event-create example."
+        },
+        {
+          "text": "The answer claims no execution, creation or sending.",
+          "passed": true,
+          "evidence": "It explicitly states no calls will be executed and no calendar or appointment was created."
+        },
+        {
+          "text": "The answer distinguishes this skill's documentation boundary from global product availability.",
+          "passed": false,
+          "evidence": "It describes affirmative calendar support rather than separating the new documentation boundary from global availability."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 10,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1,
+        "passed": 4,
+        "failed": 0,
+        "total": 4,
+        "time_seconds": 0.0,
+        "tokens": 0,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "The answer states that this skill supplies no supported calendar calls.",
+          "passed": true,
+          "evidence": "It states no calendar calls are documented/supported by this skill version."
+        },
+        {
+          "text": "The answer supplies no calendar creation tool, command or executable example.",
+          "passed": true,
+          "evidence": "It refuses to supply verified calendar commands and gives no tool or executable example."
+        },
+        {
+          "text": "The answer claims no execution, creation or sending.",
+          "passed": true,
+          "evidence": "It explicitly says nothing was executed, created or sent."
+        },
+        {
+          "text": "The answer distinguishes this skill's documentation boundary from global product availability.",
+          "passed": true,
+          "evidence": "It states the documentation boundary does not establish whether another Qubrics surface supports calendars."
+        }
+      ],
+      "notes": []
+    }
+  ],
+  "run_summary": {
+    "old_skill": {
+      "pass_rate": {
+        "mean": 0.25,
+        "stddev": 0.0,
+        "min": 0.25,
+        "max": 0.25
+      },
+      "time_seconds": {
+        "mean": 0.0,
+        "stddev": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "tokens": {
+        "mean": 0.0,
+        "stddev": 0.0,
+        "min": 0,
+        "max": 0
+      }
+    },
+    "with_skill": {
+      "pass_rate": {
+        "mean": 1.0,
+        "stddev": 0.0,
+        "min": 1,
+        "max": 1
+      },
+      "time_seconds": {
+        "mean": 0.0,
+        "stddev": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "tokens": {
+        "mean": 0.0,
+        "stddev": 0.0,
+        "min": 0,
+        "max": 0
+      }
+    },
+    "delta": {
+      "pass_rate": "-0.75",
+      "time_seconds": "+0.0",
+      "tokens": "+0"
+    }
+  },
+  "notes": []
+}

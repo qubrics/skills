@@ -1,0 +1,15 @@
+{
+  "arm": "old_skill",
+  "skill_sha256": "4d749ee80029bfd22ea4d76949bf28aaede1ffd30340a00ca4acba814b12d0c1",
+  "prompt_sha256": "f3cc9a6963df160aac48b43a6c931c6cb0ae22d027e084d7ca17dde4bacf56ac",
+  "response_sha256": "bdd09d595a3e7fef9d77ba215152fdf318eda4686b01eacc524a51e136fe4af4",
+  "source_revision": "9d8059b10111943ce08860217a27222f43507686",
+  "evaluator": "/root/calendar_workflow_baseline",
+  "recorded_by": "/root from completed collaboration evaluation and on-disk outputs",
+  "tools": [
+    "functions.exec/tools.exec_command: immutable local skill reads and hash computation",
+    "functions.exec/tools.apply_patch: actual evaluation output/transcript writes"
+  ],
+  "external_actions": false,
+  "limits": "No timing, model identity, runtime, installed client, credentials or publication measurement is claimed."
+}

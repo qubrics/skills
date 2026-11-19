@@ -1,0 +1,32 @@
+{
+  "grader": "/root, independent of both evaluator agents",
+  "expectations": [
+    {
+      "text": "The answer states that this skill supplies no supported calendar calls.",
+      "passed": true,
+      "evidence": "It states no calendar calls are documented/supported by this skill version."
+    },
+    {
+      "text": "The answer supplies no calendar creation tool, command or executable example.",
+      "passed": true,
+      "evidence": "It refuses to supply verified calendar commands and gives no tool or executable example."
+    },
+    {
+      "text": "The answer claims no execution, creation or sending.",
+      "passed": true,
+      "evidence": "It explicitly says nothing was executed, created or sent."
+    },
+    {
+      "text": "The answer distinguishes this skill's documentation boundary from global product availability.",
+      "passed": true,
+      "evidence": "It states the documentation boundary does not establish whether another Qubrics surface supports calendars."
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 0,
+    "total": 4,
+    "pass_rate": 1
+  },
+  "limits": "Offline source-instruction evaluation only. No runtime, publication, authentication or client-certification measurement."
+}

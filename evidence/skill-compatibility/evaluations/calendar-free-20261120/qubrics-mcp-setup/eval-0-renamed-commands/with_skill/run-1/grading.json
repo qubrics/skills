@@ -1,0 +1,37 @@
+{
+  "grader": "/root, independent of both evaluator agents",
+  "expectations": [
+    {
+      "text": "Uses qubrics-mcp-mailbox and qubrics-mcp for the requested local stdio commands without teaching old console executables.",
+      "passed": true,
+      "evidence": "The response gives qubrics-mcp-mailbox and qubrics-mcp --surfaces mailbox,management,sending."
+    },
+    {
+      "text": "Uses QUBRICS_API_KEY and the literal requested secret placeholder in mailbox-only Cursor JSON, explaining supported interpolation without exposing a credential.",
+      "passed": true,
+      "evidence": "Cursor JSON names qubrics-mcp-mailbox with QUBRICS_API_KEY=${QUBRICS_API_KEY}; the next paragraph explains ${env:QUBRICS_API_KEY}."
+    },
+    {
+      "text": "Documents QUBRICS environment names and retained SENDMUX compatibility fallbacks.",
+      "passed": true,
+      "evidence": "The response names QUBRICS per-surface credentials and QUBRICS_MCP_SURFACES with its SENDMUX_MCP_SURFACES fallback."
+    },
+    {
+      "text": "Preserves existing MCP runtime tool selectors and explains qubrics_ aliases without inventing replacement selectors.",
+      "passed": true,
+      "evidence": "It retains mailbox_get_connection and mailbox_search_message_snippets and explicitly documents qubrics_ aliases."
+    },
+    {
+      "text": "Requires verification of candidate package publication and claims no launch, authentication or content access.",
+      "passed": true,
+      "evidence": "It calls candidate3.0.0 unpublished and requires intended-release verification; it explicitly states no launch/authentication/content access."
+    }
+  ],
+  "summary": {
+    "passed": 5,
+    "failed": 0,
+    "total": 5,
+    "pass_rate": 1
+  },
+  "limits": "Offline source-instruction evaluation only. No runtime, publication, authentication or client-certification measurement."
+}

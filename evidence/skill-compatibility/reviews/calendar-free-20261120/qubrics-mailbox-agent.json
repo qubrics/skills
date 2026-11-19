@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "kind": "compatibility",
+  "skill": "qubrics-mailbox-agent",
+  "skillDigest": "65c79f2568dd5b85682dcc81f57cb910309c699100b679a9ac7daac5db878247",
+  "contractDigest": "45abcd8fb5c1e0d1e9654450e8658ce74820963671d97edbc75a0c7091c42bb8",
+  "sourceRevisions": {
+    "app": "06a1d50eeb483e8a4c6aeb8da64832c5d3dc5a7e",
+    "sending": "2f4226655efc05f109b5feda50ed2ca1570aea91",
+    "sdk": "ff61155fb25c77fa7794c68a4b9f3a6eaaba5577"
+  },
+  "reviewer": "Independent source reviewer /root/calendar_source_review; coordinating reviewer /root",
+  "rationale": "The selected non-calendar mailbox operations, response contracts and credential boundaries remain unchanged. Calendar teaching and selectors are withdrawn under the recorded operator hold. The proposed body refuses that held task in a genuine offline evaluation; the original legacy body predates calendar teaching. This source review covers the retained operation subset, not runtime or publication availability.",
+  "evidence": [
+    {
+      "path": "skills/qubrics-mailbox-agent/SKILL.md",
+      "sha256": "c8daf1f48c865ee89424bee44476fc10e38b247158a24adc6ea0889da16ea46b"
+    },
+    {
+      "path": "evidence/skill-compatibility/reviews/calendar-free-20261120/source-review.md",
+      "sha256": "67d7de77f0574ab67b6a7802180e291c42a3dcd4557bfad8098913617aff7a13"
+    },
+    {
+      "path": "evidence/skill-compatibility/evaluations/calendar-free-20261120/qubrics-mailbox-agent/benchmark.json",
+      "sha256": "478da7d8a344c212b29c6c2d23ac71998617ceec8f6cb3d48976a2c9db39fb8a"
+    },
+    {
+      "path": "evidence/skill-compatibility/evaluations/calendar-free-20261120/qubrics-mailbox-agent/eval-10-calendar-held/eval_metadata.json",
+      "sha256": "ce2e9751777c9ea6efc5fb43a97843393c9d7204fa5421a6a84a616668aece3d"
+    },
+    {
+      "path": "evidence/skill-compatibility/evaluations/calendar-free-20261120/qubrics-mailbox-agent/eval-10-calendar-held/with_skill/run-1/grading.json",
+      "sha256": "9781fa9d25838bdb7dbe3fe3b1f7a486116163283e9c8b47609790c414f8001b"
+    },
+    {
+      "path": "evidence/skill-compatibility/evaluations/calendar-free-20261120/qubrics-mailbox-agent/eval-10-calendar-held/with_skill/run-1/outputs/response.md",
+      "sha256": "340d49c3ebc3ed9d38242268b6858028cbe6b311b76bd0f93d36aabc602a2775"
+    },
+    {
+      "path": "evidence/skill-compatibility/evaluations/calendar-free-20261120/qubrics-mailbox-agent/eval-10-calendar-held/with_skill/run-1/receipt.json",
+      "sha256": "944760aff1dc39d223cc326a2e1b2cd13fa7d071052b20bdd1138fb8ab23a511"
+    },
+    {
+      "path": "evidence/skill-compatibility/evaluations/calendar-free-20261120/qubrics-mailbox-agent/eval-10-calendar-held/with_skill/run-1/transcript.md",
+      "sha256": "63f28afcd74590a68798024bf0660d7d6cdfc4f84321bc7b4437dcf6600338da"
+    }
+  ]
+}

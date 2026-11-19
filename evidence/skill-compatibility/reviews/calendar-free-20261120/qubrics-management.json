@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "kind": "compatibility",
+  "skill": "qubrics-management",
+  "skillDigest": "ec55108500cd59654717c8d8102088d495e8b923525e8b391e76650a66b00103",
+  "contractDigest": "b66478a9d3191242b95f0c7a0213011a515240a12498b9c063dfd6f42fb3977f",
+  "sourceRevisions": {
+    "app": "06a1d50eeb483e8a4c6aeb8da64832c5d3dc5a7e",
+    "sending": "2f4226655efc05f109b5feda50ed2ca1570aea91",
+    "sdk": "ff61155fb25c77fa7794c68a4b9f3a6eaaba5577"
+  },
+  "reviewer": "Independent source reviewer /root/calendar_source_review; coordinating reviewer /root",
+  "rationale": "Only webhook calendar.changed subscription acceptance and returned event-label enums change. Neither guide requests calendar subscriptions or treats returned labels as a closed enum. Scope checks, confirmation, one-time secrets, idempotency and retained management tools are unchanged, as verified against immutable source in the attached independent review.",
+  "evidence": [
+    {
+      "path": "skills/qubrics-management/SKILL.md",
+      "sha256": "286e400c7e6a43e687fa4814dc4a79a45659a4b4d7357a45126c278b6bbfc522"
+    },
+    {
+      "path": "evidence/skill-compatibility/reviews/calendar-free-20261120/source-review.md",
+      "sha256": "67d7de77f0574ab67b6a7802180e291c42a3dcd4557bfad8098913617aff7a13"
+    }
+  ]
+}
