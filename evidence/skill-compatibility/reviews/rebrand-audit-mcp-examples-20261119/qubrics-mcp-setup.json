@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "kind": "compatibility",
+  "skill": "qubrics-mcp-setup",
+  "skillDigest": "a7fff1672b889bf24f596f79c30b1498da7c0f5785ea630458d6064dfb677136",
+  "contractDigest": "d13efb6edafdd6788d67cedc1fa44e24985396313f79601ffeeb24aa1d48878a",
+  "sourceRevisions": {
+    "app": "06a1d50eeb483e8a4c6aeb8da64832c5d3dc5a7e",
+    "sending": "2f4226655efc05f109b5feda50ed2ca1570aea91",
+    "sdk": "c8549be2099e5a2f6947262bbeaf6f5e8b678801"
+  },
+  "reviewer": "Source reviewer /root/ecosystem; independent Spec reviewer and fresh reader /root/docs",
+  "rationale": "Fresh candidate examples select the same supported environment values through the Qubrics-first lookup, with unchanged commands, transport, resource, authorisation and tool contracts. The actual configuration module validated Qubrics keys, legacy fallback, precedence and HTTP bearer; the released legacy bearer note was checked against its exact tag. Independent source review found no missing acceptance or changed API behaviour. Historical workflow records are preserved; no new evaluation execution or acceptance receipt is claimed.",
+  "evidence": [
+    {
+      "path": "skills/qubrics-mcp-setup/SKILL.md",
+      "sha256": "6014d9ad6754bac2e23cdfa47c55c570b817a27e03affeeb7dee2b947fe6af6b"
+    },
+    {
+      "path": "evidence/skill-compatibility/reviews/rebrand-audit-mcp-examples-20261119/source-review.md",
+      "sha256": "d168f60ac07e87a7030897d3847c60f33059d569957effe920f607e2e581d631"
+    }
+  ]
+}

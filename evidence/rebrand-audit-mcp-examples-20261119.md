@@ -17,6 +17,7 @@ Use supported `QUBRICS_` names in current candidate examples, plus local aliases
 - Existing `quick_validate` passed. Existing `package_skill` produced a package; extracting and validating it passed, and extracted `SKILL.md` bytes match the source.
 - The actual static drift checker passed with explicit source and pinned OpenAPI inputs. The two focused existing environment tests passed (2 passed, 0 failed, 0 skipped). Earlier broader runs exposed mutable local SDK inputs and the missing released HTTP bearer compatibility note; both causes are recorded in the local logs, and the released note is retained accurately.
 - Fresh-reader critique passed without a rewrite. One humanize pass preserved exact technical names, contacts, URLs and claims. No executable logic or skill trigger changed; no permanent tests were added or removed. Full required CI remains the release gate.
+- PR CI run `44517390511` passed all 57 tests with 0 failed and 0 skipped, then correctly required an exact compatibility review for the changed skill digest. The append-only review record and independent source-review evidence under `evidence/skill-compatibility/reviews/rebrand-audit-mcp-examples-20261119/` fill that requirement without changing historical reviews, checker or producer pins. Its next exact candidate result remains a required gate.
 
 ## Export and release
 
