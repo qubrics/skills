@@ -1,0 +1,61 @@
+{
+  "grader": "/root/skill_workflow_eval",
+  "method": "Independent inline grading after reading the complete saved response and concise execution transcript, following skill-creator/agents/grader.md. Read-only Python parsed the actual Cursor JSON and verified exact skill/prompt receipt hashes. Candidate pyproject.toml, config.py and server.py were read from immutable SDK a326bc923fff448470d908bb527afaaa35f6d739.",
+  "expectations": [
+    {
+      "text": "Names qubrics-mcp, qubrics-mcp-hosted, qubrics-mcp-mailbox, qubrics-mcp-management and qubrics-mcp-sending without teaching old console executables.",
+      "passed": true,
+      "evidence": "Response lists all five qubrics-mcp executables, matching immutable packages/python/mcp/pyproject.toml [project.scripts]. Old sendmux-mcp* appears only in the separate released-wheel compatibility paragraph."
+    },
+    {
+      "text": "Uses qubrics-mcp-mailbox for local Cursor mailbox-only setup and keeps the credential a placeholder in environment configuration.",
+      "passed": true,
+      "evidence": "Parsed Cursor JSON has command qubrics-mcp-mailbox and env QUBRICS_API_KEY equal to literal ${env:QUBRICS_MBX_KEY}. Response identifies that value as a launch-environment reference loaded from the user's secret store and supplies no raw credential."
+    },
+    {
+      "text": "Documents QUBRICS environment names with their retained SENDMUX compatibility fallbacks.",
+      "passed": true,
+      "evidence": "Response maps QUBRICS_API_KEY, per-surface keys, surface selector and HTTP bearer to their SENDMUX fallbacks and says candidate source prefers QUBRICS names. Immutable config.py env_value() reads QUBRICS first, then SENDMUX; response preserves per-surface precedence and isolation."
+    },
+    {
+      "text": "Preserves existing MCP runtime tool names and explains their qubrics_ aliases without inventing renamed selectors.",
+      "passed": true,
+      "evidence": "Response pairs mailbox_get_connection, mailbox_search_message_snippets, management_get_connection and sending_get_connection with their qubrics_ aliases. Immutable server.py adds qubrics_ aliases and removes only that prefix for dispatch; no replacement selector is invented."
+    },
+    {
+      "text": "Keeps hosted MCP OAuth resource https://mcp.qubrics.com/mcp separate from REST tokens and claims no external action or unpublished package availability.",
+      "passed": true,
+      "evidence": "Response names https://mcp.qubrics.com/mcp as canonical, forbids REST-token reuse and binds later authorisation, grant restriction and token audience to it. It calls the candidate unpublished and says no server launch, authentication, mailbox access or publication occurred, consistent with the saved transcript and receipt."
+    }
+  ],
+  "summary": {
+    "passed": 5,
+    "failed": 0,
+    "total": 5,
+    "pass_rate": 1
+  },
+  "claims": [
+    {
+      "claim": "The answer uses the exact final skill and existing evaluation prompt.",
+      "verified": true,
+      "evidence": "Read-only receipt verification matched skill SHA256 6014d9ad6754bac2e23cdfa47c55c570b817a27e03affeeb7dee2b947fe6af6b and prompt SHA256 4118ef9f899b8710ba35963d3ee8bebb0989efeb9b44f6d561f0ce9d0a2556ee."
+    },
+    {
+      "claim": "Candidate and released-wheel catalogues remain separate.",
+      "verified": true,
+      "evidence": "Response explicitly separates candidate 150 tool names and 75 aliases from released sendmux-mcp 2.2.0's 54 tools with no qubrics_ aliases, matching the final skill's source-reviewed compatibility paragraph."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [
+      "Host total-token and duration metrics were unavailable.",
+      "Cursor runtime compatibility and package-index availability were not checked."
+    ],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [],
+    "overall": "Existing assertions distinguish renamed command guidance while preserving security boundaries. One offline case does not certify a client, installation, live OAuth, mailbox access or publication."
+  }
+}

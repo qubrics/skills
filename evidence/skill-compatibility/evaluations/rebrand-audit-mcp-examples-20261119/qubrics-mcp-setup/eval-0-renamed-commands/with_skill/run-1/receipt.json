@@ -1,0 +1,15 @@
+{
+  "arm": "with_skill",
+  "skill_sha256": "6014d9ad6754bac2e23cdfa47c55c570b817a27e03affeeb7dee2b947fe6af6b",
+  "prompt_sha256": "4118ef9f899b8710ba35963d3ee8bebb0989efeb9b44f6d561f0ce9d0a2556ee",
+  "evaluator": "/root/skill_workflow_eval/with_skill_run",
+  "tools_used": [
+    "functions.exec",
+    "tools.exec_command",
+    "tools.apply_patch"
+  ],
+  "mcp_servers": [],
+  "external_actions": false,
+  "total_tokens": "unavailable",
+  "duration_ms": "unavailable"
+}

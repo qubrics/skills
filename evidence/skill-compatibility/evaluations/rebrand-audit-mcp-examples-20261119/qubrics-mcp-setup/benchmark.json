@@ -1,0 +1,127 @@
+{
+  "metadata": {
+    "skill_name": "qubrics-mcp-setup",
+    "skill_path": "skills/qubrics-mcp-setup",
+    "executor_model": "host default (not exposed)",
+    "analyzer_model": "host default (not exposed)",
+    "timestamp": "2026-11-19T12:19:08Z",
+    "evals_run": [
+      0
+    ],
+    "runs_per_configuration": 1
+  },
+  "runs": [
+    {
+      "eval_id": 0,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1,
+        "passed": 5,
+        "failed": 0,
+        "total": 5
+      },
+      "expectations": [
+        {
+          "text": "Names qubrics-mcp, qubrics-mcp-hosted, qubrics-mcp-mailbox, qubrics-mcp-management and qubrics-mcp-sending without teaching old console executables.",
+          "passed": true,
+          "evidence": "Response lists all five qubrics-mcp executables, matching immutable packages/python/mcp/pyproject.toml [project.scripts]. Old sendmux-mcp* appears only in the separate released-wheel compatibility paragraph."
+        },
+        {
+          "text": "Uses qubrics-mcp-mailbox for local Cursor mailbox-only setup and keeps the credential a placeholder in environment configuration.",
+          "passed": true,
+          "evidence": "Parsed Cursor JSON has command qubrics-mcp-mailbox and env QUBRICS_API_KEY equal to literal ${env:QUBRICS_MBX_KEY}. Response identifies that value as a launch-environment reference loaded from the user's secret store and supplies no raw credential."
+        },
+        {
+          "text": "Documents QUBRICS environment names with their retained SENDMUX compatibility fallbacks.",
+          "passed": true,
+          "evidence": "Response maps QUBRICS_API_KEY, per-surface keys, surface selector and HTTP bearer to their SENDMUX fallbacks and says candidate source prefers QUBRICS names. Immutable config.py env_value() reads QUBRICS first, then SENDMUX; response preserves per-surface precedence and isolation."
+        },
+        {
+          "text": "Preserves existing MCP runtime tool names and explains their qubrics_ aliases without inventing renamed selectors.",
+          "passed": true,
+          "evidence": "Response pairs mailbox_get_connection, mailbox_search_message_snippets, management_get_connection and sending_get_connection with their qubrics_ aliases. Immutable server.py adds qubrics_ aliases and removes only that prefix for dispatch; no replacement selector is invented."
+        },
+        {
+          "text": "Keeps hosted MCP OAuth resource https://mcp.qubrics.com/mcp separate from REST tokens and claims no external action or unpublished package availability.",
+          "passed": true,
+          "evidence": "Response names https://mcp.qubrics.com/mcp as canonical, forbids REST-token reuse and binds later authorisation, grant restriction and token audience to it. It calls the candidate unpublished and says no server launch, authentication, mailbox access or publication occurred, consistent with the saved transcript and receipt."
+        }
+      ],
+      "notes": [
+        "Host total-token and duration metrics were unavailable.",
+        "Cursor runtime compatibility and package-index availability were not checked."
+      ]
+    },
+    {
+      "eval_id": 0,
+      "configuration": "old_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.6,
+        "passed": 3,
+        "failed": 2,
+        "total": 5
+      },
+      "expectations": [
+        {
+          "text": "Names qubrics-mcp, qubrics-mcp-hosted, qubrics-mcp-mailbox, qubrics-mcp-management and qubrics-mcp-sending without teaching old console executables.",
+          "passed": false,
+          "evidence": "Response lists the five sendmux-mcp executables and explicitly cannot verify names for requested candidate a326bc923fff448470d908bb527afaaa35f6d739 because the historical skill documents candidate 73bedb8. It does not supply the five required Qubrics commands."
+        },
+        {
+          "text": "Uses qubrics-mcp-mailbox for local Cursor mailbox-only setup and keeps the credential a placeholder in environment configuration.",
+          "passed": false,
+          "evidence": "Cursor JSON uses command sendmux-mcp-mailbox, rather than qubrics-mcp-mailbox. It correctly retains a literal ${env:SENDMUX_MBX_KEY} placeholder, but the required executable is absent."
+        },
+        {
+          "text": "Documents QUBRICS environment names with their retained SENDMUX compatibility fallbacks.",
+          "passed": true,
+          "evidence": "Response says the historical candidate adds canonical QUBRICS names before SENDMUX fallbacks, explicitly pairs QUBRICS_MCP_SURFACES with SENDMUX_MCP_SURFACES and preserves per-surface-key precedence and isolation. It limits those claims to its historical source."
+        },
+        {
+          "text": "Preserves existing MCP runtime tool names and explains their qubrics_ aliases without inventing renamed selectors.",
+          "passed": true,
+          "evidence": "Response preserves mailbox_get_connection, mailbox_search_message_snippets, management_create_domain and sending_send_email, pairs each with its qubrics_ alias and distinguishes tool aliases from executables. It does not invent selectors."
+        },
+        {
+          "text": "Keeps hosted MCP OAuth resource https://mcp.qubrics.com/mcp separate from REST tokens and claims no external action or unpublished package availability.",
+          "passed": true,
+          "evidence": "Response identifies https://mcp.qubrics.com/mcp as the historical candidate's canonical resource, forbids REST-token reuse and explains that alias URLs do not make token audiences interchangeable. It limits the legacy-resource instruction to its historical guide and claims no launch, authentication, mailbox access or verified publication."
+        }
+      ],
+      "notes": [
+        "Historical skill cannot verify the exact requested candidate.",
+        "Host total-token and duration metrics were unavailable.",
+        "Runtime, authentication, mailbox verification and publication checks were outside this offline run."
+      ]
+    }
+  ],
+  "run_summary": {
+    "with_skill": {
+      "pass_rate": {
+        "mean": 1,
+        "stddev": 0,
+        "min": 1,
+        "max": 1
+      }
+    },
+    "old_skill": {
+      "pass_rate": {
+        "mean": 0.6,
+        "stddev": 0,
+        "min": 0.6,
+        "max": 0.6
+      }
+    },
+    "delta": {
+      "pass_rate": "+0.40"
+    }
+  },
+  "notes": [
+    "One genuine offline run per configuration: final skill 5/5, immutable historical baseline 3/5. No variance claim is supported by one run.",
+    "Baseline security and compatibility assertions pass; renamed executables and Cursor command guidance distinguish the final skill.",
+    "Host total-token and duration metrics were unavailable. Generator defaults for those unmeasured fields were removed; no token, timing or tool-count comparison is claimed.",
+    "No server launch, authentication, mailbox access, client certification, package-index or publication check occurred."
+  ]
+}

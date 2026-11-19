@@ -4865,6 +4865,13 @@
       "contractDigest": "611ff3bf01bd7f8332023be47650de598af6b87ec6e9aaee3d76ad113a17128b",
       "record": "evidence/skill-compatibility/reviews/producer-sync-20261119/qubrics-token-efficient-usage.json",
       "sha256": "28aa7992c4eb2c47867ffab75a017a1a7feb07a33f72a9660d6f91b8293c3fcf"
+    },
+    {
+      "skill": "qubrics-mcp-setup",
+      "skillDigest": "a7fff1672b889bf24f596f79c30b1498da7c0f5785ea630458d6064dfb677136",
+      "contractDigest": "d13efb6edafdd6788d67cedc1fa44e24985396313f79601ffeeb24aa1d48878a",
+      "record": "evidence/skill-compatibility/reviews/rebrand-audit-mcp-examples-20261119/qubrics-mcp-setup.json",
+      "sha256": "60b1d9224f56ba444380702011c224d6cdedc87b79f369b8adf41f7b9e1db665"
     }
   ],
   "releaseInputs": {
