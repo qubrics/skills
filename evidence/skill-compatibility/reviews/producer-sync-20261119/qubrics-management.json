@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "kind": "compatibility",
+  "skill": "qubrics-management",
+  "skillDigest": "ec55108500cd59654717c8d8102088d495e8b923525e8b391e76650a66b00103",
+  "evidence": [
+    {
+      "path": "skills/qubrics-management/SKILL.md",
+      "sha256": "286e400c7e6a43e687fa4814dc4a79a45659a4b4d7357a45126c278b6bbfc522"
+    },
+    {
+      "path": "evidence/skill-compatibility/reviews/producer-sync-20261119/source-review.md",
+      "sha256": "763e30fcc15fd8e118beec48d0d433857e7d179a350d2419c496c073f4971aa1"
+    }
+  ],
+  "contractDigest": "fdd46e5252484e49913c26cba9ea09618fa5d04bdf7df9cacb88f7c59810c559",
+  "sourceRevisions": {
+    "app": "06a1d50eeb483e8a4c6aeb8da64832c5d3dc5a7e",
+    "sending": "2f4226655efc05f109b5feda50ed2ca1570aea91",
+    "sdk": "c8549be2099e5a2f6947262bbeaf6f5e8b678801"
+  },
+  "reviewer": "Independent producer source reviewer /root/producer_compat_source_review; coordinating reviewer /root",
+  "rationale": "Independent whole-body and selected-source review of proposed/qubrics-management against exact SDK c8549be2 and b7dad6ca under the fixed origin producer tuple. The pair-by-pair source review finds changed MCP examples compatible with the existing instructions and preserves authority, secret, idempotency and uncertain-result boundaries. Historical package statements are not recertified as renamed-source installation guidance."
+}

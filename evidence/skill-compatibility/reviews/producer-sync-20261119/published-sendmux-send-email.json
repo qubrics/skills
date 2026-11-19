@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "kind": "compatibility",
+  "skill": "sendmux-send-email",
+  "skillDigest": "853bac285313fe319a7bf94bf67636793a818e7d616a8938bb81b33ef460ccb3",
+  "evidence": [
+    {
+      "path": "skills/sendmux-send-email/SKILL.md",
+      "sha256": "4f6fd2badf1166cbe029b0cf3687c4ae50b183b140f9b985dc8e09ebd4412e72"
+    },
+    {
+      "path": "evidence/skill-compatibility/reviews/producer-sync-20261119/source-review.md",
+      "sha256": "763e30fcc15fd8e118beec48d0d433857e7d179a350d2419c496c073f4971aa1"
+    }
+  ],
+  "contractDigest": "774a7898daa458884c74c07cc4422f6097a169cfc61eef8518b5a60c0e7fc680",
+  "sourceRevisions": {
+    "app": "06a1d50eeb483e8a4c6aeb8da64832c5d3dc5a7e",
+    "sending": "2f4226655efc05f109b5feda50ed2ca1570aea91",
+    "sdk": "c8549be2099e5a2f6947262bbeaf6f5e8b678801"
+  },
+  "reviewer": "Independent producer source reviewer /root/producer_compat_source_review; coordinating reviewer /root",
+  "rationale": "Independent whole-body and selected-source review of published/sendmux-send-email against exact SDK c8549be2 and b7dad6ca under the fixed origin producer tuple. The pair-by-pair source review finds changed MCP examples compatible with the existing instructions and preserves authority, secret, idempotency and uncertain-result boundaries. Historical package statements are not recertified as renamed-source installation guidance."
+}

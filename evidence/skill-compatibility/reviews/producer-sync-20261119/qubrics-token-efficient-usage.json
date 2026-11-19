@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "kind": "compatibility",
+  "skill": "qubrics-token-efficient-usage",
+  "skillDigest": "7c4d1d3ac670ed25ba71248e12b5e77cdd6ab15c6aab6ed747f0bbc9071a6eeb",
+  "evidence": [
+    {
+      "path": "skills/qubrics-token-efficient-usage/SKILL.md",
+      "sha256": "763618dc196f35e58fa1deb165703f3e77cd47eeaf73ea5d036f1e6ff371472f"
+    },
+    {
+      "path": "evidence/skill-compatibility/reviews/producer-sync-20261119/source-review.md",
+      "sha256": "763e30fcc15fd8e118beec48d0d433857e7d179a350d2419c496c073f4971aa1"
+    }
+  ],
+  "contractDigest": "611ff3bf01bd7f8332023be47650de598af6b87ec6e9aaee3d76ad113a17128b",
+  "sourceRevisions": {
+    "app": "06a1d50eeb483e8a4c6aeb8da64832c5d3dc5a7e",
+    "sending": "2f4226655efc05f109b5feda50ed2ca1570aea91",
+    "sdk": "c8549be2099e5a2f6947262bbeaf6f5e8b678801"
+  },
+  "reviewer": "Independent producer source reviewer /root/producer_compat_source_review; coordinating reviewer /root",
+  "rationale": "Independent whole-body and selected-source review of proposed/qubrics-token-efficient-usage against exact SDK c8549be2 and b7dad6ca under the fixed origin producer tuple. The pair-by-pair source review finds changed MCP examples compatible with the existing instructions and preserves authority, secret, idempotency and uncertain-result boundaries. Historical package statements are not recertified as renamed-source installation guidance."
+}

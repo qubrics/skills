@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "kind": "compatibility",
+  "skill": "email-for-ai-agents",
+  "skillDigest": "6f2c0908457404bb6aacc4cdcf18ce49b9054cbd873939b7b3e417224fd4d1d9",
+  "evidence": [
+    {
+      "path": "skills/email-for-ai-agents/SKILL.md",
+      "sha256": "b59efbce8f30add885202f70d03100821695cd5e6c40d91dc8958119dfb33fbf"
+    },
+    {
+      "path": "evidence/skill-compatibility/reviews/producer-sync-20261119/source-review.md",
+      "sha256": "763e30fcc15fd8e118beec48d0d433857e7d179a350d2419c496c073f4971aa1"
+    }
+  ],
+  "contractDigest": "f81288de22ec063dabed513a35ae2898641de1517a3ca321ab2eb02b0ce9b9f6",
+  "sourceRevisions": {
+    "app": "06a1d50eeb483e8a4c6aeb8da64832c5d3dc5a7e",
+    "sending": "2f4226655efc05f109b5feda50ed2ca1570aea91",
+    "sdk": "c8549be2099e5a2f6947262bbeaf6f5e8b678801"
+  },
+  "reviewer": "Independent producer source reviewer /root/producer_compat_source_review; coordinating reviewer /root",
+  "rationale": "Independent whole-body and selected-source review of published/email-for-ai-agents against exact SDK c8549be2 and b7dad6ca under the fixed origin producer tuple. The pair-by-pair source review finds changed MCP examples compatible with the existing instructions and preserves authority, secret, idempotency and uncertain-result boundaries. Historical package statements are not recertified as renamed-source installation guidance."
+}
