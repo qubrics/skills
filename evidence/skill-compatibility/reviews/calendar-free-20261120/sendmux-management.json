@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "kind": "compatibility",
+  "skill": "sendmux-management",
+  "skillDigest": "a82945bdb1521932eef71cfe05264e006ebffd52fde7859c0cc4cfedef72abea",
+  "contractDigest": "3e30984aaeda70b25ed29f680aa2d5fc111905161bb4699c3290338ed1c4a378",
+  "sourceRevisions": {
+    "app": "06a1d50eeb483e8a4c6aeb8da64832c5d3dc5a7e",
+    "sending": "2f4226655efc05f109b5feda50ed2ca1570aea91",
+    "sdk": "ff61155fb25c77fa7794c68a4b9f3a6eaaba5577"
+  },
+  "reviewer": "Independent source reviewer /root/calendar_source_review; coordinating reviewer /root",
+  "rationale": "Only webhook calendar.changed subscription acceptance and returned event-label enums change. Neither guide requests calendar subscriptions or treats returned labels as a closed enum. Scope checks, confirmation, one-time secrets, idempotency and retained management tools are unchanged, as verified against immutable source in the attached independent review.",
+  "evidence": [
+    {
+      "path": "skills/sendmux-management/SKILL.md",
+      "sha256": "d6cb879e97cc0e374d9d50e1c7523f1099e6ad6753f2d0df49f54e02241442bc"
+    },
+    {
+      "path": "evidence/skill-compatibility/reviews/calendar-free-20261120/source-review.md",
+      "sha256": "67d7de77f0574ab67b6a7802180e291c42a3dcd4557bfad8098913617aff7a13"
+    }
+  ]
+}

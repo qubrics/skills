@@ -1,0 +1,302 @@
+{
+  "metadata": {
+    "skill_name": "qubrics-mcp-setup",
+    "skill_path": "/Users/rj/Desktop/GIT-REPOS/sendmux-skills-rebrand-qubrics-skills34/skills/qubrics-mcp-setup",
+    "executor_model": "<model-name>",
+    "analyzer_model": "<model-name>",
+    "timestamp": "2026-11-19T21:37:19Z",
+    "evals_run": [
+      0,
+      1,
+      7
+    ],
+    "runs_per_configuration": 1
+  },
+  "runs": [
+    {
+      "eval_id": 0,
+      "eval_name": null,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1,
+        "passed": 5,
+        "failed": 0,
+        "total": 5,
+        "time_seconds": null,
+        "tokens": null,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Uses qubrics-mcp-mailbox and qubrics-mcp for the requested local stdio commands without teaching old console executables.",
+          "passed": true,
+          "evidence": "The response gives qubrics-mcp-mailbox and qubrics-mcp --surfaces mailbox,management,sending."
+        },
+        {
+          "text": "Uses QUBRICS_API_KEY and the literal requested secret placeholder in mailbox-only Cursor JSON, explaining supported interpolation without exposing a credential.",
+          "passed": true,
+          "evidence": "Cursor JSON names qubrics-mcp-mailbox with QUBRICS_API_KEY=${QUBRICS_API_KEY}; the next paragraph explains ${env:QUBRICS_API_KEY}."
+        },
+        {
+          "text": "Documents QUBRICS environment names and retained SENDMUX compatibility fallbacks.",
+          "passed": true,
+          "evidence": "The response names QUBRICS per-surface credentials and QUBRICS_MCP_SURFACES with its SENDMUX_MCP_SURFACES fallback."
+        },
+        {
+          "text": "Preserves existing MCP runtime tool selectors and explains qubrics_ aliases without inventing replacement selectors.",
+          "passed": true,
+          "evidence": "It retains mailbox_get_connection and mailbox_search_message_snippets and explicitly documents qubrics_ aliases."
+        },
+        {
+          "text": "Requires verification of candidate package publication and claims no launch, authentication or content access.",
+          "passed": true,
+          "evidence": "It calls candidate3.0.0 unpublished and requires intended-release verification; it explicitly states no launch/authentication/content access."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 1,
+      "eval_name": null,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1,
+        "passed": 5,
+        "failed": 0,
+        "total": 5,
+        "time_seconds": null,
+        "tokens": null,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Names qubrics-mcp, qubrics-mcp-hosted, qubrics-mcp-mailbox, qubrics-mcp-management and qubrics-mcp-sending without teaching old console executables.",
+          "passed": true,
+          "evidence": "The response lists qubrics-mcp, qubrics-mcp-hosted, qubrics-mcp-mailbox, qubrics-mcp-management and qubrics-mcp-sending; old package names appear only in the separated historical-wheel caveat."
+        },
+        {
+          "text": "Uses qubrics-mcp-mailbox for local Cursor mailbox-only setup and keeps the credential a placeholder in environment configuration.",
+          "passed": true,
+          "evidence": "Cursor JSON uses qubrics-mcp-mailbox with QUBRICS_API_KEY=${env:QUBRICS_MBX_KEY} and explains secret-store loading."
+        },
+        {
+          "text": "Documents QUBRICS environment names with their retained SENDMUX compatibility fallbacks.",
+          "passed": true,
+          "evidence": "It states canonical QUBRICS credential names precede legacy SENDMUX fallbacks and names the per-surface keys."
+        },
+        {
+          "text": "Preserves existing MCP runtime tool names and explains their qubrics_ aliases without inventing renamed selectors.",
+          "passed": true,
+          "evidence": "It retains mailbox_search_message_snippets, management_create_mailbox and sending_send_email and gives their exact qubrics_ aliases."
+        },
+        {
+          "text": "Keeps hosted MCP OAuth resource https://mcp.qubrics.com/mcp separate from REST tokens and claims no external action or unpublished package availability.",
+          "passed": true,
+          "evidence": "It binds hosted OAuth to canonical https://mcp.qubrics.com/mcp, explicitly rejects REST bearer reuse and claims no runtime or publication check."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 7,
+      "eval_name": null,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1,
+        "passed": 4,
+        "failed": 0,
+        "total": 4,
+        "time_seconds": null,
+        "tokens": null,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "The answer names the contract-supported protocol revisions 2025-11-25 and 2026-07-28.",
+          "passed": true,
+          "evidence": "The response lists both2025-11-25 and2026-07-28."
+        },
+        {
+          "text": "The answer distinguishes released sendmux-mcp 2.2.0 from protocol revisions and identifies qubrics-mcp at SDK ff61155fb25c77fa7794c68a4b9f3a6eaaba5577 as unpublished source whose development metadata version 3.0.0 is not a verified release.",
+          "passed": true,
+          "evidence": "It names exact SDKff61155f, candidatequbrics-mcp3.0.0 unpublished, and separate released sendmux-mcp2.2.0."
+        },
+        {
+          "text": "The answer identifies the unpublished candidate contract catalogue as 130 tool names (72 Mailbox, 46 Management, 12 Sending), comprising 65 unprefixed tools and 65 qubrics_ aliases, keeps the released 2.2.0 wheel catalogue separate as 54 tools (26 Mailbox, 22 Management, 6 Sending), and explains that OAuth grants and selected surfaces determine actual visible tools.",
+          "passed": true,
+          "evidence": "The table gives130(72/46/12),65unprefixed+qubrics_ aliases versus54(26/22/6); OAuth/selected surfaces determine visibility."
+        },
+        {
+          "text": "The answer does not treat a client listed in setup guidance as automatically certified.",
+          "passed": true,
+          "evidence": "It explicitly says documented examples do not automatically certify compatibility."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 0,
+      "eval_name": null,
+      "configuration": "old_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.4,
+        "passed": 2,
+        "failed": 3,
+        "total": 5,
+        "time_seconds": null,
+        "tokens": null,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Uses qubrics-mcp-mailbox and qubrics-mcp for the requested local stdio commands without teaching old console executables.",
+          "passed": false,
+          "evidence": "The historical response teaches sendmux-mcp-mailbox and sendmux-mcp and says the renamed commands are not established."
+        },
+        {
+          "text": "Uses QUBRICS_API_KEY and the literal requested secret placeholder in mailbox-only Cursor JSON, explaining supported interpolation without exposing a credential.",
+          "passed": false,
+          "evidence": "Historical Cursor JSON uses sendmux-mcp-mailbox and SENDMUX_API_KEY, so it cannot configure the requested renamed source."
+        },
+        {
+          "text": "Documents QUBRICS environment names and retained SENDMUX compatibility fallbacks.",
+          "passed": true,
+          "evidence": "It documents QUBRICS_MCP_SURFACES before its SENDMUX_MCP_SURFACES fallback, though other examples remain legacy."
+        },
+        {
+          "text": "Preserves existing MCP runtime tool selectors and explains qubrics_ aliases without inventing replacement selectors.",
+          "passed": false,
+          "evidence": "It preserves runtime selector names but does not explain the candidate qubrics_ aliases."
+        },
+        {
+          "text": "Requires verification of candidate package publication and claims no launch, authentication or content access.",
+          "passed": true,
+          "evidence": "It requires actual package/console-script verification and explicitly reports no launch/authentication/content access."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 1,
+      "eval_name": null,
+      "configuration": "old_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.4,
+        "passed": 2,
+        "failed": 3,
+        "total": 5,
+        "time_seconds": null,
+        "tokens": null,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Names qubrics-mcp, qubrics-mcp-hosted, qubrics-mcp-mailbox, qubrics-mcp-management and qubrics-mcp-sending without teaching old console executables.",
+          "passed": false,
+          "evidence": "The response lists only sendmux-mcp executables and explicitly cannot establish renamed-source commands."
+        },
+        {
+          "text": "Uses qubrics-mcp-mailbox for local Cursor mailbox-only setup and keeps the credential a placeholder in environment configuration.",
+          "passed": false,
+          "evidence": "Cursor JSON uses sendmux-mcp-mailbox and SENDMUX_API_KEY, rather than the renamed mailbox-only command."
+        },
+        {
+          "text": "Documents QUBRICS environment names with their retained SENDMUX compatibility fallbacks.",
+          "passed": true,
+          "evidence": "It documents the historical QUBRICS-before-SENDMUX environment fallback and names the surface fallback."
+        },
+        {
+          "text": "Preserves existing MCP runtime tool names and explains their qubrics_ aliases without inventing renamed selectors.",
+          "passed": true,
+          "evidence": "It retains unprefixed runtime selectors and explains exact qubrics_ aliases."
+        },
+        {
+          "text": "Keeps hosted MCP OAuth resource https://mcp.qubrics.com/mcp separate from REST tokens and claims no external action or unpublished package availability.",
+          "passed": false,
+          "evidence": "Although it separates REST and hosted credentials, it teaches authorisation/grant/token binding to legacy https://mcp.sendmux.ai/mcp as primary instead of the required canonical resource."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 7,
+      "eval_name": null,
+      "configuration": "old_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.5,
+        "passed": 2,
+        "failed": 2,
+        "total": 4,
+        "time_seconds": null,
+        "tokens": null,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "The answer names the contract-supported protocol revisions 2025-11-25 and 2026-07-28.",
+          "passed": true,
+          "evidence": "The response lists both2025-11-25 and2026-07-28."
+        },
+        {
+          "text": "The answer distinguishes released sendmux-mcp 2.2.0 from protocol revisions and identifies qubrics-mcp at SDK ff61155fb25c77fa7794c68a4b9f3a6eaaba5577 as unpublished source whose development metadata version 3.0.0 is not a verified release.",
+          "passed": false,
+          "evidence": "The response knows only candidate73bedb8/version2.2.0 and does not identify ff61155f/3.0.0."
+        },
+        {
+          "text": "The answer identifies the unpublished candidate contract catalogue as 130 tool names (72 Mailbox, 46 Management, 12 Sending), comprising 65 unprefixed tools and 65 qubrics_ aliases, keeps the released 2.2.0 wheel catalogue separate as 54 tools (26 Mailbox, 22 Management, 6 Sending), and explains that OAuth grants and selected surfaces determine actual visible tools.",
+          "passed": false,
+          "evidence": "The response describes the old150(92/46/12)/75alias catalogue, not130(72/46/12)/65aliases."
+        },
+        {
+          "text": "The answer does not treat a client listed in setup guidance as automatically certified.",
+          "passed": true,
+          "evidence": "It explicitly states named clients are not automatically certified."
+        }
+      ],
+      "notes": []
+    }
+  ],
+  "run_summary": {
+    "with_skill": {
+      "pass_rate": {
+        "mean": 1.0,
+        "stddev": 0.0,
+        "min": 1,
+        "max": 1
+      },
+      "time_seconds": null,
+      "tokens": null
+    },
+    "old_skill": {
+      "pass_rate": {
+        "mean": 0.4333,
+        "stddev": 0.0577,
+        "min": 0.4,
+        "max": 0.5
+      },
+      "time_seconds": null,
+      "tokens": null
+    },
+    "delta": {
+      "pass_rate": "+0.57",
+      "time_seconds": null,
+      "tokens": null
+    }
+  },
+  "notes": [
+    "Time recorded for 0 of 3 with_skill runs, 0 of 3 old_skill runs, so there is no time delta.",
+    "Token count recorded for 0 of 3 with_skill runs, 0 of 3 old_skill runs, so there is no token count delta."
+  ]
+}

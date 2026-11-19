@@ -1,0 +1,10 @@
+{
+  "eval_id": 7,
+  "prompt": "For a compatibility note, what protocol revisions can the Qubrics MCP package speak, and how is that different from its package version? Our setup guide lists mailbox, management, and sending tools, but a customer only sees some after OAuth—should they expect the whole catalogue? Also, are the clients named in the setup guide automatically certified?",
+  "assertions": [
+    "The answer names the contract-supported protocol revisions 2025-11-25 and 2026-07-28.",
+    "The answer distinguishes released sendmux-mcp 2.2.0 from protocol revisions and identifies qubrics-mcp at SDK ff61155fb25c77fa7794c68a4b9f3a6eaaba5577 as unpublished source whose development metadata version 3.0.0 is not a verified release.",
+    "The answer identifies the unpublished candidate contract catalogue as 130 tool names (72 Mailbox, 46 Management, 12 Sending), comprising 65 unprefixed tools and 65 qubrics_ aliases, keeps the released 2.2.0 wheel catalogue separate as 54 tools (26 Mailbox, 22 Management, 6 Sending), and explains that OAuth grants and selected surfaces determine actual visible tools.",
+    "The answer does not treat a client listed in setup guidance as automatically certified."
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "grader": "/root, independent of both evaluator agents",
+  "expectations": [
+    {
+      "text": "The answer states that this skill supplies no supported calendar calls.",
+      "passed": false,
+      "evidence": "It begins Yes, this skill explicitly supports private calendars and non-sending events."
+    },
+    {
+      "text": "The answer supplies no calendar creation tool, command or executable example.",
+      "passed": false,
+      "evidence": "It supplies mailbox_create_calendar, mailbox_create_calendar_event and a full CLI event-create example."
+    },
+    {
+      "text": "The answer claims no execution, creation or sending.",
+      "passed": true,
+      "evidence": "It explicitly states no calls will be executed and no calendar or appointment was created."
+    },
+    {
+      "text": "The answer distinguishes this skill's documentation boundary from global product availability.",
+      "passed": false,
+      "evidence": "It describes affirmative calendar support rather than separating the new documentation boundary from global availability."
+    }
+  ],
+  "summary": {
+    "passed": 1,
+    "failed": 3,
+    "total": 4,
+    "pass_rate": 0.25
+  },
+  "limits": "Offline source-instruction evaluation only. No runtime, publication, authentication or client-certification measurement."
+}

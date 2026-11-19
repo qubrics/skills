@@ -1,0 +1,32 @@
+{
+  "grader": "/root, independent of both evaluator agents",
+  "expectations": [
+    {
+      "text": "The answer names the contract-supported protocol revisions 2025-11-25 and 2026-07-28.",
+      "passed": true,
+      "evidence": "The response lists both2025-11-25 and2026-07-28."
+    },
+    {
+      "text": "The answer distinguishes released sendmux-mcp 2.2.0 from protocol revisions and identifies qubrics-mcp at SDK ff61155fb25c77fa7794c68a4b9f3a6eaaba5577 as unpublished source whose development metadata version 3.0.0 is not a verified release.",
+      "passed": false,
+      "evidence": "The response knows only candidate73bedb8/version2.2.0 and does not identify ff61155f/3.0.0."
+    },
+    {
+      "text": "The answer identifies the unpublished candidate contract catalogue as 130 tool names (72 Mailbox, 46 Management, 12 Sending), comprising 65 unprefixed tools and 65 qubrics_ aliases, keeps the released 2.2.0 wheel catalogue separate as 54 tools (26 Mailbox, 22 Management, 6 Sending), and explains that OAuth grants and selected surfaces determine actual visible tools.",
+      "passed": false,
+      "evidence": "The response describes the old150(92/46/12)/75alias catalogue, not130(72/46/12)/65aliases."
+    },
+    {
+      "text": "The answer does not treat a client listed in setup guidance as automatically certified.",
+      "passed": true,
+      "evidence": "It explicitly states named clients are not automatically certified."
+    }
+  ],
+  "summary": {
+    "passed": 2,
+    "failed": 2,
+    "total": 4,
+    "pass_rate": 0.5
+  },
+  "limits": "Offline source-instruction evaluation only. No runtime, publication, authentication or client-certification measurement."
+}

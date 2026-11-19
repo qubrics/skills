@@ -1,0 +1,11 @@
+{
+  "eval_id": 0,
+  "prompt": "I am testing SDK source ff61155fb25c77fa7794c68a4b9f3a6eaaba5577 after the Qubrics Python namespace rename. Explain local mailbox-only and combined MCP stdio commands and give Cursor JSON using the mailbox-only command and the literal secret placeholder ${QUBRICS_API_KEY}. Preserve MCP runtime tool selectors and explain what package publication must be checked. Do not launch, authenticate or access content.",
+  "assertions": [
+    "Uses qubrics-mcp-mailbox and qubrics-mcp for the requested local stdio commands without teaching old console executables.",
+    "Uses QUBRICS_API_KEY and the literal requested secret placeholder in mailbox-only Cursor JSON, explaining supported interpolation without exposing a credential.",
+    "Documents QUBRICS environment names and retained SENDMUX compatibility fallbacks.",
+    "Preserves existing MCP runtime tool selectors and explains qubrics_ aliases without inventing replacement selectors.",
+    "Requires verification of candidate package publication and claims no launch, authentication or content access."
+  ]
+}

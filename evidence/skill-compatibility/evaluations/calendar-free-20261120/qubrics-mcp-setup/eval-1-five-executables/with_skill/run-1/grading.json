@@ -1,0 +1,37 @@
+{
+  "grader": "/root, independent of both evaluator agents",
+  "expectations": [
+    {
+      "text": "Names qubrics-mcp, qubrics-mcp-hosted, qubrics-mcp-mailbox, qubrics-mcp-management and qubrics-mcp-sending without teaching old console executables.",
+      "passed": true,
+      "evidence": "The response lists qubrics-mcp, qubrics-mcp-hosted, qubrics-mcp-mailbox, qubrics-mcp-management and qubrics-mcp-sending; old package names appear only in the separated historical-wheel caveat."
+    },
+    {
+      "text": "Uses qubrics-mcp-mailbox for local Cursor mailbox-only setup and keeps the credential a placeholder in environment configuration.",
+      "passed": true,
+      "evidence": "Cursor JSON uses qubrics-mcp-mailbox with QUBRICS_API_KEY=${env:QUBRICS_MBX_KEY} and explains secret-store loading."
+    },
+    {
+      "text": "Documents QUBRICS environment names with their retained SENDMUX compatibility fallbacks.",
+      "passed": true,
+      "evidence": "It states canonical QUBRICS credential names precede legacy SENDMUX fallbacks and names the per-surface keys."
+    },
+    {
+      "text": "Preserves existing MCP runtime tool names and explains their qubrics_ aliases without inventing renamed selectors.",
+      "passed": true,
+      "evidence": "It retains mailbox_search_message_snippets, management_create_mailbox and sending_send_email and gives their exact qubrics_ aliases."
+    },
+    {
+      "text": "Keeps hosted MCP OAuth resource https://mcp.qubrics.com/mcp separate from REST tokens and claims no external action or unpublished package availability.",
+      "passed": true,
+      "evidence": "It binds hosted OAuth to canonical https://mcp.qubrics.com/mcp, explicitly rejects REST bearer reuse and claims no runtime or publication check."
+    }
+  ],
+  "summary": {
+    "passed": 5,
+    "failed": 0,
+    "total": 5,
+    "pass_rate": 1
+  },
+  "limits": "Offline source-instruction evaluation only; no runtime, publication, authentication or client certification measured."
+}

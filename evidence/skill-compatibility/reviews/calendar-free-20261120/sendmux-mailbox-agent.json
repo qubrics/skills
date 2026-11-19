@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "kind": "compatibility",
+  "skill": "sendmux-mailbox-agent",
+  "skillDigest": "a3e2ba98b2f049335b02ebb3f3ea25b44e4c1c93878160273250222bb693a08a",
+  "contractDigest": "6474be5da1b073db33ffde438dc15adfa3aa655e056a4f0c020cf4456db2e4be",
+  "sourceRevisions": {
+    "app": "06a1d50eeb483e8a4c6aeb8da64832c5d3dc5a7e",
+    "sending": "2f4226655efc05f109b5feda50ed2ca1570aea91",
+    "sdk": "ff61155fb25c77fa7794c68a4b9f3a6eaaba5577"
+  },
+  "reviewer": "Independent source reviewer /root/calendar_source_review; coordinating reviewer /root",
+  "rationale": "The selected non-calendar mailbox operations, response contracts and credential boundaries remain unchanged. Calendar teaching and selectors are withdrawn under the recorded operator hold. The proposed body refuses that held task in a genuine offline evaluation; the original legacy body predates calendar teaching. This source review covers the retained operation subset, not runtime or publication availability.",
+  "evidence": [
+    {
+      "path": "skills/sendmux-mailbox-agent/SKILL.md",
+      "sha256": "368ef6d17bfe8a6c2e6947795f91ff472f6119a903750540af18b47688378923"
+    },
+    {
+      "path": "evidence/skill-compatibility/reviews/calendar-free-20261120/source-review.md",
+      "sha256": "67d7de77f0574ab67b6a7802180e291c42a3dcd4557bfad8098913617aff7a13"
+    }
+  ]
+}

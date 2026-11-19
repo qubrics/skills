@@ -1,0 +1,93 @@
+{
+  "schemaVersion": 1,
+  "kind": "workflow",
+  "skill": "qubrics-mcp-setup",
+  "skillDigest": "142124617f232ee46fb422276772e338af8c98032132c3a2ded8c71cbfca96f4",
+  "contractDigest": "bab95d30966d57a842304b42f4933326cbb28995dfd120ec47ade64c8809acdb",
+  "sourceRevisions": {
+    "app": "06a1d50eeb483e8a4c6aeb8da64832c5d3dc5a7e",
+    "sending": "2f4226655efc05f109b5feda50ed2ca1570aea91",
+    "sdk": "ff61155fb25c77fa7794c68a4b9f3a6eaaba5577"
+  },
+  "reviewer": "Actual evaluator /root/calendar_workflow_final; independent grader /root; source reviewer /root/calendar_source_review",
+  "rationale": "New genuine evaluations bind the changed calendar-free setup body to renamed commands, all five executables and exact compatibility facts. Independent grading preserves every original security assertion. Immutable source review confirms version 3.0.0, 130 tool names, 65 aliases and unchanged OAuth/credential boundaries. No runtime, installed-client or publication claim.",
+  "previousSkillDigest": "cabb71c6b068c8223d53e0ea5e0a39c788e1bff606b5fdfb48b141e6c530c224",
+  "evidence": [
+    {
+      "path": "skills/qubrics-mcp-setup/SKILL.md",
+      "sha256": "ecabd5c26f1ac9b9ccf06f896f18788678761f63a9c2d5d51ca33bee78c87a3f"
+    },
+    {
+      "path": "evidence/skill-compatibility/reviews/calendar-free-20261120/source-review.md",
+      "sha256": "67d7de77f0574ab67b6a7802180e291c42a3dcd4557bfad8098913617aff7a13"
+    },
+    {
+      "path": "evidence/skill-compatibility/evaluations/calendar-free-20261120/provenance.md",
+      "sha256": "e60cec0499ee60c681966f51170ff75189c88b2630c25c0492e3722ef2d18fa6"
+    },
+    {
+      "path": "evidence/skill-compatibility/evaluations/calendar-free-20261120/qubrics-mcp-setup/benchmark.json",
+      "sha256": "401f58e1e12e1990ade8dce74831812fc2396d7d2f0d1172b0afa1fd9738d02e"
+    },
+    {
+      "path": "evidence/skill-compatibility/evaluations/calendar-free-20261120/qubrics-mcp-setup/eval-0-renamed-commands/eval_metadata.json",
+      "sha256": "bff61a97c498b5706660be2dea1204ca440fa951066787c72d16114964153fb0"
+    },
+    {
+      "path": "evidence/skill-compatibility/evaluations/calendar-free-20261120/qubrics-mcp-setup/eval-0-renamed-commands/with_skill/run-1/grading.json",
+      "sha256": "a105d30e7bf58354153fec449744944f8eea75fdfa713482aee22dda31de75cc"
+    },
+    {
+      "path": "evidence/skill-compatibility/evaluations/calendar-free-20261120/qubrics-mcp-setup/eval-0-renamed-commands/with_skill/run-1/outputs/response.md",
+      "sha256": "de327e31a63ee26ca9fa5b7d6a5e6d64147a5050bc1e2a54f19a309a9b557fdc"
+    },
+    {
+      "path": "evidence/skill-compatibility/evaluations/calendar-free-20261120/qubrics-mcp-setup/eval-0-renamed-commands/with_skill/run-1/receipt.json",
+      "sha256": "355dbabe5bc0d97c12d248cbe63c0bf3776766df86ba7b7506f253a0d984374d"
+    },
+    {
+      "path": "evidence/skill-compatibility/evaluations/calendar-free-20261120/qubrics-mcp-setup/eval-0-renamed-commands/with_skill/run-1/transcript.md",
+      "sha256": "f5667c76bd06462d8f1613c72d6ce3f82646915da0d68fa1b90fa3247c00757d"
+    },
+    {
+      "path": "evidence/skill-compatibility/evaluations/calendar-free-20261120/qubrics-mcp-setup/eval-1-five-executables/eval_metadata.json",
+      "sha256": "483af3565200c991079f857ecce5e6be8019478a713502444eecf1e699d6c8f5"
+    },
+    {
+      "path": "evidence/skill-compatibility/evaluations/calendar-free-20261120/qubrics-mcp-setup/eval-1-five-executables/with_skill/run-1/grading.json",
+      "sha256": "1ec8ef3d38f861f2459d1d70532cbb239a5c005c0eab2c00d036479bfda251fd"
+    },
+    {
+      "path": "evidence/skill-compatibility/evaluations/calendar-free-20261120/qubrics-mcp-setup/eval-1-five-executables/with_skill/run-1/outputs/response.md",
+      "sha256": "6eb0d909b7daca9b7db2377ae978ae6027b4db04bed28752ab8473db26e25764"
+    },
+    {
+      "path": "evidence/skill-compatibility/evaluations/calendar-free-20261120/qubrics-mcp-setup/eval-1-five-executables/with_skill/run-1/receipt.json",
+      "sha256": "72d834e017a3fa6918bb73cd037db8ceca44ffe60df62ce2f9975c2674230c55"
+    },
+    {
+      "path": "evidence/skill-compatibility/evaluations/calendar-free-20261120/qubrics-mcp-setup/eval-1-five-executables/with_skill/run-1/transcript.md",
+      "sha256": "2f19451bb7bf3b4e1f6da2919759ba01b4082e4dbcbae736d9e3a784e204f21c"
+    },
+    {
+      "path": "evidence/skill-compatibility/evaluations/calendar-free-20261120/qubrics-mcp-setup/eval-7-compatibility/eval_metadata.json",
+      "sha256": "e4926467580b2dca20e268e8ad9f6789de8095e22706ce4da0c72b336b2bf8ae"
+    },
+    {
+      "path": "evidence/skill-compatibility/evaluations/calendar-free-20261120/qubrics-mcp-setup/eval-7-compatibility/with_skill/run-1/grading.json",
+      "sha256": "83438ac3fcf07a3b1e3748bdd1e2432ccae885a0d157b6c93e288144b5646d41"
+    },
+    {
+      "path": "evidence/skill-compatibility/evaluations/calendar-free-20261120/qubrics-mcp-setup/eval-7-compatibility/with_skill/run-1/outputs/response.md",
+      "sha256": "ee00d8e29afeeeda6a37db2c9d2572926dccf9fb7167502e94460730464112c8"
+    },
+    {
+      "path": "evidence/skill-compatibility/evaluations/calendar-free-20261120/qubrics-mcp-setup/eval-7-compatibility/with_skill/run-1/receipt.json",
+      "sha256": "5cea388fd7b86ae062da308a496828c54b8643c9b52d35d8f83ce22cc2776111"
+    },
+    {
+      "path": "evidence/skill-compatibility/evaluations/calendar-free-20261120/qubrics-mcp-setup/eval-7-compatibility/with_skill/run-1/transcript.md",
+      "sha256": "ccfe3f154049953e10a7628d093998cb7303852531d559977fc6fb5826d00fce"
+    }
+  ]
+}

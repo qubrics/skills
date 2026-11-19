@@ -34,15 +34,15 @@ SDK source declares `https://mcp.qubrics.com/mcp` as its canonical resource and 
 
 ## Install
 
-Local examples below require an installed `qubrics-mcp` build from SDK source `a326bc923fff448470d908bb527afaaa35f6d739`. Publication is pending. Before using the package-index install below, verify the intended release is published. Hosted OAuth remains available at `https://mcp.qubrics.com/mcp`.
+Local examples below require an installed `qubrics-mcp` build from SDK source `ff61155fb25c77fa7794c68a4b9f3a6eaaba5577`. Publication is pending. Before using the package-index install below, verify the intended release is published. Hosted OAuth remains available at `https://mcp.qubrics.com/mcp`.
 
 ```bash
 pip install qubrics-mcp
 ```
 
-The candidate `qubrics-mcp` source declares package version 2.2.0. Its MCP protocol revisions are `2025-11-25` and `2026-07-28`, over stdio or Streamable HTTP. This source is unpublished.
+The candidate `qubrics-mcp` source declares package version 3.0.0. Its MCP protocol revisions are `2025-11-25` and `2026-07-28`, over stdio or Streamable HTTP. This source is unpublished.
 
-Its catalogue contains 150 tool names across Mailbox (92), Management (46) and Sending (12). Each of the 75 unprefixed tools (46 Mailbox, 23 Management, 6 Sending) has a `qubrics_` alias.
+Its catalogue contains 130 tool names across Mailbox (72), Management (46) and Sending (12). Each of the 65 unprefixed tools (36 Mailbox, 23 Management, 6 Sending) has a `qubrics_` alias.
 
 The released `sendmux-mcp` 2.2.0 wheel is separate: 54 tools (26 Mailbox, 22 Management, 6 Sending), with the old `sendmux-mcp*` executable names and no `qubrics_` aliases. Its local HTTP bearer setting is `SENDMUX_MCP_HTTP_BEARER_TOKEN`. OAuth grants and selected surfaces limit tool visibility.
 
@@ -74,11 +74,11 @@ Use the connected server's public tool discovery before choosing a tool below. I
 
 | Surface    | Key                                                                     | Tool count | Example tools                                                                                                                                         |
 | ---------- | ----------------------------------------------------------------------- | ---------: | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Mailbox    | `smx_mbx_` or scoped `smx_agent_`                                       |         92 | `mailbox_list_granted_mailboxes`, `mailbox_search_message_snippets`, `mailbox_get_attachment`, `mailbox_upload_attachment`, `mailbox_wait_for_message` |
+| Mailbox    | `smx_mbx_` or scoped `smx_agent_`                                       |         72 | `mailbox_list_granted_mailboxes`, `mailbox_search_message_snippets`, `mailbox_get_attachment`, `mailbox_upload_attachment`, `mailbox_wait_for_message` |
 | Management | `smx_root_`                                                             |         46 | `management_create_domain`, `management_create_mailbox`, `management_create_mailbox_key`, `management_get_spend_summary`, `management_create_webhook` |
 | Sending    | Send-capable `smx_mbx_` or owner-approved Sending-resource `smx_agent_` |         12 | `sending_send_email`, `sending_send_email_batch`, `sending_upload_attachment`, `sending_create_attachment_upload`, `sending_get_attachment`            |
 
-Compatibility notes must distinguish the unpublished `qubrics-mcp` source at SDK `a326bc923fff448470d908bb527afaaa35f6d739` and its 150 tool names (92 Mailbox, 46 Management, 12 Sending), including 75 `qubrics_` aliases, from the released `sendmux-mcp` 2.2.0 wheel's catalogue above. Do not describe a credential-visible subset as the catalogue.
+Compatibility notes must distinguish the unpublished `qubrics-mcp` source at SDK `ff61155fb25c77fa7794c68a4b9f3a6eaaba5577` and its 130 tool names (72 Mailbox, 46 Management, 12 Sending), including 65 `qubrics_` aliases, from the released `sendmux-mcp` 2.2.0 wheel's catalogue above. Do not describe a credential-visible subset as the catalogue.
 
 Hosted tool visibility depends on the approved grant. For multi-mailbox grants, call `mailbox_list_granted_mailboxes` first and pass the returned `mailbox_id` to mailbox tools when targeting a mailbox. Client examples in this guide are documented configurations, not claims that the client is certified compatible; verify the chosen client separately.
 

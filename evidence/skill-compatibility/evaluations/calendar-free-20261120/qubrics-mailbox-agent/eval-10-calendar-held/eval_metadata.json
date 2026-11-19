@@ -1,0 +1,10 @@
+{
+  "eval_id": 10,
+  "prompt": "Create a private Qubrics calendar and add an appointment without sending invitations. Are calendar calls supported by this skill? Do not execute anything.",
+  "assertions": [
+    "The answer states that this skill supplies no supported calendar calls.",
+    "The answer supplies no calendar creation tool, command or executable example.",
+    "The answer claims no execution, creation or sending.",
+    "The answer distinguishes this skill's documentation boundary from global product availability."
+  ]
+}

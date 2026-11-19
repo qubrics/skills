@@ -17,15 +17,15 @@
   },
   {
     "query": "Create a private Qubrics calendar and add an appointment without sending invitations.",
-    "should_trigger": true
+    "should_trigger": false
   },
   {
     "query": "Keep my local Qubrics calendar-event index in sync without duplicating an uncertain create.",
-    "should_trigger": true
+    "should_trigger": false
   },
   {
     "query": "Create a recurring Qubrics calendar meeting and invite three participants.",
-    "should_trigger": true
+    "should_trigger": false
   },
   {
     "query": "Create a new Qubrics mailbox and API key.",
