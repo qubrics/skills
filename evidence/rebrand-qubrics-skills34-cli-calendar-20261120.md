@@ -33,7 +33,11 @@ The [independent source review](skill-compatibility/reviews/cli-calendar-2026112
 
 ## Verification and release boundary
 
-Five focused existing guard tests passed, zero failures or skips: exact-candidate receipt, renamed release receipt, changed catalogue review, read-only inspection-map boundary, and A13 tested supersession. No tests were added, removed or weakened. Real committed-source acceptance and PR/main CI results will be recorded before the release ASK.
+Five focused existing guard tests passed, zero failures or skips: exact-candidate receipt, renamed release receipt, changed catalogue review, read-only inspection-map boundary, and A13 tested supersession. No tests were added, removed or weakened.
+
+Normal exact acceptance at committed Skills `2b04fe210b0eabf485b25cf54fbd2fcc4c32d224` exited 0 for final SDK `4416e3cec4e5cff2440f7aff8cbd6e5cd4b70c5e`: accepted=true, 4 reviewed, 15 no-impact and 3 tested supersessions, all 22 pairs. Candidate digest `accd485c6a9a158bc63cc0c1dc6bb90fb9db9682828900d0b91dcfc2f96b8abd`. `reviewed.candidate.json`, `reviewed.acceptance.json` and `reviewed-pass.log` are the checker's own outputs. The initial prepare invocation used an abbreviated Skills SHA and was rejected by immutable-SHA validation; corrected to the full commit before acceptance. No source, assertion or record changed in that correction.
+
+The four appended records bind their exact bodies and independent source-review bytes. All 191 historical reviews, dependencies and the rename map compare equal to the previous committed values. CI now checks out the final public SDK SHA. No skill content or bundle metadata changes: OpenClaw/plugin versions remain 2.0.4; the prospective GitHub release carries compatibility evidence. PR/main CI and the sole actual-main artifact identity belong in the release ASK after their measured result.
 
 Merge alone cannot change the SDK default selector. At the exact final SDK source, [`.github/actions/skill-release-checks/action.yml:25–35`](https://github.com/qubrics/qubrics-sdk/blob/4416e3cec4e5cff2440f7aff8cbd6e5cd4b70c5e/.github/actions/skill-release-checks/action.yml#L25) selects the latest Skills release, downloads `acceptance.json`, and takes its proposed revision. [`scripts/publication-guard.mjs:70–88`](https://github.com/qubrics/qubrics-sdk/blob/4416e3cec4e5cff2440f7aff8cbd6e5cd4b70c5e/scripts/publication-guard.mjs#L70) binds the immutable checker and recomputes exact publishing-source acceptance. Latest `v2.0.8` cannot see new main-only records. A separate exact `v2.0.9` GitHub release/tag ASK must name the actual-main CI artifact and its SHA-256; no release/tag is authorised by this PR.
 
@@ -41,4 +45,4 @@ Raw receipts: Skills MAIN `.claude/artifacts/rebrand-qubrics-skills34/cli-calend
 
 Cursor public marketplace HTTP 200 and settled Qubrics search returned **No results found** at `2026-11-20T00:20:20.752Z` (11:20 AEDT). Owned tab closed and Playwriter session 62 deleted. Public listing/installability remains outside review and unproven; no submission or operator status request.
 
-Status: source review/record preparation; not released. Rollback is a normal revert PR; any latest-release selector change requires its separately approved release packet. Full #34 remains open for Cursor public listing/installability.
+Status: genuine exact-source compatibility PASS on the committed origin records; PR/main gates pending, not released. Rollback is a normal revert PR; any latest-release selector change requires its separately approved release packet. Full #34 remains open for Cursor public listing/installability.
