@@ -3546,6 +3546,34 @@
   },
   "reviews": [
     {
+      "skill": "sendmux-cli",
+      "skillDigest": "79f22216d882af6ffa0c246f01204e4f4537065368e15027f7a9f08c931db929",
+      "contractDigest": "46af45d935f17006bec9b7cd4745eeabdf192aa7e008357ba924cedc8ae93d51",
+      "record": "evidence/skill-compatibility/reviews/cli-calendar-20261120/sendmux-cli.json",
+      "sha256": "136c935c3749ed663719ce9d854aa64f26f4f20b81da359854f30642f974c087"
+    },
+    {
+      "skill": "qubrics-cli",
+      "skillDigest": "0ebe390e7cccdb0291c739124a58d120623dd70c54f0662f42931a073a2844bb",
+      "contractDigest": "173d494f78667ca69a49f233e5fcbdb79a178f9df274ec537b67a9af52a878b3",
+      "record": "evidence/skill-compatibility/reviews/cli-calendar-20261120/qubrics-cli.json",
+      "sha256": "622926c90c5c6f9dc635e26d77927b46584a1cd10853a3acaebd1efccef6f944"
+    },
+    {
+      "skill": "sendmux-management",
+      "skillDigest": "a82945bdb1521932eef71cfe05264e006ebffd52fde7859c0cc4cfedef72abea",
+      "contractDigest": "01fc2993735104063f2d3f3ce795470f10b827e9c68f9392aadab3cb2dcd674b",
+      "record": "evidence/skill-compatibility/reviews/cli-calendar-20261120/sendmux-management.json",
+      "sha256": "6fdf79fcc9959094bf5528f8761811def521febadd3f6ed4b423fdd4a3199bb2"
+    },
+    {
+      "skill": "qubrics-management",
+      "skillDigest": "ec55108500cd59654717c8d8102088d495e8b923525e8b391e76650a66b00103",
+      "contractDigest": "caabd66f5a04178c964a749b672d8206f7d7a8c173890027a03c90d9a16dbff1",
+      "record": "evidence/skill-compatibility/reviews/cli-calendar-20261120/qubrics-management.json",
+      "sha256": "3dcb194aa042ebf2a7badd94b067d0d4c01361f7731621269d10443c5e66e327"
+    },
+    {
       "skill": "sendmux-email-for-agents",
       "skillDigest": "d6114bc5ad522d699bdc8fa5996b3a0458c073233bab3587f7c065c14b967cf2",
       "contractDigest": "c578a623bbfdf7f66657ffeda80222b7593cdc360b2dfa5b8ab40735da1ba261",
@@ -4885,7 +4913,7 @@
   ],
   "releaseInputs": {
     "publishedRevision": "9d8059b10111943ce08860217a27222f43507686",
-    "sdkRevision": "ff61155fb25c77fa7794c68a4b9f3a6eaaba5577",
+    "sdkRevision": "d481266dd8f4c3f3791c4627a05c49d8eee53374",
     "app": {
       "revision": "06a1d50eeb483e8a4c6aeb8da64832c5d3dc5a7e",
       "openapi": "evidence/skill-compatibility/contracts/calendar-api-20261111/app-openapi.json",
