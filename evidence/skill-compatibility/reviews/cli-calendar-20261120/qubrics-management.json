@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "kind": "compatibility",
+  "skill": "qubrics-management",
+  "skillDigest": "ec55108500cd59654717c8d8102088d495e8b923525e8b391e76650a66b00103",
+  "contractDigest": "caabd66f5a04178c964a749b672d8206f7d7a8c173890027a03c90d9a16dbff1",
+  "sourceRevisions": {
+    "app": "06a1d50eeb483e8a4c6aeb8da64832c5d3dc5a7e",
+    "sending": "2f4226655efc05f109b5feda50ed2ca1570aea91",
+    "sdk": "4416e3cec4e5cff2440f7aff8cbd6e5cd4b70c5e"
+  },
+  "reviewer": "Independent Codex source reviewer /root/cli_calendar_source_review; coordinating reviewer /root",
+  "rationale": "All 32 documented commands remain available. Removing calendar.changed from management:list-delivery does not invalidate any taught query or webhook workflow. Delivery/payload reads, JSON response handling, small limits, selected connection identity, root/OAuth permissions, secret handling and destructive-action confirmation remain compatible.",
+  "evidence": [
+    {
+      "path": "skills/qubrics-management/SKILL.md",
+      "sha256": "286e400c7e6a43e687fa4814dc4a79a45659a4b4d7357a45126c278b6bbfc522"
+    },
+    {
+      "path": "evidence/skill-compatibility/reviews/cli-calendar-20261120/source-review.md",
+      "sha256": "23a3ccd963f9beff8b94292e108e72c22d38f81330d929673e75c6125e0ccf4d"
+    }
+  ]
+}

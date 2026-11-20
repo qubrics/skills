@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "kind": "compatibility",
+  "skill": "qubrics-cli",
+  "skillDigest": "c7b4ac5db8aef06326e3209d37f7116619cc4778ea5964ca0ac041de09799107",
+  "contractDigest": "173d494f78667ca69a49f233e5fcbdb79a178f9df274ec537b67a9af52a878b3",
+  "sourceRevisions": {
+    "app": "06a1d50eeb483e8a4c6aeb8da64832c5d3dc5a7e",
+    "sending": "2f4226655efc05f109b5feda50ed2ca1570aea91",
+    "sdk": "4416e3cec4e5cff2440f7aff8cbd6e5cd4b70c5e"
+  },
+  "reviewer": "Independent Codex source reviewer /root/cli_calendar_source_review; coordinating reviewer /root",
+  "rationale": "All 31 documented commands remain available; none teaches a removed calendar command or calendar.changed filter. Catalogue count explicitly describes published @qubrics/cli 2.0.0, not this final calendar-free source. Credential isolation, identity verification, owner-gated sending, OAuth and destructive-action boundaries remain unchanged.",
+  "evidence": [
+    {
+      "path": "skills/qubrics-cli/SKILL.md",
+      "sha256": "d326db6f4c3981c71839f828489c54ef1931d62869db237babee65aac844a572"
+    },
+    {
+      "path": "evidence/skill-compatibility/reviews/cli-calendar-20261120/source-review.md",
+      "sha256": "23a3ccd963f9beff8b94292e108e72c22d38f81330d929673e75c6125e0ccf4d"
+    }
+  ]
+}
