@@ -3550,28 +3550,28 @@
       "skillDigest": "79f22216d882af6ffa0c246f01204e4f4537065368e15027f7a9f08c931db929",
       "contractDigest": "46af45d935f17006bec9b7cd4745eeabdf192aa7e008357ba924cedc8ae93d51",
       "record": "evidence/skill-compatibility/reviews/cli-calendar-20261120/sendmux-cli.json",
-      "sha256": "f5e78ec2e1b1cffcf0b4caa89be3af60ef7167e79a1aad3d7bc75e047f437caf"
+      "sha256": "136c935c3749ed663719ce9d854aa64f26f4f20b81da359854f30642f974c087"
     },
     {
       "skill": "qubrics-cli",
       "skillDigest": "0ebe390e7cccdb0291c739124a58d120623dd70c54f0662f42931a073a2844bb",
       "contractDigest": "173d494f78667ca69a49f233e5fcbdb79a178f9df274ec537b67a9af52a878b3",
       "record": "evidence/skill-compatibility/reviews/cli-calendar-20261120/qubrics-cli.json",
-      "sha256": "6557c92a885dec512dda0bf0e59b82194f7a4bb8bfab23a7bf22f9c13a4850a8"
+      "sha256": "622926c90c5c6f9dc635e26d77927b46584a1cd10853a3acaebd1efccef6f944"
     },
     {
       "skill": "sendmux-management",
       "skillDigest": "a82945bdb1521932eef71cfe05264e006ebffd52fde7859c0cc4cfedef72abea",
       "contractDigest": "01fc2993735104063f2d3f3ce795470f10b827e9c68f9392aadab3cb2dcd674b",
       "record": "evidence/skill-compatibility/reviews/cli-calendar-20261120/sendmux-management.json",
-      "sha256": "e332bb851c8672c7d2b485094bd29a7711b88e059fb7761c1788a2bb33793c06"
+      "sha256": "6fdf79fcc9959094bf5528f8761811def521febadd3f6ed4b423fdd4a3199bb2"
     },
     {
       "skill": "qubrics-management",
       "skillDigest": "ec55108500cd59654717c8d8102088d495e8b923525e8b391e76650a66b00103",
       "contractDigest": "caabd66f5a04178c964a749b672d8206f7d7a8c173890027a03c90d9a16dbff1",
       "record": "evidence/skill-compatibility/reviews/cli-calendar-20261120/qubrics-management.json",
-      "sha256": "a111ed4f41e353cb6d9fff22282d06045182d8122d28e352284d8eb2e00deb53"
+      "sha256": "3dcb194aa042ebf2a7badd94b067d0d4c01361f7731621269d10443c5e66e327"
     },
     {
       "skill": "sendmux-email-for-agents",
@@ -4913,7 +4913,7 @@
   ],
   "releaseInputs": {
     "publishedRevision": "9d8059b10111943ce08860217a27222f43507686",
-    "sdkRevision": "4416e3cec4e5cff2440f7aff8cbd6e5cd4b70c5e",
+    "sdkRevision": "d481266dd8f4c3f3791c4627a05c49d8eee53374",
     "app": {
       "revision": "06a1d50eeb483e8a4c6aeb8da64832c5d3dc5a7e",
       "openapi": "evidence/skill-compatibility/contracts/calendar-api-20261111/app-openapi.json",

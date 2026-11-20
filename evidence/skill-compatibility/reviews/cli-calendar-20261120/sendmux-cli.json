@@ -7,7 +7,7 @@
   "sourceRevisions": {
     "app": "06a1d50eeb483e8a4c6aeb8da64832c5d3dc5a7e",
     "sending": "2f4226655efc05f109b5feda50ed2ca1570aea91",
-    "sdk": "4416e3cec4e5cff2440f7aff8cbd6e5cd4b70c5e"
+    "sdk": "d481266dd8f4c3f3791c4627a05c49d8eee53374"
   },
   "reviewer": "Independent Codex source reviewer /root/cli_calendar_source_review; coordinating reviewer /root",
   "rationale": "All 31 documented commands remain available after the ten untaught calendar commands are removed. The legacy candidate Mailbox count 63 is historical and is not count-equality approval for the final source count 53; command-level help remains required. Credential, identity, owner-approval and destructive-action boundaries are unchanged.",
@@ -19,6 +19,10 @@
     {
       "path": "evidence/skill-compatibility/reviews/cli-calendar-20261120/source-review.md",
       "sha256": "23a3ccd963f9beff8b94292e108e72c22d38f81330d929673e75c6125e0ccf4d"
+    },
+    {
+      "path": "evidence/skill-compatibility/reviews/cli-calendar-20261120/final-source-review.md",
+      "sha256": "50d2473e0a2977a194fd7aebd4685ba064791de8563b7347fd342e5369b89c7f"
     }
   ]
 }
