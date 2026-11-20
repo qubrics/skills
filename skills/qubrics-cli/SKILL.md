@@ -127,12 +127,12 @@ Command requires a sending API key, but --api-key contains a root API key.
 
 ## Command catalogue
 
-Published `@qubrics/cli` 2.0.0 exposes these generated operation commands:
+The calendar-free CLI candidate source exposes these generated operation commands. Verify its published version before relying on these commands:
 
 | Surface    | Count | Examples                                                                                                                                                   |
 | ---------- | ----: | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Management |    57 | `management:domains:list`, `management:create-domain`, `management:create-mailbox`, `management:get-spend-summary`, `management:create-webhook`            |
-| Mailbox    |    63 | `mailbox:search-message-snippets`, `mailbox:batch-get-messages`, `mailbox:query-message-changes`, `mailbox:send-message`, `mailbox:list-granted-mailboxes` |
+| Mailbox    |    53 | `mailbox:search-message-snippets`, `mailbox:batch-get-messages`, `mailbox:query-message-changes`, `mailbox:send-message`, `mailbox:list-granted-mailboxes` |
 | Sending    |     8 | `sending:get-open-api-spec`, `sending:send`, `sending:send:batch`, `sending:upload-attachment`, `sending:create-attachment-upload`, `sending:complete-attachment-upload`, `sending:get-attachment` |
 | OAuth      |     2 | `auth:login`, `auth:logout` |
 | Profiles   |     3 | `profiles:list`, `profiles:set`, `profiles:show`                                                                                                           |
