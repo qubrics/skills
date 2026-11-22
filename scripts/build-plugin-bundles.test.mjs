@@ -27,10 +27,12 @@ function makeRepo() {
   mkdirSync(path.join(repoRoot, "skills", "sendmux-test", "agents"), { recursive: true });
   mkdirSync(path.join(repoRoot, "skills", "sendmux-test", "evals"), { recursive: true });
   mkdirSync(path.join(repoRoot, "assets"), { recursive: true });
-  writeFileSync(
-    path.join(repoRoot, "assets", "sendmux-mark.svg"),
-    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10"></svg>\n',
-  );
+  for (const logoName of ["qubrics-emblem.svg", "sendmux-mark.svg"]) {
+    writeFileSync(
+      path.join(repoRoot, "assets", logoName),
+      '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10"></svg>\n',
+    );
+  }
   writeFileSync(
     path.join(repoRoot, "openclaw.skills.json"),
     `${JSON.stringify(
@@ -184,7 +186,7 @@ test("builds marketplace plugin bundles from canonical skills", () => {
       homepage: "https://qubrics.com/docs/guides/agent-skills",
       repository: "https://github.com/qubrics/skills",
       license: "Apache-2.0",
-      logo: "assets/sendmux-mark.svg",
+      logo: "assets/qubrics-emblem.svg",
       keywords: ["qubrics", "email", "agent-skills", "mcp", "cli"],
       category: "communication",
       skills: "./skills/",
@@ -265,13 +267,13 @@ test("detects stale Cursor manifest and MCP outputs", () => {
   }
 });
 
-test("fails clearly when the Cursor logo is missing", () => {
+test("fails clearly when the Qubrics Cursor logo is missing despite the legacy logo", () => {
   const repoRoot = makeRepo();
   try {
-    rmSync(path.join(repoRoot, "assets", "sendmux-mark.svg"));
+    rmSync(path.join(repoRoot, "assets", "qubrics-emblem.svg"));
     assert.throws(
       () => buildPluginBundles(repoRoot),
-      /assets\/sendmux-mark\.svg must exist for the Cursor plugin bundle/,
+      /assets\/qubrics-emblem\.svg must exist for the Cursor plugin bundle/,
     );
   } finally {
     rmSync(repoRoot, { recursive: true, force: true });

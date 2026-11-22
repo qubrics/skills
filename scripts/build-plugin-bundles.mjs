@@ -28,7 +28,7 @@ const LONG_DESCRIPTION =
   "Official Qubrics Agent Skills teach Codex how to send email, read mailboxes, manage team resources, and choose efficient Qubrics API, CLI, MCP, or SDK workflows.";
 const DEPRECATED_DESCRIPTION =
   "Deprecated: install the qubrics plugin from the qubrics marketplace. This compatibility entry includes the same Qubrics skills.";
-const CURSOR_LOGO = "assets/sendmux-mark.svg";
+const CURSOR_LOGO = "assets/qubrics-emblem.svg";
 const MCP_SERVER_URL = "https://mcp.qubrics.com/mcp";
 const RUNTIME_SKILL_ENTRIES = ["SKILL.md", "references", "scripts", "assets", "agents"];
 const GENERATED_OUTPUTS = [
