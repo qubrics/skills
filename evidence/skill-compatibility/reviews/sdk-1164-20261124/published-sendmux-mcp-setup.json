@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "kind": "compatibility",
+  "skill": "sendmux-mcp-setup",
+  "skillDigest": "cabb71c6b068c8223d53e0ea5e0a39c788e1bff606b5fdfb48b141e6c530c224",
+  "contractDigest": "764a2e3ecd84da405f8ec2ca1eaa6147f159633a68ef9da057e4ed7bc17b9cca",
+  "sourceRevisions": {
+    "app": "06a1d50eeb483e8a4c6aeb8da64832c5d3dc5a7e",
+    "sending": "2f4226655efc05f109b5feda50ed2ca1570aea91",
+    "sdk": "3d646e88198cc6166c36d0f165dd68d8a84c536b"
+  },
+  "reviewer": "AI source reviewer: OpenAI Codex /root/skills_compat_review",
+  "rationale": "The selected domain-create response examples changed. The legacy guide's setup, discovery and credential checks remain applicable to the identified wheel and historical candidate.",
+  "evidence": [
+    { "path": "skills/sendmux-mcp-setup/SKILL.md", "sha256": "4d749ee80029bfd22ea4d76949bf28aaede1ffd30340a00ca4acba814b12d0c1" },
+    { "path": "evidence/skill-compatibility/reviews/sdk-1164-20261124/source-review.md", "sha256": "f0ddac1b05d420b9a980770792e897d605a41436e8a8ffa9319d77bcefa265aa" }
+  ]
+}

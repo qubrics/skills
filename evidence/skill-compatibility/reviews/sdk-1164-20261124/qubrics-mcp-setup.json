@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "kind": "compatibility",
+  "skill": "qubrics-mcp-setup",
+  "skillDigest": "142124617f232ee46fb422276772e338af8c98032132c3a2ded8c71cbfca96f4",
+  "contractDigest": "e354c6a5a9a285fbe30bff20ac8487f840d7cf7c141ee01ce886376b99c46623",
+  "sourceRevisions": {
+    "app": "06a1d50eeb483e8a4c6aeb8da64832c5d3dc5a7e",
+    "sending": "2f4226655efc05f109b5feda50ed2ca1570aea91",
+    "sdk": "3d646e88198cc6166c36d0f165dd68d8a84c536b"
+  },
+  "reviewer": "AI source reviewer: OpenAI Codex /root/skills_compat_review",
+  "rationale": "The selected domain-create response examples changed. The 130-tool catalogue, credential and connection checks, and CLI and SDK fallback match the baseline.",
+  "evidence": [
+    { "path": "skills/qubrics-mcp-setup/SKILL.md", "sha256": "ecabd5c26f1ac9b9ccf06f896f18788678761f63a9c2d5d51ca33bee78c87a3f" },
+    { "path": "evidence/skill-compatibility/reviews/sdk-1164-20261124/source-review.md", "sha256": "f0ddac1b05d420b9a980770792e897d605a41436e8a8ffa9319d77bcefa265aa" }
+  ]
+}

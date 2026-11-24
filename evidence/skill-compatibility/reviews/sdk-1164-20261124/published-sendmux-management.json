@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "kind": "compatibility",
+  "skill": "sendmux-management",
+  "skillDigest": "a82945bdb1521932eef71cfe05264e006ebffd52fde7859c0cc4cfedef72abea",
+  "contractDigest": "89bc1bf8850cb0246bc65176a8232696874f7b41bca265eccab38592c719299d",
+  "sourceRevisions": {
+    "app": "06a1d50eeb483e8a4c6aeb8da64832c5d3dc5a7e",
+    "sending": "2f4226655efc05f109b5feda50ed2ca1570aea91",
+    "sdk": "3d646e88198cc6166c36d0f165dd68d8a84c536b"
+  },
+  "reviewer": "AI source reviewer: OpenAI Codex /root/skills_compat_review",
+  "rationale": "The domain create, get and list response examples changed. The legacy guide reads actual zone-file records and uses the same verification workflow and root-key boundary.",
+  "evidence": [
+    { "path": "skills/sendmux-management/SKILL.md", "sha256": "d6cb879e97cc0e374d9d50e1c7523f1099e6ad6753f2d0df49f54e02241442bc" },
+    { "path": "evidence/skill-compatibility/reviews/sdk-1164-20261124/source-review.md", "sha256": "f0ddac1b05d420b9a980770792e897d605a41436e8a8ffa9319d77bcefa265aa" }
+  ]
+}
