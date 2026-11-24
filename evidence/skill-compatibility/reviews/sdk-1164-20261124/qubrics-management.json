@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "kind": "compatibility",
+  "skill": "qubrics-management",
+  "skillDigest": "ec55108500cd59654717c8d8102088d495e8b923525e8b391e76650a66b00103",
+  "contractDigest": "61ae932aeaaf4596a88803a3c28453e570e588146ffe9a5f90e00bdd42ebdfd3",
+  "sourceRevisions": {
+    "app": "06a1d50eeb483e8a4c6aeb8da64832c5d3dc5a7e",
+    "sending": "2f4226655efc05f109b5feda50ed2ca1570aea91",
+    "sdk": "3d646e88198cc6166c36d0f165dd68d8a84c536b"
+  },
+  "reviewer": "AI source reviewer: OpenAI Codex /root/skills_compat_review",
+  "rationale": "The domain response examples changed. The guide uses the same create body and idempotency key, reads zone-file output by public ID and calls the same verification tool.",
+  "evidence": [
+    { "path": "skills/qubrics-management/SKILL.md", "sha256": "286e400c7e6a43e687fa4814dc4a79a45659a4b4d7357a45126c278b6bbfc522" },
+    { "path": "evidence/skill-compatibility/reviews/sdk-1164-20261124/source-review.md", "sha256": "f0ddac1b05d420b9a980770792e897d605a41436e8a8ffa9319d77bcefa265aa" }
+  ]
+}

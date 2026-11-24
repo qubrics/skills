@@ -4909,6 +4909,34 @@
       "contractDigest": "bbf088b7af87f6b0cd57cb944879c24de61195169230ecaabd5626fa0c0ca935",
       "record": "evidence/skill-compatibility/reviews/calendar-free-20261120/qubrics-token-efficient-usage.json",
       "sha256": "941cc81f9dbabb5216eacc690e3494db29239cf11f228fec17ff6e55fa7a184d"
+    },
+    {
+      "skill": "sendmux-management",
+      "skillDigest": "a82945bdb1521932eef71cfe05264e006ebffd52fde7859c0cc4cfedef72abea",
+      "contractDigest": "89bc1bf8850cb0246bc65176a8232696874f7b41bca265eccab38592c719299d",
+      "record": "evidence/skill-compatibility/reviews/sdk-1164-20261124/published-sendmux-management.json",
+      "sha256": "6684e4b00a931bc725bafa92ec9e1c211dfe00824e8d86f0e81ed335446a6c07"
+    },
+    {
+      "skill": "qubrics-management",
+      "skillDigest": "ec55108500cd59654717c8d8102088d495e8b923525e8b391e76650a66b00103",
+      "contractDigest": "61ae932aeaaf4596a88803a3c28453e570e588146ffe9a5f90e00bdd42ebdfd3",
+      "record": "evidence/skill-compatibility/reviews/sdk-1164-20261124/qubrics-management.json",
+      "sha256": "61b60454747ee9f51a93c3f7bc916a8ba166a2b012adb422004b19588ed831ed"
+    },
+    {
+      "skill": "sendmux-mcp-setup",
+      "skillDigest": "cabb71c6b068c8223d53e0ea5e0a39c788e1bff606b5fdfb48b141e6c530c224",
+      "contractDigest": "764a2e3ecd84da405f8ec2ca1eaa6147f159633a68ef9da057e4ed7bc17b9cca",
+      "record": "evidence/skill-compatibility/reviews/sdk-1164-20261124/published-sendmux-mcp-setup.json",
+      "sha256": "053b302bb6ff51d065affa1d1a6da428b559e3d4ef82098117873a52cb525f8a"
+    },
+    {
+      "skill": "qubrics-mcp-setup",
+      "skillDigest": "142124617f232ee46fb422276772e338af8c98032132c3a2ded8c71cbfca96f4",
+      "contractDigest": "e354c6a5a9a285fbe30bff20ac8487f840d7cf7c141ee01ce886376b99c46623",
+      "record": "evidence/skill-compatibility/reviews/sdk-1164-20261124/qubrics-mcp-setup.json",
+      "sha256": "9217869e36f81d473d80f758879c2587505391bf1998ec33249861856660bb6d"
     }
   ],
   "releaseInputs": {
